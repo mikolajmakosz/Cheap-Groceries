@@ -4,8 +4,10 @@
  *
  *   npm run catalogue
  *
- * It fails loudly when a chosen reference product cannot be found in a shop's
- * data, so a renamed product shows up here and not as a silent missing price.
+ * Shops do not sell identical packs, so every price is converted to the term's
+ * basis (1 kg, 1 L, a dozen, a loaf) before anything is compared. It fails loudly
+ * when a chosen reference product cannot be found, or cannot be converted, so a
+ * renamed product shows up here and not as a silently wrong total.
  */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -22,18 +24,33 @@ async function load(file) {
 const mercadona = await load("data/mercadona.json");
 const dia = await load("data/dia.json");
 
+/** Mercadona's own per-unit price labels, as a count of the unit they quote. */
+const MERCADONA_UNIT = { kg: 1000, L: 1000, dc: 12, ud: 1 };
+
 const SHOPS = {
   Mercadona: {
     products: new Map(mercadona.products.map((p) => [p.name, p])),
     collected_on: mercadona.collected_on,
+    // Mercadona publishes the per-kg, per-L, per-dozen price itself: use it.
+    unitPrice(product, basis) {
+      const per = MERCADONA_UNIT[product.reference_format];
+      const quoted = Number(product.reference_price);
+      if (per && Number.isFinite(quoted)) return (quoted / per) * basis.amount;
+      return null;
+    },
   },
   Dia: {
     products: new Map(dia.products.map((p) => [p.name, p])),
     collected_on: dia.collected_on,
+    // Dia's listings give a pack price and a pack size; the rest is arithmetic.
+    unitPrice(product, basis) {
+      if (!product.size || product.size <= 0) return null;
+      return (product.price_eur / product.size) * basis.amount;
+    },
   },
 };
 
-let missing = 0;
+let problems = 0;
 const entries = REFERENCE_TERMS.map((reference) => {
   const offers = {};
 
@@ -42,13 +59,21 @@ const entries = REFERENCE_TERMS.map((reference) => {
     const product = shop?.products.get(productName);
     if (!product) {
       console.error(`  ✗ ${reference.term} @ ${store}: "${productName}" not found`);
-      missing += 1;
+      problems += 1;
       continue;
     }
+
+    const unitPrice = shop.unitPrice(product, reference.basis);
+    if (unitPrice === null || !Number.isFinite(unitPrice)) {
+      console.error(`  ✗ ${reference.term} @ ${store}: cannot convert to ${reference.basis.label}`);
+      problems += 1;
+      continue;
+    }
+
     offers[store] = {
       name: product.name,
       price_eur: product.price_eur,
-      size_g: product.size_g ?? null,
+      unit_price: Math.round(unitPrice * 1000) / 1000,
       image: product.image ?? null,
       url: product.url ?? null,
       checked_on: shop.collected_on,
@@ -58,13 +83,15 @@ const entries = REFERENCE_TERMS.map((reference) => {
   return {
     term: reference.term,
     label: reference.label,
+    basis: reference.basis,
+    serving: reference.serving,
     aliases: reference.aliases,
     offers,
   };
 });
 
-if (missing > 0) {
-  console.error(`\n${missing} reference product(s) missing — catalogue not written.`);
+if (problems > 0) {
+  console.error(`\n${problems} problem(s) — catalogue not written.`);
   process.exit(1);
 }
 
@@ -78,5 +105,15 @@ await writeFile(
   "utf8",
 );
 
-const stores = Object.keys(SHOPS);
-console.log(`${entries.length} terms × ${stores.length} shops -> lib/catalogue-data.ts`);
+console.log(`${entries.length} terms × ${Object.keys(SHOPS).length} shops -> lib/catalogue-data.ts\n`);
+console.log("term".padEnd(14) + "basis".padEnd(9) + "Mercadona".padStart(10) + "Dia".padStart(9) + "   (EUR per basis)");
+for (const e of entries) {
+  const m = e.offers.Mercadona?.unit_price;
+  const d = e.offers.Dia?.unit_price;
+  console.log(
+    e.term.padEnd(14) +
+      `/${e.basis.label}`.padEnd(9) +
+      (m?.toFixed(2) ?? "-").padStart(10) +
+      (d?.toFixed(2) ?? "-").padStart(9),
+  );
+}

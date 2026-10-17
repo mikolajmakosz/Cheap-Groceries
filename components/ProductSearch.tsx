@@ -18,6 +18,8 @@ type Props = {
   busy?: boolean;
   /** Puts the grading contract's test ids on the field and its button. */
   contractIds?: boolean;
+  /** A dark button instead of the green one, for pages where another button leads. */
+  quietButton?: boolean;
 };
 
 function offerSummary(entry: CatalogueEntry): string {
@@ -49,6 +51,7 @@ export default function ProductSearch({
   ariaLabel,
   busy = false,
   contractIds = false,
+  quietButton = false,
 }: Props) {
   const listId = useId();
   const [focused, setFocused] = useState(false);
@@ -110,7 +113,11 @@ export default function ProductSearch({
           type="submit"
           disabled={busy}
           data-testid={contractIds ? "core-submit" : undefined}
-          className="rounded-lg bg-emerald-600 px-4 py-2.5 text-base font-semibold text-white hover:bg-emerald-700 disabled:opacity-60"
+          className={`rounded-lg px-4 py-2.5 text-base font-semibold text-white disabled:opacity-60 ${
+            quietButton
+              ? "bg-slate-800 hover:bg-slate-700"
+              : "bg-emerald-600 hover:bg-emerald-700"
+          }`}
         >
           {busy ? "Adding…" : buttonLabel}
         </button>

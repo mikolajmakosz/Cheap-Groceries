@@ -67,10 +67,25 @@ everyday word: one reference product per term per shop, an English label, and Sp
 aliases, because the users are international students. "chicken", "pollo" and "chicken breast" all land
 on the same product.
 
-### Pack sizes
+### One measure for every shop
 
-Shops do not sell identical packs. Prices are per pack, every product shows its size, and the app says so
-when compared packs differ a lot (more than 1.4×), because a total is only as fair as the packs behind it.
+Shops do not sell identical packs: a 2 kg bag of potatoes against a 230 g loose one says nothing about
+which shop is cheaper. So every price is converted to the same measure before anything is compared:
+per kg, per litre, per dozen, per loaf or per piece, whichever suits the product. Mercadona publishes
+that figure itself; for Dia it is the pack price divided by the pack size.
+
+A basket is then priced in servings, a typical purchase of each product (200 g of cheese, 500 g of
+chicken, a litre of milk, a dozen eggs), so the total describes something a student really buys. The
+`+` and `-` buttons add or remove a serving.
+
+`npm test` refuses a catalogue in which two shops price the same product more than 2x apart. A gap that
+wide almost always means two different products were paired, and the app would announce a false winner.
+
+### Product links and logos
+
+The shop's logo next to each product opens that product on the shop's own site. The logos in
+`public/logos` are the ones Dia and Mercadona publish on their websites, used only to tell the shops
+apart; they are those companies' trademarks, not part of this project's licence.
 
 ### Photos
 
@@ -92,19 +107,32 @@ Shops come from OpenStreetMap, collected once by
 npm run stores
 ```
 
-41 supermarkets within 2 km of IE Tower, Paseo de la Castellana 259. Again, run by hand: the
-Overpass API is slow and rate limited, and it answered HTTP 502 on the first attempt while this was
-being built — not something a live page should depend on. The script falls back across mirrors.
+41 supermarkets within 2 km of IE Tower, Paseo de la Castellana 259. Run by hand: the Overpass API is
+slow and rate limited, and it answered HTTP 502 on the first attempt while this was being built, which
+is not something a live page should depend on. The script falls back across mirrors.
 
-Markers are green for the chains we can price and grey for the rest, so the map never implies a
-total it does not have. Walking times are straight-line distance with a 1.35 city detour factor at
-4.8 km/h, and the app says they are estimates rather than routed directions.
+The map fills the screen on both the landing page and `/app`, with a card floating over it. It uses
+OpenStreetMap tiles rendered with Leaflet: no API key and no billing account. Google Maps was
+considered and rejected, because it needs a billing account and its key would sit in a public
+repository.
 
-The map needs no API key and no billing account: OpenStreetMap tiles rendered with Leaflet. Google Maps
-was considered and rejected: it needs a billing account, and its key would sit in a public repository.
+Clicking a shop draws the walking route from campus in green, with the time. Routes come from the public
+FOSSGIS pedestrian router; if it is slow or down the line falls back to a straight one with an estimate,
+and the panel says so.
 
-On `/app` the map fills the screen and the basket floats over it. Clicking a shop in the basket flies the
-map to it and opens its popup with the walk from campus and the cost of the basket there.
+### Home, and what it costs in minutes
+
+Under a chosen shop the app can ask for a home address in Madrid and draw the way on from the shop in blue,
+then say what the detour adds compared with going straight home. The address is sent to OpenStreetMap's
+geocoder to be located and is held in memory only: it is personal data and nothing needs it kept, so it is
+not stored anywhere and is gone on reload.
+
+### Cost against time
+
+With an address the times cover campus, shop and home. For each chain the quickest shop is picked, and
+options that are both dearer and slower than another are dropped. What remains is a ladder from the
+cheapest shop to the quickest, and each rung says what the extra money buys: "Choosing Dia over Mercadona
+costs EUR 0.24 more and saves 2 min, so you pay EUR 0.12 for each minute saved."
 
 ## Tests
 

@@ -8,6 +8,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "pollo",
     "label": "Chicken breast",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "pollo",
       "pechuga",
@@ -18,7 +24,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Filetes pechuga de pollo",
         "price_eur": 4,
-        "size_g": 520,
+        "unit_price": 7.7,
         "image": "https://prod-mercadona.imgix.net/images/cfbe3b741d3a64cc637efe0c7bf0bb93.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/2787/filetes-pechuga-pollo-bandeja",
         "checked_on": "2026-10-17"
@@ -26,9 +32,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Pechuga de pollo corte fino Selección de Dia 600 g aprox.",
         "price_eur": 5.27,
-        "size_g": 600,
+        "unit_price": 8.783,
         "image": "https://www.dia.es/product_images/50844/50844_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/carnes/pollo/p/50844",
         "checked_on": "2026-10-17"
       }
     }
@@ -36,6 +42,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "cerdo",
     "label": "Pork loin",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "cerdo",
       "lomo",
@@ -45,7 +57,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Filetes lomo de cerdo corte fino",
         "price_eur": 3.91,
-        "size_g": 550,
+        "unit_price": 7.1,
         "image": "https://prod-mercadona.imgix.net/images/d1d8fe8e03738aa9cd3267bca96b06d3.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/86395/lomo-cerdo-fino-bandeja",
         "checked_on": "2026-10-17"
@@ -53,9 +65,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Lomo de cerdo adobado Selección de Dia 300 g",
         "price_eur": 1.99,
-        "size_g": 300,
+        "unit_price": 6.633,
         "image": "https://www.dia.es/product_images/164337/164337_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/carnes/cerdo/p/164337",
         "checked_on": "2026-10-17"
       }
     }
@@ -63,6 +75,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "carne picada",
     "label": "Minced meat",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "carne picada",
       "picada",
@@ -74,7 +92,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Preparado de carne picada vacuno y cerdo",
         "price_eur": 4.1,
-        "size_g": 500,
+        "unit_price": 8.2,
         "image": "https://prod-mercadona.imgix.net/images/3ff4619c75302a2ae20831ae3ffe6c1c.jpeg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/2869/preparado-carne-picada-vacuno-cerdo-bandeja",
         "checked_on": "2026-10-17"
@@ -82,9 +100,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Carne picada de vacuno y cerdo Selección de Dia 500 g",
         "price_eur": 4.19,
-        "size_g": 500,
+        "unit_price": 8.38,
         "image": "https://www.dia.es/product_images/261241/261241_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/carnes/hamburguesas-carne-picada-y-albondigas/p/261241",
         "checked_on": "2026-10-17"
       }
     }
@@ -92,6 +110,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "jamon cocido",
     "label": "Cooked ham",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 150,
     "aliases": [
       "jamon cocido",
       "jamon",
@@ -101,7 +125,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Jamón cocido Hacendado lonchas",
         "price_eur": 2.25,
-        "size_g": 200,
+        "unit_price": 11.25,
         "image": "https://prod-mercadona.imgix.net/images/f4ff00b9b6f04e0fda606dd4c1e22e55.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/59256/jamon-cocido-hacendado-lonchas-paquete",
         "checked_on": "2026-10-17"
@@ -109,9 +133,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Jamón cocido extra 97% Dia Nuestra Alacena 150 g",
         "price_eur": 1.99,
-        "size_g": 150,
+        "unit_price": 13.267,
         "image": "https://www.dia.es/product_images/273737/273737_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/charcuteria/jamon-cocido/p/273737",
         "checked_on": "2026-10-17"
       }
     }
@@ -119,6 +143,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "leche",
     "label": "Whole milk",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
     "aliases": [
       "leche",
       "leche entera",
@@ -128,7 +158,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Leche entera Hacendado",
         "price_eur": 5.76,
-        "size_g": 6000,
+        "unit_price": 0.96,
         "image": "https://prod-mercadona.imgix.net/images/b4db71bda48058bb37cd556c55b2fc64.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/10379/leche-entera-hacendado-pack-6",
         "checked_on": "2026-10-17"
@@ -136,9 +166,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Leche entera Dia Láctea pack 6 x 1 L",
         "price_eur": 5.76,
-        "size_g": 6000,
+        "unit_price": 0.96,
         "image": "https://www.dia.es/product_images/608P6/608P6_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/leche/p/608P6",
         "checked_on": "2026-10-17"
       }
     }
@@ -146,6 +176,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "huevos",
     "label": "Eggs",
+    "basis": {
+      "amount": 12,
+      "unit": "ud",
+      "label": "dozen"
+    },
+    "serving": 12,
     "aliases": [
       "huevos",
       "huevo",
@@ -156,7 +192,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Huevos medianos M",
         "price_eur": 2.85,
-        "size_g": null,
+        "unit_price": 2.85,
         "image": "https://prod-mercadona.imgix.net/images/96ba986bc89d7298da0a7605824227a9.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/31505/huevos-medianos-m-paquete",
         "checked_on": "2026-10-17"
@@ -164,9 +200,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Huevos medianos M de gallinas criadas en suelo Dia 12 unidades",
         "price_eur": 2.85,
-        "size_g": null,
+        "unit_price": 2.85,
         "image": "https://www.dia.es/product_images/274010/274010_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/huevos/p/274010",
         "checked_on": "2026-10-17"
       }
     }
@@ -174,6 +210,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "mantequilla",
     "label": "Butter",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 250,
     "aliases": [
       "mantequilla",
       "butter"
@@ -182,7 +224,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Mantequilla con sal Hacendado",
         "price_eur": 2.05,
-        "size_g": 250,
+        "unit_price": 8.2,
         "image": "https://prod-mercadona.imgix.net/images/4c4ad20a9ebac8f92af9581840223d6f.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/20722/mantequilla-con-sal-hacendado-pastilla",
         "checked_on": "2026-10-17"
@@ -190,9 +232,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Mantequilla con sal Dia Láctea 250 g",
         "price_eur": 2.05,
-        "size_g": 250,
+        "unit_price": 8.2,
         "image": "https://www.dia.es/product_images/268200/268200_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/mantequilla-y-margarina/p/268200",
         "checked_on": "2026-10-17"
       }
     }
@@ -200,6 +242,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "queso",
     "label": "Sliced cheese",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 200,
     "aliases": [
       "queso",
       "cheese",
@@ -209,7 +257,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Queso lonchas fundido sándwich mezcla Hacendado",
         "price_eur": 1.1,
-        "size_g": 200,
+        "unit_price": 5.5,
         "image": "https://prod-mercadona.imgix.net/images/466833190111f32b6901258f9ebe4265.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/50371/queso-lonchas-fundido-sandwich-mezcla-hacendado-paquete",
         "checked_on": "2026-10-17"
@@ -217,9 +265,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Queso fundido sándwich Dia Láctea 300 g",
         "price_eur": 1.27,
-        "size_g": 300,
+        "unit_price": 4.233,
         "image": "https://www.dia.es/product_images/664/664_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/quesos/en-lonchas/p/664",
         "checked_on": "2026-10-17"
       }
     }
@@ -227,6 +275,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "queso fresco",
     "label": "Fresh cheese",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 250,
     "aliases": [
       "queso fresco",
       "quark",
@@ -234,19 +288,19 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
     ],
     "offers": {
       "Mercadona": {
-        "name": "Queso fresco batido desnatado 0% MG Hacendado",
-        "price_eur": 1.1,
-        "size_g": 500,
-        "image": "https://prod-mercadona.imgix.net/images/d2f12f4f6b2de080b5aeebc8aa1a5e46.jpg?fit=crop&h=300&w=300",
-        "url": "https://tienda.mercadona.es/product/51071/queso-fresco-batido-desnatado-0-mg-hacendado-tarrina",
+        "name": "Queso fresco Burgos desnatado 0% MG Hacendado",
+        "price_eur": 1.15,
+        "unit_price": 4.6,
+        "image": "https://prod-mercadona.imgix.net/images/dcabfcce232c97690046b09ca74f58fd.jpg?fit=crop&h=300&w=300",
+        "url": "https://tienda.mercadona.es/product/52409/queso-fresco-burgos-desnatado-0-mg-hacendado-pack-4",
         "checked_on": "2026-10-17"
       },
       "Dia": {
-        "name": "Queso fresco batido rico en proteínas Granja Rinya 400 g",
-        "price_eur": 1.89,
-        "size_g": 400,
-        "image": "https://www.dia.es/product_images/274204/274204_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "name": "Queso fresco de Burgos 0% M.G. Dia Láctea 4 x 62.5 g",
+        "price_eur": 1.15,
+        "unit_price": 4.6,
+        "image": "https://www.dia.es/product_images/73062/73062_ISO_0_ES.jpg?imwidth=176",
+        "url": "https://www.dia.es/quesos/fresco/p/73062",
         "checked_on": "2026-10-17"
       }
     }
@@ -254,6 +308,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "yogur",
     "label": "Natural yogurt",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "yogur",
       "yogurt",
@@ -263,7 +323,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Yogur natural Hacendado",
         "price_eur": 1,
-        "size_g": 750,
+        "unit_price": 1.334,
         "image": "https://prod-mercadona.imgix.net/images/0689561ce98dba5c0b3ad43e69be0f5f.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/22313/yogur-natural-hacendado-pack-6",
         "checked_on": "2026-10-17"
@@ -271,9 +331,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Yogur natural desnatado Dia Láctea 6 x 125 g",
         "price_eur": 0.99,
-        "size_g": 750,
+        "unit_price": 1.32,
         "image": "https://www.dia.es/product_images/128591/128591_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/yogures-y-postres/yogures-naturales-y-desnatados/p/128591",
         "checked_on": "2026-10-17"
       }
     }
@@ -281,6 +341,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "pan",
     "label": "Bread",
+    "basis": {
+      "amount": 250,
+      "unit": "g",
+      "label": "loaf"
+    },
+    "serving": 250,
     "aliases": [
       "pan",
       "bread",
@@ -290,7 +356,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Barra de pan",
         "price_eur": 0.5,
-        "size_g": 250,
+        "unit_price": 0.5,
         "image": "https://prod-mercadona.imgix.net/images/b0382f15d4c53669852e014255bdc714.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/83202.1/barra-pan",
         "checked_on": "2026-10-17"
@@ -298,9 +364,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Barra de pan Diana El Molino de Dia 250 g",
         "price_eur": 0.5,
-        "size_g": 250,
+        "unit_price": 0.5,
         "image": "https://www.dia.es/product_images/38109/38109_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/panaderia/pan-recien-horneado/p/38109",
         "checked_on": "2026-10-17"
       }
     }
@@ -308,6 +374,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "pan de molde",
     "label": "Sliced bread",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "pan de molde",
       "sliced bread",
@@ -317,7 +389,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Pan de molde blanco Hacendado",
         "price_eur": 0.8,
-        "size_g": 460,
+        "unit_price": 1.74,
         "image": "https://prod-mercadona.imgix.net/images/37367d7a79c63686cbdb1cdad6b5e927.jpeg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/13810/pan-molde-blanco-hacendado-paquete",
         "checked_on": "2026-10-17"
@@ -325,9 +397,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Pan de molde blanco El Molino de Dia 820 g",
         "price_eur": 1.15,
-        "size_g": 820,
+        "unit_price": 1.402,
         "image": "https://www.dia.es/product_images/77955/77955_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/panaderia/pan-de-molde-y-especiales/p/77955",
         "checked_on": "2026-10-17"
       }
     }
@@ -335,6 +407,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "arroz",
     "label": "Rice",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
     "aliases": [
       "arroz",
       "rice"
@@ -343,7 +421,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Arroz redondo Hacendado",
         "price_eur": 1.15,
-        "size_g": 1000,
+        "unit_price": 1.15,
         "image": "https://prod-mercadona.imgix.net/images/0daf43fb5761b823ce83c985930c97c9.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/5044/arroz-redondo-hacendado-paquete",
         "checked_on": "2026-10-17"
@@ -351,9 +429,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Arroz extra Dia Arrozona 1 Kg",
         "price_eur": 1.15,
-        "size_g": 1000,
+        "unit_price": 1.15,
         "image": "https://www.dia.es/product_images/151/151_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/arroz-pastas-y-legumbres/arroz/p/151",
         "checked_on": "2026-10-17"
       }
     }
@@ -361,6 +439,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "pasta",
     "label": "Pasta",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "pasta",
       "macarrones",
@@ -372,7 +456,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Pasta penne rigate Hacendado",
         "price_eur": 0.8,
-        "size_g": 500,
+        "unit_price": 1.6,
         "image": "https://prod-mercadona.imgix.net/images/9e481faa7f6bb103dfccdc80201f0777.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/8138/pasta-penne-rigate-hacendado-paquete",
         "checked_on": "2026-10-17"
@@ -380,9 +464,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Macarrones Dia Al Diante 500 g",
         "price_eur": 0.8,
-        "size_g": 500,
+        "unit_price": 1.6,
         "image": "https://www.dia.es/product_images/518/518_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/arroz-pastas-y-legumbres/macarrones-espaguetis-y-pastas-secas/p/518",
         "checked_on": "2026-10-17"
       }
     }
@@ -390,6 +474,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "cereales",
     "label": "Corn flakes",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "cereales",
       "cereal",
@@ -400,7 +490,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Cereales copos de maíz Corn Flakes Hacendado 0% azúcares añadidos",
         "price_eur": 1.5,
-        "size_g": 500,
+        "unit_price": 3,
         "image": "https://prod-mercadona.imgix.net/images/413f941aa57b4903cc693d93171b87f7.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/22966/cereales-copos-maiz-corn-flakes-hacendado-0-azucares-anadidos-caja",
         "checked_on": "2026-10-17"
@@ -408,9 +498,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Cereales copos de maíz corn flakes Gran Dia 500 g",
         "price_eur": 1.49,
-        "size_g": 500,
+        "unit_price": 2.98,
         "image": "https://www.dia.es/product_images/66956/66956_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/galletas-cereales-y-mermeladas/cereales/p/66956",
         "checked_on": "2026-10-17"
       }
     }
@@ -418,6 +508,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "garbanzos",
     "label": "Chickpeas",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
     "aliases": [
       "garbanzos",
       "garbanzo",
@@ -427,7 +523,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Garbanzo cocido Hacendado",
         "price_eur": 0.8,
-        "size_g": 570,
+        "unit_price": 2,
         "image": "https://prod-mercadona.imgix.net/images/b8b807948038c4b64791632f799e9bd8.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/26029/garbanzo-cocido-hacendado-tarro",
         "checked_on": "2026-10-17"
@@ -435,9 +531,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Garbanzos cocidos Dia Vegecampo 400 g",
         "price_eur": 0.8,
-        "size_g": 400,
+        "unit_price": 2,
         "image": "https://www.dia.es/product_images/1232/1232_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/arroz-pastas-y-legumbres/garbanzos-y-alubias/p/1232",
         "checked_on": "2026-10-17"
       }
     }
@@ -445,6 +541,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "lentejas",
     "label": "Lentils",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
     "aliases": [
       "lentejas",
       "lenteja",
@@ -454,7 +556,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Lenteja cocida Hacendado",
         "price_eur": 0.9,
-        "size_g": 570,
+        "unit_price": 2.25,
         "image": "https://prod-mercadona.imgix.net/images/50b071c4bae7230b8de346b495a7981b.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/26030/lenteja-cocida-hacendado-tarro",
         "checked_on": "2026-10-17"
@@ -462,9 +564,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Lentejas cocidas Dia Vegecampo 400 g",
         "price_eur": 0.9,
-        "size_g": 400,
+        "unit_price": 2.25,
         "image": "https://www.dia.es/product_images/58809/58809_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/arroz-pastas-y-legumbres/lentejas/p/58809",
         "checked_on": "2026-10-17"
       }
     }
@@ -472,6 +574,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "alubias",
     "label": "White beans",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
     "aliases": [
       "alubias",
       "judias",
@@ -482,7 +590,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Alubia cocida blanca Hacendado",
         "price_eur": 0.75,
-        "size_g": 570,
+        "unit_price": 1.875,
         "image": "https://prod-mercadona.imgix.net/images/f3797bcd3c8ed58804490159df581279.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/26019/alubia-cocida-blanca-hacendado-tarro",
         "checked_on": "2026-10-17"
@@ -490,9 +598,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Alubias blancas cocidas Dia Vegecampo 400 g",
         "price_eur": 0.75,
-        "size_g": 400,
+        "unit_price": 1.875,
         "image": "https://www.dia.es/product_images/1233/1233_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/arroz-pastas-y-legumbres/garbanzos-y-alubias/p/1233",
         "checked_on": "2026-10-17"
       }
     }
@@ -500,6 +608,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "atun",
     "label": "Tuna",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 160,
     "aliases": [
       "atun",
       "tuna"
@@ -508,7 +622,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Atún claro al natural Hacendado",
         "price_eur": 4.2,
-        "size_g": 480,
+        "unit_price": 11.667,
         "image": "https://prod-mercadona.imgix.net/images/956d1c5ec266d8ac6c94e6aa70335047.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/18018/atun-claro-natural-hacendado",
         "checked_on": "2026-10-17"
@@ -516,9 +630,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Atún claro en aceite de oliva Dia Mari Marinera 3 x 60 g",
         "price_eur": 2.95,
-        "size_g": 180,
+        "unit_price": 16.389,
         "image": "https://www.dia.es/product_images/262434/262434_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/conservas-caldos-y-cremas/atun-y-bonito/p/262434",
         "checked_on": "2026-10-17"
       }
     }
@@ -526,6 +640,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "merluza",
     "label": "Hake",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
     "aliases": [
       "merluza",
       "hake",
@@ -533,19 +653,19 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
     ],
     "offers": {
       "Mercadona": {
-        "name": "Rodajas de merluza del Cabo descongelada",
-        "price_eur": 4.67,
-        "size_g": 260,
-        "image": "https://prod-mercadona.imgix.net/images/4f2d9ca38547f02fa8bb53a2d78cfa7e.jpg?fit=crop&h=300&w=300",
-        "url": "https://tienda.mercadona.es/product/87225/rodajas-merluza-cabo-descongelada-con-agua-anadida-bandeja",
+        "name": "Rodajas de merluza del Cabo Hacendado ultracongeladas",
+        "price_eur": 5.95,
+        "unit_price": 9.917,
+        "image": "https://prod-mercadona.imgix.net/images/bbf4a180df172acf229b215ced28658d.jpg?fit=crop&h=300&w=300",
+        "url": "https://tienda.mercadona.es/product/26763/rodajas-merluza-cabo-hacendado-ultracongeladas-paquete",
         "checked_on": "2026-10-17"
       },
       "Dia": {
         "name": "Rodajas de merluza argentina Dia Mari Marinera 550 g",
         "price_eur": 4.19,
-        "size_g": 550,
+        "unit_price": 7.618,
         "image": "https://www.dia.es/product_images/305869/305869_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/pescados-y-mariscos/congelado/p/305869",
         "checked_on": "2026-10-17"
       }
     }
@@ -553,6 +673,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "salmon",
     "label": "Salmon",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 250,
     "aliases": [
       "salmon",
       "salmón"
@@ -561,7 +687,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Rodaja de salmón",
         "price_eur": 7,
-        "size_g": 350,
+        "unit_price": 20,
         "image": "https://prod-mercadona.imgix.net/images/ac2b7d73878e09585fc804ab563f6fae.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/87205/rodaja-salmon-bandeja",
         "checked_on": "2026-10-17"
@@ -569,9 +695,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Lomos de salmón Dia Selección Mundial 250 g",
         "price_eur": 5.89,
-        "size_g": 250,
+        "unit_price": 23.56,
         "image": "https://www.dia.es/product_images/274390/274390_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/pescados-y-mariscos/congelado/p/274390",
         "checked_on": "2026-10-17"
       }
     }
@@ -579,6 +705,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "aceite",
     "label": "Olive oil",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
     "aliases": [
       "aceite",
       "aceite de oliva",
@@ -587,19 +719,19 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
     ],
     "offers": {
       "Mercadona": {
-        "name": "Aceite de oliva virgen extra Hacendado Gran Selección",
-        "price_eur": 5.25,
-        "size_g": 750,
-        "image": "https://prod-mercadona.imgix.net/images/c60e6e09dc2037a291515d3b15af376c.jpg?fit=crop&h=300&w=300",
-        "url": "https://tienda.mercadona.es/product/4706/aceite-oliva-virgen-extra-hacendado-gran-seleccion-botella",
+        "name": "Aceite de oliva virgen extra Hacendado",
+        "price_eur": 12.15,
+        "unit_price": 4.05,
+        "image": "https://prod-mercadona.imgix.net/images/cd149804838dc230dad3c2a314cf2286.jpg?fit=crop&h=300&w=300",
+        "url": "https://tienda.mercadona.es/product/4717/aceite-oliva-virgen-extra-hacendado-garrafa",
         "checked_on": "2026-10-17"
       },
       "Dia": {
         "name": "Aceite de oliva virgen extra Dia La Almazara del Olivar 1 L",
         "price_eur": 4.35,
-        "size_g": 1000,
+        "unit_price": 4.35,
         "image": "https://www.dia.es/product_images/112529/112529_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/aceites-salsas-y-especias/aceites/p/112529",
         "checked_on": "2026-10-17"
       }
     }
@@ -607,6 +739,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "tomate frito",
     "label": "Tomato sauce",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
     "aliases": [
       "tomate frito",
       "tomato sauce",
@@ -616,7 +754,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Tomate frito Hacendado",
         "price_eur": 1.35,
-        "size_g": 1200,
+        "unit_price": 1.125,
         "image": "https://prod-mercadona.imgix.net/images/e589c8259daf4b9335098fb9ade7ee09.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/17132/tomate-frito-hacendado-pack-3",
         "checked_on": "2026-10-17"
@@ -624,9 +762,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Tomate frito Dia Vegecampo 550 g",
         "price_eur": 0.89,
-        "size_g": 550,
+        "unit_price": 1.618,
         "image": "https://www.dia.es/product_images/10677/10677_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/aceites-salsas-y-especias/salsas-de-tomate-y-pasta/p/10677",
         "checked_on": "2026-10-17"
       }
     }
@@ -634,6 +772,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "tomate",
     "label": "Tomatoes",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "tomate",
       "tomates",
@@ -644,7 +788,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Tomate pera",
         "price_eur": 0.26,
-        "size_g": 120,
+        "unit_price": 2.2,
         "image": "https://prod-mercadona.imgix.net/images/29e2448e80d5a23e8fc907138e551748.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/69912/tomate-pera-pieza",
         "checked_on": "2026-10-17"
@@ -652,9 +796,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Tomate pera bandeja 500 g",
         "price_eur": 1.99,
-        "size_g": 500,
+        "unit_price": 3.98,
         "image": "https://www.dia.es/product_images/191011/191011_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/verduras/tomates-pimientos-y-pepinos/p/191011",
         "checked_on": "2026-10-17"
       }
     }
@@ -662,6 +806,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "cebolla",
     "label": "Onions",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "cebolla",
       "cebollas",
@@ -672,7 +822,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Cebollas rojas",
         "price_eur": 1.4,
-        "size_g": 500,
+        "unit_price": 2.8,
         "image": "https://prod-mercadona.imgix.net/images/8285fa6f80ced45d544f8013b72fe799.jpeg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/69162/cebollas-rojas-malla",
         "checked_on": "2026-10-17"
@@ -680,9 +830,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Cebolla morada malla 500 g",
         "price_eur": 1.39,
-        "size_g": 500,
+        "unit_price": 2.78,
         "image": "https://www.dia.es/product_images/57885/57885_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/verduras/ajos-cebollas-y-puerros/p/57885",
         "checked_on": "2026-10-17"
       }
     }
@@ -690,6 +840,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "patata",
     "label": "Potatoes",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
     "aliases": [
       "patata",
       "patatas",
@@ -700,7 +856,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Patata",
         "price_eur": 0.44,
-        "size_g": 230,
+        "unit_price": 1.9,
         "image": "https://prod-mercadona.imgix.net/images/12ec1b808bbcbc2d5ad6b40d9021cf76.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/69066/patata-pieza",
         "checked_on": "2026-10-17"
@@ -708,9 +864,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Patatas para cocer 2 Kg",
         "price_eur": 3.69,
-        "size_g": 2000,
+        "unit_price": 1.845,
         "image": "https://www.dia.es/product_images/296355/296355_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/verduras/patatas-y-zanahorias/p/296355",
         "checked_on": "2026-10-17"
       }
     }
@@ -718,6 +874,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "platano",
     "label": "Bananas",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "platano",
       "plátano",
@@ -728,7 +890,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Plátano de Canarias IGP",
         "price_eur": 0.45,
-        "size_g": 160,
+        "unit_price": 2.8,
         "image": "https://prod-mercadona.imgix.net/images/e4a37940916985bf5ca166e266580c37.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/3819/platano-canarias-igp-pieza",
         "checked_on": "2026-10-17"
@@ -736,9 +898,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Plátano de canarias 1 Kg aprox.",
         "price_eur": 2.79,
-        "size_g": 1000,
+        "unit_price": 2.79,
         "image": "https://www.dia.es/product_images/11468/11468_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/frutas/platanos-y-bananas/p/11468",
         "checked_on": "2026-10-17"
       }
     }
@@ -746,6 +908,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "manzana",
     "label": "Apples",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
     "aliases": [
       "manzana",
       "manzanas",
@@ -756,7 +924,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Manzana Golden",
         "price_eur": 0.4,
-        "size_g": 200,
+        "unit_price": 2,
         "image": "https://prod-mercadona.imgix.net/images/12cc1ef38a5b781f364ca22e46a25ad7.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/3028/manzana-golden-pieza",
         "checked_on": "2026-10-17"
@@ -764,9 +932,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Manzana Golden 1 Kg",
         "price_eur": 1.89,
-        "size_g": 1000,
+        "unit_price": 1.89,
         "image": "https://www.dia.es/product_images/171233/171233_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/frutas/manzanas-y-peras/p/171233",
         "checked_on": "2026-10-17"
       }
     }
@@ -774,6 +942,12 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "lechuga",
     "label": "Lettuce",
+    "basis": {
+      "amount": 1,
+      "unit": "ud",
+      "label": "piece"
+    },
+    "serving": 1,
     "aliases": [
       "lechuga",
       "lettuce",
@@ -784,7 +958,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Mercadona": {
         "name": "Lechuga Iceberg",
         "price_eur": 1.05,
-        "size_g": null,
+        "unit_price": 1.05,
         "image": "https://prod-mercadona.imgix.net/images/320cf3cbed15d3543322144333ce1a98.jpeg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/68130/lechuga-iceberg-pieza",
         "checked_on": "2026-10-17"
@@ -792,9 +966,9 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
       "Dia": {
         "name": "Lechuga iceberg unidad",
         "price_eur": 0.85,
-        "size_g": null,
+        "unit_price": 0.85,
         "image": "https://www.dia.es/product_images/11462/11462_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/verduras/lechugas-y-hojas-verdes/p/11462",
         "checked_on": "2026-10-17"
       }
     }
@@ -802,25 +976,31 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
   {
     "term": "agua",
     "label": "Water",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1500,
     "aliases": [
       "agua",
       "water"
     ],
     "offers": {
       "Mercadona": {
-        "name": "Agua mineral grande Aguadoy",
-        "price_eur": 0.95,
-        "size_g": 8000,
-        "image": "https://prod-mercadona.imgix.net/images/e9984763951d5050c403b877a78dcd34.jpg?fit=crop&h=300&w=300",
-        "url": "https://tienda.mercadona.es/product/28482/agua-mineral-grande-aguadoy-mineralizacion-debil-garrafa",
+        "name": "Agua mineral grande Fuente Dehesa",
+        "price_eur": 1.3,
+        "unit_price": 0.217,
+        "image": "https://prod-mercadona.imgix.net/images/b5aaab15625f9b00ff4efd92d9517dae.jpg?fit=crop&h=300&w=300",
+        "url": "https://tienda.mercadona.es/product/52630/agua-mineral-grande-fuente-dehesa-mineralizacion-muy-debil-garrafa",
         "checked_on": "2026-10-17"
       },
       "Dia": {
         "name": "Agua mineral Dia 1,5 L",
         "price_eur": 0.28,
-        "size_g": 1500,
+        "unit_price": 0.187,
         "image": "https://www.dia.es/product_images/26995/26995_ISO_0_ES.jpg?imwidth=176",
-        "url": null,
+        "url": "https://www.dia.es/agua-y-refrescos/agua/p/26995",
         "checked_on": "2026-10-17"
       }
     }

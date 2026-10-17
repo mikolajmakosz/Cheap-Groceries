@@ -221,7 +221,8 @@
       "url": "https://tienda.mercadona.es/product/4717/aceite-oliva-virgen-extra-hacendado-garrafa",
       "reference_price": "4.050",
       "reference_format": "L",
-      "price_checked_on": "2026-10-17"
+      "price_checked_on": "2026-10-17",
+      "is_reference": true
     },
     {
       "name": "Aceite de oliva virgen extra Hacendado Gran Selección",
@@ -234,8 +235,7 @@
       "url": "https://tienda.mercadona.es/product/4706/aceite-oliva-virgen-extra-hacendado-gran-seleccion-botella",
       "reference_price": "7.000",
       "reference_format": "L",
-      "price_checked_on": "2026-10-17",
-      "is_reference": true
+      "price_checked_on": "2026-10-17"
     },
     {
       "name": "Aceite de oliva virgen extra Picual Casa Juncal",
@@ -378,8 +378,7 @@
       "url": "https://tienda.mercadona.es/product/28482/agua-mineral-grande-aguadoy-mineralizacion-debil-garrafa",
       "reference_price": "0.119",
       "reference_format": "L",
-      "price_checked_on": "2026-10-17",
-      "is_reference": true
+      "price_checked_on": "2026-10-17"
     },
     {
       "name": "Agua mineral grande Bezoya",
@@ -405,7 +404,8 @@
       "url": "https://tienda.mercadona.es/product/52630/agua-mineral-grande-fuente-dehesa-mineralizacion-muy-debil-garrafa",
       "reference_price": "0.217",
       "reference_format": "L",
-      "price_checked_on": "2026-10-17"
+      "price_checked_on": "2026-10-17",
+      "is_reference": true
     },
     {
       "name": "Agua mineral grande Lanjarón",
@@ -812,6 +812,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Anillas de pota a la romana Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.25,
+      "size_g": 500,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/dc1663f10c444bbf164e13763c9b1a14.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63163/anillas-pota-romana-hacendado-ultracongeladas-paquete",
+      "reference_price": "10.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Anillas de pota Argentina Hacendado congeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.75,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/74bb5e68f4415013d30547d41fcdc7c7.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24249/anillas-pota-hacendado-congeladas-paquete",
+      "reference_price": "15.973",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Apio cortado lavado",
       "brand": null,
       "store": "Mercadona",
@@ -847,6 +873,19 @@
       "image": "https://prod-mercadona.imgix.net/images/a5073f7984f7ca2b4cca209439afa9ef.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/5501/arandanos-vaso",
       "reference_price": "14.889",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Aritos de surimi a la romana Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.3,
+      "size_g": 600,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/86e727c2c5327ac01ebaf9e752d3ccca.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63238/aritos-surimi-romana-ultracongelados-paquete",
+      "reference_price": "5.500",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -2323,6 +2362,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Calamar grande Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.5,
+      "size_g": 200,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/f932659cddf67f574bb41f1d4c775830.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24417/calamar-grande-hacendado-congelado-pieza",
+      "reference_price": "17.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Calamar patagónico pequeño Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.5,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/6644c2c1c3e1d966a84745b6a9c88e03.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63432/calamar-patagonico-pequeno-hacendado-ultracongelado-paquete",
+      "reference_price": "11.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Calamar pequeño limpio patagónico",
       "brand": null,
       "store": "Mercadona",
@@ -2332,6 +2397,19 @@
       "image": "https://prod-mercadona.imgix.net/images/a5c55081636517ba27b09fac2f7cedfe.jpeg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87177/calamar-pequeno-limpio-patagonico-bandeja",
       "reference_price": "19.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Calamar troceado limpio Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.9,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/2c316c4572b58be6a109d7f3375ffa40.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24242/calamar-limpio-troceado-hacendado-congelado-paquete",
+      "reference_price": "12.422",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -2780,6 +2858,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Chipirones enharinados Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.95,
+      "size_g": 325,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/cd8f429297f82e06b79f7c8d8a481464.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/26775/chipirones-enharinados-hacendado-ultracongelado-paquete",
+      "reference_price": "15.231",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Chipirones rellenos enteros en aceite de girasol Hacendado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -2933,6 +3024,19 @@
       "url": "https://tienda.mercadona.es/product/69581/cogollos-lechuga-paquete",
       "reference_price": "0.350",
       "reference_format": "ud",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Cola de rape del Cabo sin piel Hacendado ultracongelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 9.25,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/c6a90e97cfdc0b074089fa6fcc67c6cd.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24340/cola-rape-cabo-hacendado-ultracongelada-pieza",
+      "reference_price": "18.500",
+      "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
     {
@@ -3144,6 +3248,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Croquetas de merluza Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 2.3,
+      "size_g": 350,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/56dee60d51ff1446c840d33ef4f2075c.jpeg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/60954/croquetas-merluza-hacendado-ultracongelados-paquete",
+      "reference_price": "6.572",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Cuartos traseros de pollo",
       "brand": null,
       "store": "Mercadona",
@@ -3218,6 +3335,19 @@
       "image": "https://prod-mercadona.imgix.net/images/9add643053c6c2b1f51a79211c2bcdfb.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/27548/elaborado-merluza-langostino-bandeja",
       "reference_price": "14.750",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Empanadillas de atún Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 1.9,
+      "size_g": 500,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/9b146c9fe9a7f3988138b8d9626eab95.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63407/empanadillas-atun-hacendado-ultracongeladas-caja",
+      "reference_price": "3.800",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -3703,6 +3833,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Figuritas de merluza empanadas Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.75,
+      "size_g": 500,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/7f7e0f9d7f09a4d5d07ae4a2d4da46fd.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63159/figuritas-merluza-empanadas-hacendado-ultracongeladas-paquete",
+      "reference_price": "7.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Filete de corvina",
       "brand": null,
       "store": "Mercadona",
@@ -3755,6 +3898,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Filete de salmón rosado salvaje con piel Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 6.1,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/9433ea335072ed81924f318ac4cdb24e.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24350/filete-salmon-rosado-salvaje-con-piel-hacendado-ultracongelado-pieza",
+      "reference_price": "16.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Filetes de bacalao MareDeus ultracongelado",
+      "brand": null,
+      "store": "Mercadona",
+      "price_eur": 7.4,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/26b601980426f52cbc8cf1a76b4f7aa0.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24016/filetes-bacalao-maredeus-ultracongelado-punto-sal-paquete",
+      "reference_price": "19.734",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Filetes de bonito del norte en aceite de oliva Hacendado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -3764,6 +3933,19 @@
       "image": "https://prod-mercadona.imgix.net/images/b565c6df3e0976c383af67fe0d43f86a.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/18102/filetes-bonito-norte-aceite-oliva-hacendado-tarro",
       "reference_price": "28.929",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Filetes de boquerón en tempura Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.75,
+      "size_g": 400,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/81657b20ec5d521083bd0bf83b4fc013.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63114/filetes-boqueron-tempura-hacendado-ultracongelado-paquete",
+      "reference_price": "9.375",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -3855,6 +4037,45 @@
       "image": "https://prod-mercadona.imgix.net/images/81891326085ae9267ea256fca9001d73.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/18107/filetes-melva-aceite-oliva-hacendado-lata",
       "reference_price": "23.750",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Filetes de merluza al huevo Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.05,
+      "size_g": 600,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/34684f718bc72de972db7881cc030abd.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63101/filetes-merluza-huevo-hacendado-ultracongelados-paquete",
+      "reference_price": "8.417",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Filetes de merluza del Cabo sin piel Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.6,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/8169558ae5888d1de5b676bef2853d9d.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62228/filetes-merluza-cabo-sin-piel-hacendado-ultracongelados-paquete",
+      "reference_price": "9.334",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Filetes de panga Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.65,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/e5cb902b5acb5cd8f005ba60630c6973.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62191/filetes-panga-hacendado-ultracongelados-paquete",
+      "reference_price": "5.167",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -4186,6 +4407,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Fritura de pescado Hacendado ultracongelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.45,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/18312a8e575e7902e507aad71287ae9d.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62012/fritura-pescado-hacendado-ultracongelada-paquete",
+      "reference_price": "9.084",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Gallo limpio del norte",
       "brand": null,
       "store": "Mercadona",
@@ -4195,6 +4429,19 @@
       "image": "https://prod-mercadona.imgix.net/images/14b434c37773cdd9d63e6e0c85221919.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87185/gallo-limpio-norte-bandeja",
       "reference_price": "22.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Gallos sin cabeza Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 7.35,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/1071ebab34991d1c5197ce4bc4eabc02.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62000/gallos-sin-cabeza-hacendado-ultracongelado-paquete",
+      "reference_price": "12.250",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -4930,6 +5177,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Langostino caballitos rebozados Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.25,
+      "size_g": 300,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/e2e846deaf50af61d693a1303c554dc1.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63144/langostino-caballitos-rebozados-hacendado-ultracongelados-paquete",
+      "reference_price": "10.834",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Leche condensada desnatada Hacendado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -5349,6 +5609,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Lomo de bacalao MareDeus ultracongelado",
+      "brand": null,
+      "store": "Mercadona",
+      "price_eur": 9.22,
+      "size_g": 384,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/aa68741e624d6f99903465294f3de2aa.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62050/lomo-bacalao-maredeus-ultracongelado-punto-sal-paquete",
+      "reference_price": "24.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Lomo de cerdo cocido Hacendado finas lonchas",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -5371,6 +5644,32 @@
       "image": "https://prod-mercadona.imgix.net/images/2961d25a1c1c588f9a5ed7a5e31243bd.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/4590/lomo-cerdo-trozo-pieza",
       "reference_price": "4.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Lomos de salmón sin piel Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.95,
+      "size_g": 250,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/d276498ce484c1c8c3b247d77589e49d.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24511/lomos-salmon-sin-piel-sin-espinas-hacendado-congelado-paquete",
+      "reference_price": "23.800",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Lomos y centros de merluza del Cabo Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.9,
+      "size_g": 400,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/9f123401c254bda557489bd5ae173584.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62113/lomos-centros-merluza-cabo-hacendado-ultracongelados-caja",
+      "reference_price": "12.250",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -5910,6 +6209,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Medallones de merluza del Cabo Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.5,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/c302f174c1c3f7c88c397bd6a67472d7.jpeg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/26761/medallones-merluza-cabo-hacendado-ultracongelados-paquete",
+      "reference_price": "9.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Medallones de salmón Hacendado cocinar congelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.95,
+      "size_g": 250,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/c7d4d7ef02ddcdb3b08fed4ebae950c8.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/26749/medallones-salmon-hacendado-cocinar-congelados-paquete",
+      "reference_price": "15.800",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Medallones preparado de solomillo cerdo provenzal",
       "brand": null,
       "store": "Mercadona",
@@ -6014,6 +6339,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Merluza empanada pan fino Hacendado ultracongelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4,
+      "size_g": 510,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/fa324c4f316afd055004b0acb6122a1f.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63140/merluza-empanada-pan-fino-hacendado-ultracongelada-paquete",
+      "reference_price": "7.844",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Merluza rebozada",
       "brand": null,
       "store": "Mercadona",
@@ -6023,6 +6361,32 @@
       "image": "https://prod-mercadona.imgix.net/images/d11ed050df1dbe4ec63a53b236f93d04.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87734/merluza-rebozada-bandeja",
       "reference_price": "16.957",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Migas de bacalao dorado con cebolla y patatas paja Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 2.9,
+      "size_g": 240,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/d6e7c22f60ce4e3ace5ebb38f2f64c69.jpeg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63023/migas-bacalao-dorado-con-cebolla-patatas-paja-hacendado-congelado-caja",
+      "reference_price": "12.084",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Migas de bacalao sin piel MareDeus ultracongeladas",
+      "brand": null,
+      "store": "Mercadona",
+      "price_eur": 6.1,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/4df996fce1de2f2fd46cb8ef14a1a2a2.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24023/migas-bacalao-sin-espinas-sin-piel-maredeus-ultra-congeladas-punto-sal-paquete",
+      "reference_price": "20.334",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -6491,6 +6855,19 @@
       "image": "https://prod-mercadona.imgix.net/images/efecccdb297479c7a16f0555a3375159.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/6305/pajaritas-vegetales-hacendado-paquete",
       "reference_price": "1.800",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Palitos de merluza a la romana Hacendado ultracongelados",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 2.8,
+      "size_g": 500,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/290b68c3ef4f27d675f10fed5a944afa.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63151/palitos-merluza-romana-hacendado-ultracongelados-paquete",
+      "reference_price": "5.600",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -7824,6 +8201,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Pescadilla de merluza sin cabeza Hacendado ultracongelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.25,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/83fae83249fcbd7cca958cf607bf7ebc.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62176/pescadilla-merluza-sin-cabeza-hacendado-ultracongelada-paquete",
+      "reference_price": "5.250",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Piadina Hacendado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -8111,6 +8501,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Porciones de bacalao sin piel MareDeus ultracongeladas",
+      "brand": null,
+      "store": "Mercadona",
+      "price_eur": 7.7,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/6c5cff018c59d7f8938badf11d0f896b.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62049/porciones-bacalao-punto-sal-maredeus-ultracongelado-paquete",
+      "reference_price": "19.250",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Porciones de merluza",
       "brand": null,
       "store": "Mercadona",
@@ -8120,6 +8523,19 @@
       "image": "https://prod-mercadona.imgix.net/images/bea41a8d6e71b06f341ab617c65c87ee.jpeg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87200/porciones-merluza-bandeja",
       "reference_price": "26.950",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Porciones de merluza del Cabo sin piel Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.9,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/793cbce6a84e3f0fb9a3af1fb4ab7d0a.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62103/porciones-merluza-cabo-sin-piel-hacendado-ultracongeladas-paquete",
+      "reference_price": "9.800",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -8333,6 +8749,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Pulpo crudo Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 24.05,
+      "size_g": 1340,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/32e00005d2c2301ad5f4183d1ed7c3f6.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24208/pulpo-crudo-hacendado-congelado-paquete",
+      "reference_price": "17.950",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Queso azul de vaca Hacendado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -8473,8 +8902,7 @@
       "url": "https://tienda.mercadona.es/product/51071/queso-fresco-batido-desnatado-0-mg-hacendado-tarrina",
       "reference_price": "2.200",
       "reference_format": "kg",
-      "price_checked_on": "2026-10-17",
-      "is_reference": true
+      "price_checked_on": "2026-10-17"
     },
     {
       "name": "Queso fresco Burgos desnatado 0% MG Hacendado",
@@ -8487,7 +8915,8 @@
       "url": "https://tienda.mercadona.es/product/52409/queso-fresco-burgos-desnatado-0-mg-hacendado-pack-4",
       "reference_price": "4.600",
       "reference_format": "kg",
-      "price_checked_on": "2026-10-17"
+      "price_checked_on": "2026-10-17",
+      "is_reference": true
     },
     {
       "name": "Queso fresco Burgos natural Hacendado",
@@ -9154,6 +9583,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Rabas empanadas Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.05,
+      "size_g": 500,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/88a616c1b6adbc2b8e66645355fa10aa.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63161/rabas-empanadas-hacendado-ultracongeladas-paquete",
+      "reference_price": "8.100",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Rama de Tomates",
       "brand": null,
       "store": "Mercadona",
@@ -9219,6 +9661,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Rodaja de emperador Hacendado ultracongelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.47,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/9b313b8406d0805cab22b0e1ff0c4d61.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24345/rodaja-emperador-hacendado-ultracongelado-pieza",
+      "reference_price": "14.900",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Rodaja de potón del Pacífico cocido Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 6.5,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/587b220da60ea73445aca0a0b65ae6c0.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24234/rodaja-poton-pacifico-cocido-hacendado-congelado-paquete",
+      "reference_price": "13.685",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Rodaja de salmón",
       "brand": null,
       "store": "Mercadona",
@@ -9231,6 +9699,19 @@
       "reference_format": "kg",
       "price_checked_on": "2026-10-17",
       "is_reference": true
+    },
+    {
+      "name": "Rodaja de tintorera sin piel Hacendado ultracongelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 3.71,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/24a794f1dafba6d1f269ba7c5f52f86e.jpeg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24383/rodaja-tintorera-sin-piel-hacendado-ultracongelada-pieza",
+      "reference_price": "8.250",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
     },
     {
       "name": "Rodajas de atún de aleta amarilla descongelada",
@@ -9246,15 +9727,54 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Rodajas de atún de aleta amarilla Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.38,
+      "size_g": 250,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/2044dea67f3208de4b6c1cc55a693b7e.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24357/rodajas-atun-aleta-amarilla-hacendado-congelado-bandeja",
+      "reference_price": "17.500",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Rodajas de emperador pequeñas Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 9.95,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/a912776190abb392ab4f943399c29ece.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/62145/rodajas-emperador-pequenas-hacendado-ultracongeladas-paquete",
+      "reference_price": "11.056",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Rodajas de merluza del Cabo descongelada",
       "brand": null,
       "store": "Mercadona",
       "price_eur": 4.67,
       "size_g": 260,
-      "term": "merluza",
+      "term": "pescado",
       "image": "https://prod-mercadona.imgix.net/images/4f2d9ca38547f02fa8bb53a2d78cfa7e.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87225/rodajas-merluza-cabo-descongelada-con-agua-anadida-bandeja",
       "reference_price": "17.950",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Rodajas de merluza del Cabo Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.95,
+      "size_g": null,
+      "term": "merluza",
+      "image": "https://prod-mercadona.imgix.net/images/bbf4a180df172acf229b215ced28658d.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/26763/rodajas-merluza-cabo-hacendado-ultracongeladas-paquete",
+      "reference_price": "9.917",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17",
       "is_reference": true
@@ -9572,6 +10092,32 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Sepia faraónica limpia Hacendado congelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 6.4,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/8c6b3609d7edb066186b5a2fc74eebe8.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24200/sepia-limpia-congelada-pieza",
+      "reference_price": "16.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Sepia faraónica troceada limpia Hacendado congelada",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 5.9,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/6030d5a8702a32ce6d75e12d5e233c7d.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24274/sepia-limpia-troceada-hacendado-congelada-paquete",
+      "reference_price": "16.389",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Sepia troceada Faraónica",
       "brand": null,
       "store": "Mercadona",
@@ -9871,6 +10417,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Tinta de sepia Nortindal congelada",
+      "brand": null,
+      "store": "Mercadona",
+      "price_eur": 2.75,
+      "size_g": 32,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/f79ea5c38c9b67475afbea2b10e718a4.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24256/tinta-sepia-nortindal-congelada-paquete",
+      "reference_price": "8.594",
+      "reference_format": "100 g",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Tiras de lomo 99% Hacendado asado",
       "brand": "Hacendado",
       "store": "Mercadona",
@@ -9906,6 +10465,19 @@
       "image": "https://prod-mercadona.imgix.net/images/3c9bf449ba4715b82fb37dd9ce03b754.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/56652/tiras-pechuga-pollo-horno-hacendado-paquete",
       "reference_price": "16.072",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Tiras de potón del Pacífico Hacendado congeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.95,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/4fdab476ef08c8dc8e5af196af075723.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24341/tiras-poton-hacendado-congeladas-paquete",
+      "reference_price": "12.375",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -10302,6 +10874,19 @@
       "price_checked_on": "2026-10-17"
     },
     {
+      "name": "Tortillitas de camarones Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 2.75,
+      "size_g": 350,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/f5f1b3ecb898393d9a2b6082499f4138.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63168/tortillitas-camarones-hacendado-ultracongeladas-paquete",
+      "reference_price": "7.858",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
       "name": "Trucha Arco iris abierta a la espalda",
       "brand": null,
       "store": "Mercadona",
@@ -10311,6 +10896,19 @@
       "image": "https://prod-mercadona.imgix.net/images/116ab77e39e724566d149f96eaf8239f.jpg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/87341/trucha-arco-iris-abierta-espalda-bandeja",
       "reference_price": "14.000",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Tubo de pota Argentina limpio Hacendado congelado",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 1.5,
+      "size_g": null,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/8143bf87763077894bc0dbc2c46ee3ea.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/24203/tubo-pota-argentina-limpia-congelado-pieza",
+      "reference_price": "15.000",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },
@@ -10337,6 +10935,19 @@
       "image": "https://prod-mercadona.imgix.net/images/1d074082d78bd3883eece473526a79bb.jpeg?fit=crop&h=300&w=300",
       "url": "https://tienda.mercadona.es/product/3321/uva-roja-sin-semillas-bandeja",
       "reference_price": "3.600",
+      "reference_format": "kg",
+      "price_checked_on": "2026-10-17"
+    },
+    {
+      "name": "Varitas de merluza empanadas Hacendado ultracongeladas",
+      "brand": "Hacendado",
+      "store": "Mercadona",
+      "price_eur": 4.25,
+      "size_g": 400,
+      "term": "pescado congelado",
+      "image": "https://prod-mercadona.imgix.net/images/a3f364083291d9f3db9928b998e7ce0a.jpg?fit=crop&h=300&w=300",
+      "url": "https://tienda.mercadona.es/product/63170/varitas-merluza-empanadas-hacendado-ultracongeladas-paquete",
+      "reference_price": "10.625",
       "reference_format": "kg",
       "price_checked_on": "2026-10-17"
     },

@@ -5,27 +5,34 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import ProductImage from "@/components/ProductImage";
 import ProductSearch from "@/components/ProductSearch";
+import ShopLogo from "@/components/ShopLogo";
 import StoreMap from "@/components/StoreMap";
+import TripPanel from "@/components/TripPanel";
+import WhereToBuy from "@/components/WhereToBuy";
 import { CATALOGUE_STORES, type CatalogueEntry } from "@/lib/catalogue";
-import { CAMPUS, formatWalk, nearestPerChain } from "@/lib/geo";
 import {
   compareBasket,
   formatEuro,
-  formatSize,
+  formatQuantity,
+  formatUnitPrice,
+  portionCost,
   type BasketItem,
 } from "@/lib/pricing";
+import { analyseTradeOff, bestStorePerChain } from "@/lib/tradeoff";
+import { useTrip } from "@/lib/useTrip";
 
 /** Width of the floating panel on a desktop screen, plus its margin. */
 const PANEL_INSET_PX = 400;
+const MAX_QUANTITY = 20;
 
 export default function BasketPage() {
   const router = useRouter();
+  const trip = useTrip();
   const [items, setItems] = useState<BasketItem[]>([]);
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [focusStoreId, setFocusStoreId] = useState<string | null>(null);
   const [leftInset, setLeftInset] = useState(0);
 
   // On a phone the panel sits above the map rather than beside it.
@@ -102,6 +109,23 @@ export default function BasketPage() {
     await load();
   }
 
+  async function handleQuantity(id: string, quantity: number) {
+    const next = Math.min(MAX_QUANTITY, Math.max(1, quantity));
+    // Show the change at once; put it right if the save fails.
+    setItems((current) =>
+      current.map((item) => (item.id === id ? { ...item, quantity: next } : item)),
+    );
+    const supabase = createClient();
+    const { error: updateError } = await supabase
+      .from("basket_items")
+      .update({ quantity: next })
+      .eq("id", id);
+    if (updateError) {
+      setError(updateError.message);
+      await load();
+    }
+  }
+
   const comparison = useMemo(() => compareBasket(items), [items]);
 
   const costByChain = useMemo(
@@ -114,11 +138,21 @@ export default function BasketPage() {
 
   const options = useMemo(
     () =>
-      nearestPerChain(CAMPUS).filter(({ store }) =>
-        CATALOGUE_STORES.includes(store.chain),
-      ),
-    [],
+      comparison.comparableCount > 0
+        ? bestStorePerChain(
+            Object.fromEntries(
+              comparison.totals.map((total) => [total.store, total.total]),
+            ),
+            trip.home,
+          )
+        : [],
+    [comparison, trip.home],
   );
+  const analysis = useMemo(() => analyseTradeOff(options), [options]);
+
+  const route = trip.toStore
+    ? { toStore: trip.toStore.path, toHome: trip.toHome?.path }
+    : null;
 
   return (
     <main className="relative h-[calc(100dvh-57px)] overflow-hidden">
@@ -126,7 +160,10 @@ export default function BasketPage() {
         fill
         costByChain={costByChain}
         pricedChains={CATALOGUE_STORES}
-        focusStoreId={focusStoreId}
+        selectedStoreId={trip.selected?.id ?? null}
+        onSelectStore={(store) => void trip.select(store)}
+        route={route}
+        home={trip.home}
         leftInset={leftInset}
       />
 
@@ -157,6 +194,18 @@ export default function BasketPage() {
           </p>
         )}
 
+        {trip.selected && (
+          <TripPanel
+            store={trip.selected}
+            toStore={trip.toStore}
+            toHome={trip.toHome}
+            home={trip.home}
+            loading={trip.loading}
+            onHome={(place) => void trip.setHomePlace(place)}
+            onClose={() => void trip.select(null)}
+          />
+        )}
+
         {loading ? (
           <p className="mt-5 text-sm text-slate-500">Loading your basket…</p>
         ) : items.length === 0 ? (
@@ -166,66 +215,103 @@ export default function BasketPage() {
         ) : (
           <>
             <ul className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
-              {comparison.pricing.map((entry) => {
+              {comparison.pricing.map((row) => {
                 const offers = comparison.stores
-                  .map((store) => ({ store, offer: entry.byStore[store] }))
-                  .filter((row) => row.offer !== null);
-                const photo = offers.find((row) => row.offer?.image)?.offer
+                  .map((store) => ({ store, offer: row.byStore[store] }))
+                  .filter((pair) => pair.offer !== null);
+                const photo = offers.find((pair) => pair.offer?.image)?.offer
                   ?.image;
 
                 return (
-                  <li
-                    key={entry.item.id}
-                    data-testid="core-item"
-                    className="py-3"
-                  >
+                  <li key={row.item.id} data-testid="core-item" className="py-3">
                     <div className="flex items-start gap-3">
                       <ProductImage
                         src={photo}
-                        alt={entry.entry?.label ?? ""}
+                        alt={row.entry?.label ?? ""}
                         size={44}
                       />
                       <div className="min-w-0 flex-1">
                         <p className="break-words text-sm font-semibold">
-                          {entry.item.name}
+                          {row.item.name}
                         </p>
 
-                        {offers.length === 0 ? (
+                        {row.entry && offers.length > 0 ? (
+                          <>
+                            <ul className="mt-1.5 space-y-1.5">
+                              {offers.map(({ store, offer }) => (
+                                <li key={store}>
+                                  <div className="flex items-center gap-2 text-xs">
+                                    <a
+                                      href={offer!.url ?? undefined}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label={`${store}: ${offer!.name}, opens the shop's page`}
+                                      title={`Open this product at ${store}`}
+                                      className="flex w-[3.75rem] shrink-0 items-center gap-1 rounded-md border border-slate-200 bg-white px-1.5 py-1 hover:border-emerald-600"
+                                    >
+                                      <ShopLogo shop={store} height={14} />
+                                      <span aria-hidden="true" className="text-[10px] text-slate-400">
+                                        ↗
+                                      </span>
+                                    </a>
+                                    <span className="shrink-0 font-semibold text-slate-900">
+                                      {formatUnitPrice(offer!, row.entry!)}
+                                    </span>
+                                    <span className="ml-auto shrink-0 font-bold text-slate-900">
+                                      {formatEuro(
+                                        portionCost(offer!, row.entry!, row.item.quantity),
+                                      )}
+                                    </span>
+                                  </div>
+                                  <p
+                                    className="mt-0.5 truncate pl-[4.25rem] text-[11px] text-slate-400"
+                                    title={offer!.name}
+                                  >
+                                    {offer!.name}
+                                  </p>
+                                </li>
+                              ))}
+                            </ul>
+
+                            <div className="mt-2 flex items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  void handleQuantity(row.item.id, row.item.quantity - 1)
+                                }
+                                disabled={row.item.quantity <= 1}
+                                aria-label={`Fewer ${row.item.name}`}
+                                className="h-6 w-6 rounded-md border border-slate-300 text-sm leading-none text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                              >
+                                −
+                              </button>
+                              <span className="min-w-[4.5rem] text-center text-xs font-medium">
+                                {formatQuantity(row.item.quantity, row.entry)}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  void handleQuantity(row.item.id, row.item.quantity + 1)
+                                }
+                                disabled={row.item.quantity >= MAX_QUANTITY}
+                                aria-label={`More ${row.item.name}`}
+                                className="h-6 w-6 rounded-md border border-slate-300 text-sm leading-none text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </>
+                        ) : (
                           <p className="mt-0.5 text-xs text-slate-400">
                             No price in the catalogue yet
                           </p>
-                        ) : (
-                          <ul className="mt-1 space-y-0.5">
-                            {offers.map(({ store, offer }) => (
-                              <li
-                                key={store}
-                                className="flex items-baseline gap-2 text-xs text-slate-600"
-                              >
-                                <span className="w-16 shrink-0 font-medium">
-                                  {store}
-                                </span>
-                                <span className="shrink-0 font-semibold text-slate-900">
-                                  {formatEuro(offer!.price_eur)}
-                                </span>
-                                <span
-                                  className="truncate text-slate-400"
-                                  title={offer!.name}
-                                >
-                                  {offer!.name}
-                                  {formatSize(offer!.size_g)
-                                    ? ` · ${formatSize(offer!.size_g)}`
-                                    : ""}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
                         )}
                       </div>
 
                       <button
                         type="button"
-                        onClick={() => handleRemove(entry.item.id)}
-                        aria-label={`Remove ${entry.item.name}`}
+                        onClick={() => handleRemove(row.item.id)}
+                        aria-label={`Remove ${row.item.name}`}
                         className="shrink-0 rounded-md border border-slate-300 px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
                       >
                         Remove
@@ -236,62 +322,28 @@ export default function BasketPage() {
               })}
             </ul>
 
-            <section className="mt-4" aria-label="What the basket costs">
-              <h2 className="text-sm font-semibold">What it costs</h2>
+            <section className="mt-4" aria-label="Where to buy it">
+              <h2 className="text-sm font-semibold">Where to buy it</h2>
 
               {comparison.comparableCount === 0 ? (
                 <p className="mt-1 text-xs text-slate-500">
-                  None of your products are in the catalogue yet, so there is
-                  nothing to compare. They are still saved in your basket.
+                  None of your products are in the catalogue yet, so there is nothing to
+                  compare. They are still saved in your basket.
                 </p>
               ) : (
                 <>
-                  <ul className="mt-2 space-y-1.5">
-                    {options.map(({ store }) => {
-                      const total = comparison.totals.find(
-                        (row) => row.store === store.chain,
-                      );
-                      const cheapest = store.chain === comparison.cheapestStore;
-                      return (
-                        <li key={store.chain}>
-                          <button
-                            type="button"
-                            onClick={() => setFocusStoreId(store.id)}
-                            className={`flex w-full items-center justify-between gap-3 rounded-lg border px-3 py-2 text-left hover:border-emerald-600 ${
-                              cheapest
-                                ? "border-emerald-600 bg-emerald-50"
-                                : "border-slate-200"
-                            }`}
-                          >
-                            <span className="min-w-0">
-                              <span className="block text-sm font-semibold">
-                                {store.chain}
-                                {cheapest && (
-                                  <span className="ml-2 text-[10px] font-bold uppercase tracking-wide text-emerald-700">
-                                    cheapest
-                                  </span>
-                                )}
-                              </span>
-                              <span className="block truncate text-xs text-slate-500">
-                                {formatWalk(CAMPUS, store)} · {store.street ?? "nearest to IE Tower"}
-                              </span>
-                            </span>
-                            <span className="shrink-0 text-sm font-bold">
-                              {total ? formatEuro(total.total) : "—"}
-                            </span>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-
+                  <WhereToBuy
+                    options={options}
+                    analysis={analysis}
+                    selectedStoreId={trip.selected?.id ?? null}
+                    onSelect={(store) => void trip.select(store)}
+                    hasHome={trip.home !== null}
+                  />
                   <p className="mt-2 text-[11px] leading-snug text-slate-500">
-                    {comparison.comparableCount} of {items.length} products,
-                    only the ones every shop can price. Prices collected{" "}
-                    {comparison.pricesCheckedOn}. Click a shop to see it on the
-                    map.
-                    {comparison.anySizesDiffer &&
-                      " Some packs differ a lot in size between shops, so check the sizes above."}
+                    {comparison.comparableCount} of {items.length} products, only the ones
+                    every shop can price. Prices are per kg, per litre, per dozen or per
+                    piece, the same measure in every shop, collected{" "}
+                    {comparison.pricesCheckedOn}. Click a shop to walk there on the map.
                   </p>
                 </>
               )}
@@ -305,11 +357,6 @@ export default function BasketPage() {
             </section>
           </>
         )}
-
-        <p className="mt-4 text-[11px] text-slate-400">
-          Walking times are estimates from straight-line distance, not routed
-          directions.
-        </p>
       </aside>
     </main>
   );

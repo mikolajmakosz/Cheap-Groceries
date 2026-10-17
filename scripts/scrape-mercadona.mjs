@@ -47,6 +47,7 @@ const CATEGORIES = [
   [60, "pan de molde"],
   [104, "yogur"],
   [31, "pescado"],
+  [34, "pescado congelado"],
   [156, "agua"],
 ];
 

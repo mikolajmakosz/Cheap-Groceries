@@ -33,15 +33,20 @@ export function metresBetween(a: Point, b: Point): number {
 
 /**
  * Streets do not run in straight lines, so the walk is longer than the crow
- * flies. 1.35 is the usual city detour factor; 4.8 km/h is an unhurried pace.
+ * flies. 1.35 is the usual city detour factor; 4.5 km/h matches what the router gives for this part of Madrid.
  * This is an estimate and the app says so — it is not a routed journey.
  */
 const DETOUR = 1.35;
-const WALK_KMH = 4.8;
+const WALK_KMH = 4.5;
 
 export function walkingMinutes(from: Point, to: Point): number {
   const metres = metresBetween(from, to) * DETOUR;
   return Math.max(1, Math.round((metres / 1000 / WALK_KMH) * 60));
+}
+
+/** Distance and time together, from one calculation. */
+export function estimateWalk(from: Point, to: Point) {
+  return { metres: walkingMetres(from, to), minutes: walkingMinutes(from, to) };
 }
 
 export function walkingMetres(from: Point, to: Point): number {

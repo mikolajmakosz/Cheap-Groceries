@@ -109,8 +109,6 @@ export type ItemPricing = {
   byStore: Record<string, Offer | null>;
   /** true when every store can price it, so it is fair to compare */
   comparable: boolean;
-  /** true when the packs differ a lot in size, so the totals deserve a caveat */
-  sizesDiffer: boolean;
 };
 
 export type StoreTotal = {
@@ -128,23 +126,30 @@ export type BasketComparison = {
   cheapestStore: string | null;
   /** Most recent collection date among the prices actually used. */
   pricesCheckedOn: string | null;
-  /** true when some compared packs differ a lot between shops. */
-  anySizesDiffer: boolean;
 };
 
-const SIZE_RATIO_LIMIT = 1.4;
+/** How much of the product a basket line stands for, in the basis unit. */
+export function amountOf(entry: CatalogueEntry, quantity: number): number {
+  return entry.serving * quantity;
+}
 
-function sizesDifferFor(offers: Offer[]): boolean {
-  const sizes = offers.map((offer) => offer.size_g);
-  if (sizes.some((size) => size === null || size <= 0)) return false;
-  const known = sizes as number[];
-  return Math.max(...known) / Math.min(...known) > SIZE_RATIO_LIMIT;
+/** What that much of the product costs in one shop, from its unit price. */
+export function portionCost(
+  offer: Offer,
+  entry: CatalogueEntry,
+  quantity: number,
+): number {
+  return (offer.unit_price * amountOf(entry, quantity)) / entry.basis.amount;
 }
 
 /**
  * Totals are summed only over items every shop can price. Comparing eight
  * priced items at one shop against five at another would make the shorter list
  * look cheaper for the wrong reason.
+ *
+ * Every figure is a unit price (per kg, per L, per dozen…) times the amount, never
+ * a pack price: shops do not sell identical packs, and a 2 kg bag against a 230 g
+ * potato says nothing about which shop is cheaper.
  */
 export function compareBasket(
   items: BasketItem[],
@@ -164,17 +169,7 @@ export function compareBasket(
       stores.length > 0 &&
       stores.every((store) => byStore[store] !== null);
 
-    const offers = stores
-      .map((store) => byStore[store])
-      .filter((offer): offer is Offer => offer !== null);
-
-    return {
-      item,
-      entry,
-      byStore,
-      comparable,
-      sizesDiffer: comparable && sizesDifferFor(offers),
-    };
+    return { item, entry, byStore, comparable };
   });
 
   const comparable = pricing.filter((entry) => entry.comparable);
@@ -182,7 +177,7 @@ export function compareBasket(
   const totals: StoreTotal[] = stores.map((store) => ({
     store,
     total: comparable.reduce(
-      (sum, entry) => sum + entry.byStore[store]!.price_eur * entry.item.quantity,
+      (sum, row) => sum + portionCost(row.byStore[store]!, row.entry!, row.item.quantity),
       0,
     ),
   }));
@@ -209,7 +204,6 @@ export function compareBasket(
     totals,
     cheapestStore,
     pricesCheckedOn: dates.length > 0 ? dates[dates.length - 1] : null,
-    anySizesDiffer: comparable.some((entry) => entry.sizesDiffer),
   };
 }
 
@@ -220,8 +214,29 @@ export function formatEuro(value: number): string {
   }).format(value);
 }
 
-/** A pack size in grams or millilitres, as a person would say it. */
-export function formatSize(sizeG: number | null): string | null {
-  if (sizeG === null) return null;
-  return sizeG >= 1000 ? `${+(sizeG / 1000).toFixed(2)} kg or L` : `${sizeG} g or ml`;
+/** "€1.85 / kg" — what one basis unit costs, the same measure in every shop. */
+export function formatUnitPrice(offer: Offer, entry: CatalogueEntry): string {
+  return `${formatEuro(offer.unit_price)} / ${entry.basis.label}`;
+}
+
+const PLURALS: Record<string, string> = { loaf: "loaves", piece: "pieces" };
+
+function trim(value: number): string {
+  return `${+value.toFixed(2)}`;
+}
+
+/**
+ * "200 g", "1.5 L", "2 dozen", "3 loaves": the amount a basket line stands for,
+ * said the way a person would say it.
+ */
+export function formatQuantity(quantity: number, entry: CatalogueEntry): string {
+  const amount = amountOf(entry, quantity);
+  const { label } = entry.basis;
+
+  if (label === "kg") return amount >= 1000 ? `${trim(amount / 1000)} kg` : `${amount} g`;
+  if (label === "L") return amount >= 1000 ? `${trim(amount / 1000)} L` : `${amount} ml`;
+
+  // Counted things: dozens, loaves, pieces.
+  const count = amount / entry.basis.amount;
+  return `${trim(count)} ${count === 1 ? label : (PLURALS[label] ?? label)}`;
 }

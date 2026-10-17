@@ -1,247 +1,247 @@
 {
   "source": "dia.es search results, read through a normal browser session",
-  "note": "Dia answers 403 to command-line clients, so these 30 products were collected by hand in a browser, one search per everyday word, picking the reference product for each. Not refreshed automatically: re-collect and update this file to refresh.",
+  "note": "Dia answers 403 to command-line clients, so these 30 products were collected by hand in a browser, one search per everyday word, picking the reference product for each. Not refreshed automatically: re-collect and update this file to refresh. Product links and sizes (grams or millilitres, or a count of pieces) were read from the same search results.",
   "collected_on": "2026-10-17",
   "products": [
     {
       "term": "pollo",
       "name": "Pechuga de pollo corte fino Selección de Dia 600 g aprox.",
       "price_eur": 5.27,
-      "size_g": 600,
       "image": "https://www.dia.es/product_images/50844/50844_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/carnes/pollo/p/50844",
+      "size": 600
     },
     {
       "term": "cerdo",
       "name": "Lomo de cerdo adobado Selección de Dia 300 g",
       "price_eur": 1.99,
-      "size_g": 300,
       "image": "https://www.dia.es/product_images/164337/164337_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/carnes/cerdo/p/164337",
+      "size": 300
     },
     {
       "term": "carne picada",
       "name": "Carne picada de vacuno y cerdo Selección de Dia 500 g",
       "price_eur": 4.19,
-      "size_g": 500,
       "image": "https://www.dia.es/product_images/261241/261241_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/carnes/hamburguesas-carne-picada-y-albondigas/p/261241",
+      "size": 500
     },
     {
       "term": "jamon cocido",
       "name": "Jamón cocido extra 97% Dia Nuestra Alacena 150 g",
       "price_eur": 1.99,
-      "size_g": 150,
       "image": "https://www.dia.es/product_images/273737/273737_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/charcuteria/jamon-cocido/p/273737",
+      "size": 150
     },
     {
       "term": "leche",
       "name": "Leche entera Dia Láctea pack 6 x 1 L",
       "price_eur": 5.76,
-      "size_g": 6000,
       "image": "https://www.dia.es/product_images/608P6/608P6_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/huevos-leche-y-mantequilla/leche/p/608P6",
+      "size": 6000
     },
     {
       "term": "huevos",
       "name": "Huevos medianos M de gallinas criadas en suelo Dia 12 unidades",
       "price_eur": 2.85,
-      "size_g": null,
       "image": "https://www.dia.es/product_images/274010/274010_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/huevos-leche-y-mantequilla/huevos/p/274010",
+      "size": 12
     },
     {
       "term": "mantequilla",
       "name": "Mantequilla con sal Dia Láctea 250 g",
       "price_eur": 2.05,
-      "size_g": 250,
       "image": "https://www.dia.es/product_images/268200/268200_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/huevos-leche-y-mantequilla/mantequilla-y-margarina/p/268200",
+      "size": 250
     },
     {
       "term": "queso",
       "name": "Queso fundido sándwich Dia Láctea 300 g",
       "price_eur": 1.27,
-      "size_g": 300,
       "image": "https://www.dia.es/product_images/664/664_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/quesos/en-lonchas/p/664",
+      "size": 300
     },
     {
       "term": "queso fresco",
-      "name": "Queso fresco batido rico en proteínas Granja Rinya 400 g",
-      "price_eur": 1.89,
-      "size_g": 400,
-      "image": "https://www.dia.es/product_images/274204/274204_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "name": "Queso fresco de Burgos 0% M.G. Dia Láctea 4 x 62.5 g",
+      "price_eur": 1.15,
+      "image": "https://www.dia.es/product_images/73062/73062_ISO_0_ES.jpg?imwidth=176",
+      "url": "https://www.dia.es/quesos/fresco/p/73062",
+      "size": 250
     },
     {
       "term": "yogur",
       "name": "Yogur natural desnatado Dia Láctea 6 x 125 g",
       "price_eur": 0.99,
-      "size_g": 750,
       "image": "https://www.dia.es/product_images/128591/128591_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/yogures-y-postres/yogures-naturales-y-desnatados/p/128591",
+      "size": 750
     },
     {
       "term": "pan",
       "name": "Barra de pan Diana El Molino de Dia 250 g",
       "price_eur": 0.5,
-      "size_g": 250,
       "image": "https://www.dia.es/product_images/38109/38109_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/panaderia/pan-recien-horneado/p/38109",
+      "size": 250
     },
     {
       "term": "pan de molde",
       "name": "Pan de molde blanco El Molino de Dia 820 g",
       "price_eur": 1.15,
-      "size_g": 820,
       "image": "https://www.dia.es/product_images/77955/77955_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/panaderia/pan-de-molde-y-especiales/p/77955",
+      "size": 820
     },
     {
       "term": "arroz",
       "name": "Arroz extra Dia Arrozona 1 Kg",
       "price_eur": 1.15,
-      "size_g": 1000,
       "image": "https://www.dia.es/product_images/151/151_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/arroz-pastas-y-legumbres/arroz/p/151",
+      "size": 1000
     },
     {
       "term": "pasta",
       "name": "Macarrones Dia Al Diante 500 g",
       "price_eur": 0.8,
-      "size_g": 500,
       "image": "https://www.dia.es/product_images/518/518_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/arroz-pastas-y-legumbres/macarrones-espaguetis-y-pastas-secas/p/518",
+      "size": 500
     },
     {
       "term": "cereales",
       "name": "Cereales copos de maíz corn flakes Gran Dia 500 g",
       "price_eur": 1.49,
-      "size_g": 500,
       "image": "https://www.dia.es/product_images/66956/66956_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/galletas-cereales-y-mermeladas/cereales/p/66956",
+      "size": 500
     },
     {
       "term": "garbanzos",
       "name": "Garbanzos cocidos Dia Vegecampo 400 g",
       "price_eur": 0.8,
-      "size_g": 400,
       "image": "https://www.dia.es/product_images/1232/1232_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/arroz-pastas-y-legumbres/garbanzos-y-alubias/p/1232",
+      "size": 400
     },
     {
       "term": "lentejas",
       "name": "Lentejas cocidas Dia Vegecampo 400 g",
       "price_eur": 0.9,
-      "size_g": 400,
       "image": "https://www.dia.es/product_images/58809/58809_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/arroz-pastas-y-legumbres/lentejas/p/58809",
+      "size": 400
     },
     {
       "term": "alubias",
       "name": "Alubias blancas cocidas Dia Vegecampo 400 g",
       "price_eur": 0.75,
-      "size_g": 400,
       "image": "https://www.dia.es/product_images/1233/1233_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/arroz-pastas-y-legumbres/garbanzos-y-alubias/p/1233",
+      "size": 400
     },
     {
       "term": "atun",
       "name": "Atún claro en aceite de oliva Dia Mari Marinera 3 x 60 g",
       "price_eur": 2.95,
-      "size_g": 180,
       "image": "https://www.dia.es/product_images/262434/262434_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/conservas-caldos-y-cremas/atun-y-bonito/p/262434",
+      "size": 180
     },
     {
       "term": "merluza",
       "name": "Rodajas de merluza argentina Dia Mari Marinera 550 g",
       "price_eur": 4.19,
-      "size_g": 550,
       "image": "https://www.dia.es/product_images/305869/305869_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/pescados-y-mariscos/congelado/p/305869",
+      "size": 550
     },
     {
       "term": "salmon",
       "name": "Lomos de salmón Dia Selección Mundial 250 g",
       "price_eur": 5.89,
-      "size_g": 250,
       "image": "https://www.dia.es/product_images/274390/274390_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/pescados-y-mariscos/congelado/p/274390",
+      "size": 250
     },
     {
       "term": "aceite",
       "name": "Aceite de oliva virgen extra Dia La Almazara del Olivar 1 L",
       "price_eur": 4.35,
-      "size_g": 1000,
       "image": "https://www.dia.es/product_images/112529/112529_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/aceites-salsas-y-especias/aceites/p/112529",
+      "size": 1000
     },
     {
       "term": "tomate frito",
       "name": "Tomate frito Dia Vegecampo 550 g",
       "price_eur": 0.89,
-      "size_g": 550,
       "image": "https://www.dia.es/product_images/10677/10677_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/aceites-salsas-y-especias/salsas-de-tomate-y-pasta/p/10677",
+      "size": 550
     },
     {
       "term": "tomate",
       "name": "Tomate pera bandeja 500 g",
       "price_eur": 1.99,
-      "size_g": 500,
       "image": "https://www.dia.es/product_images/191011/191011_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/verduras/tomates-pimientos-y-pepinos/p/191011",
+      "size": 500
     },
     {
       "term": "cebolla",
       "name": "Cebolla morada malla 500 g",
       "price_eur": 1.39,
-      "size_g": 500,
       "image": "https://www.dia.es/product_images/57885/57885_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/verduras/ajos-cebollas-y-puerros/p/57885",
+      "size": 500
     },
     {
       "term": "patata",
       "name": "Patatas para cocer 2 Kg",
       "price_eur": 3.69,
-      "size_g": 2000,
       "image": "https://www.dia.es/product_images/296355/296355_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/verduras/patatas-y-zanahorias/p/296355",
+      "size": 2000
     },
     {
       "term": "platano",
       "name": "Plátano de canarias 1 Kg aprox.",
       "price_eur": 2.79,
-      "size_g": 1000,
       "image": "https://www.dia.es/product_images/11468/11468_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/frutas/platanos-y-bananas/p/11468",
+      "size": 1000
     },
     {
       "term": "manzana",
       "name": "Manzana Golden 1 Kg",
       "price_eur": 1.89,
-      "size_g": 1000,
       "image": "https://www.dia.es/product_images/171233/171233_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/frutas/manzanas-y-peras/p/171233",
+      "size": 1000
     },
     {
       "term": "lechuga",
       "name": "Lechuga iceberg unidad",
       "price_eur": 0.85,
-      "size_g": null,
       "image": "https://www.dia.es/product_images/11462/11462_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/verduras/lechugas-y-hojas-verdes/p/11462",
+      "size": 1
     },
     {
       "term": "agua",
       "name": "Agua mineral Dia 1,5 L",
       "price_eur": 0.28,
-      "size_g": 1500,
       "image": "https://www.dia.es/product_images/26995/26995_ISO_0_ES.jpg?imwidth=176",
-      "url": null
+      "url": "https://www.dia.es/agua-y-refrescos/agua/p/26995",
+      "size": 1500
     }
   ]
 }

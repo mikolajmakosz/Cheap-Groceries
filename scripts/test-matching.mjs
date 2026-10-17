@@ -10,8 +10,10 @@
  * carry no price, and suggestions must never be required to save something.
  */
 
-import { termFor, entryFor, suggest, compareBasket } from "../lib/pricing.ts";
+import { termFor, entryFor, suggest, compareBasket, formatQuantity, portionCost } from "../lib/pricing.ts";
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
+import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
+import { STORES } from "../lib/geo.ts";
 
 let failures = 0;
 
@@ -88,6 +90,78 @@ check(
   CATALOGUE.every((entry) =>
     Object.values(entry.offers).every((offer) => Boolean(offer.image)),
   ),
+  true,
+);
+
+check(
+  "every offer has a unit price",
+  CATALOGUE.every((entry) =>
+    Object.values(entry.offers).every((offer) => offer.unit_price > 0),
+  ),
+  true,
+);
+// Two shops pricing the same thing should land in the same ballpark. A big gap
+// almost always means two different products were paired, not that one shop is
+// three times dearer, and the app would then announce a false winner.
+const widest = Math.max(
+  ...CATALOGUE.map((entry) => {
+    const prices = Object.values(entry.offers).map((offer) => offer.unit_price);
+    return Math.max(...prices) / Math.min(...prices);
+  }),
+);
+check("no pair differs by more than 2x", widest <= 2, true);
+check(
+  "every offer links to the shop's own page",
+  CATALOGUE.every((entry) =>
+    Object.values(entry.offers).every((offer) => /^https:\/\//.test(offer.url ?? "")),
+  ),
+  true,
+);
+
+console.log("\nunit prices, not pack prices");
+const cheese = entryFor("queso");
+const twoServings = compareBasket([item("p", "queso", 2)]);
+const dia = cheese.offers.Dia;
+check(
+  "a basket line costs its unit price times its amount",
+  Math.round(twoServings.totals.find((row) => row.store === "Dia").total * 1000),
+  Math.round(((dia.unit_price * cheese.serving * 2) / cheese.basis.amount) * 1000),
+);
+check("a serving of cheese is not a kilo", cheese.serving < 1000, true);
+check("one serving of cheese reads in grams", formatQuantity(1, cheese), "200 g");
+check("five servings of cheese read in kilos", formatQuantity(5, cheese), "1 kg");
+check("a dozen eggs reads as a dozen", formatQuantity(1, entryFor("huevos")), "1 dozen");
+check("two loaves are loaves", formatQuantity(2, entryFor("pan")), "2 loaves");
+check("milk reads in litres", formatQuantity(2, entryFor("leche")), "2 L");
+check(
+  "a portion costs less than a kilo of the same",
+  portionCost(dia, cheese, 1) < dia.unit_price,
+  true,
+);
+
+console.log("\ncost against time");
+const A = { chain: "A", store: STORES[0], cost: 10, minutes: 20 };
+const B = { chain: "B", store: STORES[0], cost: 12, minutes: 12 };
+const C = { chain: "C", store: STORES[0], cost: 13, minutes: 15 }; // dearer AND slower than B
+const t = analyseTradeOff([A, B, C]);
+check("cheapest is the cheapest", t.cheapest.chain, "A");
+check("fastest is the fastest", t.fastest.chain, "B");
+check("a dearer and slower option is dropped", t.frontier.length, 2);
+check("the step says what the extra money buys", t.steps[0].extraCost, 2);
+check("...and how many minutes it saves", t.steps[0].savedMinutes, 8);
+check("...so €0.25 per minute", t.steps[0].perMinute, 0.25);
+check(
+  "no trade-off when one is both cheaper and faster",
+  analyseTradeOff([A, { ...B, cost: 9 }]).steps.length,
+  0,
+);
+check("nothing to weigh with no options", analyseTradeOff([]), null);
+const chosen = bestStorePerChain({ Dia: 5, Mercadona: 6 });
+check("one best shop per chain", chosen.length, 2);
+check(
+  "an address changes which shop is quickest",
+  bestStorePerChain({ Dia: 5 }, { lat: 40.4, lon: -3.7 })[0].minutes >
+    bestStorePerChain({ Dia: 5 })[0].minutes,
   true,
 );
 
