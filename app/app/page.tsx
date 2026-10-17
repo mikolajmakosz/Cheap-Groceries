@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/lib/pricing";
 
 export default function BasketPage() {
+  const router = useRouter();
   const [items, setItems] = useState<BasketItem[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [draft, setDraft] = useState("");
@@ -19,6 +21,14 @@ export default function BasketPage() {
 
   const load = useCallback(async () => {
     const supabase = createClient();
+
+    // A session can expire while the cookie is still around. Without this the
+    // page renders an empty basket and every save hangs on "Adding…" forever.
+    const { data: auth } = await supabase.auth.getUser();
+    if (!auth.user) {
+      router.replace("/login");
+      return;
+    }
 
     const [basket, catalogue] = await Promise.all([
       supabase
@@ -32,7 +42,7 @@ export default function BasketPage() {
     setItems((basket.data as BasketItem[]) ?? []);
     setProducts((catalogue.data as Product[]) ?? []);
     setLoading(false);
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     void load();
@@ -205,11 +215,19 @@ export default function BasketPage() {
 
                 <p className="mt-4 text-xs text-slate-500">
                   Based on {comparison.comparableCount} of {items.length}{" "}
-                  products — only the ones every supermarket can price, so the
-                  comparison is fair.
+                  products
+                  {comparison.stores.length > 1
+                    ? " — only the ones every supermarket can price, so the comparison is fair."
+                    : " this shop can price."}
                   {comparison.pricesCheckedOn &&
                     ` Prices collected on ${comparison.pricesCheckedOn}.`}
                 </p>
+                {comparison.stores.length === 1 && (
+                  <p className="mt-2 text-xs text-slate-500">
+                    Only {comparison.stores[0]} is in the catalogue so far, so
+                    there is nothing to compare against yet.
+                  </p>
+                )}
               </>
             )}
 

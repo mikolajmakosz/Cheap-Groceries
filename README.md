@@ -39,9 +39,43 @@ so unpriced products are listed separately instead of quietly skewing the result
 
 ## Prices
 
-Prices are collected by hand and stored with the date they were checked. Every row carries a
-`verified` flag, and the app says on screen when a total still rests on prices nobody has confirmed
-in store. No live scraping: it breaks without warning, and the comparison has to stay trustworthy.
+Prices come from Mercadona's own public store API for the Madrid warehouse, collected by
+[`scripts/scrape-mercadona.mjs`](scripts/scrape-mercadona.mjs):
+
+```bash
+npm run prices
+```
+
+It runs by hand, never from the app at request time — a shop changing its website must not be able
+to take CestaPro down. Every row stores the date it was checked and a `verified` flag, and the app
+says on screen when a total still rests on prices nobody has confirmed.
+
+The full catalogue it collects (817 products) is kept in `data/mercadona.json` as provenance. Only
+the reference products reach the database.
+
+### Why reference products
+
+Ask the catalogue for the cheapest row whose name contains "pollo" and you get *Carcasa y espinazo
+de pollo* — chicken carcasses, at €1.07. Ask for "leche" and you get an oat drink. Neither is what
+a shopper means.
+
+So [`lib/reference-products.ts`](lib/reference-products.ts) names, by hand, the ordinary thing
+behind each everyday word: one reference product per term per store, with Spanish and English
+aliases, because the users are international students. "chicken" and "pollo" land on the same
+chicken breast.
+
+A product the catalogue cannot place is still saved to the basket and still shown. It simply
+carries no price.
+
+## Tests
+
+```bash
+npm test
+```
+
+Covers the matching rules and the parts of the grading contract that are easy to break by accident:
+any text must be accepted, unknown text must carry no price, and a single shop must not be
+announced as the cheapest one.
 
 ## Running it locally
 

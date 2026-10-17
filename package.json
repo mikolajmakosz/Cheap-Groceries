@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node scripts/test-matching.mjs",
+    "prices": "node scripts/scrape-mercadona.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
