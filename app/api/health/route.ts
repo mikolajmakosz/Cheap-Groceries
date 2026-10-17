@@ -1,11 +1,15 @@
+import { connection } from "next/server";
+
 /**
  * Says whether this build actually received its Supabase configuration.
  * It reports presence, never the values — the project ref is public anyway,
  * and the key is deliberately left out.
  */
-export const dynamic = "force-dynamic";
+export async function GET() {
+  // Opts out of prerendering, so the answer reflects this deployment's
+  // runtime environment rather than whatever was set at build time.
+  await connection();
 
-export function GET() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? null;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? null;
 
