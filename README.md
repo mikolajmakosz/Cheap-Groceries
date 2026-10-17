@@ -122,8 +122,10 @@ and the panel says so.
 
 ### Home, and what it costs in minutes
 
-Under a chosen shop the app can ask for a home address in Madrid and draw the way on from the shop in blue,
-then say what the detour adds compared with going straight home. The address is sent to OpenStreetMap's
+Under a chosen shop the app can ask for a home address in Madrid, suggesting streets as you type, and draw
+the way on from the shop in blue, then say what the detour adds compared with going straight home.
+Suggestions come from Photon, a geocoder built for search-as-you-type; Nominatim's own policy discourages
+autocomplete, so it is kept for one exact lookup of the house number afterwards. The address is sent to OpenStreetMap's
 geocoder to be located and is held in memory only: it is personal data and nothing needs it kept, so it is
 not stored anywhere and is gone on reload.
 
@@ -133,6 +135,39 @@ With an address the times cover campus, shop and home. For each chain the quicke
 options that are both dearer and slower than another are dropped. What remains is a ladder from the
 cheapest shop to the quickest, and each rung says what the extra money buys: "Choosing Dia over Mercadona
 costs EUR 0.24 more and saves 2 min, so you pay EUR 0.12 for each minute saved."
+
+## Nutrition
+
+Every basket shows its energy, protein, fat, carbohydrate, sugars and salt. The figures in
+[`lib/nutrition.ts`](lib/nutrition.ts) are **typical values for each kind of food**, not read off the pack
+of the product a shop sells: brands differ, and a typical figure is close enough to compare baskets and see
+roughly what you eat. The app says so, and that it is not dietary advice. What is counted is what is eaten:
+peel, core and shell are left out, and counted things (eggs, a lettuce) are converted to grams.
+
+`npm test` checks that energy agrees with the macros it is made of (4 per gram of protein and
+carbohydrate, 9 per gram of fat), so a typo in the table shows up as a gap.
+
+## Saved baskets
+
+A basket can be saved under a name and found again under **Saved**. There you say how many days it has
+to last, with a slider, and see what it costs a day and what you eat a day.
+
+Not everything is eaten at the same pace. A litre of olive oil lasts about a month, so charging it, or
+counting its calories, as if it were gone in a week would be wrong. Each product knows how long a serving
+lasts one person, and a line is spread over the longer of the plan and the days its quantity lasts. Slow
+items say how often you really buy them ("about once a month"); a product bought for less than the plan
+says how many servings would cover every day.
+
+The two tables, `saved_baskets` and `saved_basket_items`, are private to each user through Row Level
+Security, and an item can only be added to a basket that belongs to the same person. A saved basket is a
+copy: changing the live basket later never rewrites it.
+
+## Time in the shop
+
+The walk is only part of it. The time inside the shop is estimated from the size of the basket: a fixed few
+minutes for a basket, the queue and paying, a minute and a half to find each product, and a little more for
+each further serving. It is the same in every shop, so it does not change which shop wins, and the app
+shows it separately.
 
 ## Tests
 
@@ -159,8 +194,8 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_<your-key>
 
 In the Supabase dashboard, open **SQL Editor → New query** and run, in order:
 
-1. [`supabase/01_schema.sql`](supabase/01_schema.sql) — tables and Row Level Security
-2. [`supabase/02_seed_prices.sql`](supabase/02_seed_prices.sql) — the starting price catalogue
+1. [`supabase/01_schema.sql`](supabase/01_schema.sql) — the basket table and Row Level Security
+2. [`supabase/02_saved_baskets.sql`](supabase/02_saved_baskets.sql) — saved baskets
 
 Then:
 

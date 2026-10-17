@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import AddressSearch from "@/components/AddressSearch";
 import ShopLogo from "@/components/ShopLogo";
 import { CAMPUS, estimateWalk, type Store } from "@/lib/geo";
-import { geocodeMadrid, type Place } from "@/lib/geocode";
+import type { Place } from "@/lib/geocode";
 import type { Route } from "@/lib/walking";
 
 function distance(metres: number): string {
@@ -20,6 +20,8 @@ type Props = {
   onClose: () => void;
   /** Hide the home-address step, for places that have no basket to weigh. */
   showHome?: boolean;
+  /** Estimated minutes spent inside the shop. */
+  shopMinutes?: number;
 };
 
 /**
@@ -35,26 +37,8 @@ export default function TripPanel({
   onHome,
   onClose,
   showHome = true,
+  shopMinutes = 0,
 }: Props) {
-  const [address, setAddress] = useState("");
-  const [searching, setSearching] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSearching(true);
-    setError(null);
-
-    const place = await geocodeMadrid(address);
-    setSearching(false);
-
-    if (!place) {
-      setError("Could not find that address in Madrid. Try the street and number.");
-      return;
-    }
-    onHome(place);
-  }
-
   const direct = home ? estimateWalk(CAMPUS, home) : null;
   const total =
     toStore && toHome ? { minutes: toStore.minutes + toHome.minutes, metres: toStore.metres + toHome.metres } : null;
@@ -114,6 +98,13 @@ export default function TripPanel({
           </div>
         )}
 
+        {shopMinutes > 0 && (
+          <div className="flex items-baseline justify-between gap-3">
+            <dt className="text-slate-600">Inside the shop</dt>
+            <dd className="font-semibold">about {shopMinutes} min</dd>
+          </div>
+        )}
+
         {total && detour !== null && (
           <div className="flex items-baseline justify-between gap-3 border-t border-emerald-200 pt-1.5">
             <dt className="text-slate-600">Campus, shop, home</dt>
@@ -149,38 +140,7 @@ export default function TripPanel({
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-3">
-            <label htmlFor="home-address" className="block text-xs font-medium text-slate-700">
-              And from there to your home?
-            </label>
-            <div className="mt-1 flex gap-2">
-              <input
-                id="home-address"
-                type="text"
-                value={address}
-                onChange={(event) => setAddress(event.target.value)}
-                placeholder="Calle General Pintos 20"
-                autoComplete="off"
-                className="min-w-0 flex-1 rounded-lg border border-slate-300 px-2.5 py-2 text-sm outline-none focus:border-emerald-600"
-              />
-              <button
-                type="submit"
-                disabled={searching || address.trim().length < 3}
-                className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
-              >
-                {searching ? "…" : "Show"}
-              </button>
-            </div>
-            {error && (
-              <p role="alert" className="mt-1.5 text-xs font-medium text-red-600">
-                {error}
-              </p>
-            )}
-            <p className="mt-1.5 text-[11px] text-slate-500">
-              The address is sent to OpenStreetMap to be located. We do not store it, and it is
-              forgotten when you reload.
-            </p>
-          </form>
+          <AddressSearch onPlace={onHome} />
         ))}
     </section>
   );

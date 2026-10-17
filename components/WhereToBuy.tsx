@@ -12,6 +12,9 @@ type Props = {
   onSelect: (store: Store) => void;
   /** Whether the times already include the walk on to the person's home. */
   hasHome: boolean;
+  /** Estimated minutes spent inside the shop; the same in every shop. */
+  shopMinutes?: number;
+  productCount?: number;
 };
 
 /**
@@ -24,6 +27,8 @@ export default function WhereToBuy({
   selectedStoreId,
   onSelect,
   hasHome,
+  shopMinutes = 0,
+  productCount = 0,
 }: Props) {
   const sorted = [...options].sort(
     (a, b) => a.cost - b.cost || a.minutes - b.minutes,
@@ -76,6 +81,14 @@ export default function WhereToBuy({
           );
         })}
       </ul>
+
+      {shopMinutes > 0 && (
+        <p className="mt-2 text-xs text-slate-600">
+          <span className="font-semibold text-slate-900">About {shopMinutes} min inside the shop</span>{" "}
+          for {productCount} {productCount === 1 ? "product" : "products"}, on top of the walk. It
+          grows with the size of the basket and is the same in every shop.
+        </p>
+      )}
 
       {analysis && several && (
         <div className="mt-3 rounded-lg bg-slate-50 p-3 text-xs leading-relaxed text-slate-700">

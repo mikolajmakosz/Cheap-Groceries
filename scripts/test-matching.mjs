@@ -14,6 +14,9 @@ import { termFor, entryFor, suggest, compareBasket, formatQuantity, portionCost 
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
+import { FOODS, nutritionOf, eatenAmount, SALT_LIMIT_G } from "../lib/nutrition.ts";
+import { estimateShopMinutes } from "../lib/shoptime.ts";
+import { planBasket, frequencyLabel } from "../lib/plan.ts";
 
 let failures = 0;
 
@@ -164,6 +167,71 @@ check(
     bestStorePerChain({ Dia: 5 })[0].minutes,
   true,
 );
+
+console.log("\nnutrition");
+check(
+  "every catalogue term has nutrition data",
+  CATALOGUE.every((entry) => FOODS[entry.term] !== undefined),
+  true,
+);
+// Energy must agree with the macros it is made of (4 per g of protein and
+// carbohydrate, 9 per g of fat). A typo in the table shows up here as a gap.
+const offBy = CATALOGUE.map((entry) => {
+  const n = FOODS[entry.term];
+  const fromMacros = 4 * n.protein + 9 * n.fat + 4 * n.carbs;
+  return n.kcal === 0 ? 0 : Math.abs(n.kcal - fromMacros) / n.kcal;
+});
+check("calories agree with macros within 20%", Math.max(...offBy) <= 0.2, true);
+check(
+  "sugar never exceeds carbohydrate",
+  CATALOGUE.every((entry) => FOODS[entry.term].sugar <= FOODS[entry.term].carbs + 0.5),
+  true,
+);
+const oil = entryFor("olive oil");
+check("a litre of olive oil is about 8,200 kcal", Math.round(nutritionOf(oil, 1).kcal / 100) * 100, 8200);
+check("olive oil is all fat", nutritionOf(oil, 1).carbs, 0);
+const banana = entryFor("banana");
+check("the peel is not eaten", eatenAmount(banana, 1) < banana.serving, true);
+const eggs = entryFor("eggs");
+check("a dozen eggs is counted in pieces", Math.round(eatenAmount(eggs, 1)), 636);
+check("the salt guide is the WHO's 5 g", SALT_LIMIT_G, 5);
+
+console.log("\ntime in the shop");
+check("an empty basket takes no time", estimateShopMinutes([]), 0);
+check(
+  "more products take longer",
+  estimateShopMinutes([{ quantity: 1 }, { quantity: 1 }, { quantity: 1 }]) >
+    estimateShopMinutes([{ quantity: 1 }]),
+  true,
+);
+check(
+  "more of the same takes longer than one",
+  estimateShopMinutes([{ quantity: 6 }]) > estimateShopMinutes([{ quantity: 1 }]),
+  true,
+);
+check("one product is a few minutes, not an hour", estimateShopMinutes([{ quantity: 1 }]) < 15, true);
+
+console.log("\na basket over several days");
+const week = planBasket([item("o", "olive oil"), item("c", "chicken")], 7);
+const oilLine = week.lines.find((line) => line.row.entry.term === "aceite");
+const chickenLine = week.lines.find((line) => line.row.entry.term === "pollo");
+check("a litre of oil outlasts a week", oilLine.outlastsPlan, true);
+check("...so only part of it counts towards the week", oilLine.shareInPlan < 0.3, true);
+check("chicken for two days falls short of a week", chickenLine.fallsShort, true);
+check(
+  "oil is charged by the day it lasts, not the day it was bought",
+  week.totals[0].perDay < week.totals[0].total / 7 + 0.001,
+  true,
+);
+const oilOnly = planBasket([item("o", "olive oil")], 7);
+check(
+  "a week's share of the oil is a fraction of its calories",
+  oilOnly.nutrition.kcal < nutritionOf(oil, 1).kcal / 3,
+  true,
+);
+check("per day times days is the whole", Math.round(oilOnly.nutritionPerDay.kcal * 7), Math.round(oilOnly.nutrition.kcal));
+check("a month's oil is bought about once a month", frequencyLabel(30), "about once a month");
+check("two weeks reads as two weeks", frequencyLabel(14), "about every two weeks");
 
 console.log("\ngrading contract");
 const basket = compareBasket([

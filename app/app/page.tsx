@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import BasketActions from "@/components/BasketActions";
+import NutritionPanel from "@/components/NutritionPanel";
 import ProductImage from "@/components/ProductImage";
 import ProductSearch from "@/components/ProductSearch";
 import ShopLogo from "@/components/ShopLogo";
@@ -18,6 +20,8 @@ import {
   portionCost,
   type BasketItem,
 } from "@/lib/pricing";
+import { ZERO, addNutrients, nutritionOf } from "@/lib/nutrition";
+import { estimateShopMinutes } from "@/lib/shoptime";
 import { analyseTradeOff, bestStorePerChain } from "@/lib/tradeoff";
 import { useTrip } from "@/lib/useTrip";
 
@@ -126,7 +130,58 @@ export default function BasketPage() {
     }
   }
 
+  async function clearBasket() {
+    const supabase = createClient();
+    const { error: deleteError } = await supabase
+      .from("basket_items")
+      .delete()
+      .in(
+        "id",
+        items.map((item) => item.id),
+      );
+    if (deleteError) setError(deleteError.message);
+    await load();
+  }
+
+  /** Keeps a copy, so changing the live basket later never rewrites a saved one. */
+  async function saveBasket(name: string): Promise<{ ok: boolean; error?: string }> {
+    const supabase = createClient();
+    const { data, error: basketError } = await supabase
+      .from("saved_baskets")
+      .insert({ name })
+      .select("id")
+      .single();
+    if (basketError || !data) {
+      return { ok: false, error: basketError?.message ?? "Could not save the basket." };
+    }
+
+    const { error: itemsError } = await supabase.from("saved_basket_items").insert(
+      items.map((item) => ({
+        basket_id: data.id,
+        name: item.name,
+        quantity: item.quantity,
+      })),
+    );
+    if (itemsError) {
+      // Do not leave an empty basket behind.
+      await supabase.from("saved_baskets").delete().eq("id", data.id);
+      return { ok: false, error: itemsError.message };
+    }
+    return { ok: true };
+  }
+
   const comparison = useMemo(() => compareBasket(items), [items]);
+
+  const nutrition = useMemo(
+    () =>
+      comparison.pricing.reduce(
+        (sum, row) =>
+          row.entry ? addNutrients(sum, nutritionOf(row.entry, row.item.quantity)) : sum,
+        ZERO,
+      ),
+    [comparison],
+  );
+  const shopMinutes = estimateShopMinutes(items);
 
   const costByChain = useMemo(
     () =>
@@ -203,6 +258,7 @@ export default function BasketPage() {
             loading={trip.loading}
             onHome={(place) => void trip.setHomePlace(place)}
             onClose={() => void trip.select(null)}
+            shopMinutes={shopMinutes}
           />
         )}
 
@@ -322,6 +378,25 @@ export default function BasketPage() {
               })}
             </ul>
 
+            <BasketActions count={items.length} onClear={clearBasket} onSave={saveBasket} />
+
+            <details className="mt-4 rounded-lg border border-slate-200 p-3">
+              <summary className="cursor-pointer text-sm font-semibold">
+                What is in this basket
+                <span className="ml-2 text-xs font-normal text-slate-500">
+                  {Math.round(nutrition.kcal).toLocaleString("en-GB")} kcal ·{" "}
+                  {Math.round(nutrition.protein)} g protein
+                </span>
+              </summary>
+              <div className="mt-3">
+                <NutritionPanel nutrition={nutrition} />
+                <p className="mt-2 text-[11px] text-slate-500">
+                  This is everything in the basket. To see it per day, save the basket and say how
+                  many days it has to last.
+                </p>
+              </div>
+            </details>
+
             <section className="mt-4" aria-label="Where to buy it">
               <h2 className="text-sm font-semibold">Where to buy it</h2>
 
@@ -338,6 +413,8 @@ export default function BasketPage() {
                     selectedStoreId={trip.selected?.id ?? null}
                     onSelect={(store) => void trip.select(store)}
                     hasHome={trip.home !== null}
+                    shopMinutes={shopMinutes}
+                    productCount={items.length}
                   />
                   <p className="mt-2 text-[11px] leading-snug text-slate-500">
                     {comparison.comparableCount} of {items.length} products, only the ones

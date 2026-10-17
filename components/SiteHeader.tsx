@@ -47,6 +47,12 @@ export default function SiteHeader() {
             >
               My basket
             </Link>
+            <Link
+              href="/saved"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900"
+            >
+              Saved
+            </Link>
             <button
               type="button"
               data-testid="logout"
