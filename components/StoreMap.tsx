@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { CAMPUS, STORES, formatWalk, walkingMetres, type Store } from "@/lib/geo";
+import type { Map as LeafletMap, Marker } from "leaflet";
+import { CAMPUS, STORES, formatWalk, type Store } from "@/lib/geo";
 
 /** Chains we hold prices for get the strong colour; the rest are muted. */
 const PRICED_COLOUR = "#059669";
@@ -12,8 +13,16 @@ export type StoreMapProps = {
   costByChain?: Record<string, string | undefined>;
   /** Chains we have a catalogue for. Others render muted. */
   pricedChains?: string[];
+  /** Fill the positioned parent instead of using a fixed height. */
+  fill?: boolean;
   heightClass?: string;
+  /** Centre on this store and open its popup. */
+  focusStoreId?: string | null;
+  /** Pixels at the left covered by a floating panel; keeps focus out of it. */
+  leftInset?: number;
 };
+
+type Leaflet = typeof import("leaflet");
 
 function escapeHtml(value: string): string {
   return value.replace(
@@ -42,75 +51,173 @@ function popupHtml(store: Store, cost: string | undefined, priced: boolean) {
     </div>`;
 }
 
+function dotIcon(L: Leaflet, priced: boolean) {
+  const colour = priced ? PRICED_COLOUR : PLAIN_COLOUR;
+  const size = priced ? 18 : 14;
+  // Default Leaflet pins load images by relative path, which bundlers break.
+  // A div marker also lets each chain carry its own colour.
+  return L.divIcon({
+    className: "",
+    html: `<div style="width:${size}px;height:${size}px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)"></div>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+  });
+}
+
 export default function StoreMap({
   costByChain = {},
   pricedChains = [],
+  fill = false,
   heightClass = "h-80",
+  focusStoreId = null,
+  leftInset = 0,
 }: StoreMapProps) {
   const container = useRef<HTMLDivElement>(null);
+  const map = useRef<LeafletMap | null>(null);
+  const leaflet = useRef<Leaflet | null>(null);
+  const markers = useRef(new Map<string, Marker>());
 
+  // Compared by content: callers build these during render, so comparing by
+  // identity would redo the work on every render.
+  const costKey = JSON.stringify(costByChain);
+  const pricedKey = JSON.stringify(pricedChains);
+
+  // What the markers should currently say. Read by the effects, written after
+  // each render, so the map itself never has to be rebuilt.
+  const latest = useRef({ costByChain, pricedChains, leftInset });
   useEffect(() => {
-    if (!container.current) return;
-    let map: import("leaflet").Map | undefined;
+    latest.current = { costByChain, pricedChains, leftInset };
+  });
+
+  function refresh() {
+    const L = leaflet.current;
+    if (!L) return;
+    const { costByChain: costs, pricedChains: priced } = latest.current;
+    for (const store of STORES) {
+      const marker = markers.current.get(store.id);
+      if (!marker) continue;
+      const isPriced = priced.includes(store.chain);
+      marker.setIcon(dotIcon(L, isPriced));
+      marker.setPopupContent(popupHtml(store, costs[store.chain], isPriced));
+      marker.setZIndexOffset(isPriced ? 500 : 0);
+    }
+  }
+
+  // Build the map once.
+  useEffect(() => {
+    const element = container.current;
+    const registry = markers.current;
+    if (!element) return;
     let cancelled = false;
+    let observer: ResizeObserver | undefined;
 
     // Leaflet touches window on import, so it can only load in the browser.
     import("leaflet").then((L) => {
-      if (cancelled || !container.current) return;
+      if (cancelled || !element) return;
+      leaflet.current = L;
 
-      map = L.map(container.current, {
+      const instance = L.map(element, {
         center: [CAMPUS.lat, CAMPUS.lon],
-        zoom: 14,
-        scrollWheelZoom: false,
+        zoom: 15,
+        scrollWheelZoom: fill,
+        zoomControl: false,
       });
+      map.current = instance;
+
+      // Bottom right, clear of the basket panel that floats over the left.
+      L.control.zoom({ position: "bottomright" }).addTo(instance);
+
+      // Start with IE Tower in the part of the map the panel leaves visible.
+      if (latest.current.leftInset > 0) {
+        const at = instance.project([CAMPUS.lat, CAMPUS.lon], 15);
+        instance.setView(
+          instance.unproject(at.subtract([latest.current.leftInset / 2, 0]), 15),
+          15,
+          { animate: false },
+        );
+      }
 
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap contributors",
-      }).addTo(map);
+      }).addTo(instance);
 
       L.marker([CAMPUS.lat, CAMPUS.lon], {
         title: CAMPUS.name,
+        zIndexOffset: 1000,
         icon: L.divIcon({
           className: "",
           html: `<div style="background:#0f172a;color:#fff;font:600 11px/1 system-ui;padding:5px 8px;border-radius:999px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.35)">IE Tower</div>`,
           iconSize: [66, 22],
           iconAnchor: [33, 11],
         }),
-      }).addTo(map);
+      }).addTo(instance);
 
-      const sorted = [...STORES].sort(
-        (a, b) => walkingMetres(CAMPUS, a) - walkingMetres(CAMPUS, b),
-      );
-
-      for (const store of sorted) {
-        const priced = pricedChains.includes(store.chain);
-        const colour = priced ? PRICED_COLOUR : PLAIN_COLOUR;
-
-        L.marker([store.lat, store.lon], {
+      for (const store of STORES) {
+        const marker = L.marker([store.lat, store.lon], {
           title: store.chain,
-          // Default Leaflet pins load images by relative path, which bundlers
-          // break. A div marker also lets each chain carry its own colour.
-          icon: L.divIcon({
-            className: "",
-            html: `<div style="width:14px;height:14px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)"></div>`,
-            iconSize: [14, 14],
-            iconAnchor: [7, 7],
-          }),
+          icon: dotIcon(L, false),
         })
-          .bindPopup(popupHtml(store, costByChain[store.chain], priced))
-          .addTo(map);
+          .bindPopup("", {
+            autoPanPaddingTopLeft: L.point(latest.current.leftInset + 20, 20),
+          })
+          .addTo(instance);
+        markers.current.set(store.id, marker);
       }
+
+      refresh();
+
+      // The page can resize the container (rotating a phone, a panel opening).
+      observer = new ResizeObserver(() => instance.invalidateSize());
+      observer.observe(element);
     });
 
     return () => {
       cancelled = true;
-      map?.remove();
+      observer?.disconnect();
+      map.current?.remove();
+      map.current = null;
+      leaflet.current = null;
+      registry.clear();
     };
-    // Compared by content: the caller builds these objects during render, so
-    // comparing by identity would tear down and rebuild the map every time.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(costByChain), JSON.stringify(pricedChains)]);
+  }, [fill]);
+
+  // Keep popups and colours in step with the basket, without moving the view.
+  useEffect(() => {
+    refresh();
+  }, [costKey, pricedKey]);
+
+  // Fly to a chosen store, or back to campus when none is chosen.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance) return;
+
+    const marker = focusStoreId ? markers.current.get(focusStoreId) : null;
+    const point = marker ? marker.getLatLng() : { lat: CAMPUS.lat, lng: CAMPUS.lon };
+
+    const zoom = marker ? 16 : 15;
+    const target = instance.project(point, zoom);
+    // Centre the target in the part of the map the panel does not cover.
+    const centre = instance.unproject(target.subtract([leftInset / 2, 0]), zoom);
+
+    if (!marker) {
+      instance.setView(centre, zoom, { animate: false });
+      return;
+    }
+    instance.flyTo(centre, zoom, { duration: 0.8 });
+    instance.once("moveend", () => marker.openPopup());
+  }, [focusStoreId, leftInset]);
+
+  if (fill) {
+    return (
+      <div
+        ref={container}
+        className="absolute inset-0"
+        role="application"
+        aria-label={`Map of supermarkets near ${CAMPUS.name}`}
+      />
+    );
+  }
 
   return (
     <div>

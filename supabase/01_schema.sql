@@ -43,7 +43,10 @@ create policy basket_items_delete_own on public.basket_items
   using (user_id = auth.uid());
 
 -- ---------------------------------------------------------------------------
--- products: the price catalogue. Shared reference data, not user data.
+-- products: NOT USED BY THE APP any more. The catalogue now ships inside the
+-- app bundle (lib/catalogue-data.ts), so even signed-out visitors can see prices.
+-- Kept so existing databases and this script stay consistent.
+-- Original purpose: the price catalogue, shared reference data, not user data.
 -- Readable only by logged-in users; no insert/update/delete policy exists, so
 -- nobody can write to it through the API. Seeding happens in the SQL editor.
 -- ---------------------------------------------------------------------------

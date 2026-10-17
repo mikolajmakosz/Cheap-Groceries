@@ -1,6 +1,8 @@
 /**
  * Collects real Mercadona prices for the Madrid warehouse and writes
- * data/mercadona.json plus supabase/10_prices_mercadona.sql.
+ * data/mercadona.json (every product, with its photo).
+ *
+ * Then run `npm run catalogue` to fold the reference products into the app.
  *
  *   node scripts/scrape-mercadona.mjs
  *
@@ -83,11 +85,6 @@ function brandOf(name) {
   return null;
 }
 
-const sqlText = (value) =>
-  value === null || value === undefined
-    ? "null"
-    : `'${String(value).replace(/'/g, "''")}'`;
-
 async function main() {
   const today = new Date().toISOString().slice(0, 10);
   const products = [];
@@ -119,6 +116,8 @@ async function main() {
           price_eur: Number(eur.toFixed(2)),
           size_g: packSize(price),
           term,
+          image: product.thumbnail ?? null,
+          url: product.share_url ?? null,
           reference_price: price.reference_price ?? null,
           reference_format: price.reference_format ?? null,
           price_checked_on: today,
@@ -159,47 +158,7 @@ async function main() {
     "utf8",
   );
 
-  // Only the reference products go to the database: that is all the app
-  // compares. The full catalogue stays in data/mercadona.json as provenance.
-  const forDatabase = products.filter((p) => p.is_reference);
-
-  const values = forDatabase
-    .map(
-      (p) =>
-        `  (${sqlText(p.name)}, ${sqlText(p.brand)}, 'Mercadona', ${p.price_eur}, ` +
-        `${p.size_g ?? "null"}, null, null, null, ${sqlText(p.price_checked_on)}, true, ` +
-        `${sqlText(p.term)}, ${p.is_reference ? "true" : "false"})`,
-    )
-    .join(",\n");
-
-  const sql = `-- Mercadona prices, collected ${today} from Mercadona's own store API
--- (warehouse ${WAREHOUSE}, Madrid) by scripts/scrape-mercadona.mjs.
--- Generated file: re-run the script instead of editing it by hand.
---
--- verified = true here means the price came from the shop's own listing on the
--- date above, not that someone invented it.
-
-delete from public.products where store = 'Mercadona';
-
-insert into public.products
-  (name, brand, store, price_eur, size_g, protein_g_per_100g, fat_g_per_100g, kcal_per_100g, price_checked_on, verified, term, is_reference)
-values
-${values}
-on conflict (name, store) do update set
-  brand            = excluded.brand,
-  price_eur        = excluded.price_eur,
-  size_g           = excluded.size_g,
-  price_checked_on = excluded.price_checked_on,
-  verified         = excluded.verified,
-  term             = excluded.term,
-  is_reference     = excluded.is_reference;
-`;
-
-  await writeFile(resolve(ROOT, "supabase/10_prices_mercadona.sql"), sql, "utf8");
-
   console.log(`\n${products.length} products -> data/mercadona.json`);
-  console.log(`${forDatabase.length} reference rows -> SQL`);
-  console.log("SQL -> supabase/10_prices_mercadona.sql");
 }
 
 main().catch((error) => {

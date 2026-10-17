@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node scripts/test-matching.mjs",
-    "prices": "node scripts/scrape-mercadona.mjs",
-    "stores": "node scripts/fetch-stores.mjs"
+    "test": "NODE_NO_WARNINGS=1 node scripts/test-matching.mjs",
+    "prices": "NODE_NO_WARNINGS=1 node scripts/scrape-mercadona.mjs",
+    "stores": "NODE_NO_WARNINGS=1 node scripts/fetch-stores.mjs",
+    "catalogue": "NODE_NO_WARNINGS=1 node scripts/build-catalogue.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

@@ -1,20 +1,9 @@
-import { REFERENCE_TERMS } from "./reference-products.ts";
-
-export type Product = {
-  id: string;
-  name: string;
-  brand: string | null;
-  store: string;
-  price_eur: number;
-  size_g: number | null;
-  protein_g_per_100g: number | null;
-  fat_g_per_100g: number | null;
-  kcal_per_100g: number | null;
-  price_checked_on: string;
-  verified: boolean;
-  term: string | null;
-  is_reference: boolean;
-};
+import {
+  CATALOGUE,
+  normalise,
+  type CatalogueEntry,
+  type Offer,
+} from "./catalogue.ts";
 
 export type BasketItem = {
   id: string;
@@ -23,28 +12,21 @@ export type BasketItem = {
   created_at: string;
 };
 
-/** Lowercase, strip accents, collapse whitespace. "Leche Entera" -> "leche entera". */
-export function normalise(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+const MIN_ALIAS_LENGTH = 3;
+
+type AliasRow = { term: string; alias: string };
+
+function aliasesOf(catalogue: CatalogueEntry[]): AliasRow[] {
+  return catalogue
+    .flatMap((entry) =>
+      [entry.term, entry.label, ...entry.aliases].map((alias) => ({
+        term: entry.term,
+        alias: normalise(alias),
+      })),
+    )
+    .filter(({ alias }) => alias.length >= MIN_ALIAS_LENGTH)
+    .sort((a, b) => b.alias.length - a.alias.length);
 }
-
-/**
- * Everyday words, Spanish and English, mapped to the term whose reference
- * product a shopper actually means. Longest alias wins, so "pan de molde"
- * beats "pan".
- */
-const TERM_ALIASES: { term: string; alias: string }[] = REFERENCE_TERMS
-  .flatMap((entry) =>
-    entry.aliases.map((alias) => ({ term: entry.term, alias: normalise(alias) })),
-  )
-  .sort((a, b) => b.alias.length - a.alias.length);
-
-const MIN_ALIAS_OVERLAP = 3;
 
 /**
  * The catalogue term behind what the user typed, or null when nothing fits.
@@ -55,73 +37,80 @@ const MIN_ALIAS_OVERLAP = 3;
  * "pechuga de pollo" finds chicken, and last a typed fragment of an alias,
  * where the shortest candidate is the closest guess.
  */
-export function termFor(typed: string): string | null {
+export function termFor(
+  typed: string,
+  catalogue: CatalogueEntry[] = CATALOGUE,
+): string | null {
   const text = normalise(typed);
-  if (text.length < MIN_ALIAS_OVERLAP) return null;
+  if (text.length < MIN_ALIAS_LENGTH) return null;
 
-  const usable = TERM_ALIASES.filter(
-    ({ alias }) => alias.length >= MIN_ALIAS_OVERLAP,
-  );
+  // Sorted longest first, so `find` takes the most specific alias.
+  const rows = aliasesOf(catalogue);
 
-  const exact = usable.find(({ alias }) => alias === text);
+  const exact = rows.find(({ alias }) => alias === text);
   if (exact) return exact.term;
 
-  // TERM_ALIASES is sorted longest first, so this takes the most specific one.
-  const contained = usable.find(({ alias }) => text.includes(alias));
+  const contained = rows.find(({ alias }) => text.includes(alias));
   if (contained) return contained.term;
 
-  const partial = [...usable]
-    .reverse()
-    .find(({ alias }) => alias.includes(text));
+  const partial = [...rows].reverse().find(({ alias }) => alias.includes(text));
   return partial?.term ?? null;
 }
 
-/**
- * The catalogue product in `store` that matches what the user typed.
- *
- * Reference products first: one per term, picked by hand, the ordinary thing a
- * student means. Falling back to "cheapest name that contains the word" alone
- * would answer "pollo" with chicken carcasses at 1.07 and "leche" with an oat
- * drink, because those really are the cheapest rows in their aisles.
- *
- * Deliberately allowed to miss: a miss means "no price for this one", never an
- * error, and never a reason to reject what the user typed.
- */
-export function cheapestMatch(
-  itemName: string,
-  store: string,
-  products: Product[],
-): Product | null {
-  const typed = normalise(itemName);
-  if (!typed) return null;
+export function entryFor(
+  typed: string,
+  catalogue: CatalogueEntry[] = CATALOGUE,
+): CatalogueEntry | null {
+  const term = termFor(typed, catalogue);
+  return term ? (catalogue.find((entry) => entry.term === term) ?? null) : null;
+}
 
-  const term = termFor(itemName);
-  if (term) {
-    const reference = products.find(
-      (product) =>
-        product.store === store && product.is_reference && product.term === term,
-    );
-    if (reference) return reference;
+/**
+ * Catalogue entries to offer while someone is typing, best match first.
+ *
+ * Suggestions are a shortcut and never a requirement: the basket accepts any
+ * text, so a word that suggests nothing is still saved exactly as typed.
+ */
+export function suggest(
+  typed: string,
+  catalogue: CatalogueEntry[] = CATALOGUE,
+  limit = 6,
+): CatalogueEntry[] {
+  const text = normalise(typed);
+  if (text.length < 2) return [];
+
+  const scored: { entry: CatalogueEntry; score: number }[] = [];
+
+  for (const entry of catalogue) {
+    let best = Infinity;
+    for (const raw of [entry.label, ...entry.aliases, entry.term]) {
+      const alias = normalise(raw);
+      let score = Infinity;
+      if (alias === text) score = 0;
+      else if (alias.startsWith(text)) score = 1;
+      else if (alias.split(" ").some((word) => word.startsWith(text))) score = 2;
+      else if (alias.includes(text)) score = 3;
+      best = Math.min(best, score);
+    }
+    if (best !== Infinity) scored.push({ entry, score: best });
   }
 
-  const candidates = products.filter((product) => {
-    if (product.store !== store) return false;
-    const name = normalise(product.name);
-    return typed.includes(name) || name.includes(typed);
-  });
-
-  if (candidates.length === 0) return null;
-  return candidates.reduce((cheapest, product) =>
-    product.price_eur < cheapest.price_eur ? product : cheapest,
-  );
+  return scored
+    .sort((a, b) => a.score - b.score || a.entry.label.localeCompare(b.entry.label))
+    .slice(0, limit)
+    .map(({ entry }) => entry);
 }
 
 export type ItemPricing = {
   item: BasketItem;
-  /** store -> cheapest matching product, or null when the catalogue has nothing */
-  byStore: Record<string, Product | null>;
+  /** The catalogue entry the typed text resolved to, if any. */
+  entry: CatalogueEntry | null;
+  /** store -> that shop's reference product, or null when it has none */
+  byStore: Record<string, Offer | null>;
   /** true when every store can price it, so it is fair to compare */
   comparable: boolean;
+  /** true when the packs differ a lot in size, so the totals deserve a caveat */
+  sizesDiffer: boolean;
 };
 
 export type StoreTotal = {
@@ -139,31 +128,52 @@ export type BasketComparison = {
   cheapestStore: string | null;
   /** Most recent collection date among the prices actually used. */
   pricesCheckedOn: string | null;
-  /** False when any price behind the totals has not been checked by a human. */
-  allPricesVerified: boolean;
+  /** true when some compared packs differ a lot between shops. */
+  anySizesDiffer: boolean;
 };
 
+const SIZE_RATIO_LIMIT = 1.4;
+
+function sizesDifferFor(offers: Offer[]): boolean {
+  const sizes = offers.map((offer) => offer.size_g);
+  if (sizes.some((size) => size === null || size <= 0)) return false;
+  const known = sizes as number[];
+  return Math.max(...known) / Math.min(...known) > SIZE_RATIO_LIMIT;
+}
+
 /**
- * Totals are summed only over items every store can price. Comparing a basket of
- * 8 products at one shop against 5 at another would make the shorter list look
- * cheaper for the wrong reason.
+ * Totals are summed only over items every shop can price. Comparing eight
+ * priced items at one shop against five at another would make the shorter list
+ * look cheaper for the wrong reason.
  */
 export function compareBasket(
   items: BasketItem[],
-  products: Product[],
+  catalogue: CatalogueEntry[] = CATALOGUE,
 ): BasketComparison {
-  const stores = [...new Set(products.map((product) => product.store))].sort();
+  const stores = [
+    ...new Set(catalogue.flatMap((entry) => Object.keys(entry.offers))),
+  ].sort();
 
   const pricing: ItemPricing[] = items.map((item) => {
-    const byStore: Record<string, Product | null> = {};
-    for (const store of stores) {
-      byStore[store] = cheapestMatch(item.name, store, products);
-    }
+    const entry = entryFor(item.name, catalogue);
+    const byStore: Record<string, Offer | null> = {};
+    for (const store of stores) byStore[store] = entry?.offers[store] ?? null;
+
+    const comparable =
+      entry !== null &&
+      stores.length > 0 &&
+      stores.every((store) => byStore[store] !== null);
+
+    const offers = stores
+      .map((store) => byStore[store])
+      .filter((offer): offer is Offer => offer !== null);
+
     return {
       item,
+      entry,
       byStore,
-      comparable:
-        stores.length > 0 && stores.every((store) => byStore[store] !== null),
+      comparable,
+      sizesDiffer: comparable && sizesDifferFor(offers),
     };
   });
 
@@ -171,14 +181,13 @@ export function compareBasket(
 
   const totals: StoreTotal[] = stores.map((store) => ({
     store,
-    total: comparable.reduce((sum, entry) => {
-      const product = entry.byStore[store]!;
-      return sum + product.price_eur * entry.item.quantity;
-    }, 0),
+    total: comparable.reduce(
+      (sum, entry) => sum + entry.byStore[store]!.price_eur * entry.item.quantity,
+      0,
+    ),
   }));
 
-  // Declaring a winner needs at least two shops to compare. With one in the
-  // catalogue there is a total, but no "cheapest".
+  // Declaring a winner needs at least two shops to compare.
   const cheapestStore =
     stores.length > 1 && comparable.length > 0
       ? totals.reduce((best, current) =>
@@ -186,11 +195,11 @@ export function compareBasket(
         ).store
       : null;
 
-  const used = comparable
+  const dates = comparable
     .flatMap((entry) => stores.map((store) => entry.byStore[store]))
-    .filter((product): product is Product => product !== null);
-
-  const dates = used.map((product) => product.price_checked_on).sort();
+    .filter((offer): offer is Offer => offer !== null)
+    .map((offer) => offer.checked_on)
+    .sort();
 
   return {
     stores,
@@ -200,7 +209,7 @@ export function compareBasket(
     totals,
     cheapestStore,
     pricesCheckedOn: dates.length > 0 ? dates[dates.length - 1] : null,
-    allPricesVerified: used.every((product) => product.verified),
+    anySizesDiffer: comparable.some((entry) => entry.sizesDiffer),
   };
 }
 
@@ -209,4 +218,10 @@ export function formatEuro(value: number): string {
     style: "currency",
     currency: "EUR",
   }).format(value);
+}
+
+/** A pack size in grams or millilitres, as a person would say it. */
+export function formatSize(sizeG: number | null): string | null {
+  if (sizeG === null) return null;
+  return sizeG >= 1000 ? `${+(sizeG / 1000).toFixed(2)} kg or L` : `${sizeG} g or ml`;
 }

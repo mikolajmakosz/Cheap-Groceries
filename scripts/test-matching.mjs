@@ -5,68 +5,13 @@
  *
  * These cases are not decoration. Two of them caught real bugs: "pan" used to
  * resolve to pan de molde and "tomate" to tomate frito, because a longer alias
- * contains a shorter one. The last two cases protect the grading contract — any
- * text must be accepted, and unknown text must simply carry no price.
+ * contains a shorter one. The grading-contract cases protect behaviour that is
+ * easy to break by accident: any text must be accepted, unknown text must simply
+ * carry no price, and suggestions must never be required to save something.
  */
 
-import { termFor, cheapestMatch, compareBasket } from "../lib/pricing.ts";
-
-const CASES = [
-  ["pollo", "pollo"],
-  ["chicken", "pollo"],
-  ["pechuga de pollo", "pollo"],
-  ["leche", "leche"],
-  ["milk", "leche"],
-  ["pan", "pan"],
-  ["bread", "pan"],
-  ["pan de molde", "pan de molde"],
-  ["sliced bread", "pan de molde"],
-  ["huevos", "huevos"],
-  ["eggs", "huevos"],
-  ["tomate", "tomate"],
-  ["tomato", "tomate"],
-  ["tomate frito", "tomate frito"],
-  ["arroz", "arroz"],
-  ["rice", "arroz"],
-  ["queso", "queso"],
-  ["queso fresco", "queso fresco"],
-  ["QA-7F3K2A grading bot test", null],
-  ["xyz123", null],
-  ["", null],
-];
-
-const CATALOGUE = [
-  {
-    id: "1",
-    name: "Filetes pechuga de pollo",
-    brand: null,
-    store: "Mercadona",
-    price_eur: 4.0,
-    size_g: 520,
-    protein_g_per_100g: null,
-    fat_g_per_100g: null,
-    kcal_per_100g: null,
-    price_checked_on: "2026-10-17",
-    verified: true,
-    term: "pollo",
-    is_reference: true,
-  },
-  {
-    id: "2",
-    name: "Carcasa y espinazo de pollo",
-    brand: null,
-    store: "Mercadona",
-    price_eur: 1.07,
-    size_g: 820,
-    protein_g_per_100g: null,
-    fat_g_per_100g: null,
-    kcal_per_100g: null,
-    price_checked_on: "2026-10-17",
-    verified: true,
-    term: null,
-    is_reference: false,
-  },
-];
+import { termFor, entryFor, suggest, compareBasket } from "../lib/pricing.ts";
+import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 
 let failures = 0;
 
@@ -78,29 +23,89 @@ function check(label, actual, expected) {
   );
 }
 
+const item = (id, name, quantity = 1) => ({ id, name, quantity, created_at: "" });
+
 console.log("termFor");
-for (const [typed, expected] of CASES) {
+for (const [typed, expected] of [
+  ["pollo", "pollo"],
+  ["chicken", "pollo"],
+  ["chicken breast", "pollo"],
+  ["pechuga de pollo", "pollo"],
+  ["leche", "leche"],
+  ["milk", "leche"],
+  ["Whole milk", "leche"],
+  ["pan", "pan"],
+  ["bread", "pan"],
+  ["Bread", "pan"],
+  ["pan de molde", "pan de molde"],
+  ["sliced bread", "pan de molde"],
+  ["huevos", "huevos"],
+  ["eggs", "huevos"],
+  ["tomate", "tomate"],
+  ["tomato", "tomate"],
+  ["tomate frito", "tomate frito"],
+  ["tomato sauce", "tomate frito"],
+  ["arroz", "arroz"],
+  ["rice", "arroz"],
+  ["queso", "queso"],
+  ["queso fresco", "queso fresco"],
+  ["butter", "mantequilla"],
+  ["banana", "platano"],
+  ["QA-7F3K2A grading bot test", null],
+  ["xyz123", null],
+  ["", null],
+]) {
   check(`"${typed}"`, termFor(typed), expected);
 }
 
-console.log("\nreference beats cheapest");
+console.log("\nthe same thing in two languages");
 check(
-  "pollo picks the breast, not the carcass",
-  cheapestMatch("pollo", "Mercadona", CATALOGUE)?.name,
-  "Filetes pechuga de pollo",
+  "chicken and pollo are one product",
+  entryFor("chicken")?.term,
+  entryFor("pollo")?.term,
+);
+
+console.log("\nsuggestions");
+const bre = suggest("bre").map((entry) => entry.label);
+check('"bre" offers Bread', bre.includes("Bread"), true);
+check('"bre" offers Sliced bread', bre.includes("Sliced bread"), true);
+check('"pan" puts Bread first', suggest("pan")[0]?.label, "Bread");
+check("one letter suggests nothing", suggest("b").length, 0);
+check("nonsense suggests nothing", suggest("QA-7F3K2A").length, 0);
+check("at most six", suggest("a").length <= 6, true);
+
+console.log("\ncatalogue");
+check("two shops are covered", CATALOGUE_STORES.length, 2);
+check(
+  "every term is priced at every shop",
+  CATALOGUE.every((entry) =>
+    CATALOGUE_STORES.every((store) => entry.offers[store]?.price_eur > 0),
+  ),
+  true,
+);
+check(
+  "every offer has a photo",
+  CATALOGUE.every((entry) =>
+    Object.values(entry.offers).every((offer) => Boolean(offer.image)),
+  ),
+  true,
 );
 
 console.log("\ngrading contract");
-const basket = compareBasket(
-  [
-    { id: "a", name: "QA-7F3K2A grading bot test", quantity: 1, created_at: "" },
-    { id: "b", name: "pollo", quantity: 1, created_at: "" },
-  ],
-  CATALOGUE,
-);
-check("unknown text is kept in the basket", basket.pricing.length, 2);
+const basket = compareBasket([
+  item("a", "QA-7F3K2A grading bot test"),
+  item("b", "pollo"),
+  item("c", "milk"),
+]);
+check("unknown text is kept in the basket", basket.pricing.length, 3);
 check("unknown text carries no price", basket.unpriced.length, 1);
-check("one shop declares no winner", basket.cheapestStore, null);
+check("the two known items are compared", basket.comparableCount, 2);
+check("two shops produce a verdict", basket.cheapestStore !== null, true);
+check(
+  "an empty basket has no verdict",
+  compareBasket([]).cheapestStore,
+  null,
+);
 
 console.log(
   failures === 0 ? "\nall checks passed" : `\n${failures} check(s) failed`,

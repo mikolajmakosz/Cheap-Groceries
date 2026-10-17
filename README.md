@@ -39,33 +39,49 @@ so unpriced products are listed separately instead of quietly skewing the result
 
 ## Prices
 
-Prices come from Mercadona's own public store API for the Madrid warehouse, collected by
-[`scripts/scrape-mercadona.mjs`](scripts/scrape-mercadona.mjs):
+Two shops, 30 everyday products each, collected on 2026-10-17:
 
-```bash
-npm run prices
-```
+- **Mercadona** — its own public store API for the Madrid warehouse, read by
+  [`scripts/scrape-mercadona.mjs`](scripts/scrape-mercadona.mjs) (`npm run prices`). The full 817-product
+  collection is kept in `data/mercadona.json` as provenance.
+- **Dia** — answers HTTP 403 to command-line clients, so the 30 products were collected by hand in a
+  normal browser, one search per everyday word. They live in [`data/dia.json`](data/dia.json) with a
+  note saying so. Refreshing them means collecting them again.
 
-It runs by hand, never from the app at request time — a shop changing its website must not be able
-to take CestaPro down. Every row stores the date it was checked and a `verified` flag, and the app
-says on screen when a total still rests on prices nobody has confirmed.
+`npm run catalogue` folds both into [`lib/catalogue-data.ts`](lib/catalogue-data.ts), the one file the app
+reads prices from. It fails loudly when a chosen product has disappeared from a shop's data, so a
+renamed product shows up there and not as a silent missing price.
 
-The full catalogue it collects (817 products) is kept in `data/mercadona.json` as provenance. Only
-the reference products reach the database.
+Nothing is fetched at request time. A shop changing its website must not be able to take CestaPro down,
+and the catalogue ships inside the app, so even the landing page can show prices to someone who has not
+signed in.
 
 ### Why reference products
 
-Ask the catalogue for the cheapest row whose name contains "pollo" and you get *Carcasa y espinazo
-de pollo* — chicken carcasses, at €1.07. Ask for "leche" and you get an oat drink. Neither is what
-a shopper means.
+Ask a catalogue for the cheapest row whose name contains "pollo" and you get *Carcasa y espinazo de
+pollo* — chicken carcasses, at €1.07. Ask for "leche" and you get an oat drink. Neither is what a
+shopper means.
 
-So [`lib/reference-products.ts`](lib/reference-products.ts) names, by hand, the ordinary thing
-behind each everyday word: one reference product per term per store, with Spanish and English
-aliases, because the users are international students. "chicken" and "pollo" land on the same
-chicken breast.
+So [`lib/reference-products.ts`](lib/reference-products.ts) names, by hand, the ordinary thing behind each
+everyday word: one reference product per term per shop, an English label, and Spanish and English
+aliases, because the users are international students. "chicken", "pollo" and "chicken breast" all land
+on the same product.
 
-A product the catalogue cannot place is still saved to the basket and still shown. It simply
-carries no price.
+### Pack sizes
+
+Shops do not sell identical packs. Prices are per pack, every product shows its size, and the app says so
+when compared packs differ a lot (more than 1.4×), because a total is only as fair as the packs behind it.
+
+### Photos
+
+Product photos are linked from the shops' own servers rather than copied. If one disappears, the app
+shows a quiet placeholder instead of a broken-image icon.
+
+### Search
+
+Typing suggests products with their photos and prices, but suggestions are a shortcut and never a
+requirement: the Add button always saves exactly what was typed. A word the catalogue does not know is
+kept in the basket and simply carries no price.
 
 ## The map
 
@@ -84,7 +100,11 @@ Markers are green for the chains we can price and grey for the rest, so the map 
 total it does not have. Walking times are straight-line distance with a 1.35 city detour factor at
 4.8 km/h, and the app says they are estimates rather than routed directions.
 
-The map needs no API key and no billing account: OpenStreetMap tiles rendered with Leaflet.
+The map needs no API key and no billing account: OpenStreetMap tiles rendered with Leaflet. Google Maps
+was considered and rejected: it needs a billing account, and its key would sit in a public repository.
+
+On `/app` the map fills the screen and the basket floats over it. Clicking a shop in the basket flies the
+map to it and opens its popup with the walk from campus and the cost of the basket there.
 
 ## Tests
 
