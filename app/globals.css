@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* After Tailwind, so preflight does not flatten the map's own styles. */
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;

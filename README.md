@@ -67,6 +67,25 @@ chicken breast.
 A product the catalogue cannot place is still saved to the basket and still shown. It simply
 carries no price.
 
+## The map
+
+Shops come from OpenStreetMap, collected once by
+[`scripts/fetch-stores.mjs`](scripts/fetch-stores.mjs):
+
+```bash
+npm run stores
+```
+
+41 supermarkets within 2 km of IE Tower, Paseo de la Castellana 259. Again, run by hand: the
+Overpass API is slow and rate limited, and it answered HTTP 502 on the first attempt while this was
+being built — not something a live page should depend on. The script falls back across mirrors.
+
+Markers are green for the chains we can price and grey for the rest, so the map never implies a
+total it does not have. Walking times are straight-line distance with a 1.35 city detour factor at
+4.8 km/h, and the app says they are estimates rather than routed directions.
+
+The map needs no API key and no billing account: OpenStreetMap tiles rendered with Leaflet.
+
 ## Tests
 
 ```bash

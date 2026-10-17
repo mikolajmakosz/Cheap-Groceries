@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
+import StoreMap from "@/components/StoreMap";
 import {
   compareBasket,
   formatEuro,
@@ -229,6 +230,25 @@ export default function BasketPage() {
                   </p>
                 )}
               </>
+            )}
+
+            {comparison.comparableCount > 0 && (
+              <div className="mt-5">
+                <h3 className="text-sm font-semibold">Where to buy it</h3>
+                <p className="mb-3 mt-1 text-xs text-slate-500">
+                  Walking from IE Tower. Green shops are the ones we can price.
+                </p>
+                <StoreMap
+                  costByChain={Object.fromEntries(
+                    comparison.totals.map((total) => [
+                      total.store,
+                      formatEuro(total.total),
+                    ]),
+                  )}
+                  pricedChains={comparison.stores}
+                  heightClass="h-72"
+                />
+              </div>
             )}
 
             {comparison.unpriced.length > 0 && (

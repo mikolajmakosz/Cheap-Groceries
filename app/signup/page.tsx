@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
+  // Set when someone typed a product on the landing page before signing up.
+  const pendingProduct = useSearchParams().get("add")?.trim() ?? "";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +47,15 @@ export default function SignupPage() {
       }
     }
 
+    // Carry over what they typed on the landing page, so the basket is not
+    // empty the moment they arrive. A failure here must not block sign-up.
+    if (pendingProduct) {
+      const { error: addError } = await supabase
+        .from("basket_items")
+        .insert({ name: pendingProduct });
+      if (addError) console.warn("could not add the pending product", addError);
+    }
+
     router.push("/app");
     router.refresh();
   }
@@ -52,6 +63,11 @@ export default function SignupPage() {
   return (
     <main className="mx-auto max-w-sm px-4 py-12">
       <h1 className="text-2xl font-bold tracking-tight">Create your account</h1>
+      {pendingProduct && (
+        <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
+          We will start your basket with <strong>{pendingProduct}</strong>.
+        </p>
+      )}
       <p className="mt-2 text-sm text-slate-600">
         Email and password. No confirmation email, you are in straight away.
       </p>
@@ -120,5 +136,14 @@ export default function SignupPage() {
         </Link>
       </p>
     </main>
+  );
+}
+
+export default function SignupPage() {
+  // useSearchParams needs a Suspense boundary for the page to stay static.
+  return (
+    <Suspense fallback={null}>
+      <SignupForm />
+    </Suspense>
   );
 }

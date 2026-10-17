@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LandingBasketDemo from "@/components/LandingBasketDemo";
 
 export default function LandingPage() {
   return (
@@ -12,8 +13,8 @@ export default function LandingPage() {
       </h1>
 
       <p className="mt-4 text-lg text-slate-600">
-        Write your shopping list once. CestaPro shows you what it costs at
-        Mercadona and Dia, and which one is cheaper this week.
+        Write your shopping list once. CestaPro prices it at the supermarkets
+        you can walk to from campus, and shows you where to go.
       </p>
 
       <div className="mt-8">
@@ -42,23 +43,26 @@ export default function LandingPage() {
         </li>
         <li>
           <p className="text-sm font-semibold text-emerald-600">Step 2</p>
-          <p className="mt-1 font-semibold">See both totals</p>
+          <p className="mt-1 font-semibold">See what it costs</p>
           <p className="mt-1 text-sm text-slate-600">
-            The same basket, priced at each supermarket, side by side.
+            The same basket, priced at each supermarket we cover.
           </p>
         </li>
         <li>
           <p className="text-sm font-semibold text-emerald-600">Step 3</p>
-          <p className="mt-1 font-semibold">Shop where it is cheaper</p>
+          <p className="mt-1 font-semibold">Walk to the right one</p>
           <p className="mt-1 text-sm text-slate-600">
-            Your list is saved, so next week takes ten seconds.
+            On the map, with the walk from IE Tower. Your list is saved for
+            next week.
           </p>
         </li>
       </ol>
 
+      <LandingBasketDemo />
+
       <p className="mt-12 border-t border-slate-200 pt-6 text-sm text-slate-500">
-        Prices are collected by hand and dated in the app, so you always know how
-        fresh they are.
+        Prices come from each shop&apos;s own listings and are dated in the app,
+        so you always know how fresh they are.
       </p>
     </main>
   );
