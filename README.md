@@ -148,9 +148,13 @@ Shops come from OpenStreetMap, collected once by
 npm run stores
 ```
 
-32 supermarkets within 2 km of IE Tower (small formats such as Carrefour Express and Mi Alcampo left out), Paseo de la Castellana 259. Run by hand: the Overpass API is
-slow and rate limited, and it answered HTTP 502 on the first attempt while this was being built, which
-is not something a live page should depend on. The script falls back across mirrors.
+390 supermarkets of the four priced chains in the **whole city of Madrid** (224 Dia, 85 Mercadona, 42
+Carrefour, 39 Alcampo), not only around IE Tower, because students live all over the city. Small
+neighbourhood formats (Carrefour Express and City, Mi Alcampo, Dia & Go) are left out: they charge more than
+the supermarkets the catalogue prices. A shop's chain comes from the name on the door, then its brand tag, as a
+whole word, so a shop whose name merely contains "dia" is not taken for a Dia. Zoomed out, the shops are dots;
+from zoom 14 they show their logos. Run by hand: the Overpass API is slow and rate limited, which is not
+something a live page should depend on. The script falls back across mirrors.
 
 The map fills the screen on both the landing page and `/app`, with a card floating over it. It uses
 OpenStreetMap tiles rendered with Leaflet: no API key and no billing account. Google Maps was

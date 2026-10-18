@@ -54,10 +54,28 @@ function tooltipHtml(store: Store, cost: string | undefined, priced: boolean) {
   return `<div style="font-size:12px;line-height:1.45">${lines.join("<br/>")}</div>`;
 }
 
-function storeIcon(L: Leaflet, chain: string, priced: boolean, selected: boolean) {
+/** Below this zoom the city's ~400 shops are drawn as dots, or their logos would pile up. */
+const LOGO_ZOOM = 14;
+
+function storeIcon(
+  L: Leaflet,
+  chain: string,
+  priced: boolean,
+  selected: boolean,
+  compact = false,
+) {
   const logo = logoFor(chain);
   const colour = priced ? PRICED_COLOUR : PLAIN_COLOUR;
   const ring = selected ? `0 0 0 4px #f2c31a,` : "";
+
+  if (compact && !selected) {
+    return L.divIcon({
+      className: "",
+      html: `<div style="width:11px;height:11px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:1px 1px 0 #14140f"></div>`,
+      iconSize: [11, 11],
+      iconAnchor: [5.5, 5.5],
+    });
+  }
 
   // Leaflet's stylesheet forces max-width/max-height to none on marker images,
   // so the logo is sized with width and height, never with a maximum.
@@ -137,12 +155,13 @@ export default function StoreMap({
     const { costByChain: costs, pricedChains: priced, selectedStoreId: selected } =
       latest.current;
 
+    const compact = (map.current?.getZoom() ?? 15) < LOGO_ZOOM;
     for (const store of STORES) {
       const marker = markers.current.get(store.id);
       if (!marker) continue;
       const isPriced = priced.includes(store.chain);
       const isSelected = store.id === selected;
-      marker.setIcon(storeIcon(L, store.chain, isPriced, isSelected));
+      marker.setIcon(storeIcon(L, store.chain, isPriced, isSelected, compact));
       marker.setTooltipContent(tooltipHtml(store, costs[store.chain], isPriced));
       marker.setZIndexOffset(isSelected ? 900 : isPriced ? 500 : 0);
     }
@@ -212,6 +231,7 @@ export default function StoreMap({
       }
 
       refresh();
+      instance.on("zoomend", refresh);
 
       // The page can resize the container (rotating a phone, a panel opening).
       observer = new ResizeObserver(() => instance.invalidateSize());

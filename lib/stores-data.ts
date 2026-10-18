@@ -8,27 +8,9 @@ const storeData = {
     "lat": 40.4777128,
     "lon": -3.68944
   },
-  "radius_m": 2000,
+  "area": "Madrid (municipality)",
   "collected_on": "2026-10-18",
   "stores": [
-    {
-      "id": "node/6284747814",
-      "chain": "Ahorramas",
-      "name": "Ahorramás",
-      "lat": 40.4715816,
-      "lon": -3.697088,
-      "street": "Calle de Emilia 46",
-      "opening_hours": "Mo-Sa 09:00-21:30"
-    },
-    {
-      "id": "way/244970155",
-      "chain": "Ahorramas",
-      "name": "Ahorramás",
-      "lat": 40.4748948,
-      "lon": -3.711731,
-      "street": null,
-      "opening_hours": "Mo-Sa 09:00-21:30; Su 09:00-15:00"
-    },
     {
       "id": "node/26261483",
       "chain": "Alcampo",
@@ -36,6 +18,195 @@ const storeData = {
       "lat": 40.480352,
       "lon": -3.7068876,
       "street": "Avenida de Monforte de Lemos 36",
+      "opening_hours": null
+    },
+    {
+      "id": "node/167301935",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4110395,
+      "lon": -3.6967784,
+      "street": "Calle de Atocha 80",
+      "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-16:00"
+    },
+    {
+      "id": "node/353133729",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.5041255,
+      "lon": -3.7030859,
+      "street": "Avenida del Monasterio de El Escorial 35",
+      "opening_hours": "Mo-Sa 09:15-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/810259235",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4463281,
+      "lon": -3.6673818,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/835872880",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.5109016,
+      "lon": -3.6897557,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/950171064",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4596891,
+      "lon": -3.6961918,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1217546006",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3990274,
+      "lon": -3.7028284,
+      "street": "Paseo de la Esperanza 51",
+      "opening_hours": "Mo-Sa 09:00-22:00;Su 10:00-21:00"
+    },
+    {
+      "id": "node/1889602375",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4156986,
+      "lon": -3.6755879,
+      "street": "Calle del Doce de Octubre 20",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2135157829",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3952352,
+      "lon": -3.6976312,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/2339199618",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3947894,
+      "lon": -3.6799981,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-22:00; Su,PH 10:00-21:00"
+    },
+    {
+      "id": "node/2636757847",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3937323,
+      "lon": -3.7650943,
+      "street": "Calle de Maqueda 30",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2977385564",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3892931,
+      "lon": -3.692129,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3235986181",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4090064,
+      "lon": -3.7071896,
+      "street": "Calle Ribera de Curtidores 15",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3918133191",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4740599,
+      "lon": -3.6393899,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 09:00-14:00"
+    },
+    {
+      "id": "node/3918133192",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4720257,
+      "lon": -3.6367924,
+      "street": "Avenida de Bucaramanga 2",
+      "opening_hours": "Mo-Sa 09:00-21:30; PH,Su 09:00-14:00"
+    },
+    {
+      "id": "node/4182695756",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3851303,
+      "lon": -3.7071334,
+      "street": "Calle de Ortiz Campos 5",
+      "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-21:00; PH off"
+    },
+    {
+      "id": "node/4606175494",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4290191,
+      "lon": -3.666466,
+      "street": "Calle de Alcalá 170",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5204958239",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4239428,
+      "lon": -3.6780412,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5488123923",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4322049,
+      "lon": -3.6740912,
+      "street": "Calle de Juan Bravo 58",
+      "opening_hours": null
+    },
+    {
+      "id": "node/6171266789",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3951407,
+      "lon": -3.6963505,
+      "street": "Calle Alonso Carbonell 3",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/6597599498",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.378698,
+      "lon": -3.7486522,
+      "street": "Avenida de Nuestra Señora de Fátima 99",
+      "opening_hours": "Mo-Su 09:00-21:00"
+    },
+    {
+      "id": "node/6796086585",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4384238,
+      "lon": -3.6674315,
+      "street": null,
       "opening_hours": null
     },
     {
@@ -48,13 +219,310 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-21:00"
     },
     {
-      "id": "way/292932087",
-      "chain": "BM",
-      "name": "BM",
-      "lat": 40.4828909,
-      "lon": -3.6688497,
-      "street": "Calle de Caleruega 90",
+      "id": "node/6922981208",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3910238,
+      "lon": -3.7019681,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/7504394309",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4630031,
+      "lon": -3.675144,
+      "street": null,
       "opening_hours": null
+    },
+    {
+      "id": "node/7880782058",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4175677,
+      "lon": -3.6644042,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su,PH 10:00-14:30"
+    },
+    {
+      "id": "node/8145380150",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4242378,
+      "lon": -3.6578471,
+      "street": "Calle de Ricardo Ortiz 62-66",
+      "opening_hours": "Mo-Sa 09:20-22:00; Su 10:00-21:00"
+    },
+    {
+      "id": "node/8602619396",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4486562,
+      "lon": -3.6735737,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-22:00; Su,PH 10:00-21:00"
+    },
+    {
+      "id": "node/9106077116",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.383767,
+      "lon": -3.6078908,
+      "street": "Calle de Puentelarra 8",
+      "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-21:00"
+    },
+    {
+      "id": "node/9269476394",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3864045,
+      "lon": -3.6501123,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9422201358",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4322021,
+      "lon": -3.697866,
+      "street": "Calle de Santa Engracia 41",
+      "opening_hours": null
+    },
+    {
+      "id": "node/10959341329",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.379305,
+      "lon": -3.6222867,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11365044193",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4276547,
+      "lon": -3.6965005,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11801819869",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4258755,
+      "lon": -3.6669976,
+      "street": null,
+      "opening_hours": "Mo-Fr 09:00-22:00; Sa-Su 09:00-21:00"
+    },
+    {
+      "id": "node/11868621563",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4272861,
+      "lon": -3.6852954,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30,Su,PH 10:00-14:30"
+    },
+    {
+      "id": "node/13514976344",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4332146,
+      "lon": -3.7166148,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/28892141",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.3931896,
+      "lon": -3.654694,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-22:00; Su,PH 09:00-20:00; Jan 01,06,May 01,Dec 25 off; Dec 24,31 09:00-19:00"
+    },
+    {
+      "id": "way/375664273",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.4363748,
+      "lon": -3.6189269,
+      "street": "Albala",
+      "opening_hours": null
+    },
+    {
+      "id": "way/785473093",
+      "chain": "Alcampo",
+      "name": "Alcampo",
+      "lat": 40.412224,
+      "lon": -3.6605413,
+      "street": "Calle del Corregidor Diego de Valderrábano",
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/265984566",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.3863802,
+      "lon": -3.7643136,
+      "street": "Avenida de los Poblados 58",
+      "opening_hours": null
+    },
+    {
+      "id": "node/844693701",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4577322,
+      "lon": -3.7017731,
+      "street": null,
+      "opening_hours": "Mo-Su,PH 09:00-22:00"
+    },
+    {
+      "id": "node/1459102572",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.418134,
+      "lon": -3.6218844,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1704454389",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4556258,
+      "lon": -3.6931389,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3136755769",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.3634812,
+      "lon": -3.6925423,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3428424942",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4045414,
+      "lon": -3.6937225,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4443481621",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4560144,
+      "lon": -3.6773103,
+      "street": "Calle del Príncipe de Vergara 253",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4455406279",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4821286,
+      "lon": -3.7143898,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4695550040",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.476852,
+      "lon": -3.6449153,
+      "street": "Calle de Santa Virgilia 6",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5478312321",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4366066,
+      "lon": -3.6621471,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/5553116629",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4693204,
+      "lon": -3.640424,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-22:00; Su,PH 10:00-22:00"
+    },
+    {
+      "id": "node/5942471852",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.3812627,
+      "lon": -3.6637452,
+      "street": null,
+      "opening_hours": "06:00-24:00"
+    },
+    {
+      "id": "node/9609847804",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.3890547,
+      "lon": -3.7418814,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12805917546",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.4040751,
+      "lon": -3.7161671,
+      "street": "Plaza de Francisco Morano",
+      "opening_hours": "Mo-Su 08:30-22:00"
+    },
+    {
+      "id": "way/32424458",
+      "chain": "Carrefour",
+      "name": "Carrefour",
+      "lat": 40.3683487,
+      "lon": -3.6001075,
+      "street": "Avenida de las Suertes",
+      "opening_hours": "Mo-Sa 08:30-22:30; Su 08:30-22:30; PH 08:30-22:30"
+    },
+    {
+      "id": "node/1133062986",
+      "chain": "Carrefour",
+      "name": "Carrefour market",
+      "lat": 40.4752935,
+      "lon": -3.6647201,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/359400410",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4427753,
+      "lon": -3.7134348,
+      "street": "Calle Julián Romea 4",
+      "opening_hours": "Mo-Su 08:30-23:00"
+    },
+    {
+      "id": "node/622204638",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4082831,
+      "lon": -3.7010237,
+      "street": "Calle de Valencia 2",
+      "opening_hours": "24/7"
     },
     {
       "id": "node/836406374",
@@ -66,6 +534,213 @@ const storeData = {
       "opening_hours": null
     },
     {
+      "id": "node/946113489",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4036977,
+      "lon": -3.7083683,
+      "street": null,
+      "opening_hours": "Mo-Su 08:30-22:00"
+    },
+    {
+      "id": "node/1434351971",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4299709,
+      "lon": -3.6742163,
+      "street": "Calle de José Ortega y Gasset 63",
+      "opening_hours": null
+    },
+    {
+      "id": "node/1514043710",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.3946745,
+      "lon": -3.7677234,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1930311501",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4473295,
+      "lon": -3.7043713,
+      "street": "Glorieta de Cuatro Caminos 4",
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/2375150811",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4079276,
+      "lon": -3.7353419,
+      "street": "Paseo de los Jesuitas 44",
+      "opening_hours": "Mo-Sa 09:00-22:00; PH,Su 10:00-21:00"
+    },
+    {
+      "id": "node/2385172461",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.405586,
+      "lon": -3.6504647,
+      "street": null,
+      "opening_hours": "Mo-Su,PH 07:00-01:00"
+    },
+    {
+      "id": "node/2636747484",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.3965866,
+      "lon": -3.7618321,
+      "street": "Calle de Escalona",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2959330389",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4331399,
+      "lon": -3.7039552,
+      "street": "Calle de Fuencarral 158-160",
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/3129776334",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.3978396,
+      "lon": -3.6680482,
+      "street": "Avenida de la Albufera 9",
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/4447484292",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.441042,
+      "lon": -3.6784438,
+      "street": "Calle del Príncipe de Vergara 120",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5623425021",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.426652,
+      "lon": -3.6758253,
+      "street": "Calle del Conde de Peñalver 17",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5838981804",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4432031,
+      "lon": -3.7140044,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/6918727592",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4126634,
+      "lon": -3.7049309,
+      "street": "Plaza de Tirso de Molina 15",
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/8234871418",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4574286,
+      "lon": -3.6942825,
+      "street": null,
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/8610736127",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4404677,
+      "lon": -3.6785657,
+      "street": "Calle del Príncipe de Vergara 120",
+      "opening_hours": null
+    },
+    {
+      "id": "node/8912170917",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.430486,
+      "lon": -3.7131375,
+      "street": null,
+      "opening_hours": "Mo-Su,PH 08:00-02:00"
+    },
+    {
+      "id": "node/9751343368",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.3921725,
+      "lon": -3.7094366,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11407246096",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.3926788,
+      "lon": -3.6907327,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12165128784",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4390244,
+      "lon": -3.7100698,
+      "street": "Calle de Cea Bermúdez 34",
+      "opening_hours": "Mo-Su 08:30-23:00"
+    },
+    {
+      "id": "node/12222041041",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4569456,
+      "lon": -3.649691,
+      "street": null,
+      "opening_hours": "Mo-Su 08:30-22:00"
+    },
+    {
+      "id": "node/12466689831",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4930309,
+      "lon": -3.6107382,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/12598789187",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4208293,
+      "lon": -3.7061843,
+      "street": "Calle de los Tudescos 1",
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "node/14170704502",
+      "chain": "Carrefour",
+      "name": "Carrefour Market",
+      "lat": 40.4043019,
+      "lon": -3.7123096,
+      "street": "Calle de Toledo 143",
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
       "id": "node/143098207",
       "chain": "Dia",
       "name": "Dia",
@@ -75,12 +750,804 @@ const storeData = {
       "opening_hours": "Mo-Su 09:00-21:30; Su 10:00-14:00"
     },
     {
+      "id": "node/150760895",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4471184,
+      "lon": -3.7119678,
+      "street": "Calle de Juan Montalvo 21",
+      "opening_hours": "Mo-Sa 08:30-22:00; Su,PH 08:30-22:00"
+    },
+    {
+      "id": "node/167302600",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4129173,
+      "lon": -3.6953428,
+      "street": "Calle de las Huertas",
+      "opening_hours": "Mo-Fr 09:00-21:30; Sa-Su 10:00-14:30"
+    },
+    {
+      "id": "node/170951699",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4051443,
+      "lon": -3.7015311,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/262612557",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.5044401,
+      "lon": -3.6768216,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/306095243",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3991563,
+      "lon": -3.7081825,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/327529454",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.433327,
+      "lon": -3.6751848,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/327548071",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4403489,
+      "lon": -3.662539,
+      "street": "Calle Bristol 9",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/463476859",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4716219,
+      "lon": -3.5794235,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/623071237",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4254413,
+      "lon": -3.714542,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/624783119",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4203315,
+      "lon": -3.6980193,
+      "street": null,
+      "opening_hours": "Mo-Sa 08:30-23:00"
+    },
+    {
+      "id": "node/1007387968",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4058129,
+      "lon": -3.7079461,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 09:00-16:00"
+    },
+    {
+      "id": "node/1010993672",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4122872,
+      "lon": -3.7012279,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1133060195",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4758295,
+      "lon": -3.6654539,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1191045657",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.411075,
+      "lon": -3.7083931,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1252641340",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4728044,
+      "lon": -3.6510263,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1305153207",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.433948,
+      "lon": -3.6829667,
+      "street": "Calle de Maldonado",
+      "opening_hours": null
+    },
+    {
+      "id": "node/1345286983",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.402624,
+      "lon": -3.6793977,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1488572243",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3937817,
+      "lon": -3.7070344,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1513666757",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4058561,
+      "lon": -3.753141,
+      "street": null,
+      "opening_hours": "Mo-Su 08:30-22:00"
+    },
+    {
+      "id": "node/1517405721",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4121117,
+      "lon": -3.7332957,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1553139953",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4101594,
+      "lon": -3.7389681,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su,PH 10:00-14:30"
+    },
+    {
+      "id": "node/1596952711",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.410441,
+      "lon": -3.7278281,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1675534122",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4703767,
+      "lon": -3.6475172,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1696052855",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3579958,
+      "lon": -3.6941053,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1743966219",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4869762,
+      "lon": -3.7174323,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1889602490",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4159181,
+      "lon": -3.6757313,
+      "street": "Calle del Doce de Octubre 11",
+      "opening_hours": "Mo-Sa 08:30-22:00; Su 09:00-22:00"
+    },
+    {
+      "id": "node/1917865014",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4185005,
+      "lon": -3.6773828,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1926890037",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4698788,
+      "lon": -3.7223299,
+      "street": "Valderromán",
+      "opening_hours": null
+    },
+    {
+      "id": "node/1930449152",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4554084,
+      "lon": -3.706747,
+      "street": "Calle de Pamplona 45",
+      "opening_hours": null
+    },
+    {
+      "id": "node/1936419821",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4125345,
+      "lon": -3.7264756,
+      "street": "Calle de Doña Berenguela 19",
+      "opening_hours": "Mo-Su 09:00-22:00"
+    },
+    {
+      "id": "node/1955250158",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4048988,
+      "lon": -3.7449423,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1998433573",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.435552,
+      "lon": -3.7066426,
+      "street": "Calle de Escosura 16",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2011492710",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3974594,
+      "lon": -3.7659321,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2082659440",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4552056,
+      "lon": -3.7037506,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2144489303",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.38488,
+      "lon": -3.7826425,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2217246011",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4886792,
+      "lon": -3.6615746,
+      "street": "Calle de Oña 123",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2340453404",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3981168,
+      "lon": -3.7711318,
+      "street": "Calle Fuentesaúco 7",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2385172452",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4077507,
+      "lon": -3.6465734,
+      "street": "Avenida de Moratalaz 181",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2392703604",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.455499,
+      "lon": -3.6793124,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/2431238077",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4412629,
+      "lon": -3.6545981,
+      "street": "Calle de Martínez de Villergas 19",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/2630613665",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3916687,
+      "lon": -3.7098722,
+      "street": "Calle del Marqués de Jura Real 21",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2634005623",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.396569,
+      "lon": -3.7139508,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2645867705",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4265679,
+      "lon": -3.7036558,
+      "street": "Calle de San Andrés 12",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2673092553",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3811734,
+      "lon": -3.7139419,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2727977856",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.411034,
+      "lon": -3.6680473,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/2758456345",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4263681,
+      "lon": -3.732496,
+      "street": "Calle del Doctor Casal 2",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/2939039796",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4043422,
+      "lon": -3.6416026,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/2939048401",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4071711,
+      "lon": -3.6361638,
+      "street": "Calle de Mario Cabré 13",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2941138223",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4035939,
+      "lon": -3.6491964,
+      "street": "Calle del Corregidor Alonso de Tobar 3",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su,PH 10:00-14:30"
+    },
+    {
+      "id": "node/2944586431",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3974802,
+      "lon": -3.625809,
+      "street": "Calle de la Ladera de los Almendros 40",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3051553355",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3750722,
+      "lon": -3.774297,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3136792071",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3977062,
+      "lon": -3.7184266,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3137306082",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3724433,
+      "lon": -3.6185329,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3177621673",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4315669,
+      "lon": -3.6492532,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3197424521",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.475939,
+      "lon": -3.7134381,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3217308420",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3847091,
+      "lon": -3.6075237,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3249538070",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4317914,
+      "lon": -3.6539225,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3256550140",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4254089,
+      "lon": -3.6544795,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3265627994",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4414496,
+      "lon": -3.6751175,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3370076145",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4286509,
+      "lon": -3.7085833,
+      "street": "Calle de Santa Cruz de Marcenado 11",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3425206966",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4355934,
+      "lon": -3.6410063,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3437200532",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3987016,
+      "lon": -3.6702884,
+      "street": "Avenida de la Ciudad de Barcelona 222",
+      "opening_hours": "Mo-Fr 09:00-21:30; Su 10:00-14:30; Sa 09:00-21:30"
+    },
+    {
+      "id": "node/3439192901",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4354129,
+      "lon": -3.643652,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3439218093",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4324546,
+      "lon": -3.6406599,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3499192197",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3543717,
+      "lon": -3.6949291,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3581221086",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4290987,
+      "lon": -3.6986213,
+      "street": "Calle de Manuel Silvela 9",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3605140513",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3613923,
+      "lon": -3.7612903,
+      "street": "Calle Patrimonio de la Humanidad",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3617826660",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4267832,
+      "lon": -3.7001518,
+      "street": "Calle de Barceló 9",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3681831535",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4213688,
+      "lon": -3.6762202,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3687533849",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.383843,
+      "lon": -3.6464238,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/3716753224",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4633374,
+      "lon": -3.647578,
+      "street": "Carretera de Canillas 41",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3745247151",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3872019,
+      "lon": -3.7226443,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3746120289",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4190068,
+      "lon": -3.7091927,
+      "street": "Calle de Campomanes 6",
+      "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-20:00"
+    },
+    {
       "id": "node/3770315567",
       "chain": "Dia",
       "name": "Dia",
       "lat": 40.4702142,
       "lon": -3.6961401,
       "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4015339993",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4188507,
+      "lon": -3.6997653,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4208315896",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4508247,
+      "lon": -3.6976629,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4220204376",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4928023,
+      "lon": -3.6541404,
+      "street": "Calle del Príncipe Carlos",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4224079485",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4334989,
+      "lon": -3.7011461,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4225413285",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4233601,
+      "lon": -3.7075923,
+      "street": "Calle de San Bernardo 35",
+      "opening_hours": "Mo-Sa 08:30-22:00; Su 10:00-22:00"
+    },
+    {
+      "id": "node/4298736642",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4641983,
+      "lon": -3.6336475,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:00; Su,PH 10:00-20:00"
+    },
+    {
+      "id": "node/4304974925",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4257351,
+      "lon": -3.6639442,
+      "street": "Paseo del Marqués de Zafra 37",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4325214172",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4186109,
+      "lon": -3.7082714,
+      "street": "Costanilla de los Ángeles 6",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4330920237",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4167427,
+      "lon": -3.7107054,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4390452988",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4146393,
+      "lon": -3.7065253,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4483431554",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4453007,
+      "lon": -3.699261,
+      "street": "Calle Maudes 23",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4586159493",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4037618,
+      "lon": -3.6073918,
+      "street": null,
+      "opening_hours": "Mo-Sa 21:00-21:30; Su 10:00-20:00"
+    },
+    {
+      "id": "node/4764549222",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4049076,
+      "lon": -3.6954078,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4767854322",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4363269,
+      "lon": -3.6850158,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4884569838",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4483509,
+      "lon": -3.7013103,
+      "street": "Calle de Hernani 21",
       "opening_hours": null
     },
     {
@@ -102,6 +1569,60 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-21:30; Su 09:00-14:30"
     },
     {
+      "id": "node/5319528313",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4445038,
+      "lon": -3.610866,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5368844221",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4395518,
+      "lon": -3.7083788,
+      "street": "Calle de Vallehermoso 87",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/5416301882",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4113094,
+      "lon": -3.7196122,
+      "street": "Calle de Juan Duque",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5433189405",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3457921,
+      "lon": -3.7069426,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5578505156",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3989362,
+      "lon": -3.6433303,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5591196626",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4052022,
+      "lon": -3.6805533,
+      "street": null,
+      "opening_hours": null
+    },
+    {
       "id": "node/5843688639",
       "chain": "Dia",
       "name": "Dia",
@@ -109,6 +1630,69 @@ const storeData = {
       "lon": -3.6708926,
       "street": "Calle de Caleruega",
       "opening_hours": null
+    },
+    {
+      "id": "node/5913222678",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4219359,
+      "lon": -3.6087903,
+      "street": "Calle de Suecia 12",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/6291958263",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4589356,
+      "lon": -3.7112586,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-21:30"
+    },
+    {
+      "id": "node/6291960499",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4578844,
+      "lon": -3.7109715,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/6402058724",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3839896,
+      "lon": -3.6426564,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/6504532360",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4281916,
+      "lon": -3.6254555,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30, 09:00-18:00; Su 10:00-20:00"
+    },
+    {
+      "id": "node/7298986527",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4433011,
+      "lon": -3.6687652,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/7353386235",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3800897,
+      "lon": -3.6192376,
+      "street": "Calle de la Gavia Seca 3",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
     },
     {
       "id": "node/7952203781",
@@ -129,6 +1713,78 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:30"
     },
     {
+      "id": "node/8072220907",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4219064,
+      "lon": -3.7054117,
+      "street": "Calle de la Luna 8",
+      "opening_hours": null
+    },
+    {
+      "id": "node/8513362927",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4533511,
+      "lon": -3.7068157,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9019858079",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4518221,
+      "lon": -3.7038943,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9121088014",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4224976,
+      "lon": -3.6245596,
+      "street": "Calle de Pobladura del Valle 6",
+      "opening_hours": null
+    },
+    {
+      "id": "node/9369769169",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4211157,
+      "lon": -3.7179535,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/9418352439",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4009087,
+      "lon": -3.652967,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30; PH closed"
+    },
+    {
+      "id": "node/9513951437",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.458412,
+      "lon": -3.7068611,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/9691562028",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3929728,
+      "lon": -3.7542383,
+      "street": null,
+      "opening_hours": null
+    },
+    {
       "id": "node/9831304018",
       "chain": "Dia",
       "name": "Dia",
@@ -138,11 +1794,83 @@ const storeData = {
       "opening_hours": "Su 08:00-14:30; Mo-Sa 08:00-22:00"
     },
     {
+      "id": "node/9833104206",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.379397,
+      "lon": -3.7706932,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9933054447",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4137485,
+      "lon": -3.7026976,
+      "street": null,
+      "opening_hours": "Mo-Su 08:00-23:00"
+    },
+    {
+      "id": "node/10235773289",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3764721,
+      "lon": -3.6608938,
+      "street": null,
+      "opening_hours": null
+    },
+    {
       "id": "node/10282573562",
       "chain": "Dia",
       "name": "Dia",
       "lat": 40.4850821,
       "lon": -3.6850569,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/10549037283",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.377057,
+      "lon": -3.7689971,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/10556489786",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3913642,
+      "lon": -3.7312544,
+      "street": "Avenida de Pedro Díez 21",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/10694948226",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3979347,
+      "lon": -3.6641203,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/10717412196",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3786801,
+      "lon": -3.623565,
+      "street": "Calle de la Sierra Vieja",
+      "opening_hours": null
+    },
+    {
+      "id": "node/10733697074",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3879741,
+      "lon": -3.7313774,
       "street": null,
       "opening_hours": null
     },
@@ -156,6 +1884,663 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
     },
     {
+      "id": "node/10917995719",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4748272,
+      "lon": -3.6601572,
+      "street": "Calle de San Pedro de Cardeña",
+      "opening_hours": null
+    },
+    {
+      "id": "node/11081490463",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4229454,
+      "lon": -3.6671012,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11264138800",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3953932,
+      "lon": -3.7140162,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11360913103",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3809462,
+      "lon": -3.6508449,
+      "street": "Calle Villalobos 125",
+      "opening_hours": null
+    },
+    {
+      "id": "node/11649583358",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.452347,
+      "lon": -3.5929627,
+      "street": "Calle de Obenque 9",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/11801794769",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4355038,
+      "lon": -3.6655057,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30,Su 10:00-14:30"
+    },
+    {
+      "id": "node/11955424373",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4408172,
+      "lon": -3.7156518,
+      "street": "Paseo de San Francisco de Sales 15",
+      "opening_hours": "Mo-Su 8:30-22:00"
+    },
+    {
+      "id": "node/11979200102",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3960413,
+      "lon": -3.6931302,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-21:00"
+    },
+    {
+      "id": "node/12038056433",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4038404,
+      "lon": -3.7047574,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-20:00"
+    },
+    {
+      "id": "node/12072346410",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3680192,
+      "lon": -3.759029,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12134472743",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.392773,
+      "lon": -3.6440641,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12194147428",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4369937,
+      "lon": -3.7164309,
+      "street": "Calle de Hilarión Eslava 48",
+      "opening_hours": null
+    },
+    {
+      "id": "node/12228147964",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3881415,
+      "lon": -3.6533745,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12635590145",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4369613,
+      "lon": -3.7010302,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12708001393",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3724318,
+      "lon": -3.7619132,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12825444346",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4078483,
+      "lon": -3.6975867,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12942093758",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3812609,
+      "lon": -3.7040533,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/13096651995",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4190544,
+      "lon": -3.6209955,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13196345840",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3846929,
+      "lon": -3.6719988,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13301018423",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.395202,
+      "lon": -3.6079045,
+      "street": "Calle de Minerva 70",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/13336133063",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4261266,
+      "lon": -3.7068785,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13346825502",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4339086,
+      "lon": -3.6515497,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13346826101",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4369664,
+      "lon": -3.646863,
+      "street": "Calle de Prudencio Álvaro 10",
+      "opening_hours": null
+    },
+    {
+      "id": "node/13484438383",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3955928,
+      "lon": -3.6954416,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 09:00-20:00"
+    },
+    {
+      "id": "node/13512074105",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4787086,
+      "lon": -3.7197699,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13518837373",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4368473,
+      "lon": -3.71118,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13653618801",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3430408,
+      "lon": -3.7095238,
+      "street": "Calle de Gómez Acebo 20",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-21:00"
+    },
+    {
+      "id": "node/13810921385",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4118644,
+      "lon": -3.705602,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13860953065",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4027082,
+      "lon": -3.7034235,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13915191901",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4322186,
+      "lon": -3.641229,
+      "street": "Calle de Vital Aza 44",
+      "opening_hours": null
+    },
+    {
+      "id": "node/14104843951",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3930378,
+      "lon": -3.669827,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/14211623776",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4460408,
+      "lon": -3.6970231,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/24405304",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3847865,
+      "lon": -3.7583796,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/139761003",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4447981,
+      "lon": -3.6124016,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/265667589",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4811638,
+      "lon": -3.7232098,
+      "street": "Calle de Ramón Gómez de la Serna 4",
+      "opening_hours": "Mo-Su 08:30-21:00"
+    },
+    {
+      "id": "way/315098275",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4248656,
+      "lon": -3.6401238,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/429641675",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.3899337,
+      "lon": -3.6576514,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/448228445",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4404554,
+      "lon": -3.650245,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/907513334",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4022351,
+      "lon": -3.692817,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/1349516824",
+      "chain": "Dia",
+      "name": "Dia",
+      "lat": 40.4257532,
+      "lon": -3.6821065,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12961330001",
+      "chain": "Dia",
+      "name": "Diá",
+      "lat": 40.3680009,
+      "lon": -3.7591133,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/13914970373",
+      "chain": "Dia",
+      "name": "Día",
+      "lat": 40.3820423,
+      "lon": -3.7075211,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1446910712",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4368215,
+      "lon": -3.7143394,
+      "street": "Calle de Andrés Mellado 61",
+      "opening_hours": null
+    },
+    {
+      "id": "node/1541228466",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4063576,
+      "lon": -3.6060502,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1706545601",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4543703,
+      "lon": -3.6959952,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1936419823",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4137542,
+      "lon": -3.7260959,
+      "street": "Paseo de Extremadura 9",
+      "opening_hours": "Mo-Su 08:30-22:00"
+    },
+    {
+      "id": "node/2135157819",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3962222,
+      "lon": -3.6984504,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-21:00"
+    },
+    {
+      "id": "node/2351203472",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4226775,
+      "lon": -3.6779599,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2433476945",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4204146,
+      "lon": -3.7086751,
+      "street": null,
+      "opening_hours": "08:00-23:00"
+    },
+    {
+      "id": "node/2441287601",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3865261,
+      "lon": -3.7014668,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2494802900",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4047294,
+      "lon": -3.6728795,
+      "street": "Calle de Cavanilles 47",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2529967005",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4022267,
+      "lon": -3.6763076,
+      "street": "Avenida de la Ciudad de Barcelona 59",
+      "opening_hours": "Mo-Sa 08:30-22:00; Su 09:00-22:00"
+    },
+    {
+      "id": "node/2547151581",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.438905,
+      "lon": -3.6347973,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2661683184",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4351387,
+      "lon": -3.7106616,
+      "street": "Calle de Fernández de los Ríos 45",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2690946405",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4282572,
+      "lon": -3.7063972,
+      "street": "Calle de San Bernardo 83",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2692581956",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4229553,
+      "lon": -3.7033106,
+      "street": "Corredera Baja de San Pablo 39",
+      "opening_hours": "Mo-Su 08:00-23:00"
+    },
+    {
+      "id": "node/2828446240",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4400712,
+      "lon": -3.6528073,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3161138682",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3917046,
+      "lon": -3.7265442,
+      "street": null,
+      "opening_hours": "Mo-Fr 09:00-21:30; Sa-Su 09:00-20:00"
+    },
+    {
+      "id": "node/3269760412",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4250731,
+      "lon": -3.6710166,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3293472063",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3437929,
+      "lon": -3.7150583,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3313028863",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4313045,
+      "lon": -3.715664,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3347129374",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4321409,
+      "lon": -3.6675608,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3370076148",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4314768,
+      "lon": -3.7080373,
+      "street": "Calle de Rodríguez San Pedro 5",
+      "opening_hours": null
+    },
+    {
+      "id": "node/3415078376",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4396514,
+      "lon": -3.698386,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/3428475674",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4316846,
+      "lon": -3.6975151,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3611166005",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4511088,
+      "lon": -3.6779045,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3824525310",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3518577,
+      "lon": -3.6971836,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3999793493",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4043018,
+      "lon": -3.7130894,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-20:00"
+    },
+    {
+      "id": "node/4242064460",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3820528,
+      "lon": -3.7483638,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/4346189877",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4281102,
+      "lon": -3.6986375,
+      "street": "Calle de Sagasta 18",
+      "opening_hours": "Mo-Sa 08:30-22:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/4673070401",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4496839,
+      "lon": -3.7014789,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5081496687",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.3532202,
+      "lon": -3.692282,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/6406125590",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4007123,
+      "lon": -3.6658945,
+      "street": "Camino de Valderribas 16",
+      "opening_hours": null
+    },
+    {
       "id": "node/6578306701",
       "chain": "Dia",
       "name": "Dia Market",
@@ -165,11 +2550,137 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-20:00"
     },
     {
+      "id": "node/8556683656",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4459008,
+      "lon": -3.6745323,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11862728263",
+      "chain": "Dia",
+      "name": "Dia Market",
+      "lat": 40.4214527,
+      "lon": -3.7020606,
+      "street": null,
+      "opening_hours": "Mo-Sa 10:00-22:00,Su 11:00-21:00"
+    },
+    {
       "id": "way/236866389",
       "chain": "Dia",
       "name": "Dia Market",
       "lat": 40.4725401,
       "lon": -3.7115959,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9519360494",
+      "chain": "Dia",
+      "name": "La Plaza de Dia",
+      "lat": 40.4594716,
+      "lon": -3.7024629,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; PH,Su 10:00-14:30"
+    },
+    {
+      "id": "node/255259371",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4447687,
+      "lon": -3.6341303,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/359273276",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4547104,
+      "lon": -3.6718806,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/993195630",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4337755,
+      "lon": -3.6733457,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1305153224",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4341178,
+      "lon": -3.677797,
+      "street": "Calle del General Pardiñas 96",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/1992878408",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4494119,
+      "lon": -3.7106556,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2573861973",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4096389,
+      "lon": -3.6696277,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4273777794",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4605261,
+      "lon": -3.6770792,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/5319528314",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4460443,
+      "lon": -3.6091076,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/6879859121",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4865242,
+      "lon": -3.7254544,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/9056500982",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.3746783,
+      "lon": -3.7507764,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "way/264341173",
+      "chain": "Dia",
+      "name": "La Plaza de DIA",
+      "lat": 40.4864753,
+      "lon": -3.6513143,
       "street": null,
       "opening_hours": null
     },
@@ -183,38 +2694,83 @@ const storeData = {
       "opening_hours": null
     },
     {
-      "id": "node/3868844741",
-      "chain": "Eroski",
-      "name": "Eroski City",
-      "lat": 40.4679856,
-      "lon": -3.686347,
-      "street": "Calle de Enrique Larreta 6",
-      "opening_hours": "Mo-Fr 08:30-21:30; Sa 09:00-15:00,18:00-21:30; Su 10:00-15:00"
+      "id": "node/2892533238",
+      "chain": "Dia",
+      "name": "Maxi Dia",
+      "lat": 40.4108447,
+      "lon": -3.7136495,
+      "street": null,
+      "opening_hours": "Mo-Su 08:30-23:00"
     },
     {
-      "id": "node/4109426426",
-      "chain": "Lidl",
-      "name": "Lidl",
-      "lat": 40.4632499,
-      "lon": -3.6965059,
-      "street": "Calle de Bravo Murillo 308",
-      "opening_hours": null
-    },
-    {
-      "id": "node/4904049225",
-      "chain": "Lidl",
-      "name": "Lidl",
-      "lat": 40.4715562,
-      "lon": -3.7113014,
+      "id": "node/3757433144",
+      "chain": "Dia",
+      "name": "Maxi Dia",
+      "lat": 40.4277291,
+      "lon": -3.7179962,
       "street": null,
       "opening_hours": null
     },
     {
-      "id": "way/440664723",
-      "chain": "Lidl",
-      "name": "Lidl",
-      "lat": 40.4903595,
-      "lon": -3.6906317,
+      "id": "way/471177465",
+      "chain": "Dia",
+      "name": "Maxi Dia",
+      "lat": 40.378012,
+      "lon": -3.6298698,
+      "street": "Calle de San Jaime 1",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-14:30"
+    },
+    {
+      "id": "node/3495438853",
+      "chain": "Dia",
+      "name": "Super Dia",
+      "lat": 40.4303451,
+      "lon": -3.6417213,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/2182783081",
+      "chain": "Dia",
+      "name": "Supermercado Día",
+      "lat": 40.481469,
+      "lon": -3.7186512,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/8933887647",
+      "chain": "Dia",
+      "name": "Supermercados Dia",
+      "lat": 40.4627911,
+      "lon": -3.7056402,
+      "street": "Calle de Carmen Portones 3",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su 10:00-15:00"
+    },
+    {
+      "id": "node/11412699982",
+      "chain": "Dia",
+      "name": "Supermercados Dia",
+      "lat": 40.4431753,
+      "lon": -3.7000199,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/170992343",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4028283,
+      "lon": -3.696878,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/359415009",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4558202,
+      "lon": -3.7003498,
       "street": null,
       "opening_hours": null
     },
@@ -228,11 +2784,272 @@ const storeData = {
       "opening_hours": null
     },
     {
+      "id": "node/946113745",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4046876,
+      "lon": -3.7062622,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1223700874",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3719903,
+      "lon": -3.6950556,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/1437271766",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4004807,
+      "lon": -3.712361,
+      "street": null,
+      "opening_hours": "PH,Mo-Su 09:00-21:30"
+    },
+    {
+      "id": "node/1705594869",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4570586,
+      "lon": -3.7035106,
+      "street": "Calle de Lope de Haro 20",
+      "opening_hours": "Mo-Sa 09:00-21:15"
+    },
+    {
+      "id": "node/1769029587",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4468717,
+      "lon": -3.5865153,
+      "street": "Calle de Arrastaria",
+      "opening_hours": "Mo-Sa 10:00-22:00"
+    },
+    {
+      "id": "node/2423845776",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4090831,
+      "lon": -3.676125,
+      "street": "Plaza Reyes Magos",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/2446436319",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3893878,
+      "lon": -3.7004158,
+      "street": "Calle de Antonio López 113",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2620242574",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4117919,
+      "lon": -3.6593671,
+      "street": "Calle de Manuel Machado 10",
+      "opening_hours": null
+    },
+    {
+      "id": "node/2972941351",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4343313,
+      "lon": -3.7045345,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/2977385566",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3862643,
+      "lon": -3.6908621,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/3054590695",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4265429,
+      "lon": -3.6080509,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3117218229",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4063375,
+      "lon": -3.6984248,
+      "street": "Ronda de Atocha 26",
+      "opening_hours": "Sa 09:00-15:00; Mo-Fr 09:00-21:30"
+    },
+    {
+      "id": "node/3295044255",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3340239,
+      "lon": -3.7118486,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3425206963",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4347103,
+      "lon": -3.6422656,
+      "street": "Calle de Francisco Madariaga 3",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/3495937457",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.5124455,
+      "lon": -3.6778586,
+      "street": "Calle de María Tubau 26",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/3625760925",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4678501,
+      "lon": -3.8145949,
+      "street": null,
+      "opening_hours": "Mo-Su 09:00-21:30"
+    },
+    {
+      "id": "node/3745255322",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3885963,
+      "lon": -3.7270384,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/3893664484",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4481461,
+      "lon": -3.6685898,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4249154987",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3950479,
+      "lon": -3.721462,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4273761466",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4547199,
+      "lon": -3.6872961,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4326510189",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4077181,
+      "lon": -3.6507741,
+      "street": null,
+      "opening_hours": null
+    },
+    {
       "id": "node/4327116695",
       "chain": "Mercadona",
       "name": "Mercadona",
       "lat": 40.4640867,
       "lon": -3.6965164,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/4417801992",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4352887,
+      "lon": -3.6919654,
+      "street": "Paseo del General Martínez Campos",
+      "opening_hours": null
+    },
+    {
+      "id": "node/4862245694",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4549447,
+      "lon": -3.6520471,
+      "street": "Calle de Asura 56",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/4949887505",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3875762,
+      "lon": -3.6646475,
+      "street": "Calle de Carlos Martín Álvarez 45",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5170178961",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4595111,
+      "lon": -3.6724848,
+      "street": "Calle de Guatemala 13",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su off"
+    },
+    {
+      "id": "node/5174731588",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3917586,
+      "lon": -3.7414048,
+      "street": "Travesía del Pinzón 7,9,11",
+      "opening_hours": null
+    },
+    {
+      "id": "node/5283580425",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4927318,
+      "lon": -3.6089377,
+      "street": "Calle de Jordi Solé Tura 20",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/5351613429",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4306624,
+      "lon": -3.6652052,
+      "street": "Calle del Cardenal Belluga 10",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/5398789892",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3841965,
+      "lon": -3.7290929,
       "street": null,
       "opening_hours": null
     },
@@ -246,12 +3063,372 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-21:30"
     },
     {
+      "id": "node/7139888313",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.39199,
+      "lon": -3.6558086,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/7142724885",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4572884,
+      "lon": -3.6913828,
+      "street": "Calle del Pintor Juan Gris 3",
+      "opening_hours": "Mo-Sa 09:00-15:00, 16:00-21:00"
+    },
+    {
+      "id": "node/7176627185",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4274152,
+      "lon": -3.6728208,
+      "street": "Calle de Ayala 89",
+      "opening_hours": null
+    },
+    {
+      "id": "node/9443076683",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3863761,
+      "lon": -3.7352796,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/10245102242",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4422303,
+      "lon": -3.6689992,
+      "street": "Calle del Corazón de María 17",
+      "opening_hours": null
+    },
+    {
+      "id": "node/10596302942",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4251234,
+      "lon": -3.7011737,
+      "street": "Calle de Fuencarral 77",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/10719267985",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4249883,
+      "lon": -3.6342539,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/11124585051",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.432063,
+      "lon": -3.6874155,
+      "street": "Calle de Serrano 61",
+      "opening_hours": "Mo-Sa 09:00-21:30; Su off"
+    },
+    {
+      "id": "node/11526396812",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4365015,
+      "lon": -3.6790051,
+      "street": "Calle del General Pardiñas 99",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/12120089841",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.454942,
+      "lon": -3.5858504,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "node/12218883092",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4025408,
+      "lon": -3.7209674,
+      "street": "Paseo de Los Melancólicos 30",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/13077884701",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3670502,
+      "lon": -3.7557176,
+      "street": "Calle de Alfonso Fernández 18",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "node/13397744229",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4343606,
+      "lon": -3.6587666,
+      "street": "Calle de la Virgen de la Paz 16",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/45984000",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3442008,
+      "lon": -3.6945375,
+      "street": "Calle de San Dalmacio 2",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/108424458",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.475183,
+      "lon": -3.6476654,
+      "street": "Avenida de la Virgen del Carmen 84",
+      "opening_hours": null
+    },
+    {
+      "id": "way/126868719",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4014102,
+      "lon": -3.7513981,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/137944426",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3646292,
+      "lon": -3.5993571,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/138913622",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3640116,
+      "lon": -3.5898737,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/140463802",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3706107,
+      "lon": -3.6114478,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/142705371",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3741992,
+      "lon": -3.6282767,
+      "street": "Calle de Tineo 5",
+      "opening_hours": null
+    },
+    {
+      "id": "way/154853069",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.395454,
+      "lon": -3.6682968,
+      "street": "Calle de Martínez de la Riva 4",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
       "id": "way/181675738",
       "chain": "Mercadona",
       "name": "Mercadona",
       "lat": 40.4861658,
       "lon": -3.7070111,
       "street": "Calle de Alfredo Marqueríe 14",
+      "opening_hours": null
+    },
+    {
+      "id": "way/181677189",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3718557,
+      "lon": -3.7293427,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/192325309",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3720311,
+      "lon": -3.7426089,
+      "street": "Calle de la Secoya",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/194372936",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4059315,
+      "lon": -3.5911184,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/236303614",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.5026793,
+      "lon": -3.7072676,
+      "street": "Calle del Monasterio de las Huelgas 17",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/263642562",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4481073,
+      "lon": -3.6460878,
+      "street": "Calle Telémaco 3",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/294483796",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3827896,
+      "lon": -3.6258486,
+      "street": null,
+      "opening_hours": "Mo-Sa 09:00-21:30; PH off"
+    },
+    {
+      "id": "way/296354693",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3850865,
+      "lon": -3.6117248,
+      "street": "Avenida de Santa Eugenia 10",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/326062685",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3626029,
+      "lon": -3.7656326,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/328801989",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4344793,
+      "lon": -3.6314773,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/338505825",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4489676,
+      "lon": -3.7118399,
+      "street": "Calle de los Vascos 29",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/339937382",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3495275,
+      "lon": -3.7023684,
+      "street": "Calle de Alcocer 41",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/359651868",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4047037,
+      "lon": -3.670207,
+      "street": "Calle de las Adelfas 38",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/364710379",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.49739,
+      "lon": -3.668787,
+      "street": "Calle Quintanavides 7",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/373312507",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3809315,
+      "lon": -3.6613106,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/389521974",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4438322,
+      "lon": -3.6153937,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/395998572",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3554917,
+      "lon": -3.6849524,
+      "street": "Calle Augustóbriga",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/412987776",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3731528,
+      "lon": -3.7743613,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/418286472",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4063145,
+      "lon": -3.745717,
+      "street": null,
+      "opening_hours": "Mo-Su 10:00-21:30"
+    },
+    {
+      "id": "way/418738800",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3918257,
+      "lon": -3.7350755,
+      "street": "Calle de Zaida 95",
       "opening_hours": null
     },
     {
@@ -264,40 +3441,85 @@ const storeData = {
       "opening_hours": null
     },
     {
-      "id": "way/382767337",
-      "chain": "Supercor",
-      "name": "Supercor",
-      "lat": 40.4664257,
-      "lon": -3.6854707,
-      "street": "Calle de Mateo Inurria 6",
+      "id": "way/466468013",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.379964,
+      "lon": -3.6943909,
+      "street": "Calle de Antonio López 241",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/503374030",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.36452,
+      "lon": -3.6873077,
+      "street": "Avenida de los Rosales 26",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/583339030",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.465995,
+      "lon": -3.6539266,
+      "street": null,
       "opening_hours": null
     },
     {
-      "id": "way/434835687",
-      "chain": "Supercor",
-      "name": "Supercor",
-      "lat": 40.4629351,
-      "lon": -3.6873655,
-      "street": "Calle del Doctor Fleming 56",
-      "opening_hours": "08:30-24:00; PH open"
-    },
-    {
-      "id": "node/3770271339",
-      "chain": "Unide",
-      "name": "Unide",
-      "lat": 40.4697619,
-      "lon": -3.6987198,
-      "street": "Calle de Carmen Montoya 7",
+      "id": "way/629012531",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.460623,
+      "lon": -3.8000966,
+      "street": null,
       "opening_hours": null
     },
     {
-      "id": "node/3770302395",
-      "chain": "Unide",
-      "name": "Unide",
-      "lat": 40.4706988,
-      "lon": -3.6902712,
-      "street": "Calle Alemania 10",
-      "opening_hours": "Mo-Fr 09:00-20:30; Sa 09:30-14:30; Su 10:00-14:00"
+      "id": "way/682099793",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4705105,
+      "lon": -3.5890861,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/707412050",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4290647,
+      "lon": -3.6000655,
+      "street": null,
+      "opening_hours": null
+    },
+    {
+      "id": "way/776476900",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3399349,
+      "lon": -3.6752582,
+      "street": "Calle de la Hulla",
+      "opening_hours": "Mo-Sa 09:00-21:30"
+    },
+    {
+      "id": "way/1133133632",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.3993017,
+      "lon": -3.6253087,
+      "street": "Calle de la Ladera de los Almendros 28",
+      "opening_hours": null
+    },
+    {
+      "id": "way/1484937833",
+      "chain": "Mercadona",
+      "name": "Mercadona",
+      "lat": 40.4028127,
+      "lon": -3.7207111,
+      "street": "Paseo de los Melancólicos 30",
+      "opening_hours": null
     }
   ]
 };

@@ -1,6 +1,7 @@
 /**
- * Collects the supermarkets within walking distance of IE Tower and writes
- * data/stores.json.
+ * Collects every supermarket of the four priced chains in the city of Madrid
+ * (the municipality, not only the streets around IE Tower: students live all
+ * over the city) and writes data/stores.json.
  *
  *   npm run stores
  *
@@ -23,35 +24,20 @@ export const CAMPUS = {
   lon: -3.68944,
 };
 
-const RADIUS_M = 2000;
+/** The area searched: Madrid's municipal boundary in OpenStreetMap. */
+const AREA = "Madrid (municipality)";
 
-/** Chains a student in Madrid would actually walk into. */
-const CHAINS = [
-  "Mercadona",
-  "Dia",
-  "Carrefour",
-  "Lidl",
-  "Aldi",
-  "Alcampo",
-  "El Corte Inglés",
-  "Ahorramas",
-  "Eroski",
-  "Unide",
-  "Supercor",
-  "BM",
-  "Condis",
-  "Suma",
-];
+/** The supermarkets the catalogue prices; other chains have no prices to show. */
+const CHAINS = ["Mercadona", "Dia", "Carrefour", "Alcampo"];
 
-const QUERY = `[out:json][timeout:60];
+const QUERY = `[out:json][timeout:120];
+area["name"="Madrid"]["boundary"="administrative"]["admin_level"="8"]->.madrid;
 (
-  node(around:${RADIUS_M},${CAMPUS.lat},${CAMPUS.lon})["shop"~"supermarket|convenience"];
-  way(around:${RADIUS_M},${CAMPUS.lat},${CAMPUS.lon})["shop"~"supermarket|convenience"];
+  node(area.madrid)["shop"~"supermarket|convenience"];
+  way(area.madrid)["shop"~"supermarket|convenience"];
 );
 out center tags;`;
 
-/** Other names a chain trades under: Hipercor is El Corte Inglés' hypermarket. */
-const ALSO_KNOWN_AS = { "El Corte Inglés": ["hipercor"] };
 
 const plain = (value) =>
   value
@@ -60,19 +46,25 @@ const plain = (value) =>
     .replace(/[̀-ͯ]/g, "");
 
 /**
- * Small neighbourhood formats (Carrefour Express, Mi Alcampo) are convenience
+ * Small neighbourhood formats (Carrefour Express and City, Mi Alcampo, Dia & Go) are convenience
  * shops with their own, higher prices, not the supermarkets the catalogue
  * prices, so they are not offered as places to shop.
  */
-const SMALL_FORMAT = /express|mi alcampo|alcampo express|simply|supeco/;
+const SMALL_FORMAT = /express|mi alcampo|alcampo express|simply|supeco|carrefour city|carrefour bio|dia & go|spass/;
 
-/** Which chain a messy OSM name belongs to, or null for a one-off shop. */
-function chainOf(name) {
-  const text = plain(name);
-  for (const chain of CHAINS) {
-    const names = [plain(chain), ...(ALSO_KNOWN_AS[chain] ?? [])];
-    if (names.some((candidate) => text.includes(candidate))) return chain;
-  }
+/**
+ * Which chain a shop belongs to: its `brand` tag when mapped, otherwise its name
+ * as a whole word, so a one-off shop whose name merely contains "dia" is not
+ * taken for a Dia.
+ */
+function chainOf(tags) {
+  const brand = plain(tags.brand ?? "");
+  const name = plain(tags.name ?? "");
+  const word = (chain) => new RegExp(`(^|[^a-z])${plain(chain)}([^a-z]|$)`);
+  // The name on the door first: some former Dia shops now trade as Alcampo
+  // while their brand tag still says Dia.
+  for (const chain of CHAINS) if (word(chain).test(name)) return chain;
+  for (const chain of CHAINS) if (word(chain).test(brand)) return chain;
   return null;
 }
 
@@ -125,7 +117,7 @@ async function main() {
     if (!name) continue;
 
     if (SMALL_FORMAT.test(plain(name))) continue;
-    const chain = chainOf(name);
+    const chain = chainOf(tags);
     if (!chain) continue;
 
     const lat = element.lat ?? element.center?.lat;
@@ -160,7 +152,7 @@ async function main() {
     JSON.stringify(
       {
         campus: CAMPUS,
-        radius_m: RADIUS_M,
+        area: AREA,
         collected_on: new Date().toISOString().slice(0, 10),
         source: "OpenStreetMap via Overpass API, © OpenStreetMap contributors (ODbL)",
         stores,
@@ -176,7 +168,7 @@ async function main() {
   // about. One generated file keeps a single source of truth.
   const payloadForApp = {
     campus: CAMPUS,
-    radius_m: RADIUS_M,
+    area: AREA,
     collected_on: new Date().toISOString().slice(0, 10),
     stores,
   };
@@ -196,7 +188,7 @@ async function main() {
   for (const [chain, count] of Object.entries(byChain).sort((a, b) => b[1] - a[1])) {
     console.log(`  ${String(count).padStart(3)} × ${chain}`);
   }
-  console.log(`\n${stores.length} stores within ${RADIUS_M} m of ${CAMPUS.name}`);
+  console.log(`\n${stores.length} stores in ${AREA}`);
   console.log("-> data/stores.json");
 }
 
