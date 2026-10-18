@@ -92,6 +92,13 @@ export function planBasket(items: BasketItem[], days: number): Plan {
     return addNutrients(sum, scaleNutrients(whole, 1 / line.consumptionDays));
   }, ZERO);
 
+  // A shop's own label counts only when every shop has one for this product,
+  // so the baskets are weighed on the same footing; otherwise the typical values.
+  const labelFor = (line: PlanLine, store: string) =>
+    comparison.stores.every((name) => line.row.byStore[name]?.nutrition)
+      ? line.row.byStore[store]
+      : null;
+
   const stores: StorePlan[] = totals.map(({ store, total, perDay }) => {
     // Only the lines every shop prices, so the shops are weighed on the same food.
     const priced = lines.filter((line) => line.row.comparable);
@@ -99,7 +106,7 @@ export function planBasket(items: BasketItem[], days: number): Plan {
       (sum, line) =>
         addNutrients(
           sum,
-          nutritionOf(line.row.entry!, line.row.item.quantity, line.row.byStore[store]),
+          nutritionOf(line.row.entry!, line.row.item.quantity, labelFor(line, store)),
         ),
       ZERO,
     );
@@ -108,7 +115,7 @@ export function planBasket(items: BasketItem[], days: number): Plan {
         addNutrients(
           sum,
           scaleNutrients(
-            nutritionOf(line.row.entry!, line.row.item.quantity, line.row.byStore[store]),
+            nutritionOf(line.row.entry!, line.row.item.quantity, labelFor(line, store)),
             1 / line.consumptionDays,
           ),
         ),

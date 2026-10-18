@@ -1,0 +1,29 @@
+{
+  "source": "Nutrition tables printed on each product's own page at dia.es (the same products as data/dia.json), per 100 g or 100 ml.",
+  "collected_on": "2026-10-18",
+  "note": "Fresh fruit and veg, and water, carry no label and are left out. Oil is left out: dia.es prints 100 g of fat per 100 ml.",
+  "products": {
+    "pollo": {"kcal":99,"fat":1.6,"carbs":0.5,"sugar":0.5,"protein":21,"salt":0.16},
+    "cerdo": {"kcal":126,"fat":5.1,"carbs":0.5,"sugar":0.5,"protein":20,"salt":1.8},
+    "carne picada": {"kcal":209,"fat":15,"carbs":0.5,"sugar":0.5,"protein":18,"salt":0.3},
+    "jamon cocido": {"kcal":100,"fat":2,"carbs":0.5,"sugar":0.5,"protein":20,"salt":1.93},
+    "leche": {"kcal":63,"fat":3.6,"carbs":4.7,"sugar":4.7,"protein":3,"salt":0.1},
+    "huevos": {"kcal":141,"fat":9.7,"carbs":0.7,"sugar":0.7,"protein":12.7,"salt":0.36},
+    "mantequilla": {"kcal":734,"fat":81,"carbs":0.8,"sugar":0.8,"protein":0.5,"salt":1},
+    "queso": {"kcal":199,"fat":12.7,"carbs":8.1,"sugar":5.6,"protein":13,"salt":3.35},
+    "queso fresco": {"kcal":60,"fat":0.3,"carbs":3.9,"sugar":3.9,"protein":10.4,"salt":0.8},
+    "yogur": {"kcal":39,"fat":0.1,"carbs":5.6,"sugar":5.6,"protein":3.9,"salt":0.15},
+    "pan": {"kcal":267,"fat":1.8,"carbs":53,"sugar":1.7,"protein":8.1,"salt":1.57},
+    "pan de molde": {"kcal":268,"fat":2.4,"carbs":52,"sugar":3,"protein":8.5,"salt":1.2},
+    "arroz": {"kcal":349,"fat":0.9,"carbs":77.3,"sugar":0.3,"protein":7.4,"salt":0},
+    "pasta": {"kcal":349,"fat":1.5,"carbs":70,"sugar":2.9,"protein":12,"salt":0.03},
+    "cereales": {"kcal":378,"fat":1.1,"carbs":84,"sugar":7.1,"protein":6.3,"salt":1.8},
+    "garbanzos": {"kcal":95,"fat":1.9,"carbs":11,"sugar":0.5,"protein":5.7,"salt":0.53},
+    "lentejas": {"kcal":87,"fat":0,"carbs":13,"sugar":0,"protein":6.6,"salt":0.69},
+    "alubias": {"kcal":86,"fat":0.6,"carbs":12,"sugar":0.4,"protein":5.4,"salt":0.52},
+    "atun": {"kcal":345,"fat":28,"carbs":0.9,"sugar":0,"protein":22,"salt":0.9},
+    "merluza": {"kcal":107,"fat":3.9,"carbs":0,"sugar":0,"protein":18,"salt":0.17},
+    "salmon": {"kcal":161,"fat":10.7,"carbs":0.3,"sugar":0.3,"protein":16.2,"salt":0.65},
+    "tomate frito": {"kcal":72,"fat":3.3,"carbs":9.3,"sugar":6.9,"protein":1.1,"salt":0.96}
+  }
+}

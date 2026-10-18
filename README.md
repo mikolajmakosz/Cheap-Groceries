@@ -81,6 +81,16 @@ chicken, a litre of milk, a dozen eggs), so the total describes something a stud
 `npm test` refuses a catalogue in which two shops price the same product more than 2x apart. A gap that
 wide almost always means two different products were paired, and the app would announce a false winner.
 
+### Soy Super
+
+Looked at as a source of every shop's prices and labels. For a **branded** product (Pascual milk) a Soy
+Super page lists its price at Alcampo, El Corte Ingles, Dia and Carrefour, which would add shops. But own
+brands (Hacendado, Dia, Carrefour) exist in one shop only, so they cannot be compared across shops there;
+search results are scoped to one selected shop; its photos carry its watermark; and of the own-brand
+products checked, none carried a nutrition table (the one branded table found was dated 2014). So prices
+and labels here come from the shops' own sources instead, and Soy Super stays a candidate for adding
+branded products and more shops.
+
 ### Product links and logos
 
 The shop's logo next to each product opens that product on the shop's own site. The logos in
@@ -116,7 +126,7 @@ OpenStreetMap tiles rendered with Leaflet: no API key and no billing account. Go
 considered and rejected, because it needs a billing account and its key would sit in a public
 repository.
 
-Clicking a shop draws the walking route from campus in green, with the time. Routes come from the public
+Clicking a shop draws the walking route from campus in ink, with the time. Routes come from the public
 FOSSGIS pedestrian router; if it is slow or down the line falls back to a straight one with an estimate,
 and the panel says so.
 
@@ -138,29 +148,43 @@ costs EUR 0.24 more and saves 2 min, so you pay EUR 0.12 for each minute saved."
 
 ## Nutrition
 
-Every basket shows its energy, protein, fat, carbohydrate, sugars and salt. The figures in
-[`lib/nutrition.ts`](lib/nutrition.ts) are **typical values for each kind of food**, not read off the pack
-of the product a shop sells: brands differ, and a typical figure is close enough to compare baskets and see
-roughly what you eat. The app says so, and that it is not dietary advice. What is counted is what is eaten:
-peel, core and shell are left out, and counted things (eggs, a lettuce) are converted to grams.
+Every basket shows its energy, protein, fat, carbohydrate, sugars and salt, and each shop shows its own:
+click Mercadona or Dia and the figures change to that shop's products. Where a product's label could be
+collected, the app uses it ([`data/nutrition-dia.json`](data/nutrition-dia.json) from dia.es,
+[`data/nutrition-mercadona.json`](data/nutrition-mercadona.json) from Open Food Facts, looked up by the EAN
+Mercadona's API gives). Fresh produce, fresh meat and fish, eggs, milk and bread carry no table there, so
+they use **typical values** ([`lib/nutrition.ts`](lib/nutrition.ts)). A product's label counts only when
+both shops have one, so the baskets are weighed on the same footing. Not dietary advice.
 
-`npm test` checks that energy agrees with the macros it is made of (4 per gram of protein and
-carbohydrate, 9 per gram of fat), so a typo in the table shows up as a gap.
+What is counted is what is eaten: peel, core and shell are left out, and counted things (eggs, a lettuce)
+are converted to grams. `npm test` checks that energy agrees with the macros it is made of.
+
+Next to price the app shows what a kcal and a gram of protein cost in each shop (euros per 100 kcal,
+euros per gram of protein).
 
 ## Saved baskets
 
-A basket can be saved under a name and found again under **Saved**. There you say how many days it has
-to last, with a slider, and see what it costs a day and what you eat a day.
+Save a basket under a name and open it from **Saved baskets**, the button in the header. Say with a slider
+how many days it has to last and see, per shop: the cost per month, the number of trips (30 / days), the
+minutes per trip (campus to the shop, inside the shop, and on to home if an address is given) and the
+minutes per month; plus every shop's nutrition side by side and the day-by-day figures.
 
 Not everything is eaten at the same pace. A litre of olive oil lasts about a month, so charging it, or
 counting its calories, as if it were gone in a week would be wrong. Each product knows how long a serving
 lasts one person, and a line is spread over the longer of the plan and the days its quantity lasts. Slow
-items say how often you really buy them ("about once a month"); a product bought for less than the plan
-says how many servings would cover every day.
+items say how often you really buy them ("about once a month").
 
 The two tables, `saved_baskets` and `saved_basket_items`, are private to each user through Row Level
 Security, and an item can only be added to a basket that belongs to the same person. A saved basket is a
 copy: changing the live basket later never rewrites it.
+
+## Looking around
+
+The **Browse products** button on `/app` opens the aisles (meat, fish, dairy and eggs, bread, rice and pasta,
+oil and sauces, fruit and veg, drinks; [`lib/categories.ts`](lib/categories.ts)) with a photo and a price for
+every product. The look follows dontlookup.app: warm paper, near-black ink, thick outlines, hard offset
+shadows, Luckiest Guy for headlines and Nunito for text (both open fonts). The map is the same
+OpenStreetMap data drawn in greyscale; a truly hand-drawn map would need its own tile set.
 
 ## Time in the shop
 

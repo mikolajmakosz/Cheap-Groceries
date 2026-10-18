@@ -16,7 +16,9 @@ import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
 import { FOODS, nutritionOf, eatenAmount } from "../lib/nutrition.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
-import { planBasket, frequencyLabel } from "../lib/plan.ts";
+import { planBasket, frequencyLabel, MONTH_DAYS } from "../lib/plan.ts";
+import { monthFor, formatDuration } from "../lib/monthly.ts";
+import { CATEGORIES } from "../lib/categories.ts";
 
 let failures = 0;
 
@@ -231,6 +233,28 @@ check(
 check("per day times days is the whole", Math.round(oilOnly.nutritionPerDay.kcal * 7), Math.round(oilOnly.nutrition.kcal));
 check("a month's oil is bought about once a month", frequencyLabel(30), "about once a month");
 check("two weeks reads as two weeks", frequencyLabel(14), "about every two weeks");
+
+console.log("\nper-shop nutrition and the month");
+const shopsPlan = planBasket([item("s1", "cheese", 2), item("s2", "yogur", 2), item("s3", "cereales")], 7);
+const [first, second] = shopsPlan.stores;
+check("each shop has its own nutrition", first.nutrition.kcal !== second.nutrition.kcal, true);
+check("a shop's ratio is its price over its energy", Math.abs(first.per100kcal - (first.total / first.nutrition.kcal) * 100) < 1e-9, true);
+check("protein costs something per gram", first.perGramProtein > 0, true);
+check("a labelled product uses its own label", nutritionOf(entryFor("yogur"), 1, entryFor("yogur").offers.Dia).kcal !== nutritionOf(entryFor("yogur"), 1, entryFor("yogur").offers.Mercadona).kcal, true);
+check("without a label the typical values are used", nutritionOf(entryFor("lechuga"), 1, entryFor("lechuga").offers.Dia).kcal, nutritionOf(entryFor("lechuga"), 1).kcal);
+
+const someShop = STORES.find((store) => store.chain === "Dia");
+const weekMonth = monthFor(someShop, 2, 7, 10, null);
+check("a week-long basket is bought about four times a month", Math.round(weekMonth.trips * 10) / 10, Math.round((MONTH_DAYS / 7) * 10) / 10);
+check("a month costs thirty days of the per-day price", weekMonth.euros, 60);
+check("each trip is the walk plus the time inside", weekMonth.minutesPerTrip, weekMonth.walkMinutes + 10);
+check("the way home adds minutes", monthFor(someShop, 2, 7, 10, { lat: 40.5, lon: -3.6 }).minutes > weekMonth.minutes, true);
+check("a duration reads as hours and minutes", formatDuration(200), "3 h 20 min");
+
+console.log("\ncategories");
+const everyTerm = CATEGORIES.flatMap((category) => category.terms);
+check("every category term is in the catalogue", everyTerm.every((term) => CATALOGUE.some((entry) => entry.term === term)), true);
+check("every catalogue term is in exactly one category", CATALOGUE.every((entry) => everyTerm.filter((term) => term === entry.term).length === 1), true);
 
 console.log("\ngrading contract");
 const basket = compareBasket([
