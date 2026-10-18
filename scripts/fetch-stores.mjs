@@ -33,6 +33,7 @@ const CHAINS = [
   "Lidl",
   "Aldi",
   "Alcampo",
+  "El Corte Inglés",
   "Ahorramas",
   "Eroski",
   "Unide",
@@ -49,14 +50,21 @@ const QUERY = `[out:json][timeout:60];
 );
 out center tags;`;
 
-/** Which chain a messy OSM name belongs to, or null for a one-off shop. */
-function chainOf(name) {
-  const text = name
+/** Other names a chain trades under: Hipercor is El Corte Inglés' hypermarket. */
+const ALSO_KNOWN_AS = { "El Corte Inglés": ["hipercor"] };
+
+const plain = (value) =>
+  value
     .toLowerCase()
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "");
+
+/** Which chain a messy OSM name belongs to, or null for a one-off shop. */
+function chainOf(name) {
+  const text = plain(name);
   for (const chain of CHAINS) {
-    if (text.includes(chain.toLowerCase())) return chain;
+    const names = [plain(chain), ...(ALSO_KNOWN_AS[chain] ?? [])];
+    if (names.some((candidate) => text.includes(candidate))) return chain;
   }
   return null;
 }

@@ -117,7 +117,10 @@ export type StoreTotal = {
 };
 
 export type BasketComparison = {
+  /** The shops being compared: every total below covers the same products in each. */
   stores: string[];
+  /** Shops the catalogue knows that this comparison leaves out. */
+  excludedStores: string[];
   pricing: ItemPricing[];
   comparableCount: number;
   /** Items at least one store cannot price — excluded from the totals below. */
@@ -142,10 +145,63 @@ export function portionCost(
   return (offer.unit_price * amountOf(entry, quantity)) / entry.basis.amount;
 }
 
+/** Every shop the catalogue holds a price for, in alphabetical order. */
+export function storesIn(catalogue: CatalogueEntry[] = CATALOGUE): string[] {
+  return [...new Set(catalogue.flatMap((entry) => Object.keys(entry.offers)))].sort();
+}
+
+/** Every group of at least two shops, so there is always something to compare. */
+function groupsOf(stores: string[]): string[][] {
+  const groups: string[][] = [];
+  for (let mask = 1; mask < 1 << stores.length; mask += 1) {
+    const group = stores.filter((_, index) => mask & (1 << index));
+    if (group.length >= 2) groups.push(group);
+  }
+  return groups;
+}
+
 /**
- * Totals are summed only over items every shop can price. Comparing eight
- * priced items at one shop against five at another would make the shorter list
- * look cheaper for the wrong reason.
+ * The shops worth comparing for the products in a basket: the group of at least
+ * two shops that all price the most of them.
+ *
+ * The catalogue holds Mercadona and Dia for everyday own-brand products and
+ * Alcampo, El Corte Inglés, Carrefour and Dia for branded ones. Comparing all of
+ * them at once would price almost nothing, because no shop sells everything, so
+ * the compared group follows the basket. A tie goes to the larger group, then to
+ * alphabetical order, so the answer never changes between renders.
+ */
+export function shopsFor(
+  entries: CatalogueEntry[],
+  catalogue: CatalogueEntry[] = CATALOGUE,
+): string[] {
+  const all = storesIn(catalogue);
+  if (entries.length === 0 || all.length < 3) return all;
+
+  let best: { group: string[]; priced: number } | null = null;
+  for (const group of groupsOf(all)) {
+    const priced = entries.filter((entry) =>
+      group.every((store) => entry.offers[store]),
+    ).length;
+    if (
+      !best ||
+      priced > best.priced ||
+      (priced === best.priced && group.length > best.group.length)
+    ) {
+      best = { group, priced };
+    }
+  }
+  return best && best.priced > 0 ? best.group : all;
+}
+
+/**
+ * Totals are summed only over items every compared shop can price. Comparing
+ * eight priced items at one shop against five at another would make the shorter
+ * list look cheaper for the wrong reason.
+ *
+ * Which shops are compared is `shops` when given, else the group that prices the
+ * most of the basket (see `shopsFor`). A product a shop does not carry therefore
+ * leaves that shop out of the comparison, or the product out of the totals, but
+ * never counts as free.
  *
  * Every figure is a unit price (per kg, per L, per dozen…) times the amount, never
  * a pack price: shops do not sell identical packs, and a 2 kg bag against a 230 g
@@ -154,13 +210,17 @@ export function portionCost(
 export function compareBasket(
   items: BasketItem[],
   catalogue: CatalogueEntry[] = CATALOGUE,
+  shops?: string[],
 ): BasketComparison {
-  const stores = [
-    ...new Set(catalogue.flatMap((entry) => Object.keys(entry.offers))),
-  ].sort();
+  const resolved = items.map((item) => entryFor(item.name, catalogue));
+  const stores = (
+    shops ?? shopsFor(resolved.filter((e): e is CatalogueEntry => e !== null), catalogue)
+  )
+    .slice()
+    .sort();
 
-  const pricing: ItemPricing[] = items.map((item) => {
-    const entry = entryFor(item.name, catalogue);
+  const pricing: ItemPricing[] = items.map((item, index) => {
+    const entry = resolved[index];
     const byStore: Record<string, Offer | null> = {};
     for (const store of stores) byStore[store] = entry?.offers[store] ?? null;
 
@@ -198,6 +258,7 @@ export function compareBasket(
 
   return {
     stores,
+    excludedStores: storesIn(catalogue).filter((store) => !stores.includes(store)),
     pricing,
     comparableCount: comparable.length,
     unpriced: pricing.filter((entry) => !entry.comparable),

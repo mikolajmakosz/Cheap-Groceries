@@ -9,7 +9,7 @@ const storeData = {
     "lon": -3.68944
   },
   "radius_m": 2000,
-  "collected_on": "2026-10-17",
+  "collected_on": "2026-10-18",
   "stores": [
     {
       "id": "node/6284747814",

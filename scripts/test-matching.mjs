@@ -10,7 +10,7 @@
  * carry no price, and suggestions must never be required to save something.
  */
 
-import { termFor, entryFor, suggest, compareBasket, formatQuantity, portionCost } from "../lib/pricing.ts";
+import { termFor, entryFor, suggest, compareBasket, shopsFor, formatQuantity, portionCost } from "../lib/pricing.ts";
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
@@ -255,6 +255,31 @@ console.log("\ncategories");
 const everyTerm = CATEGORIES.flatMap((category) => category.terms);
 check("every category term is in the catalogue", everyTerm.every((term) => CATALOGUE.some((entry) => entry.term === term)), true);
 check("every catalogue term is in exactly one category", CATALOGUE.every((entry) => everyTerm.filter((term) => term === entry.term).length === 1), true);
+
+console.log("\ncomparing only what every compared shop prices");
+// A small catalogue of its own: Mercadona sells the own-brand product only, the
+// other three shops sell the branded one, and Dia sells both.
+const offer = (unit_price) => ({ name: "x", price_eur: unit_price, unit_price, image: null, url: "https://example.com", checked_on: "2026-10-18" });
+const fake = (term, offers) => ({ term, label: term, serving: 1000, basis: { amount: 1000, unit: "ml", label: "L" }, aliases: [term], offers });
+const mixed = [
+  fake("leche", { Mercadona: offer(1), Dia: offer(1.2) }),
+  fake("cola", { Dia: offer(2), Carrefour: offer(1.8), Alcampo: offer(1.9) }),
+  fake("yogur", { Dia: offer(3), Carrefour: offer(2.5), Alcampo: offer(2.7) }),
+];
+check("milk alone compares the two shops that sell it", shopsFor([mixed[0]], mixed).join(), "Dia,Mercadona");
+check("brands compare the three shops that sell them", shopsFor([mixed[1], mixed[2]], mixed).join(), "Alcampo,Carrefour,Dia");
+const brands = compareBasket([item("a", "cola"), item("b", "yogur")], mixed);
+check("both brands are priced in all three shops", brands.comparableCount, 2);
+check("Mercadona is left out and said so", brands.excludedStores.join(), "Mercadona");
+check("the cheapest of the three wins", brands.cheapestStore, "Carrefour");
+const together = compareBasket([item("a", "leche"), item("b", "cola"), item("c", "yogur")], mixed);
+check("a tie between groups goes to the larger group", together.stores.length, 3);
+check("a product a compared shop lacks is unpriced, not free", together.unpriced.map((row) => row.item.name).join(), "leche");
+check("totals add only comparable products", Math.round(together.totals.find((t) => t.store === "Dia").total * 100), 500);
+const chosen2 = compareBasket([item("a", "cola"), item("b", "yogur")], mixed, ["Carrefour", "Dia"]);
+check("a chosen pair is compared as asked", chosen2.stores.join(), "Carrefour,Dia");
+check("an empty basket compares every shop", compareBasket([], mixed).stores.length, 4);
+check("the real catalogue still compares Dia and Mercadona", compareBasket([item("a", "pollo"), item("b", "leche")]).stores.includes("Mercadona"), true);
 
 console.log("\ngrading contract");
 const basket = compareBasket([

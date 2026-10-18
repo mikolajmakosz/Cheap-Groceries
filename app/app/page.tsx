@@ -458,7 +458,8 @@ export default function BasketPage() {
 
             {comparison.unpriced.length > 0 && (
               <p className="mt-3 text-xs text-slate-500">
-                No price: {comparison.unpriced.map((row) => row.item.name).join(", ")}
+                {comparison.stores.length > 2 ? "Not priced by every compared shop" : "No price"}:{" "}
+                {comparison.unpriced.map((row) => row.item.name).join(", ")}
               </p>
             )}
           </>

@@ -91,6 +91,16 @@ products checked, none carried a nutrition table (the one branded table found wa
 and labels here come from the shops' own sources instead, and Soy Super stays a candidate for adding
 branded products and more shops.
 
+#### Which shops are compared
+
+`compareBasket` (lib/pricing.ts) totals only the products **every compared shop prices**. Which shops
+are compared follows the basket: `shopsFor` picks the group of at least two shops that all price the
+most of its products (a tie goes to the larger group). With everyday own-brand items that is Mercadona
+and Dia, as before; once branded products from Soy Super are in the catalogue, a basket of Pascual milk
+and Coca-Cola compares the shops that sell them (Alcampo, Carrefour, Dia, El Corte Inglés) and says
+which shop was left out. A product a compared shop does not carry is listed as unpriced, never counted
+as free. A caller can also pass the shops explicitly.
+
 ### Product links and logos
 
 The shop's logo next to each product opens that product on the shop's own site. The logos in
