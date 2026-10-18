@@ -83,6 +83,7 @@ function BasketCard({
     Object.fromEntries(basket.saved_basket_items.map((item) => [item.id, item.lasts_days])),
   );
   const [opened, setOpened] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
   const [editing, setEditing] = useState(false);
   const [draftName, setDraftName] = useState(basket.name);
   const [draft, setDraft] = useState("");
@@ -216,6 +217,37 @@ function BasketCard({
           )}
         </div>
       </header>
+
+      {/* At a glance: the cheapest shop for this basket, its price and the period's cost. */}
+      {(() => {
+        const best = periods.length
+          ? periods.reduce((x, y) => (y.span.euros < x.span.euros ? y : x))
+          : null;
+        return best ? (
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border-2 border-[var(--ink)] bg-[var(--y1)] px-3 py-2">
+            <ShopLogo shop={best.chain} height={20} />
+            <span className="text-sm font-bold">
+              Basket <strong className="text-lg">{formatEuro(best.total)}</strong>
+            </span>
+            <span className="text-sm font-bold">
+              Per {periodLabel} <strong className="text-lg">{formatEuro(best.span.euros)}</strong>
+            </span>
+            <span className="text-sm font-bold">{formatDuration(best.span.minutes)}</span>
+          </div>
+        ) : null;
+      })()}
+
+      <button
+        type="button"
+        aria-expanded={expanded || editing}
+        onClick={() => setExpanded((on) => !on)}
+        className="mt-3 text-sm font-extrabold underline decoration-2 underline-offset-2"
+      >
+        {expanded || editing ? "Hide details ▴" : "Show details ▾"}
+      </button>
+
+      {(expanded || editing) && (
+        <>
 
       <div className="mt-5">
         <label htmlFor={`days-${basket.id}`} className="flex items-baseline justify-between">
@@ -503,6 +535,8 @@ function BasketCard({
           </div>
         )}
       </section>
+        </>
+      )}
     </article>
   );
 }
@@ -649,7 +683,7 @@ export default function SavedBasketsPage() {
       <h1 className="display text-5xl leading-none">Saved baskets</h1>
 
       <div className="mt-5">
-        <TripSettingsPanel />
+        <TripSettingsPanel compact />
       </div>
 
       {error && (

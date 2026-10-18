@@ -290,6 +290,10 @@ export default function BasketPage() {
           </p>
         )}
 
+        <div className="mt-3">
+          <TripSettings compact />
+        </div>
+
         {trip.selected && (
           <TripPanel
             store={trip.selected}
@@ -465,9 +469,6 @@ export default function BasketPage() {
               <section className="mt-5" aria-label="Where to buy it">
                 <h2 className="display text-xl">Shops</h2>
                 <div className="mt-2">
-                  <TripSettings />
-                </div>
-                <div className="mt-3">
                   <WhereToBuy
                     options={options}
                     analysis={analysis}

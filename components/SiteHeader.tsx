@@ -10,9 +10,27 @@ import { createClient } from "@/lib/supabase/client";
  * user, so it lives in the shared header rather than on /app alone.
  *
  * `signedIn` is null until the session has been read, so a logged-in person
- * never sees the logged-out buttons flash by. The brand leads to the basket
- * when signed in: the landing page is for strangers.
+ * never sees the logged-out buttons flash by. The brand always leads to the
+ * landing page; a signed-in person stays signed in and finds "Open my basket" there.
  */
+function CartIcon() {
+  return (
+    <svg width="30" height="26" viewBox="0 0 30 26" aria-hidden="true" className="shrink-0">
+      <path
+        d="M2 3 H6.5 L9.5 17 H24 L27 7 H8"
+        fill="none"
+        stroke="var(--ink)"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M10.5 9.5 H25" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="11.5" cy="22" r="2.6" fill="var(--ink)" />
+      <circle cx="22" cy="22" r="2.6" fill="var(--ink)" />
+    </svg>
+  );
+}
+
 export default function SiteHeader() {
   const router = useRouter();
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
@@ -42,10 +60,8 @@ export default function SiteHeader() {
       style={{ height: "var(--header-h)" }}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-3 sm:px-5">
-        <Link
-          href={signedIn ? "/app" : "/"}
-          className="display text-lg leading-none sm:text-2xl"
-        >
+        <Link href="/" className="display flex items-center gap-2 text-lg leading-none sm:text-2xl">
+          <CartIcon />
           Cheap Groceries
         </Link>
 

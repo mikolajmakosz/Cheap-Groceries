@@ -15,13 +15,41 @@ const chip = (on: boolean) =>
  * you go anyway and come home from (IE Tower, your gym…); shopping on the way
  * home from it costs only the detour. "From home" counts the whole trip.
  */
-export default function TripSettings() {
+export default function TripSettings({ compact = false }: { compact?: boolean }) {
   const trip = useTripSettings();
   const [pickingAnchor, setPickingAnchor] = useState(false);
+  const [open, setOpen] = useState(!compact);
   const custom = trip.anchor.label !== IE_TOWER.label;
+
+  // Folded: one line with where you come from, how you travel and your home,
+  // and the home field itself while there is none, since everything uses it.
+  if (!open) {
+    return (
+      <section aria-label="Your trip" className="rounded-2xl border-2 border-[var(--ink)] bg-white p-3">
+        <div className="flex items-center justify-between gap-2 text-xs">
+          <span className="min-w-0 truncate font-bold">
+            {trip.start === "home" ? "From home" : `On my way home from ${trip.anchor.label}`} ·{" "}
+            {TRANSPORT_LABELS[trip.transport]}
+            {trip.home ? ` · Home: ${trip.home.label.split(",").slice(0, 2).join(",")}` : ""}
+          </span>
+          <button type="button" onClick={() => setOpen(true)} className="shrink-0 font-extrabold underline">
+            Change
+          </button>
+        </div>
+        {!trip.home && <AddressSearch onPlace={(place) => setTrip({ home: place })} />}
+      </section>
+    );
+  }
 
   return (
     <section aria-label="Your trip" className="rounded-2xl border-2 border-[var(--ink)] bg-white p-3">
+      {compact && (
+        <div className="mb-2 flex justify-end">
+          <button type="button" onClick={() => setOpen(false)} className="text-xs font-extrabold underline">
+            Done
+          </button>
+        </div>
+      )}
       <div role="group" aria-label="Where you shop from" className="flex flex-wrap gap-1.5">
         <button type="button" aria-pressed={trip.start === "anchor"} onClick={() => setTrip({ start: "anchor" })} className={chip(trip.start === "anchor")}>
           On my way home

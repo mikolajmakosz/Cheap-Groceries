@@ -185,7 +185,8 @@ billing key, so this is the honest middle. Walked legs on the map come from the 
 are drawn dashed and straight.
 
 On Saved baskets, each shop shows how much time shopping on the way home from the anchor **saves over going out
-from home**, over the chosen period.
+from home** to the nearest shop of the same chain and back, over the chosen period. Each saved basket opens as a
+one-line summary (cheapest shop, basket price, price and time per period); **Show details** opens the rest.
 
 Addresses are found with Photon and Nominatim (OpenStreetMap) and held in memory only: they are personal data and
 nothing needs them kept, so they are not stored anywhere and are gone on reload.

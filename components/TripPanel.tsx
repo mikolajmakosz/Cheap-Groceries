@@ -3,6 +3,7 @@
 import ShopLogo from "@/components/ShopLogo";
 import type { Store } from "@/lib/geo";
 import {
+  bestFromHome,
   fromHomeMinutes,
   legMinutes,
   onTheWayMinutes,
@@ -46,6 +47,8 @@ export default function TripPanel({ store, trip, loading, onClose, shopMinutes =
   const cost = shopTripMinutes(store, trip);
   const home = fromHomeMinutes(store, trip);
   const onTheWay = trip.home ? onTheWayMinutes(store, trip) : null;
+  // From home you would go to the nearest shop of this chain, not this one.
+  const homeBest = bestFromHome(store.chain, trip);
 
   return (
     <section className="mt-4 rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--y1)] p-3" aria-label="Your trip to this shop">
@@ -83,9 +86,12 @@ export default function TripPanel({ store, trip, loading, onClose, shopMinutes =
         />
       </dl>
 
-      {fromAnchor && trip.home && home !== null && onTheWay !== null && home > onTheWay && (
+      {fromAnchor && homeBest && onTheWay !== null && (
         <p className="mt-2 text-xs font-bold">
-          From home it would be {home + shopMinutes} min: on the way you save {home - onTheWay} min.
+          From home to the nearest {store.chain} and back: {homeBest.minutes + shopMinutes} min.{" "}
+          {homeBest.minutes > onTheWay
+            ? `On the way you save ${homeBest.minutes - onTheWay} min.`
+            : `Going from home is ${onTheWay - homeBest.minutes} min quicker.`}
         </p>
       )}
       {!trip.home && (

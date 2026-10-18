@@ -1,5 +1,5 @@
 import type { Store } from "./geo.ts";
-import { DEFAULT_TRIP, fromHomeMinutes, onTheWayMinutes, shopTripMinutes, type TripSettings } from "./trip.ts";
+import { DEFAULT_TRIP, bestFromHome, onTheWayMinutes, shopTripMinutes, type TripSettings } from "./trip.ts";
 import { MONTH_DAYS } from "./plan.ts";
 import { deliveryFee } from "./delivery.ts";
 
@@ -18,9 +18,9 @@ export type Month = {
   /** Whether the way on to home is in the minutes. */
   withHome: boolean;
   /**
-   * Minutes over the period saved by shopping on the way home from the anchor
-   * rather than going out from home; null unless both are known and you start
-   * from the anchor.
+   * Minutes over the period saved by shopping at this shop on the way home from
+   * the anchor rather than going out from home to the nearest shop of the same
+   * chain and back; null unless you start from the anchor and a home is known.
    */
   savedVsHome: number | null;
 };
@@ -42,7 +42,7 @@ export function periodFor(
   const trips = periodDays / days;
   const walk = shopTripMinutes(store, trip);
   const perTrip = walk + shopMinutes;
-  const fromHome = fromHomeMinutes(store, trip);
+  const fromHome = bestFromHome(store.chain, trip)?.minutes ?? null;
   const onTheWay = trip.home ? onTheWayMinutes(store, trip) : null;
   return {
     trips,

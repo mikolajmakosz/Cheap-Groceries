@@ -1,4 +1,4 @@
-import { CAMPUS, metresBetween, walkingMinutes, type Point } from "./geo.ts";
+import { CAMPUS, STORES, metresBetween, walkingMinutes, type Point, type Store } from "./geo.ts";
 import stationData from "./stations-data.ts";
 
 /**
@@ -110,6 +110,26 @@ export function onTheWayMinutes(store: Point, trip: TripSettings): number {
 export function fromHomeMinutes(store: Point, trip: TripSettings): number | null {
   if (!trip.home) return null;
   return 2 * legMinutes(trip.home, store, trip.transport).minutes;
+}
+
+/**
+ * Going out from home you would not walk to the shop near your anchor: you would
+ * go to the nearest shop of the same chain to your home and back. This is that
+ * trip, and the shop; null without a home.
+ */
+export function bestFromHome(
+  chain: string,
+  trip: TripSettings,
+  stores: Store[] = STORES,
+): { store: Store; minutes: number } | null {
+  if (!trip.home) return null;
+  let best: { store: Store; minutes: number } | null = null;
+  for (const store of stores) {
+    if (store.chain !== chain) continue;
+    const minutes = 2 * legMinutes(trip.home, store, trip.transport).minutes;
+    if (!best || minutes < best.minutes) best = { store, minutes };
+  }
+  return best;
 }
 
 /**
