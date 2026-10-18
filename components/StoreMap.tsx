@@ -70,7 +70,18 @@ function storeIcon(L: Leaflet, chain: string, priced: boolean, selected: boolean
     });
   }
 
-  const size = priced ? 18 : 14;
+  // A shop we price but hold no logo for: its name in the same chip.
+  if (priced) {
+    const width = Math.max(50, chain.length * 7 + 18);
+    return L.divIcon({
+      className: "",
+      html: `<div style="display:flex;align-items:center;justify-content:center;width:${width}px;height:30px;background:#fff;border:${selected ? 3 : 2.5}px solid ${colour};border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;box-shadow:${ring}2px 3px 0 #14140f;font:800 11px/1 system-ui;color:#14140f;white-space:nowrap">${escapeHtml(chain)}</div>`,
+      iconSize: [width, 30],
+      iconAnchor: [width / 2, 15],
+    });
+  }
+
+  const size = 14;
   return L.divIcon({
     className: "",
     html: `<div style="width:${size}px;height:${size}px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:${ring}1px 2px 0 #14140f"></div>`,

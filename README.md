@@ -83,23 +83,20 @@ wide almost always means two different products were paired, and the app would a
 
 ### Soy Super
 
-Looked at as a source of every shop's prices and labels. For a **branded** product (Pascual milk) a Soy
-Super page lists its price at Alcampo, El Corte Ingles, Dia and Carrefour, which would add shops. But own
-brands (Hacendado, Dia, Carrefour) exist in one shop only, so they cannot be compared across shops there;
-search results are scoped to one selected shop; its photos carry its watermark; and of the own-brand
-products checked, none carried a nutrition table (the one branded table found was dated 2014). So prices
-and labels here come from the shops' own sources instead, and Soy Super stays a candidate for adding
-branded products and more shops.
+A Soy Super product page lists the same **branded** product's price in every shop that sells it, so ten
+branded products (Pascual milk, Danone yogurt, Coca-Cola, Gallo pasta, Brillante rice, Ybarra and
+Carbonell olive oil, Orlando tomato sauce, Calvo tuna, Font Vella water) are priced at Alcampo, Carrefour,
+Dia and Mercadona from [`data/soysuper.json`](data/soysuper.json). They sit in the same aisles as the
+everyday terms. Which shops a basket compares follows the basket (`shopsFor` in `lib/pricing.ts`): no shop
+sells everything, so the group of shops that prices the most of it is compared, and a product a shop does
+not carry never counts as free.
 
-#### Which shops are compared
-
-`compareBasket` (lib/pricing.ts) totals only the products **every compared shop prices**. Which shops
-are compared follows the basket: `shopsFor` picks the group of at least two shops that all price the
-most of its products (a tie goes to the larger group). With everyday own-brand items that is Mercadona
-and Dia, as before; once branded products from Soy Super are in the catalogue, a basket of Pascual milk
-and Coca-Cola compares the shops that sell them (Alcampo, Carrefour, Dia, El Corte Inglés) and says
-which shop was left out. A product a compared shop does not carry is listed as unpriced, never counted
-as free. A caller can also pass the shops explicitly.
+What it cannot give: own brands (Hacendado, Dia, Carrefour) exist in one shop only, so they are not
+comparable there; its photos carry its watermark, so these ten have no picture and their link opens the
+product on Soy Super; and of the products checked none carried a usable nutrition table, so their
+nutrition is the typical values for the food. The pages sit behind a proof-of-work check, so they were
+read from a normal browser session, a few seconds apart, and the collection stops at any challenge.
+El Corte Ingles and Hipercor prices are left out because the app holds no locations for them.
 
 ### Product links and logos
 

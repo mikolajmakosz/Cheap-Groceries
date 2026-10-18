@@ -68,6 +68,8 @@ export const FOODS: Record<string, Food> = {
   manzana: f(52, 0.3, 0.2, 13.8, 10.4, 0, { edible: 0.9 }),
   lechuga: f(14, 0.9, 0.1, 3, 1.8, 0.03, { edible: 0.8, unitGrams: 450 }),
   agua: f(0, 0, 0, 0, 0, 0),
+  "refresco cola": f(42, 0, 0, 10.6, 10.6, 0),
+  "yogur azucarado": f(86, 3.8, 2.5, 12.5, 12.5, 0.1),
 };
 
 export const ZERO: Nutrients = { kcal: 0, protein: 0, fat: 0, carbs: 0, sugar: 0, salt: 0 };
@@ -103,7 +105,7 @@ export function per100For(
   offer: Offer | null | undefined,
 ): { values: Nutrients; source: "label" | "typical" } | null {
   if (offer?.nutrition) return { values: offer.nutrition, source: "label" };
-  const food = FOODS[entry.term];
+  const food = FOODS[entry.food ?? entry.term];
   if (!food) return null;
   const { kcal, protein, fat, carbs, sugar, salt } = food;
   return { values: { kcal, protein, fat, carbs, sugar, salt }, source: "typical" };
@@ -111,7 +113,7 @@ export function per100For(
 
 /** Grams (or millilitres) that are actually eaten from `quantity` servings. */
 export function eatenAmount(entry: CatalogueEntry, quantity: number): number {
-  const food = FOODS[entry.term];
+  const food = FOODS[entry.food ?? entry.term];
   const sold = entry.serving * quantity;
   const grams =
     entry.basis.unit === "ud" ? sold * (food?.unitGrams ?? 100) : sold;
@@ -128,7 +130,7 @@ export function nutritionOf(
   quantity: number,
   offer?: Offer | null,
 ): Nutrients {
-  const food = FOODS[entry.term];
+  const food = FOODS[entry.food ?? entry.term];
   const per100: Nutrients | null = offer?.nutrition ?? (food
     ? {
         kcal: food.kcal,

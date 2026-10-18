@@ -34,6 +34,8 @@ export type CatalogueEntry = {
   /** What `unit_price` is a price per, so shops compare like with like. */
   basis: { amount: number; unit: "g" | "ml" | "ud"; label: string };
   aliases: string[];
+  /** Which row of the typical-nutrition table stands for it, when it is not the term itself. */
+  food?: string;
   /** Store name -> that shop's reference product for this term. */
   offers: Record<string, Offer>;
 };

@@ -2,6 +2,7 @@
 // Mercadona: its own public store API, Madrid warehouse (scripts/scrape-mercadona.mjs).
 // Dia: collected by hand in a browser (data/dia.json).
 // Nutrition labels: data/nutrition-mercadona.json (Open Food Facts) and data/nutrition-dia.json (dia.es).
+// Branded products in several shops: data/soysuper.json (Soy Super product pages).
 
 import type { CatalogueEntry } from "./catalogue.ts";
 
@@ -1299,6 +1300,400 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "image": "https://www.dia.es/product_images/26995/26995_ISO_0_ES.jpg?imwidth=176",
         "url": "https://www.dia.es/agua-y-refrescos/agua/p/26995",
         "checked_on": "2026-10-17"
+      }
+    }
+  },
+  {
+    "term": "pascual",
+    "label": "Pascual whole milk",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "pascual",
+      "leche pascual",
+      "pascual milk"
+    ],
+    "food": "leche",
+    "offers": {
+      "Alcampo": {
+        "name": "Leche entera Pascual 1 l",
+        "price_eur": 1.23,
+        "unit_price": 1.23,
+        "image": null,
+        "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Leche entera Pascual 1 l",
+        "price_eur": 1.41,
+        "unit_price": 1.41,
+        "image": null,
+        "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Leche entera Pascual 1 l",
+        "price_eur": 1.39,
+        "unit_price": 1.39,
+        "image": null,
+        "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "danone",
+    "label": "Danone natural yogurt",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "danone",
+      "danone yogur",
+      "danone yogurt"
+    ],
+    "food": "yogur azucarado",
+    "offers": {
+      "Alcampo": {
+        "name": "Yogur azucarado natural Danone pack de 8 x 120 g",
+        "price_eur": 1.79,
+        "unit_price": 1.86,
+        "image": null,
+        "url": "https://soysuper.com/p/yogur-natural-azucarado-danone-pack-8-x-125-g-1-kg",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Yogur azucarado natural Danone pack de 8 x 120 g",
+        "price_eur": 1.95,
+        "unit_price": 2.03,
+        "image": null,
+        "url": "https://soysuper.com/p/yogur-natural-azucarado-danone-pack-8-x-125-g-1-kg",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "coca cola",
+    "label": "Coca-Cola",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "coca cola",
+      "coca-cola",
+      "cola",
+      "coke"
+    ],
+    "food": "refresco cola",
+    "offers": {
+      "Alcampo": {
+        "name": "Coca Cola pack de 2 botellas de 2 l",
+        "price_eur": 3.8,
+        "unit_price": 0.95,
+        "image": null,
+        "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Coca Cola pack de 2 botellas de 2 l",
+        "price_eur": 4.09,
+        "unit_price": 1.02,
+        "image": null,
+        "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Coca Cola pack de 2 botellas de 2 l",
+        "price_eur": 4.09,
+        "unit_price": 1.02,
+        "image": null,
+        "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
+        "checked_on": "2026-10-18"
+      },
+      "Mercadona": {
+        "name": "Coca Cola pack de 2 botellas de 2 l",
+        "price_eur": 4.1,
+        "unit_price": 1.02,
+        "image": null,
+        "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "gallo",
+    "label": "Gallo penne pasta",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "gallo",
+      "gallo pasta",
+      "plumas gallo"
+    ],
+    "food": "pasta",
+    "offers": {
+      "Alcampo": {
+        "name": "Gallo pasta pluma fina 400 g",
+        "price_eur": 1.46,
+        "unit_price": 3.65,
+        "image": null,
+        "url": "https://soysuper.com/p/plumas-gallo-3-minutos-400-grs",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Gallo pasta pluma fina 400 g",
+        "price_eur": 1.53,
+        "unit_price": 3.83,
+        "image": null,
+        "url": "https://soysuper.com/p/plumas-gallo-3-minutos-400-grs",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "brillante",
+    "label": "Brillante steamed rice",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
+    "aliases": [
+      "brillante",
+      "arroz brillante",
+      "brillante rice"
+    ],
+    "food": "arroz",
+    "offers": {
+      "Alcampo": {
+        "name": "Arroz vaporizado Brillante 1 kg",
+        "price_eur": 1.98,
+        "unit_price": 1.98,
+        "image": null,
+        "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Arroz vaporizado Brillante 1 kg",
+        "price_eur": 1.99,
+        "unit_price": 1.99,
+        "image": null,
+        "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Arroz vaporizado Brillante 1 kg",
+        "price_eur": 1.99,
+        "unit_price": 1.99,
+        "image": null,
+        "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "ybarra",
+    "label": "Ybarra olive oil",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "ybarra",
+      "aceite ybarra"
+    ],
+    "food": "aceite",
+    "offers": {
+      "Alcampo": {
+        "name": "Ybarra aceite de oliva virgen extra 1 l",
+        "price_eur": 6.45,
+        "unit_price": 6.45,
+        "image": null,
+        "url": "https://soysuper.com/p/aceite-de-oliva-virgen-extra-suave-ybarra-botella-1-litro",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Ybarra aceite de oliva virgen extra 1 l",
+        "price_eur": 6.65,
+        "unit_price": 6.65,
+        "image": null,
+        "url": "https://soysuper.com/p/aceite-de-oliva-virgen-extra-suave-ybarra-botella-1-litro",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "carbonell",
+    "label": "Carbonell olive oil",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "carbonell",
+      "aceite carbonell"
+    ],
+    "food": "aceite",
+    "offers": {
+      "Alcampo": {
+        "name": "Carbonell aceite de oliva virgen extra 1 l",
+        "price_eur": 6.71,
+        "unit_price": 6.71,
+        "image": null,
+        "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Carbonell aceite de oliva virgen extra 1 l",
+        "price_eur": 7.25,
+        "unit_price": 7.25,
+        "image": null,
+        "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Carbonell aceite de oliva virgen extra 1 l",
+        "price_eur": 5.38,
+        "unit_price": 5.38,
+        "image": null,
+        "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "orlando",
+    "label": "Orlando tomato sauce",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
+    "aliases": [
+      "orlando",
+      "tomate orlando",
+      "orlando tomato"
+    ],
+    "food": "tomate frito",
+    "offers": {
+      "Alcampo": {
+        "name": "Orlando tomate frito 400 g",
+        "price_eur": 1.4,
+        "unit_price": 3.5,
+        "image": null,
+        "url": "https://soysuper.com/p/tomate-frito-orlando-lata-de-400-g",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Orlando tomate frito 400 g",
+        "price_eur": 1.44,
+        "unit_price": 3.6,
+        "image": null,
+        "url": "https://soysuper.com/p/tomate-frito-orlando-lata-de-400-g",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "calvo",
+    "label": "Calvo tuna in water",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 170,
+    "aliases": [
+      "calvo",
+      "atun calvo",
+      "calvo tuna"
+    ],
+    "food": "atun",
+    "offers": {
+      "Alcampo": {
+        "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
+        "price_eur": 3.24,
+        "unit_price": 19.29,
+        "image": null,
+        "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
+        "price_eur": 3.85,
+        "unit_price": 22.92,
+        "image": null,
+        "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
+        "price_eur": 3.41,
+        "unit_price": 20.3,
+        "image": null,
+        "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "font vella",
+    "label": "Font Vella water",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1500,
+    "aliases": [
+      "font vella",
+      "fontvella"
+    ],
+    "food": "agua",
+    "offers": {
+      "Alcampo": {
+        "name": "Font Vella agua mineral 1,5 l",
+        "price_eur": 0.74,
+        "unit_price": 0.49,
+        "image": null,
+        "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Font Vella agua mineral 1,5 l",
+        "price_eur": 0.74,
+        "unit_price": 0.49,
+        "image": null,
+        "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Font Vella agua mineral 1,5 l",
+        "price_eur": 0.77,
+        "unit_price": 0.51,
+        "image": null,
+        "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
+        "checked_on": "2026-10-18"
       }
     }
   }

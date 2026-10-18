@@ -82,17 +82,24 @@ check("nonsense suggests nothing", suggest("QA-7F3K2A").length, 0);
 check("at most six", suggest("a").length <= 6, true);
 
 console.log("\ncatalogue");
-check("two shops are covered", CATALOGUE_STORES.length, 2);
+const everyday = CATALOGUE.filter((entry) => entry.offers.Mercadona && entry.offers.Dia && !entry.food);
+check("Mercadona, Dia, Alcampo and Carrefour are covered", CATALOGUE_STORES.join(","), "Alcampo,Carrefour,Dia,Mercadona");
 check(
-  "every term is priced at every shop",
-  CATALOGUE.every((entry) =>
-    CATALOGUE_STORES.every((store) => entry.offers[store]?.price_eur > 0),
+  "every everyday term is priced at Mercadona and Dia",
+  CATALOGUE.filter((entry) => !entry.food).every(
+    (entry) => entry.offers.Mercadona?.price_eur > 0 && entry.offers.Dia?.price_eur > 0,
   ),
   true,
 );
+check("there are 30 everyday terms", everyday.length, 30);
 check(
-  "every offer has a photo",
-  CATALOGUE.every((entry) =>
+  "every branded term is priced by at least two shops",
+  CATALOGUE.filter((entry) => entry.food).every((entry) => Object.keys(entry.offers).length >= 2),
+  true,
+);
+check(
+  "every everyday offer has a photo",
+  CATALOGUE.filter((entry) => !entry.food).every((entry) =>
     Object.values(entry.offers).every((offer) => Boolean(offer.image)),
   ),
   true,
@@ -173,20 +180,20 @@ check(
 console.log("\nnutrition");
 check(
   "every catalogue term has nutrition data",
-  CATALOGUE.every((entry) => FOODS[entry.term] !== undefined),
+  CATALOGUE.every((entry) => FOODS[entry.food ?? entry.term] !== undefined),
   true,
 );
 // Energy must agree with the macros it is made of (4 per g of protein and
 // carbohydrate, 9 per g of fat). A typo in the table shows up here as a gap.
 const offBy = CATALOGUE.map((entry) => {
-  const n = FOODS[entry.term];
+  const n = FOODS[entry.food ?? entry.term];
   const fromMacros = 4 * n.protein + 9 * n.fat + 4 * n.carbs;
   return n.kcal === 0 ? 0 : Math.abs(n.kcal - fromMacros) / n.kcal;
 });
 check("calories agree with macros within 20%", Math.max(...offBy) <= 0.2, true);
 check(
   "sugar never exceeds carbohydrate",
-  CATALOGUE.every((entry) => FOODS[entry.term].sugar <= FOODS[entry.term].carbs + 0.5),
+  CATALOGUE.every((entry) => FOODS[entry.food ?? entry.term].sugar <= FOODS[entry.food ?? entry.term].carbs + 0.5),
   true,
 );
 const oil = entryFor("olive oil");
