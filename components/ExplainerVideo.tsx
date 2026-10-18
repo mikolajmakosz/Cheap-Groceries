@@ -23,8 +23,12 @@ export default function ExplainerVideo() {
 
   return (
     <>
-      <button type="button" onClick={() => setOpen(true)} className="btn btn-light w-full py-2.5">
-        ▶ How it works <span className="font-sans text-sm normal-case">(1:28)</span>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="text-sm font-extrabold underline decoration-2 underline-offset-2"
+      >
+        ▶ Watch how it works (1:28)
       </button>
 
       {open && (

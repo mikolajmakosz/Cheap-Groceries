@@ -18,6 +18,8 @@ type Props = {
   busy?: boolean;
   /** Puts the grading contract's test ids on the field and its button. */
   contractIds?: boolean;
+  /** An outlined button, for pages where another button is the main action. */
+  secondary?: boolean;
 };
 
 function offerSummary(entry: CatalogueEntry): string {
@@ -49,6 +51,7 @@ export default function ProductSearch({
   ariaLabel,
   busy = false,
   contractIds = false,
+  secondary = false,
 }: Props) {
   const listId = useId();
   const [focused, setFocused] = useState(false);
@@ -110,7 +113,7 @@ export default function ProductSearch({
           type="submit"
           disabled={busy}
           data-testid={contractIds ? "core-submit" : undefined}
-          className="btn px-5 py-2.5"
+          className={`btn px-5 py-2.5 ${secondary ? "btn-light" : ""}`}
         >
           {busy ? "Adding…" : buttonLabel}
         </button>

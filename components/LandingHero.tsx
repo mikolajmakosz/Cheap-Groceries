@@ -64,47 +64,53 @@ export default function LandingHero() {
         className="card absolute inset-x-3 top-3 z-[1000] max-h-[78%] overflow-y-auto p-5 md:inset-x-auto md:left-5 md:top-5 md:max-h-[calc(100%-2.5rem)] md:w-[420px] md:p-6"
         aria-label="Cheap Groceries"
       >
-        <h1 className="display text-4xl leading-[0.95] md:text-5xl">
+        <p className="inline-block rounded-lg border-2 border-[var(--ink)] bg-[var(--y1)] px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide">
+          For IE University students in Madrid
+        </p>
+
+        <h1 className="display mt-3 text-4xl leading-[0.95] md:text-5xl">
           Pay less for your weekly shop
         </h1>
 
         <p className="mt-3 text-base text-slate-600">
-          Build a basket. See its price at Mercadona, Dia, Carrefour and Alcampo near IE.
+          Type your shopping list once and see what it costs at Mercadona, Dia, Carrefour and
+          Alcampo near campus, so you buy it where it is cheapest.
         </p>
 
-        <div className="mt-4">
-          <ExplainerVideo />
-        </div>
-
-        <div className="mt-5">
-          <ProductSearch
-            value={draft}
-            onChange={setDraft}
-            onPick={(entry: CatalogueEntry) => void goToSignup(entry.label)}
-            onSubmit={() => void goToSignup(draft)}
-            buttonLabel="Add"
-            placeholder="bread, milk, rice…"
-            ariaLabel="A product you want to price"
-          />
-        </div>
-
         {signedIn ? (
-          <Link href="/app" className="btn mt-4 w-full py-3 text-lg">
+          <Link href="/app" className="btn mt-5 w-full py-3 text-lg">
             Open my basket
           </Link>
         ) : (
           <>
-            <Link href="/signup" className="btn mt-4 w-full py-3 text-lg">
+            <Link href="/signup" className="btn mt-5 w-full py-3 text-lg">
               Sign up free
             </Link>
-            <p className="mt-3 text-center text-sm text-slate-600">
-              Have an account?{" "}
+            <p className="mt-2 text-center text-sm text-slate-600">
+              Just an email and a password.{" "}
               <Link href="/login" className="font-bold underline">
                 Log in
               </Link>
             </p>
           </>
         )}
+
+        <div className="mt-5 border-t-2 border-[var(--ink)]/15 pt-4">
+          <p className="mb-2 text-xs font-bold text-slate-500">Or try a product first</p>
+          <ProductSearch
+            value={draft}
+            onChange={setDraft}
+            onPick={(entry: CatalogueEntry) => void goToSignup(entry.label)}
+            onSubmit={() => void goToSignup(draft)}
+            buttonLabel="Try"
+            placeholder="bread, milk, rice…"
+            ariaLabel="A product you want to price"
+            secondary
+          />
+          <div className="mt-3 text-center">
+            <ExplainerVideo />
+          </div>
+        </div>
 
         {trip.selected && (
           <TripPanel
