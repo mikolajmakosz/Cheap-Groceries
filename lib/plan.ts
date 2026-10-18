@@ -23,15 +23,32 @@ export type PlanLine = {
   fallsShort: boolean;
 };
 
+/** One shop's view of the basket: money, nutrition and what they cost together. */
+export type StorePlan = {
+  store: string;
+  total: number;
+  perDay: number;
+  perMonth: number;
+  /** Everything bought in the priced lines, from this shop's own products. */
+  nutrition: Nutrients;
+  nutritionPerDay: Nutrients;
+  /** Euros per 100 kcal, and per gram of protein; null without nutrition data. */
+  per100kcal: number | null;
+  perGramProtein: number | null;
+};
+
 export type Plan = {
   days: number;
   lines: PlanLine[];
   /** What the shop costs today, per shop. */
   totals: { store: string; total: number; perDay: number }[];
+  stores: StorePlan[];
   /** Eaten over the whole plan, and per day. */
   nutrition: Nutrients;
   nutritionPerDay: Nutrients;
 };
+
+export const MONTH_DAYS = 30;
 
 /**
  * A basket spread over `days`. A line is eaten over at least the plan, or over
@@ -75,10 +92,45 @@ export function planBasket(items: BasketItem[], days: number): Plan {
     return addNutrients(sum, scaleNutrients(whole, 1 / line.consumptionDays));
   }, ZERO);
 
+  const stores: StorePlan[] = totals.map(({ store, total, perDay }) => {
+    // Only the lines every shop prices, so the shops are weighed on the same food.
+    const priced = lines.filter((line) => line.row.comparable);
+    const nutrition = priced.reduce<Nutrients>(
+      (sum, line) =>
+        addNutrients(
+          sum,
+          nutritionOf(line.row.entry!, line.row.item.quantity, line.row.byStore[store]),
+        ),
+      ZERO,
+    );
+    const nutritionPerDay = priced.reduce<Nutrients>(
+      (sum, line) =>
+        addNutrients(
+          sum,
+          scaleNutrients(
+            nutritionOf(line.row.entry!, line.row.item.quantity, line.row.byStore[store]),
+            1 / line.consumptionDays,
+          ),
+        ),
+      ZERO,
+    );
+    return {
+      store,
+      total,
+      perDay,
+      perMonth: perDay * MONTH_DAYS,
+      nutrition,
+      nutritionPerDay,
+      per100kcal: nutrition.kcal > 0 ? (total / nutrition.kcal) * 100 : null,
+      perGramProtein: nutrition.protein > 0 ? total / nutrition.protein : null,
+    };
+  });
+
   return {
     days,
     lines,
     totals,
+    stores,
     nutrition: scaleNutrients(nutritionPerDay, days),
     nutritionPerDay,
   };

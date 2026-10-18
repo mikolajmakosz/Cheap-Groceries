@@ -1,4 +1,4 @@
--- CestaPro — saved baskets
+-- Cheap Groceries — saved baskets
 -- Where to run this: Supabase dashboard -> SQL Editor -> New query -> paste -> Run.
 -- Only creates things and is safe to run more than once. Nothing here drops or deletes.
 

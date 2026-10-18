@@ -61,22 +61,20 @@ function SignupForm() {
   }
 
   return (
-    <main className="mx-auto max-w-sm px-4 py-12">
-      <h1 className="text-2xl font-bold tracking-tight">Create your account</h1>
+    <main className="mx-auto max-w-sm px-4 py-10">
+      <div className="card p-6">
+      <h1 className="display text-4xl">Sign up</h1>
       {pendingProduct && (
-        <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
-          We will start your basket with <strong>{pendingProduct}</strong>.
+        <p className="mt-3 rounded-xl border-2 border-[var(--ink)] bg-[var(--y1)] px-3 py-2 text-sm">
+          First in your basket: <strong>{pendingProduct}</strong>
         </p>
       )}
-      <p className="mt-2 text-sm text-slate-600">
-        Email and password. No confirmation email, you are in straight away.
-      </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label
             htmlFor="signup-email"
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-bold"
           >
             Email
           </label>
@@ -88,14 +86,14 @@ function SignupForm() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-base outline-none focus:border-emerald-600"
+            className="mt-1 field"
           />
         </div>
 
         <div>
           <label
             htmlFor="signup-password"
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-bold"
           >
             Password
           </label>
@@ -108,9 +106,9 @@ function SignupForm() {
             minLength={6}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-base outline-none focus:border-emerald-600"
+            className="mt-1 field"
           />
-          <p className="mt-1 text-xs text-slate-500">At least 6 characters.</p>
+          <p className="mt-1 text-xs text-slate-500">6+ characters</p>
         </div>
 
         {error && (
@@ -123,7 +121,7 @@ function SignupForm() {
           type="submit"
           data-testid="signup-submit"
           disabled={busy}
-          className="w-full rounded-xl bg-emerald-600 px-4 py-3 text-base font-semibold text-white hover:bg-emerald-700 disabled:opacity-60"
+          className="btn w-full py-3 text-lg"
         >
           {busy ? "Creating account…" : "Sign up"}
         </button>
@@ -131,10 +129,11 @@ function SignupForm() {
 
       <p className="mt-6 text-sm text-slate-600">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium underline">
+        <Link href="/login" className="font-bold underline">
           Log in
         </Link>
       </p>
+      </div>
     </main>
   );
 }

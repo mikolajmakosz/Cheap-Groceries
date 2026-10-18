@@ -8,10 +8,14 @@ import { createClient } from "@/lib/supabase/client";
 /**
  * The grading contract requires the logout button on every page of a logged-in
  * user, so it lives in the shared header rather than on /app alone.
+ *
+ * `signedIn` is null until the session has been read, so a logged-in person
+ * never sees the logged-out buttons flash by. The brand leads to the basket
+ * when signed in: the landing page is for strangers.
  */
 export default function SiteHeader() {
   const router = useRouter();
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
@@ -33,50 +37,46 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className="border-b border-slate-200">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="text-lg font-bold tracking-tight">
-          Cesta<span className="text-emerald-600">Pro</span>
+    <header
+      className="relative z-[1100] border-b-[3px] border-[var(--ink)] bg-[var(--paper)]"
+      style={{ height: "var(--header-h)" }}
+    >
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-3 sm:px-5">
+        <Link
+          href={signedIn ? "/app" : "/"}
+          className="display text-lg leading-none sm:text-2xl"
+        >
+          Cheap Groceries
         </Link>
 
-        {signedIn ? (
-          <div className="flex items-center gap-3">
-            <Link
-              href="/app"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900"
-            >
-              My basket
+        {signedIn === true && (
+          <nav className="flex items-center gap-2 sm:gap-3">
+            <Link href="/app" className="btn btn-light btn-sm">
+              Basket
             </Link>
-            <Link
-              href="/saved"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900"
-            >
-              Saved
+            <Link href="/saved" className="btn btn-sm sm:text-base">
+              Saved baskets
             </Link>
             <button
               type="button"
               data-testid="logout"
               onClick={handleLogout}
-              className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-50"
+              className="btn btn-light btn-sm"
             >
               Log out
             </button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900"
-            >
+          </nav>
+        )}
+
+        {signedIn === false && (
+          <nav className="flex items-center gap-2 sm:gap-3">
+            <Link href="/login" className="btn btn-light btn-sm">
               Log in
             </Link>
-            <Link
-              href="/signup"
-              className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700"
-            >
+            <Link href="/signup" className="btn btn-sm">
               Sign up
             </Link>
-          </div>
+          </nav>
         )}
       </div>
     </header>

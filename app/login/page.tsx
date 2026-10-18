@@ -34,14 +34,15 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="mx-auto max-w-sm px-4 py-12">
-      <h1 className="text-2xl font-bold tracking-tight">Log in</h1>
+    <main className="mx-auto max-w-sm px-4 py-10">
+      <div className="card p-6">
+      <h1 className="display text-4xl">Log in</h1>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label
             htmlFor="login-email"
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-bold"
           >
             Email
           </label>
@@ -53,14 +54,14 @@ export default function LoginPage() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-base outline-none focus:border-emerald-600"
+            className="mt-1 field"
           />
         </div>
 
         <div>
           <label
             htmlFor="login-password"
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-bold"
           >
             Password
           </label>
@@ -72,7 +73,7 @@ export default function LoginPage() {
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-base outline-none focus:border-emerald-600"
+            className="mt-1 field"
           />
         </div>
 
@@ -86,7 +87,7 @@ export default function LoginPage() {
           type="submit"
           data-testid="login-submit"
           disabled={busy}
-          className="w-full rounded-xl bg-emerald-600 px-4 py-3 text-base font-semibold text-white hover:bg-emerald-700 disabled:opacity-60"
+          className="btn w-full py-3 text-lg"
         >
           {busy ? "Logging in…" : "Log in"}
         </button>
@@ -94,10 +95,11 @@ export default function LoginPage() {
 
       <p className="mt-6 text-sm text-slate-600">
         No account yet?{" "}
-        <Link href="/signup" className="font-medium underline">
+        <Link href="/signup" className="font-bold underline">
           Sign up
         </Link>
       </p>
+      </div>
     </main>
   );
 }

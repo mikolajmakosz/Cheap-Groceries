@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Luckiest_Guy, Nunito } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin", "latin-ext"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const luckiest = Luckiest_Guy({
+  variable: "--font-luckiest",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
-  title: "CestaPro — find the cheapest supermarket for your shopping list",
+  title: "Cheap Groceries — the cheapest supermarket near IE University",
   description:
-    "CestaPro helps international students in Madrid see which supermarket their weekly shopping list is cheapest at, so they stop overpaying for the same basket.",
+    "Build a basket and see what it costs at Mercadona, Dia and more around IE University in Madrid.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${nunito.variable} ${luckiest.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
+      <body className="min-h-full flex flex-col">
         <SiteHeader />
         <div className="flex-1">{children}</div>
       </body>

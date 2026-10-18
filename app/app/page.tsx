@@ -12,15 +12,18 @@ import StoreMap from "@/components/StoreMap";
 import TripPanel from "@/components/TripPanel";
 import WhereToBuy from "@/components/WhereToBuy";
 import { CATALOGUE_STORES, type CatalogueEntry } from "@/lib/catalogue";
+import ProductBrowser from "@/components/ProductBrowser";
+import ShopCompare from "@/components/ShopCompare";
 import {
   compareBasket,
+  entryFor,
   formatEuro,
   formatQuantity,
   formatUnitPrice,
   portionCost,
   type BasketItem,
 } from "@/lib/pricing";
-import { ZERO, addNutrients, nutritionOf } from "@/lib/nutrition";
+import { planBasket } from "@/lib/plan";
 import { estimateShopMinutes } from "@/lib/shoptime";
 import { analyseTradeOff, bestStorePerChain } from "@/lib/tradeoff";
 import { useTrip } from "@/lib/useTrip";
@@ -38,6 +41,7 @@ export default function BasketPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [leftInset, setLeftInset] = useState(0);
+  const [browsing, setBrowsing] = useState(false);
 
   // On a phone the panel sits above the map rather than beside it.
   useEffect(() => {
@@ -104,7 +108,17 @@ export default function BasketPage() {
   }
 
   function handlePick(entry: CatalogueEntry) {
-    void add(entry.label);
+    void addEntry(entry);
+  }
+
+  /** A product already in the basket gets one more serving, not a second row. */
+  async function addEntry(entry: CatalogueEntry) {
+    const existing = items.find((item) => entryFor(item.name)?.term === entry.term);
+    if (existing) {
+      await handleQuantity(existing.id, existing.quantity + 1);
+    } else {
+      await add(entry.label);
+    }
   }
 
   async function handleRemove(id: string) {
@@ -172,12 +186,17 @@ export default function BasketPage() {
 
   const comparison = useMemo(() => compareBasket(items), [items]);
 
-  const nutrition = useMemo(
+  // Per-shop prices and nutrition of the basket as it stands, one serving cycle.
+  const shops = useMemo(() => planBasket(items, 1).stores, [items]);
+  const cheapestShop = shops.length > 1
+    ? shops.reduce((best, row) => (row.total < best.total ? row : best)).store
+    : (shops[0]?.store ?? null);
+  const shownShop = trip.selected?.chain ?? cheapestShop;
+  const shownPlan = shops.find((row) => row.store === shownShop) ?? null;
+  const inBasket = useMemo(
     () =>
-      comparison.pricing.reduce(
-        (sum, row) =>
-          row.entry ? addNutrients(sum, nutritionOf(row.entry, row.item.quantity)) : sum,
-        ZERO,
+      new Set(
+        comparison.pricing.flatMap((row) => (row.entry ? [row.entry.term] : [])),
       ),
     [comparison],
   );
@@ -210,7 +229,7 @@ export default function BasketPage() {
     : null;
 
   return (
-    <main className="relative h-[calc(100dvh-57px)] overflow-hidden">
+    <main className="relative h-[calc(100dvh-var(--header-h))] overflow-hidden">
       <StoreMap
         fill
         costByChain={costByChain}
@@ -223,28 +242,37 @@ export default function BasketPage() {
       />
 
       <aside
-        className="absolute inset-x-3 top-3 z-[1000] max-h-[58%] overflow-y-auto rounded-xl border border-slate-200 bg-white p-4 shadow-lg md:inset-x-auto md:left-4 md:top-4 md:max-h-[calc(100%-2rem)] md:w-[380px]"
+        className="card absolute inset-x-3 top-3 z-[1000] max-h-[58%] overflow-y-auto p-4 md:inset-x-auto md:left-4 md:top-4 md:max-h-[calc(100%-2rem)] md:w-[380px]"
         aria-label="Your basket"
       >
-        <h1 className="text-lg font-bold tracking-tight">Your basket</h1>
-        <p className="mb-3 mt-0.5 text-xs text-slate-500">
-          Type what you need. Pick a suggestion, or just press the button.
-        </p>
+        <div className="flex items-center justify-between gap-2">
+          <h1 className="display text-3xl leading-none">Basket</h1>
+          <button
+            type="button"
+            onClick={() => setBrowsing((open) => !open)}
+            aria-expanded={browsing}
+            className="btn btn-sm"
+          >
+            {browsing ? "Close products" : "Browse products"}
+          </button>
+        </div>
 
-        <ProductSearch
-          value={draft}
-          onChange={setDraft}
-          onPick={handlePick}
-          onSubmit={() => void add(draft)}
-          buttonLabel="Add"
-          placeholder="bread, leche, eggs…"
-          ariaLabel="Product to add to your basket"
-          busy={saving}
-          contractIds
-        />
+        <div className="mt-3">
+          <ProductSearch
+            value={draft}
+            onChange={setDraft}
+            onPick={handlePick}
+            onSubmit={() => void add(draft)}
+            buttonLabel="Add"
+            placeholder="bread, leche, eggs…"
+            ariaLabel="Product to add to your basket"
+            busy={saving}
+            contractIds
+          />
+        </div>
 
         {error && (
-          <p role="alert" className="mt-3 text-sm font-medium text-red-600">
+          <p role="alert" className="mt-3 text-sm font-bold text-red-600">
             {error}
           </p>
         )}
@@ -263,14 +291,14 @@ export default function BasketPage() {
         )}
 
         {loading ? (
-          <p className="mt-5 text-sm text-slate-500">Loading your basket…</p>
+          <p className="mt-5 text-sm text-slate-500">Loading…</p>
         ) : items.length === 0 ? (
-          <p className="mt-5 rounded-lg border border-dashed border-slate-300 p-4 text-center text-sm text-slate-500">
-            Your basket is empty. Add your first product above.
+          <p className="mt-5 rounded-xl border-2 border-dashed border-[var(--ink)] p-4 text-center text-sm">
+            Empty. Search above or browse products.
           </p>
         ) : (
           <>
-            <ul className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+            <ul className="mt-4 divide-y-2 divide-[var(--ink)] border-y-2 border-[var(--ink)]">
               {comparison.pricing.map((row) => {
                 const offers = comparison.stores
                   .map((store) => ({ store, offer: row.byStore[store] }))
@@ -287,7 +315,7 @@ export default function BasketPage() {
                         size={44}
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="break-words text-sm font-semibold">
+                        <p className="break-words text-sm font-extrabold">
                           {row.item.name}
                         </p>
 
@@ -302,18 +330,18 @@ export default function BasketPage() {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       aria-label={`${store}: ${offer!.name}, opens the shop's page`}
-                                      title={`Open this product at ${store}`}
-                                      className="flex w-[3.75rem] shrink-0 items-center gap-1 rounded-md border border-slate-200 bg-white px-1.5 py-1 hover:border-emerald-600"
+                                      title={`Open at ${store}`}
+                                      className="flex w-[3.75rem] shrink-0 items-center gap-1 rounded-md border-2 border-[var(--ink)] bg-white px-1.5 py-1"
                                     >
                                       <ShopLogo shop={store} height={14} />
                                       <span aria-hidden="true" className="text-[10px] text-slate-400">
                                         ↗
                                       </span>
                                     </a>
-                                    <span className="shrink-0 font-semibold text-slate-900">
+                                    <span className="shrink-0 font-bold">
                                       {formatUnitPrice(offer!, row.entry!)}
                                     </span>
-                                    <span className="ml-auto shrink-0 font-bold text-slate-900">
+                                    <span className="ml-auto shrink-0 font-extrabold">
                                       {formatEuro(
                                         portionCost(offer!, row.entry!, row.item.quantity),
                                       )}
@@ -337,11 +365,11 @@ export default function BasketPage() {
                                 }
                                 disabled={row.item.quantity <= 1}
                                 aria-label={`Fewer ${row.item.name}`}
-                                className="h-6 w-6 rounded-md border border-slate-300 text-sm leading-none text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                                className="stepper h-7 w-7"
                               >
                                 −
                               </button>
-                              <span className="min-w-[4.5rem] text-center text-xs font-medium">
+                              <span className="min-w-[4.5rem] text-center text-xs font-bold">
                                 {formatQuantity(row.item.quantity, row.entry)}
                               </span>
                               <button
@@ -351,16 +379,14 @@ export default function BasketPage() {
                                 }
                                 disabled={row.item.quantity >= MAX_QUANTITY}
                                 aria-label={`More ${row.item.name}`}
-                                className="h-6 w-6 rounded-md border border-slate-300 text-sm leading-none text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                                className="stepper h-7 w-7"
                               >
                                 +
                               </button>
                             </div>
                           </>
                         ) : (
-                          <p className="mt-0.5 text-xs text-slate-400">
-                            No price in the catalogue yet
-                          </p>
+                          <p className="mt-0.5 text-xs text-slate-400">No price</p>
                         )}
                       </div>
 
@@ -368,9 +394,9 @@ export default function BasketPage() {
                         type="button"
                         onClick={() => handleRemove(row.item.id)}
                         aria-label={`Remove ${row.item.name}`}
-                        className="shrink-0 rounded-md border border-slate-300 px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
+                        className="stepper h-7 w-7 shrink-0"
                       >
-                        Remove
+                        ×
                       </button>
                     </div>
                   </li>
@@ -380,61 +406,74 @@ export default function BasketPage() {
 
             <BasketActions count={items.length} onClear={clearBasket} onSave={saveBasket} />
 
-            <details className="mt-4 rounded-lg border border-slate-200 p-3">
-              <summary className="cursor-pointer text-sm font-semibold">
-                What is in this basket
-                <span className="ml-2 text-xs font-normal text-slate-500">
-                  {Math.round(nutrition.kcal).toLocaleString("en-GB")} kcal ·{" "}
-                  {Math.round(nutrition.protein)} g protein
-                </span>
-              </summary>
-              <div className="mt-3">
-                <NutritionPanel nutrition={nutrition} />
-                <p className="mt-2 text-[11px] text-slate-500">
-                  This is everything in the basket. To see it per day, save the basket and say how
-                  many days it has to last.
-                </p>
-              </div>
-            </details>
-
-            <section className="mt-4" aria-label="Where to buy it">
-              <h2 className="text-sm font-semibold">Where to buy it</h2>
-
-              {comparison.comparableCount === 0 ? (
-                <p className="mt-1 text-xs text-slate-500">
-                  None of your products are in the catalogue yet, so there is nothing to
-                  compare. They are still saved in your basket.
-                </p>
-              ) : (
-                <>
+            {comparison.comparableCount > 0 && (
+              <section className="mt-5" aria-label="Where to buy it">
+                <h2 className="display text-xl">Shops</h2>
+                <div className="mt-2">
                   <WhereToBuy
                     options={options}
                     analysis={analysis}
                     selectedStoreId={trip.selected?.id ?? null}
                     onSelect={(store) => void trip.select(store)}
                     hasHome={trip.home !== null}
-                    shopMinutes={shopMinutes}
-                    productCount={items.length}
                   />
-                  <p className="mt-2 text-[11px] leading-snug text-slate-500">
-                    {comparison.comparableCount} of {items.length} products, only the ones
-                    every shop can price. Prices are per kg, per litre, per dozen or per
-                    piece, the same measure in every shop, collected{" "}
-                    {comparison.pricesCheckedOn}. Click a shop to walk there on the map.
-                  </p>
-                </>
-              )}
-
-              {comparison.unpriced.length > 0 && (
-                <p className="mt-1 text-[11px] text-slate-500">
-                  Not included:{" "}
-                  {comparison.unpriced.map((row) => row.item.name).join(", ")}.
+                </div>
+                <p className="mt-2 text-xs text-slate-500">
+                  {comparison.comparableCount}/{items.length} products priced · {comparison.pricesCheckedOn}
                 </p>
-              )}
-            </section>
+              </section>
+            )}
+
+            {shownPlan && (
+              <section className="mt-5" aria-label="Nutrition">
+                <h2 className="display flex items-center gap-2 text-xl">
+                  Nutrition <ShopLogo shop={shownPlan.store} height={18} />
+                </h2>
+                <div className="mt-2">
+                  <NutritionPanel nutrition={shownPlan.nutrition} />
+                </div>
+                <p className="mt-2 text-xs text-slate-500">
+                  €{shownPlan.per100kcal?.toFixed(2) ?? "–"} per 100 kcal · €
+                  {shownPlan.perGramProtein?.toFixed(2) ?? "–"} per g protein
+                </p>
+                {shops.length > 1 && (
+                  <details className="mt-3">
+                    <summary className="cursor-pointer text-sm font-extrabold">
+                      Compare shops
+                    </summary>
+                    <div className="mt-2">
+                      <ShopCompare
+                        rows={shops}
+                        selected={shownShop}
+                        onSelect={(store) => {
+                          const best = options.find((option) => option.chain === store);
+                          if (best) void trip.select(best.store);
+                        }}
+                      />
+                    </div>
+                  </details>
+                )}
+              </section>
+            )}
+
+            {comparison.unpriced.length > 0 && (
+              <p className="mt-3 text-xs text-slate-500">
+                No price: {comparison.unpriced.map((row) => row.item.name).join(", ")}
+              </p>
+            )}
           </>
         )}
       </aside>
+
+      {browsing && (
+        <div className="absolute inset-x-3 bottom-3 top-3 z-[1050] md:inset-x-auto md:bottom-4 md:left-[412px] md:top-4 md:w-[min(520px,calc(100vw-432px))]">
+          <ProductBrowser
+            inBasket={inBasket}
+            onAdd={(entry) => void addEntry(entry)}
+            onClose={() => setBrowsing(false)}
+          />
+        </div>
+      )}
     </main>
   );
 }

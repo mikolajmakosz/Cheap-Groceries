@@ -1,9 +1,9 @@
-# CestaPro
+# Cheap Groceries
 
-**CestaPro helps international students in Madrid see which supermarket their weekly shopping list
+**Cheap Groceries helps international students in Madrid see which supermarket their weekly shopping list
 is cheapest at, so they stop overpaying for the same basket.**
 
-Write your shopping list in plain words — "pollo", "leche entera", "arroz" — and CestaPro prices the
+Write your shopping list in plain words — "pollo", "leche entera", "arroz" — and Cheap Groceries prices the
 same basket at Mercadona and Dia, then tells you which one is cheaper.
 
 Built for the EdTech Challenge: a real web app for a weekly problem of university life.
@@ -52,7 +52,7 @@ Two shops, 30 everyday products each, collected on 2026-10-17:
 reads prices from. It fails loudly when a chosen product has disappeared from a shop's data, so a
 renamed product shows up there and not as a silent missing price.
 
-Nothing is fetched at request time. A shop changing its website must not be able to take CestaPro down,
+Nothing is fetched at request time. A shop changing its website must not be able to take Cheap Groceries down,
 and the catalogue ships inside the app, so even the landing page can show prices to someone who has not
 signed in.
 

@@ -14,7 +14,7 @@ import { termFor, entryFor, suggest, compareBasket, formatQuantity, portionCost 
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
-import { FOODS, nutritionOf, eatenAmount, SALT_LIMIT_G } from "../lib/nutrition.ts";
+import { FOODS, nutritionOf, eatenAmount } from "../lib/nutrition.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
 import { planBasket, frequencyLabel } from "../lib/plan.ts";
 
@@ -194,7 +194,6 @@ const banana = entryFor("banana");
 check("the peel is not eaten", eatenAmount(banana, 1) < banana.serving, true);
 const eggs = entryFor("eggs");
 check("a dozen eggs is counted in pieces", Math.round(eatenAmount(eggs, 1)), 636);
-check("the salt guide is the WHO's 5 g", SALT_LIMIT_G, 5);
 
 console.log("\ntime in the shop");
 check("an empty basket takes no time", estimateShopMinutes([]), 0);

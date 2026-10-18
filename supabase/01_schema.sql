@@ -1,4 +1,4 @@
--- CestaPro — tables and Row Level Security
+-- Cheap Groceries — tables and Row Level Security
 -- Where to run this: Supabase dashboard -> SQL Editor -> New query -> paste -> Run.
 -- Safe to run more than once.
 

@@ -26,14 +26,14 @@ An automated bot grades this app on its public Vercel URL, acting like a strange
 
 ---
 
-# CestaPro — project brief
+# Cheap Groceries — project brief
 
 **Deadline: 22 October 2026.** Submitted through Deliver in Socratista (Async #1), never through the
 session-page form, which files the work as a group submission.
 
 ## One-liner
 
-CestaPro helps international students in Madrid see which supermarket their weekly shopping list is
+Cheap Groceries helps international students in Madrid see which supermarket their weekly shopping list is
 cheapest at, so they stop overpaying for the same basket.
 
 ## Who it is for

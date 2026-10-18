@@ -1,4 +1,4 @@
-import type { CatalogueEntry } from "./catalogue.ts";
+import type { CatalogueEntry, Offer } from "./catalogue.ts";
 
 export type Nutrients = {
   kcal: number;
@@ -112,22 +112,27 @@ export function eatenAmount(entry: CatalogueEntry, quantity: number): number {
   return grams * (food?.edible ?? 1);
 }
 
-/** What `quantity` servings of this product add up to, nutritionally. */
-export function nutritionOf(entry: CatalogueEntry, quantity: number): Nutrients {
+/**
+ * What `quantity` servings of this product add up to, nutritionally. With a
+ * shop's offer that carries its own label, the figures are that product's;
+ * otherwise the typical values for the food.
+ */
+export function nutritionOf(
+  entry: CatalogueEntry,
+  quantity: number,
+  offer?: Offer | null,
+): Nutrients {
   const food = FOODS[entry.term];
-  if (!food) return ZERO;
-  const per100: Nutrients = {
-    kcal: food.kcal,
-    protein: food.protein,
-    fat: food.fat,
-    carbs: food.carbs,
-    sugar: food.sugar,
-    salt: food.salt,
-  };
+  const per100: Nutrients | null = offer?.nutrition ?? (food
+    ? {
+        kcal: food.kcal,
+        protein: food.protein,
+        fat: food.fat,
+        carbs: food.carbs,
+        sugar: food.sugar,
+        salt: food.salt,
+      }
+    : null);
+  if (!per100) return ZERO;
   return scaleNutrients(per100, eatenAmount(entry, quantity) / 100);
 }
-
-/** WHO: less than 5 g of salt a day for an adult. */
-export const SALT_LIMIT_G = 5;
-/** WHO: free sugars under 10% of energy, about 50 g on 2,000 kcal; 25 g is better. */
-export const SUGAR_GUIDE_G = 50;

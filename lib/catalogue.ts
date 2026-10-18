@@ -1,5 +1,15 @@
 import { CATALOGUE_DATA } from "./catalogue-data.ts";
 
+/** What a product's label says per 100 g (or 100 ml). */
+export type Per100 = {
+  kcal: number;
+  protein: number;
+  fat: number;
+  carbs: number;
+  sugar: number;
+  salt: number;
+};
+
 export type Offer = {
   /** The product's name as the shop lists it, pack size included. */
   name: string;
@@ -10,6 +20,8 @@ export type Offer = {
   image: string | null;
   url: string | null;
   checked_on: string;
+  /** The label of this shop's own product, when one has been collected. */
+  nutrition?: Per100;
 };
 
 export type CatalogueEntry = {

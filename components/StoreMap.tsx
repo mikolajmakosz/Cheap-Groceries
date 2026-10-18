@@ -5,12 +5,12 @@ import type { LayerGroup, Map as LeafletMap, Marker } from "leaflet";
 import { CAMPUS, STORES, formatWalk, type Point, type Store } from "@/lib/geo";
 import { logoFor } from "@/lib/shops";
 
-const PRICED_COLOUR = "#059669";
-const PLAIN_COLOUR = "#94a3b8";
-const HOME_COLOUR = "#2563eb";
+const PRICED_COLOUR = "#14140f";
+const PLAIN_COLOUR = "#8a887d";
+const HOME_COLOUR = "#2b5a9b";
 
 export type MapRoute = {
-  /** Campus to the chosen shop. Drawn in green. */
+  /** Campus to the chosen shop. Drawn in ink. */
   toStore: [number, number][];
   /** The chosen shop to home. Drawn in blue, dashed. */
   toHome?: [number, number][];
@@ -48,8 +48,8 @@ function tooltipHtml(store: Store, cost: string | undefined, priced: boolean) {
   const lines = [
     `<strong>${escapeHtml(store.chain)}</strong>`,
     store.street ? escapeHtml(store.street) : "",
-    "about " + escapeHtml(formatWalk(CAMPUS, store)) + " from IE Tower",
-    priced && cost ? `Your basket: <strong>${escapeHtml(cost)}</strong>` : "",
+    escapeHtml(formatWalk(CAMPUS, store)),
+    priced && cost ? `<strong>${escapeHtml(cost)}</strong>` : "",
   ].filter(Boolean);
   return `<div style="font-size:12px;line-height:1.45">${lines.join("<br/>")}</div>`;
 }
@@ -57,14 +57,14 @@ function tooltipHtml(store: Store, cost: string | undefined, priced: boolean) {
 function storeIcon(L: Leaflet, chain: string, priced: boolean, selected: boolean) {
   const logo = logoFor(chain);
   const colour = priced ? PRICED_COLOUR : PLAIN_COLOUR;
-  const ring = selected ? `0 0 0 4px rgba(5,150,105,.35),` : "";
+  const ring = selected ? `0 0 0 4px #f2c31a,` : "";
 
   // Leaflet's stylesheet forces max-width/max-height to none on marker images,
   // so the logo is sized with width and height, never with a maximum.
   if (priced && logo) {
     return L.divIcon({
       className: "",
-      html: `<div style="display:flex;align-items:center;justify-content:center;width:50px;height:32px;background:#fff;border:${selected ? 3 : 2}px solid ${colour};border-radius:9px;box-shadow:${ring}0 1px 4px rgba(0,0,0,.4)"><img src="${logo}" alt="" style="display:block;width:38px;height:20px;object-fit:contain"/></div>`,
+      html: `<div style="display:flex;align-items:center;justify-content:center;width:50px;height:32px;background:#fff;border:${selected ? 3 : 2.5}px solid ${colour};border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;box-shadow:${ring}2px 3px 0 #14140f"><img src="${logo}" alt="" style="display:block;width:38px;height:20px;object-fit:contain"/></div>`,
       iconSize: [50, 32],
       iconAnchor: [25, 16],
     });
@@ -73,7 +73,7 @@ function storeIcon(L: Leaflet, chain: string, priced: boolean, selected: boolean
   const size = priced ? 18 : 14;
   return L.divIcon({
     className: "",
-    html: `<div style="width:${size}px;height:${size}px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:${ring}0 1px 3px rgba(0,0,0,.4)"></div>`,
+    html: `<div style="width:${size}px;height:${size}px;border-radius:999px;background:${colour};border:2px solid #fff;box-shadow:${ring}1px 2px 0 #14140f"></div>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -183,7 +183,7 @@ export default function StoreMap({
         zIndexOffset: 1000,
         icon: L.divIcon({
           className: "",
-          html: `<div style="background:#0f172a;color:#fff;font:600 11px/1 system-ui;padding:5px 8px;border-radius:999px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.35)">IE Tower</div>`,
+          html: `<div style="background:#14140f;color:#f4f3ef;font:800 11px/1 system-ui;padding:6px 9px;border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;white-space:nowrap;border:2px solid #f4f3ef;box-shadow:2px 3px 0 #14140f">IE Tower</div>`,
           iconSize: [66, 22],
           iconAnchor: [33, 11],
         }),
@@ -235,14 +235,14 @@ export default function StoreMap({
     const bounds = L.latLngBounds([[CAMPUS.lat, CAMPUS.lon]]);
 
     if (route?.toStore.length) {
-      // A white casing under the green line keeps it readable on busy streets.
-      L.polyline(route.toStore, { color: "#ffffff", weight: 10, opacity: 0.9 }).addTo(layer);
-      L.polyline(route.toStore, { color: PRICED_COLOUR, weight: 6, opacity: 0.95 }).addTo(layer);
+      // A paper casing under the ink line keeps it readable on busy streets.
+      L.polyline(route.toStore, { color: "#f4f3ef", weight: 11, opacity: 1, lineCap: "round" }).addTo(layer);
+      L.polyline(route.toStore, { color: PRICED_COLOUR, weight: 6, opacity: 1, lineCap: "round", lineJoin: "round" }).addTo(layer);
       route.toStore.forEach((point) => bounds.extend(point));
     }
 
     if (route?.toHome?.length) {
-      L.polyline(route.toHome, { color: "#ffffff", weight: 9, opacity: 0.9 }).addTo(layer);
+      L.polyline(route.toHome, { color: "#f4f3ef", weight: 10, opacity: 1, lineCap: "round" }).addTo(layer);
       L.polyline(route.toHome, {
         color: HOME_COLOUR,
         weight: 5,
@@ -259,7 +259,7 @@ export default function StoreMap({
         zIndexOffset: 800,
         icon: L.divIcon({
           className: "",
-          html: `<div style="background:${HOME_COLOUR};color:#fff;font:600 11px/1 system-ui;padding:5px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)">Home</div>`,
+          html: `<div style="background:${HOME_COLOUR};color:#fff;font:800 11px/1 system-ui;padding:6px 9px;border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;white-space:nowrap;border:2px solid #f4f3ef;box-shadow:2px 3px 0 #14140f">Home</div>`,
           iconSize: [52, 22],
           iconAnchor: [26, 11],
         }),
@@ -291,7 +291,7 @@ export default function StoreMap({
     return (
       <div
         ref={container}
-        className="absolute inset-0"
+        className="bw-map absolute inset-0"
         role="application"
         aria-label={`Map of supermarkets near ${CAMPUS.name}`}
       />
@@ -302,13 +302,10 @@ export default function StoreMap({
     <div>
       <div
         ref={container}
-        className={`${heightClass} w-full overflow-hidden rounded-xl border border-slate-200`}
+        className={`bw-map ${heightClass} w-full overflow-hidden rounded-xl border-2 border-[var(--ink)]`}
         role="application"
         aria-label={`Map of supermarkets near ${CAMPUS.name}`}
       />
-      <p className="mt-2 text-xs text-slate-500">
-        {STORES.length} supermarkets within 2 km of {CAMPUS.name}.
-      </p>
     </div>
   );
 }

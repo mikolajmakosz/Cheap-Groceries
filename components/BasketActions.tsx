@@ -29,7 +29,7 @@ export default function BasketActions({ count, onClear, onSave }: Props) {
       setName("");
       setMessage({ text: "Saved.", ok: true });
     } else {
-      setMessage({ text: result.error ?? "Could not save the basket.", ok: false });
+      setMessage({ text: result.error ?? "Could not save.", ok: false });
     }
   }
 
@@ -51,9 +51,9 @@ export default function BasketActions({ count, onClear, onSave }: Props) {
               setMode("saving");
               setMessage(null);
             }}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+            className="btn btn-sm"
           >
-            Save this basket
+            Save basket
           </button>
           <button
             type="button"
@@ -61,71 +61,46 @@ export default function BasketActions({ count, onClear, onSave }: Props) {
               setMode("confirmClear");
               setMessage(null);
             }}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+            className="btn btn-light btn-sm"
           >
-            Clear basket
+            Clear
           </button>
-          <Link href="/saved" className="text-xs font-medium text-emerald-700 underline">
-            Saved baskets
-          </Link>
         </div>
       )}
 
       {mode === "saving" && (
-        <form onSubmit={handleSave} className="rounded-lg border border-slate-200 p-2.5">
-          <label htmlFor="basket-name" className="block text-xs font-medium text-slate-700">
-            Name this basket
-          </label>
-          <div className="mt-1 flex gap-2">
-            <input
-              id="basket-name"
-              type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Week of 19 October"
-              maxLength={60}
-              autoFocus
-              className="min-w-0 flex-1 rounded-lg border border-slate-300 px-2.5 py-1.5 text-sm outline-none focus:border-emerald-600"
-            />
-            <button
-              type="submit"
-              disabled={busy}
-              className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-60"
-            >
-              {busy ? "Saving…" : "Save"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("idle")}
-              className="rounded-lg border border-slate-300 px-2.5 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
-            >
-              Cancel
-            </button>
-          </div>
+        <form onSubmit={handleSave} className="flex gap-2">
+          <input
+            id="basket-name"
+            type="text"
+            aria-label="Basket name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Name, e.g. Week 1"
+            maxLength={60}
+            autoFocus
+            className="field min-w-0 flex-1 !py-1.5 !text-sm"
+          />
+          <button type="submit" disabled={busy} className="btn btn-sm">
+            {busy ? "…" : "Save"}
+          </button>
+          <button type="button" onClick={() => setMode("idle")} className="btn btn-light btn-sm">
+            ×
+          </button>
         </form>
       )}
 
       {mode === "confirmClear" && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-2.5 text-xs text-red-900">
-          <p className="font-semibold">
-            Remove all {count} {count === 1 ? "product" : "products"} from your basket?
+        <div className="rounded-xl border-2 border-[var(--red)] bg-red-50 p-2.5 text-sm">
+          <p className="font-extrabold">
+            Remove all {count} {count === 1 ? "product" : "products"}?
           </p>
-          <p className="mt-0.5 text-red-800">This cannot be undone. Saved baskets are not touched.</p>
           <div className="mt-2 flex gap-2">
-            <button
-              type="button"
-              onClick={handleClear}
-              disabled={busy}
-              className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-60"
-            >
-              {busy ? "Clearing…" : "Yes, clear it"}
+            <button type="button" onClick={handleClear} disabled={busy} className="btn btn-sm">
+              {busy ? "…" : "Yes, clear"}
             </button>
-            <button
-              type="button"
-              onClick={() => setMode("idle")}
-              className="rounded-lg border border-red-300 bg-white px-3 py-1.5 text-xs font-semibold text-red-800 hover:bg-red-100"
-            >
-              Keep it
+            <button type="button" onClick={() => setMode("idle")} className="btn btn-light btn-sm">
+              Keep
             </button>
           </div>
         </div>
@@ -134,7 +109,7 @@ export default function BasketActions({ count, onClear, onSave }: Props) {
       {message && (
         <p
           role={message.ok ? "status" : "alert"}
-          className={`mt-2 text-xs font-medium ${message.ok ? "text-emerald-700" : "text-red-600"}`}
+          className={`mt-2 text-sm font-bold ${message.ok ? "" : "text-red-600"}`}
         >
           {message.text}
           {message.ok && (

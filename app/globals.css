@@ -2,20 +2,196 @@
 /* After Tailwind, so preflight does not flatten the map's own styles. */
 @import "leaflet/dist/leaflet.css";
 
+/* Palette and shapes follow dontlookup.app: warm paper, near-black ink, thick
+   outlines, hard offset shadows and slightly wobbly corners. The old slate and
+   emerald utility names are re-pointed here, so every screen picks the look up. */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --paper: #f4f3ef;
+  --ink: #14140f;
+  --red: #c0342a;
+  --blue: #2b5a9b;
+  --blue-soft: #9abeef;
+  --y1: #f8e08a;
+  --y2: #f2c31a;
+  --header-h: 60px;
+  --wobble: 16px 20px 15px 18px / 20px 15px 18px 16px;
+  --wobble-lg: 22px 26px 20px 24px / 26px 20px 24px 22px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-nunito), ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  --font-display: var(--font-luckiest), ui-rounded, system-ui, sans-serif;
+
+  --color-white: #ffffff;
+  --color-slate-50: #efede6;
+  --color-slate-100: #e8e6dd;
+  --color-slate-200: #cfcdc3;
+  --color-slate-300: #14140f;
+  --color-slate-400: #77756b;
+  --color-slate-500: #5b5a50;
+  --color-slate-600: #3d3c34;
+  --color-slate-700: #26261f;
+  --color-slate-800: #14140f;
+  --color-slate-900: #14140f;
+
+  --color-emerald-50: #fbf1c4;
+  --color-emerald-100: #f8e08a;
+  --color-emerald-200: #14140f;
+  --color-emerald-600: #14140f;
+  --color-emerald-700: #000000;
+  --color-emerald-800: #14140f;
+  --color-emerald-900: #14140f;
+
+  --color-sky-100: #9abeef;
+  --color-sky-800: #14140f;
+  --color-amber-500: #f2c31a;
+  --color-amber-700: #7a5600;
+  --color-red-50: #f8dedb;
+  --color-red-200: #c0342a;
+  --color-red-300: #c0342a;
+  --color-red-600: #c0342a;
+  --color-red-700: #9a2a21;
+  --color-red-800: #7e211a;
+  --color-red-900: #5e1913;
+}
+
+html {
+  background: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-nunito), ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Headings and buttons use the poster face. */
+.display {
+  font-family: var(--font-luckiest), ui-rounded, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Black pill: the primary action. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2.5px solid var(--paper);
+  border-radius: var(--wobble);
+  box-shadow: 3px 4px 0 var(--ink);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-luckiest), ui-rounded, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 5px 0 var(--ink);
+}
+.btn:active {
+  transform: translate(2px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* White pill with an ink outline: the secondary action. */
+.btn-light {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* A smaller button for tight spaces. */
+.btn-sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  box-shadow: 2px 3px 0 var(--ink);
+}
+
+/* Cards and panels. */
+.card {
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: var(--wobble-lg);
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+.field {
+  width: 100%;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  font-size: 1rem;
+  outline: none;
+}
+.field:focus {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Small outlined controls (the − and + quantity buttons). */
+.stepper {
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+.stepper:disabled {
+  opacity: 0.4;
+}
+
+/* Black-and-white map: the OpenStreetMap tiles are desaturated and given a
+   paper tint, markers and routes are drawn in ink. */
+.bw-map {
+  background: var(--paper);
+}
+.bw-map .leaflet-tile-pane {
+  filter: grayscale(1) contrast(1.1) brightness(1.04) sepia(0.12);
+}
+.bw-map .leaflet-container {
+  background: var(--paper);
+  font-family: var(--font-nunito), system-ui, sans-serif;
+}
+.bw-map .leaflet-control-zoom a {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.bw-map .leaflet-control-zoom {
+  border: none;
+}
+.bw-map .leaflet-tooltip {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 2px 3px 0 var(--ink);
+  color: var(--ink);
+  font-family: var(--font-nunito), system-ui, sans-serif;
 }

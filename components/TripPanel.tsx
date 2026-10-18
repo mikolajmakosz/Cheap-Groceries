@@ -47,7 +47,7 @@ export default function TripPanel({
 
   return (
     <section
-      className="mt-4 rounded-xl border-2 border-emerald-600 bg-emerald-50/40 p-3"
+      className="mt-4 rounded-2xl border-[3px] border-[var(--ink)] bg-[var(--y1)] p-3"
       aria-label="Your walk"
     >
       <div className="flex items-start justify-between gap-2">
@@ -61,7 +61,7 @@ export default function TripPanel({
           type="button"
           onClick={onClose}
           aria-label="Close the walk"
-          className="shrink-0 rounded-md px-1.5 text-lg leading-none text-slate-500 hover:bg-white"
+          className="shrink-0 rounded-md px-1.5 text-lg leading-none text-slate-500 hover:bg-white/60"
         >
           ×
         </button>
@@ -69,13 +69,13 @@ export default function TripPanel({
 
       <dl className="mt-3 space-y-1.5 text-sm">
         <div className="flex items-baseline justify-between gap-3">
-          <dt className="text-slate-600">
-            <span className="mr-1.5 inline-block h-1.5 w-4 rounded bg-emerald-600 align-middle" />
-            IE Tower to shop
+          <dt className="text-slate-700">
+            <span className="mr-1.5 inline-block h-1.5 w-4 rounded bg-[var(--ink)] align-middle" />
+            Campus → shop
           </dt>
           <dd className="font-semibold">
             {loading && !toStore
-              ? "Finding the route…"
+              ? "…"
               : toStore
                 ? `${toStore.minutes} min · ${distance(toStore.metres)}`
                 : "—"}
@@ -84,13 +84,13 @@ export default function TripPanel({
 
         {home && (
           <div className="flex items-baseline justify-between gap-3">
-            <dt className="text-slate-600">
-              <span className="mr-1.5 inline-block h-1.5 w-4 rounded border-b-2 border-dotted border-blue-600 align-middle" />
-              Shop to home
+            <dt className="text-slate-700">
+              <span className="mr-1.5 inline-block h-1.5 w-4 rounded border-b-2 border-dotted border-[var(--blue)] align-middle" />
+              Shop → home
             </dt>
             <dd className="font-semibold">
               {loading && !toHome
-                ? "Finding the route…"
+                ? "…"
                 : toHome
                   ? `${toHome.minutes} min · ${distance(toHome.metres)}`
                   : "—"}
@@ -100,20 +100,18 @@ export default function TripPanel({
 
         {shopMinutes > 0 && (
           <div className="flex items-baseline justify-between gap-3">
-            <dt className="text-slate-600">Inside the shop</dt>
-            <dd className="font-semibold">about {shopMinutes} min</dd>
+            <dt className="text-slate-700">In the shop</dt>
+            <dd className="font-semibold">{shopMinutes} min</dd>
           </div>
         )}
 
         {total && detour !== null && (
-          <div className="flex items-baseline justify-between gap-3 border-t border-emerald-200 pt-1.5">
-            <dt className="text-slate-600">Campus, shop, home</dt>
+          <div className="flex items-baseline justify-between gap-3 border-t-2 border-[var(--ink)] pt-1.5">
+            <dt className="text-slate-700">Total</dt>
             <dd className="font-bold">
               {total.minutes} min
               <span className="ml-1.5 text-xs font-medium text-slate-500">
-                {detour <= 0
-                  ? "no longer than going straight home"
-                  : `${detour} min more than going straight home`}
+                {detour <= 0 ? "" : `+${detour} vs straight home`}
               </span>
             </dd>
           </div>
@@ -122,8 +120,7 @@ export default function TripPanel({
 
       {estimated && (
         <p className="mt-2 text-[11px] text-slate-500">
-          The route service did not answer, so these times are estimates from straight-line
-          distance.
+          Estimated times (route service offline).
         </p>
       )}
 
@@ -134,7 +131,7 @@ export default function TripPanel({
             <button
               type="button"
               onClick={() => onHome(null)}
-              className="shrink-0 font-medium text-slate-700 underline"
+              className="shrink-0 font-bold underline"
             >
               Remove
             </button>

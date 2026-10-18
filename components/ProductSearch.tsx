@@ -18,8 +18,6 @@ type Props = {
   busy?: boolean;
   /** Puts the grading contract's test ids on the field and its button. */
   contractIds?: boolean;
-  /** A dark button instead of the green one, for pages where another button leads. */
-  quietButton?: boolean;
 };
 
 function offerSummary(entry: CatalogueEntry): string {
@@ -51,7 +49,6 @@ export default function ProductSearch({
   ariaLabel,
   busy = false,
   contractIds = false,
-  quietButton = false,
 }: Props) {
   const listId = useId();
   const [focused, setFocused] = useState(false);
@@ -107,17 +104,13 @@ export default function ProductSearch({
           aria-controls={listId}
           aria-autocomplete="list"
           data-testid={contractIds ? "core-input" : undefined}
-          className="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-emerald-600"
+          className="field min-w-0 flex-1"
         />
         <button
           type="submit"
           disabled={busy}
           data-testid={contractIds ? "core-submit" : undefined}
-          className={`rounded-lg px-4 py-2.5 text-base font-semibold text-white disabled:opacity-60 ${
-            quietButton
-              ? "bg-slate-800 hover:bg-slate-700"
-              : "bg-emerald-600 hover:bg-emerald-700"
-          }`}
+          className="btn px-5 py-2.5"
         >
           {busy ? "Adding…" : buttonLabel}
         </button>
@@ -127,7 +120,7 @@ export default function ProductSearch({
         <ul
           id={listId}
           role="listbox"
-          className="mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
+          className="mt-2 overflow-hidden rounded-xl border-2 border-[var(--ink)] bg-white"
         >
           {suggestions.map((entry, index) => (
             <li
@@ -144,13 +137,13 @@ export default function ProductSearch({
                   onPick(entry);
                   setActive(-1);
                 }}
-                className={`flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-emerald-50 ${
-                  index === active ? "bg-emerald-50" : ""
+                className={`flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-[var(--y1)] ${
+                  index === active ? "bg-[var(--y1)]" : ""
                 }`}
               >
                 <ProductImage src={thumbnail(entry)} alt="" size={40} />
                 <span className="min-w-0">
-                  <span className="block truncate text-sm font-semibold">
+                  <span className="block truncate text-sm font-extrabold">
                     {entry.label}
                   </span>
                   <span className="block truncate text-xs text-slate-500">

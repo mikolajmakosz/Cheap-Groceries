@@ -6,7 +6,7 @@
  *
  * Run by hand, like the prices. OpenStreetMap's Overpass API is slow and rate
  * limited, so asking it on every page view would let someone else's server
- * decide whether CestaPro is up.
+ * decide whether Cheap Groceries is up.
  */
 
 import { writeFile, mkdir } from "node:fs/promises";
@@ -80,7 +80,7 @@ async function ask() {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             Accept: "application/json",
-            "User-Agent": "CestaPro-student-project/0.1",
+            "User-Agent": "Cheap Groceries-student-project/0.1",
           },
           body: new URLSearchParams({ data: QUERY }),
         });

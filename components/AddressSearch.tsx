@@ -84,7 +84,7 @@ export default function AddressSearch({ onPlace }: Props) {
     setBusy(false);
 
     if (!place) {
-      setError("Could not find that address in Madrid. Try the street and number.");
+      setError("Address not found. Try street and number.");
       return;
     }
     setQuery(place.label);
@@ -107,8 +107,8 @@ export default function AddressSearch({ onPlace }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="mt-3">
-      <label htmlFor="home-address" className="block text-xs font-medium text-slate-700">
-        And from there to your home?
+      <label htmlFor="home-address" className="block text-xs font-bold">
+        Your home (optional)
       </label>
 
       <div className="mt-1 flex gap-2">
@@ -130,12 +130,12 @@ export default function AddressSearch({ onPlace }: Props) {
           aria-expanded={visible.length > 0}
           aria-controls={listId}
           aria-autocomplete="list"
-          className="min-w-0 flex-1 rounded-lg border border-slate-300 px-2.5 py-2 text-sm outline-none focus:border-emerald-600"
+          className="field min-w-0 flex-1 !py-1.5 !text-sm"
         />
         <button
           type="submit"
           disabled={busy || query.trim().length < 3}
-          className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
+          className="btn btn-sm"
         >
           {busy ? "…" : "Show"}
         </button>
@@ -145,7 +145,7 @@ export default function AddressSearch({ onPlace }: Props) {
         <ul
           id={listId}
           role="listbox"
-          className="mt-1.5 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
+          className="mt-1.5 overflow-hidden rounded-xl border-2 border-[var(--ink)] bg-white"
         >
           {visible.map((suggestion, index) => (
             <li key={suggestion.label} role="option" aria-selected={index === active}>
@@ -154,8 +154,8 @@ export default function AddressSearch({ onPlace }: Props) {
                 // Keeps the field focused so the list does not close before the click lands.
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => void choose(suggestion)}
-                className={`block w-full px-3 py-2 text-left text-sm hover:bg-emerald-50 ${
-                  index === active ? "bg-emerald-50" : ""
+                className={`block w-full px-3 py-2 text-left text-sm hover:bg-[var(--y1)] ${
+                  index === active ? "bg-[var(--y1)]" : ""
                 }`}
               >
                 {suggestion.label}
@@ -171,8 +171,7 @@ export default function AddressSearch({ onPlace }: Props) {
         </p>
       )}
       <p className="mt-1.5 text-[11px] text-slate-500">
-        What you type is sent to OpenStreetMap services to find the address. We do not store it,
-        and it is forgotten when you reload.
+        Sent to OpenStreetMap to find it. Not stored.
       </p>
     </form>
   );
