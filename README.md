@@ -249,6 +249,15 @@ tap one that is already there to add a serving. The look follows dontlookup.app:
 shadows, Luckiest Guy for headlines and Nunito for text (both open fonts). The map is the same
 OpenStreetMap data drawn in greyscale; a truly hand-drawn map would need its own tile set.
 
+## First-visit tutorial
+
+The first time a signed-in person arrives, a walkthrough lights up one thing at a time, dims the rest of the
+screen and explains it in a speech bubble: open your basket, type a product, set the amount, compare the shops,
+add the next product, add your address, choose where you come from, choose a shop, save, open your baskets, read
+the settlement, compare the macros ([`components/Tour.tsx`](components/Tour.tsx)). The **? Tutorial** button bottom
+left starts it again. The dimming lets every click through, so the app works the same with the tour on screen. Only
+whether the tour was finished is kept in the browser (no user data).
+
 ## How it works video
 
 The landing page's **How it works** button opens an 88-second motion-graphics explainer

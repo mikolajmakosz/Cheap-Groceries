@@ -270,7 +270,7 @@ export default function BasketPage() {
           </button>
         </div>
 
-        <div className="mt-3">
+        <div className="mt-3" data-tour="search">
           <ProductSearch
             value={draft}
             onChange={setDraft}
@@ -290,7 +290,7 @@ export default function BasketPage() {
           </p>
         )}
 
-        <div className="mt-3">
+        <div className="mt-3" data-tour="trip">
           <TripSettings compact />
         </div>
 
@@ -313,7 +313,7 @@ export default function BasketPage() {
         ) : (
           <>
             <ul className="mt-4 divide-y-2 divide-[var(--ink)] border-y-2 border-[var(--ink)]">
-              {comparison.pricing.map((row) => {
+              {comparison.pricing.map((row, rowIndex) => {
                 const offers = comparison.stores
                   .map((store) => ({ store, offer: row.byStore[store] }))
                   .filter((pair) => pair.offer !== null);
@@ -362,7 +362,7 @@ export default function BasketPage() {
 
                         {row.entry && offers.length > 0 ? (
                           <>
-                            <ul className="mt-1.5 space-y-1.5">
+                            <ul className="mt-1.5 space-y-1.5" data-tour={rowIndex === 0 ? "compare" : undefined}>
                               {shownOffers.map(({ store, offer }) => (
                                 <li key={store}>
                                   <div className="flex items-center gap-2 text-xs">
@@ -416,7 +416,7 @@ export default function BasketPage() {
                               </button>
                             )}
 
-                            <div className="mt-2 flex items-center gap-2">
+                            <div className="mt-2 flex items-center gap-2" data-tour={rowIndex === 0 ? "quantity" : undefined}>
                               <button
                                 type="button"
                                 onClick={() =>
@@ -463,10 +463,12 @@ export default function BasketPage() {
               })}
             </ul>
 
-            <BasketActions count={items.length} onClear={clearBasket} onSave={saveBasket} />
+            <div data-tour="save">
+              <BasketActions count={items.length} onClear={clearBasket} onSave={saveBasket} />
+            </div>
 
             {comparison.comparableCount > 0 && (
-              <section className="mt-5" aria-label="Where to buy it">
+              <section className="mt-5" aria-label="Where to buy it" data-tour="shops">
                 <h2 className="display text-xl">Shops</h2>
                 <div className="mt-2">
                   <WhereToBuy

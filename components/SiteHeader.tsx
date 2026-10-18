@@ -70,7 +70,7 @@ export default function SiteHeader() {
             <Link href="/app" className="btn btn-light btn-sm">
               Basket
             </Link>
-            <Link href="/saved" className="btn btn-sm sm:text-base">
+            <Link href="/saved" data-tour="saved-link" className="btn btn-sm sm:text-base">
               Saved baskets
             </Link>
             <button

@@ -224,7 +224,7 @@ function BasketCard({
           ? periods.reduce((x, y) => (y.span.euros < x.span.euros ? y : x))
           : null;
         return best ? (
-          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border-2 border-[var(--ink)] bg-[var(--y1)] px-3 py-2">
+          <div data-tour="settlement" className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border-2 border-[var(--ink)] bg-[var(--y1)] px-3 py-2">
             <ShopLogo shop={best.chain} height={20} />
             <span className="text-sm font-bold">
               Basket <strong className="text-lg">{formatEuro(best.total)}</strong>
@@ -240,6 +240,7 @@ function BasketCard({
       <button
         type="button"
         aria-expanded={expanded || editing}
+        data-tour="details"
         onClick={() => setExpanded((on) => !on)}
         className="mt-3 text-sm font-extrabold underline decoration-2 underline-offset-2"
       >

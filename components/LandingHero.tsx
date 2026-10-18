@@ -79,7 +79,7 @@ export default function LandingHero() {
         </p>
 
         {signedIn ? (
-          <Link href="/app" className="btn mt-5 w-full py-3 text-lg">
+          <Link href="/app" data-tour="open-basket" className="btn mt-5 w-full py-3 text-lg">
             Open my basket
           </Link>
         ) : (
