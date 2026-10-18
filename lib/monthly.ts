@@ -1,5 +1,6 @@
 import { CAMPUS, walkingMinutes, type Point, type Store } from "./geo.ts";
 import { MONTH_DAYS } from "./plan.ts";
+import { deliveryFee } from "./delivery.ts";
 
 /** One shop over a billing period: what it costs and how much time it takes. */
 export type Month = {
@@ -44,6 +45,45 @@ export function periodFor(
     minutes: Math.round(perTrip * trips),
     euros: perDay * periodDays,
     withHome: home !== null,
+  };
+}
+
+/** The same basket brought home instead of carried: no trips, a delivery charge each time. */
+export type Delivered = {
+  /** Deliveries in the period. */
+  deliveries: number;
+  /** The charge for one delivery, 0 when the basket is big enough to be free. */
+  feeEach: number;
+  /** Delivery charges over the period. */
+  fees: number;
+  /** Basket money plus delivery charges over the period. */
+  euros: number;
+  /** Minutes of your own time the trips would have taken, which delivery gives back. */
+  minutesSaved: number;
+  /** What each hour of that time costs; null when there are no fees or no time saved. */
+  perHour: number | null;
+};
+
+/**
+ * Delivery over a billing period: the shop's usual cost plus a charge for each
+ * delivery (free when one basket is worth enough), set against the trip minutes
+ * it saves. `walk` is what carrying the same basket would take over the period.
+ */
+export function deliveredFor(
+  shop: string,
+  basketTotal: number,
+  walk: Month,
+): Delivered {
+  const feeEach = deliveryFee(shop, basketTotal);
+  const fees = feeEach * walk.trips;
+  const hoursSaved = walk.minutes / 60;
+  return {
+    deliveries: walk.trips,
+    feeEach,
+    fees,
+    euros: walk.euros + fees,
+    minutesSaved: walk.minutes,
+    perHour: fees > 0 && hoursSaved > 0 ? fees / hoursSaved : null,
   };
 }
 

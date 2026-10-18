@@ -81,22 +81,29 @@ chicken, a litre of milk, a dozen eggs), so the total describes something a stud
 `npm test` refuses a catalogue in which two shops price the same product more than 2x apart. A gap that
 wide almost always means two different products were paired, and the app would announce a false winner.
 
-### Soy Super
+### Four supermarkets, every product at all of them
 
-A Soy Super product page lists the same **branded** product's price in every shop that sells it, so ten
-branded products (Pascual milk, Danone yogurt, Coca-Cola, Gallo pasta, Brillante rice, Ybarra and
-Carbonell olive oil, Orlando tomato sauce, Calvo tuna, Font Vella water) are priced at Alcampo, Carrefour,
-Dia and Mercadona from [`data/soysuper.json`](data/soysuper.json). They sit in the same aisles as the
-everyday terms. Which shops a basket compares follows the basket (`shopsFor` in `lib/pricing.ts`): no shop
-sells everything, so the group of shops that prices the most of it is compared, and a product a shop does
-not carry never counts as free.
+Mercadona, Dia, Carrefour and Alcampo only: smaller shops charge more, so they are left out. **A product is
+in the catalogue only if all four sell it**, so any basket can be compared across the four and nothing is
+priced at a shop that lacks it. The build ([`scripts/build-catalogue.mjs`](scripts/build-catalogue.mjs))
+holds back any term missing from a shop and lists it, so a gap shows up when the catalogue is built, not as a
+wrong total. Today that is 42 products; the held-back ones (butter, cereal, potatoes, lettuce, salmon,
+apples, pork, minced meat, cheese slices at Alcampo and others) return as soon as a matching product is found
+at the missing shop.
 
-What it cannot give: own brands (Hacendado, Dia, Carrefour) exist in one shop only, so they are not
-comparable there; its photos carry its watermark, so these ten have no picture and their link opens the
-product on Soy Super; and of the products checked none carried a usable nutrition table, so their
-nutrition is the typical values for the food. The pages sit behind a proof-of-work check, so they were
-read from a normal browser session, a few seconds apart, and the collection stops at any challenge.
-El Corte Ingles and Hipercor prices are left out because the app holds no locations for them.
+Where the four shops' products come from:
+
+- **Mercadona** from its own public API and **Dia** by hand ([`data/mercadona.json`](data/mercadona.json),
+  [`data/dia.json`](data/dia.json)).
+- **Carrefour and Alcampo** from Soy Super's per-shop search ([`data/shops4.json`](data/shops4.json)): the shop's
+  own-brand product that matches the term, kept only when its price per kg or litre is within 0.6x to 1.7x of
+  the others' and its name carries the product's keyword. Their links open the product on Soy Super. The
+  pages sit behind a proof-of-work check, so they were read from a normal browser session, a few seconds apart,
+  and the collection stops at any challenge.
+- **Coca-Cola**, the one branded product all four sell, from a Soy Super product page
+  ([`data/soysuper.json`](data/soysuper.json)); other brands are sold by only some of the four.
+
+Soy Super's photos carry its watermark and are not used; products show the Mercadona or Dia photo.
 
 ### Findit
 
@@ -106,7 +113,7 @@ the others: one product page at a time, a few seconds apart, no crawling. It gav
 
 - **26 more terms** in [`data/findit.json`](data/findit.json): the ordinary own-brand product (Hacendado,
   Dia, Carrefour, Auchan/Alcampo) of each shop that has one, with its photo and, where Findit has it, its
-  label. A term lists only the shops where such a product was found, so the pairs are like for like.
+  label. Terms Findit and Soy Super together cover at all four shops are kept; the rest are held back.
 - **Labels** for everyday terms that lacked one (`fill`), such as Mercadona's milk, eggs and chicken.
 - **Photos** for the ten Soy Super branded terms (`photos`): Findit's picture of the same brand and type.
 
@@ -176,9 +183,8 @@ Every basket shows its energy, protein, fat, carbohydrate, sugars and salt, and 
 click Mercadona or Dia and the figures change to that shop's products. Where a product's label could be
 collected, the app uses it ([`data/nutrition-dia.json`](data/nutrition-dia.json) from dia.es,
 [`data/nutrition-mercadona.json`](data/nutrition-mercadona.json) from Open Food Facts, looked up by the EAN
-Mercadona's API gives). Fresh produce, fresh meat and fish, eggs, milk and bread carry no table there, so
-they use **typical values** ([`lib/nutrition.ts`](lib/nutrition.ts)). A product's label counts only when
-both shops have one, so the baskets are weighed on the same footing. Not dietary advice.
+Mercadona's API gives). Where a shop's product has no label (fresh produce, fresh meat and fish, most Carrefour and Alcampo
+products) the **typical values** for the food are used ([`lib/nutrition.ts`](lib/nutrition.ts)). Not dietary advice.
 
 What is counted is what is eaten: peel, core and shell are left out, and counted things (eggs, a lettuce)
 are converted to grams. `npm test` checks that energy agrees with the macros it is made of.
@@ -221,6 +227,16 @@ a photo and a price each ([`lib/categories.ts`](lib/categories.ts)). Tap a produ
 tap one that is already there to add a serving. The look follows dontlookup.app: warm paper, near-black ink, thick outlines, hard offset
 shadows, Luckiest Guy for headlines and Nunito for text (both open fonts). The map is the same
 OpenStreetMap data drawn in greyscale; a truly hand-drawn map would need its own tile set.
+
+## Delivery
+
+Next to **I go**, the shop list and each saved basket have **Delivery**: the basket plus the shop's delivery
+charge ([`lib/delivery.ts`](lib/delivery.ts): Mercadona €8.20, Dia €3.99 free from €100, Carrefour €7 free
+from €120, Alcampo €7, for the IE Tower postcode 28029 as Soy Super's cart showed them on 18 October 2026,
+before a delivery slot is chosen), and **what each hour of your own time saved really costs**: the delivery
+charge divided by the hours the trip would have taken (the walk there, the shopping, and the way on to home beyond
+going straight home). In a saved basket it is per billing period: charges per delivery times deliveries in the
+period, against the minutes of trips given back.
 
 ## Time in the shop
 

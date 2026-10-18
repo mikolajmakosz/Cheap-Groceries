@@ -1,0 +1,692 @@
+{
+ "source": "Soy Super per-shop search (soysuper.com/search with that shop selected, postcode 28029), read in a normal browser session a few seconds apart; the shop's own-brand product that matches each term, kept only when its price per kg or per litre is within 0.6x to 1.7x of the other shops' and its name carries the product's keyword. A few were corrected by hand from Findit pages (slug 'findit:<id>').",
+ "collected_on": "2026-10-18",
+ "picks": {
+  "pollo": {
+   "Carrefour": [
+    "Pechuga de pollo certificado en filetes Carrefour 500 g aprox",
+    4.72,
+    9.44,
+    "pechuga-pollo-fileteada-bandeja-de-500-0-g"
+   ],
+   "Alcampo": [
+    "Auchan Pechuga de pollo filete abierta. Producto Alcampo 500 gr",
+    4.25,
+    8.5,
+    "producto-alcampo-pechuga-de-pollo-filete-abierta-producto-alcampo"
+   ]
+  },
+  "cerdo": {
+   "Carrefour": [
+    "Filetes de centro de lomo de cerdo 540 g aprox",
+    3.51,
+    6.5,
+    "filetes-finos-de-lomo-de-cerdo-para-plancha-o-freir-bandeja-de-540-0-g-aprox"
+   ]
+  },
+  "carne picada": {
+   "Carrefour": [
+    "Preparado de carne burger meat vacuno y cerdo El Mercado 500 g",
+    3.99,
+    7.98,
+    "picada-mixta-500g-hiper-carrefour-500g"
+   ]
+  },
+  "jamon cocido": {
+   "Carrefour": [
+    "Jamón cocido extra en lonchas Carrefour El Mercado 250 g",
+    2.69,
+    10.76,
+    "jamon-cocido-extra-carrefour-el-mercado-250-g-250-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Collection Jamón cocido extra selección - Loncha fina 1 mm 170 gr",
+    2.3,
+    13.53,
+    "jamon-cocido-extra-alcampo-gourmet-seleccion-loncha-fina-1-mm-alcampo-gourmet"
+   ]
+  },
+  "leche": {
+   "Carrefour": [
+    "Leche entera Carrefour Brik 1 l",
+    0.96,
+    0.96,
+    "leche-entera-carrefour-1-l-1"
+   ],
+   "Alcampo": [
+    "Auchan Leche entera de vaca Producto Alcampo 1 l",
+    0.96,
+    0.96,
+    "leche-entera-e-c-auchan-1-litro"
+   ]
+  },
+  "mantequilla": {
+   "Carrefour": [
+    "Mantequilla pastilla con sal Carrefour Classic 250 g",
+    2.05,
+    8.2,
+    "mantequilla-con-sal-carrefour-250-g-250-g"
+   ]
+  },
+  "queso fresco": {
+   "Carrefour": [
+    "Queso fresco Carrefour Classic 250 g",
+    1.15,
+    4.6,
+    "queso-fresco-carrefour-4x62-5-carrefour"
+   ],
+   "Alcampo": [
+    "Auchan Queso fresco uds. Producto Alcampo Tarrina de 250 g. pack de 2",
+    2.05,
+    4.1,
+    "queso-fresco-auchan-tarrina-de-250-gr-1"
+   ]
+  },
+  "yogur": {
+   "Carrefour": [
+    "Yogur natural Carrefour Pack de 8 unidades de 125 g",
+    1.31,
+    1.31,
+    "yogur-natural-carrefour-pack-de-8-unidades-de-125-g-pack-de-8-unidades-de-125-g"
+   ],
+   "Alcampo": [
+    "Auchan Yogur natural Producto Alcampo 4 x 125 g.",
+    0.69,
+    1.38,
+    "yogur-natural-auchan-pack-de-4-uds-de-125-gr"
+   ]
+  },
+  "pan": {
+   "Carrefour": [
+    "Barra de pan Carrefour 250 g",
+    0.45,
+    0.45,
+    "barra-de-pan-carrefour-bolsa-de-1-unidad-2"
+   ],
+   "Alcampo": [
+    "Barra de pan común 250 g",
+    0.44,
+    0.44,
+    "barra-de-pan-solera-250g-250-g"
+   ]
+  },
+  "pan de molde": {
+   "Carrefour": [
+    "Pan de molde blanco con corteza Carrefour Classic sin azúcar 820 g",
+    1.15,
+    1.4024,
+    "findit:244623"
+   ],
+   "Alcampo": [
+    "Producto alcampo Pan de molde blanco con corteza 1000 g",
+    1.4,
+    1.4,
+    "pan-de-molde-normal-p-economico-alcampo-1000g"
+   ]
+  },
+  "arroz": {
+   "Alcampo": [
+    "Producto alcampo Arroz redondo extra Paquete de 1 kg",
+    1.15,
+    1.15,
+    "arroz-redondo-extra-auchan-1kg"
+   ],
+   "Carrefour": [
+    "Arroz categoría primera Carrefour 1 kg",
+    1.15,
+    1.15,
+    "arroz-categoria-extra-carrefour-1-kg-1-kg"
+   ]
+  },
+  "pasta": {
+   "Carrefour": [
+    "Macarrones cocción rápida Carrefour 500 g",
+    0.8,
+    1.6,
+    "macarrones-coccion-rapida-carrefour-500-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Pasta macarrones cocción rápida 3 minutos 500 g",
+    0.8,
+    1.6,
+    "pasta-macarrones-coccion-rapida-3-minutos-producto-alcampo-500-g"
+   ]
+  },
+  "cereales": {
+   "Carrefour": [
+    "Cereales de maíz sin azúcar añadido Corn Flakes Carrefour 500 g",
+    1.5,
+    3,
+    "corn-flakes-sin-azucar-anadido-carrefour-500-g"
+   ]
+  },
+  "garbanzos": {
+   "Carrefour": [
+    "Garbanzos cocidos categoría extra Classic Carrefour 400 g",
+    0.8,
+    2,
+    "garbanzos-cocidos-carrefour-400-g"
+   ],
+   "Alcampo": [
+    "PRODUCTO ALCAMPO Garbanzos extra, cocidos bote 400 g",
+    0.8,
+    2.0,
+    "findit:7545596"
+   ]
+  },
+  "lentejas": {
+   "Carrefour": [
+    "Lentejas cocidas categoría extra Classic Carrefour 400 g",
+    0.9,
+    2.25,
+    "lentejas-cocidas-extra-carrefour-400-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Lentejas cocidas extra 400 g",
+    0.9,
+    2.25,
+    "lenteja-cocida-extra-auchan-frasco-de-400-grs"
+   ]
+  },
+  "alubias": {
+   "Carrefour": [
+    "Alubias cocidas categoría extra Classic Carrefour 400 g",
+    0.75,
+    1.88,
+    "alubias-cocidas-extra-carrefour-400-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Alubias blancas (judias) extra, cocidas y con bajo contenido en sal Bote 400 g",
+    0.75,
+    1.88,
+    "alubias-cocidas-bajas-en-sal-auchan-400-g"
+   ]
+  },
+  "atun": {
+   "Carrefour": [
+    "Atún claro al natural Classic Carrefour Pack de 6 latas de 56 g",
+    3.89,
+    11.58,
+    "atun-claro-al-natural-carrefour-pack-6x56-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Atún claro al natural Pack 3 latas 56 g",
+    2.46,
+    14.64,
+    "atun-claro-al-natural-auchan-3x56g"
+   ]
+  },
+  "merluza": {
+   "Carrefour": [
+    "Rodajas de merluza Carrefour Classic 600 g",
+    6.15,
+    10.25,
+    "rodaja-de-merluza-congelada-carrefour-600g-carrefour-600g"
+   ],
+   "Alcampo": [
+    "Auchan Merluza en rodajas grandes Producto Alcampo 600 g.",
+    5.95,
+    9.92,
+    "rodajas-de-merluza-grande-auchan-600g"
+   ]
+  },
+  "salmon": {
+   "Carrefour": [
+    "Filete de Salmón Carrefour El Mercado 300 g aprox",
+    6.21,
+    20.7,
+    "filete-de-salmon-bandeja-300-g-aprox-bandeja-300-g-aprox"
+   ]
+  },
+  "aceite": {
+   "Carrefour": [
+    "Aceite de oliva virgen extra Carrefour Extra 1 l",
+    4.34,
+    4.34,
+    "aceite-de-oliva-virgen-extra-sabor-suave-carrefour-botella-de-1-l"
+   ],
+   "Alcampo": [
+    "Producto alcampo Aceite de oliva virgen extra Botella 1 l",
+    4.75,
+    4.75,
+    "aceite-virgen-extra-auchan-1l"
+   ]
+  },
+  "tomate frito": {
+   "Carrefour": [
+    "Tomate frito Classic Carrefour Pack 3 briks de 215 g",
+    0.97,
+    1.5,
+    "tomate-frito-suave-carrefour-pack-3x215-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Tomate frito x 200 G Brik de 3 u x 200 g",
+    0.9,
+    1.5,
+    "tomate-frito-auchan-brik-de-210-grs-pack-de-3"
+   ]
+  },
+  "cebolla": {
+   "Carrefour": [
+    "Cebolla roja Carrefour 500 g",
+    1.39,
+    2.78,
+    "cebolla-roja-carrefour-malla-de-500-g"
+   ],
+   "Alcampo": [
+    "Alcampo cultivamos lo bueno Cebolla dulce 1 kg",
+    2.59,
+    2.59,
+    "cebolla-dulce-auchan-malla-1-kg"
+   ]
+  },
+  "platano": {
+   "Carrefour": [
+    "Plátano de Canarias IGP Bolsa de 900 g aprox",
+    2.47,
+    2.74,
+    "platano-carrefour-1-kg-aprox-1-kg-aprox"
+   ],
+   "Alcampo": [
+    "Alcampo cultivamos LO bueno Plátano de Canarias (indicación Geográfica Protegida) Bandeja 700 g",
+    1.99,
+    2.84,
+    "platano-de-canarias-bandeja-700-gr-auchan-produccion-controlada-bandeja-700-gr"
+   ]
+  },
+  "manzana": {
+   "Carrefour": [
+    "Manzana golden Carrefour 1,5 kg aprox",
+    3.13,
+    2.09,
+    "manzana-golden-carrefour-1-5-kg-aprox-1-5-kg-aprox"
+   ]
+  },
+  "leche semidesnatada": {
+   "Carrefour": [
+    "Leche semidesnatada Carrefour Brik 1 l",
+    0.83,
+    0.83,
+    "leche-semidesnatada-carrefour-brik-de-1-l"
+   ],
+   "Alcampo": [
+    "Auchan Leche semidesnatada de vaca Producto Alcampo 1 l",
+    0.88,
+    0.88,
+    "leche-semidesnatada-e-c-auchan-1-litro"
+   ]
+  },
+  "queso rallado": {
+   "Carrefour": [
+    "Queso rallado 4 quesos Carrefour 400 g",
+    3.35,
+    8.38,
+    "4-quesos-rallado-carrefour-400g-carrefour-400g"
+   ],
+   "Alcampo": [
+    "Producto económico alcampo Queso rallado con mozzarella 200 g",
+    1.58,
+    7.9,
+    "queso-rallado-para-pizza-productos-economicos-alcampo-200g"
+   ]
+  },
+  "yogur griego": {
+   "Carrefour": [
+    "Yogur griego natural Carrefour Extra Pack de 6 unidades de 125 g",
+    1.45,
+    1.93,
+    "griego-natural-carrefour-6x125g-carrefour-6x125g"
+   ],
+   "Alcampo": [
+    "Auchan Yogur estilo griego natural Producto Alcampo 1 kg.",
+    2.15,
+    2.15,
+    "producto-alcampo-yogur-estilo-griego-natural-1-kg-producto-alcampo-1-kg"
+   ]
+  },
+  "azucar": {
+   "Carrefour": [
+    "Azúcar blanco Carrefour Classic 1 kg",
+    0.9,
+    0.9,
+    "azucar-blanco-carrefour-1-kg-1-kg"
+   ],
+   "Alcampo": [
+    "Producto alcampo Azúcar blanco 1 kg",
+    0.9,
+    0.9,
+    "azucar-blanco-producto-alcampo-1-kg"
+   ]
+  },
+  "harina": {
+   "Carrefour": [
+    "Harina de trigo tipo fuerza Original Carrefour 1 kg",
+    0.99,
+    0.99,
+    "harina-de-trigo-tipo-fuerza-original-carrefour-1-kg-1-kg"
+   ],
+   "Alcampo": [
+    "Producto alcampo Harina de trigo 1kg 1 kg",
+    0.72,
+    0.72,
+    "producto-alcampo-harina-de-trigo-1kg-producto-alcampo-1-kg"
+   ]
+  },
+  "sal": {
+   "Carrefour": [
+    "Sal marina refinada fina Carrefour 1 kg",
+    0.4,
+    0.4,
+    "sal-marina-fina-carrefour-1-kg"
+   ],
+   "Alcampo": [
+    "Producto alcampo Sal fina producto alcampo 1 kg",
+    0.4,
+    0.4,
+    "sal-marina-fina-auchan-1kg"
+   ]
+  },
+  "espaguetis": {
+   "Carrefour": [
+    "Pasta espaguetis cocción rápida Carrefour Classic 500 g",
+    0.9,
+    1.8,
+    "spaguetti-coccion-rapida-carrefour-500-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Pasta spaghetti al bronzo Tavola in Italia 500 g",
+    1.4,
+    2.8,
+    "producto-alcampo-pasta-espagueti-al-bronzo-tavola-italia-500-g-producto-alcampo-500-g"
+   ],
+   "Mercadona": [
+    "Spaghetti Hacendado Paquete 500 g",
+    0.8,
+    1.6,
+    "spaghetti-pasta-hacendado-paquete-500-g"
+   ],
+   "Dia": [
+    "Espagueti Dia Al Diante 500 g",
+    0.8,
+    1.6,
+    "spaguetti-dia-paquete-500-gr"
+   ]
+  },
+  "mayonesa": {
+   "Carrefour": [
+    "Mayonesa Carrefour 475g Envase 500 ml",
+    1.43,
+    2.86,
+    "mayonesa-carrefour-envase-500-ml-envase-500-ml"
+   ],
+   "Alcampo": [
+    "Producto alcampo Mayonesa clásica Frasco de 225 ml",
+    0.99,
+    4.4,
+    "mayonesa-auchan-frasco-de-225-milils"
+   ]
+  },
+  "ketchup": {
+   "Carrefour": [
+    "Kétchup Classic Carrefour Envase 1 kg",
+    1.72,
+    1.72,
+    "ketchup-sin-conservantes-carrefour-1-kg"
+   ],
+   "Alcampo": [
+    "Producto alcampo Ketchup 560 g",
+    0.98,
+    1.75,
+    "ketchup-producto-alcampo-560-g"
+   ],
+   "Dia": [
+    "Ketchup Dia Salseo 560 g",
+    0.98,
+    1.75,
+    "ketchup-dia-botella-560gr"
+   ]
+  },
+  "mermelada": {
+   "Carrefour": [
+    "Mermelada de fresa categoría extra Carrefour 410 g",
+    1.49,
+    3.63,
+    "mermelada-extra-de-fresa-carrefour-410-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Mermelada de fresa 410 g",
+    1.49,
+    3.63,
+    "nermelada-de-fresa-producto-alcampo-410-g"
+   ]
+  },
+  "galletas": {
+   "Carrefour": [
+    "Galletas María Carrefour Classic 800 g",
+    1.35,
+    1.69,
+    "galletas-maria-carrefour-classic-800-g-800-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Galletas María 800 g",
+    1.35,
+    1.69,
+    "galletas-maria-auchan-800-gramos"
+   ],
+   "Mercadona": [
+    "Galletas María Hacendado 800 g (paquete 4 ud.)",
+    1.35,
+    1.69,
+    "galleta-maria-tradicional-69-cereal-hacendado-paquete-800-g"
+   ]
+  },
+  "cacao soluble": {
+   "Alcampo": [
+    "Producto económico alcampo Cacao soluble Esencial producto económico alcampo 500 g",
+    2.8,
+    5.6,
+    "cacao-soluble-esencial-auchan-500-g"
+   ]
+  },
+  "cafe molido": {
+   "Carrefour": [
+    "Café molido natural Carrefour Classic 250 g",
+    2.49,
+    9.96,
+    "cafe-molido-natural-torrado-carrefour-250-g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Café molido natural Tradición 250 g",
+    2.49,
+    9.96,
+    "cafe-molido-natural-tradicion-auchan-250-g"
+   ]
+  },
+  "zumo de naranja": {
+   "Carrefour": [
+    "Zumo de naranja Carrefour Brik 1 l",
+    1.85,
+    1.85,
+    "zumo-de-naranja-carrefour-brik-de-1-l"
+   ],
+   "Alcampo": [
+    "Producto alcampo Zumo de naranja sin pulpa refrigerado 1 l",
+    2.09,
+    2.09,
+    "zumo-de-naranja-exprimido-refrigerado-p-economico-alcampo-1l"
+   ]
+  },
+  "refresco cola": {
+   "Alcampo": [
+    "Producto alcampo Refresco de cola Botella de 2 l",
+    0.81,
+    0.41,
+    "refresco-de-cola-regular-auchan-botella-de-2-litros"
+   ]
+  },
+  "cerveza": {
+   "Carrefour": [
+    "Cerveza Carrefour Lager Botella 1 l",
+    0.94,
+    0.94,
+    "cerveza-pilsen-carrefour-1-l"
+   ]
+  },
+  "sardinas": {
+   "Carrefour": [
+    "Sardinas en aceite de oliva Extra Carrefour Pack de 2 latas de 88 g",
+    2.59,
+    14.72,
+    "sardina-oliva-carrefour-2x88g-carrefour-2x88g"
+   ],
+   "Alcampo": [
+    "Producto alcampo Sardinas en aceite de oliva 84 g",
+    1.24,
+    14.76,
+    "sardinas-en-aceite-de-oliva-producto-alcampo-88-g"
+   ],
+   "Mercadona": [
+    "Sardinillas en aceite de oliva Hacendado 2 latas x 65 g escurrido",
+    2.15,
+    16.54,
+    "sardinillas-aceite-oliva-hacendado-pack-2"
+   ]
+  },
+  "pavo": {
+   "Alcampo": [
+    "Auchan Pechuga de pavo Producto Alcampo - Loncha fina 1 mm 170 gr",
+    2.3,
+    13.53,
+    "pechuga-de-pavo-producto-alcampo-loncha-fina-1-mm-producto-alcampo"
+   ],
+   "Dia": [
+    "Pechuga de pavo 92% reducido de sal Dia Nuestra Alacena 120 g",
+    2.19,
+    18.25,
+    "pechuga-de-pavo-92-carne-bajo-en-sal-nuestra-alacena-de-dia-sobre-120-g-sobre-120-g"
+   ]
+  },
+  "hamburguesa": {
+   "Carrefour": [
+    "Hamburguesa de Vacuno Raza Angus Carrefour Selection 300 g",
+    4.96,
+    16.53,
+    "hamburguesa-de-vacuno-angus-carrefour-sin-gluten-y-sin-lactosa-300-g-300-g"
+   ],
+   "Alcampo": [
+    "Alcampo cultivamos LO bueno Hamburguesa de vacuno angus 2 x 150 g",
+    4.78,
+    15.93,
+    "alcampo-cultivamos-lo-bueno-hamburguesa-de-vacuno-angus-2x150-g-alcampo-cultivamos-lo-bueno-2-x-150-g"
+   ]
+  },
+  "pepino": {
+   "Carrefour": [
+    "Pepino a granel 1 kg aprox",
+    1.69,
+    1.69,
+    "pepino-a-granel-carrefour-1-kg-aprox-1-kg-aprox"
+   ]
+  },
+  "champiñon": {
+   "Carrefour": [
+    "Champiñones laminados Carrefour Pack de 3 unidades de 115 g",
+    2.45,
+    7.1,
+    "champinones-laminados-carrefour-pack-de-3x185-g"
+   ],
+   "Mercadona": [
+    "Champiñón laminado Hacendado 3 latas x 85 g escurrido",
+    1.8,
+    7.06,
+    "champinon-laminado-conserva-hacendado-pack-3-x-450-g"
+   ]
+  },
+  "naranja": {
+   "Carrefour": [
+    "Naranjas de mesa Carrefour el Mercado 3 kg",
+    5.95,
+    1.98,
+    "naranja-mesa-carrefour-3-kg-carrefour-3-kg"
+   ],
+   "Mercadona": [
+    "Naranjas Malla 3 kg",
+    5.85,
+    1.95,
+    "naranja-zumo-malla-3-kg"
+   ]
+  },
+  "limon": {
+   "Carrefour": [
+    "Limón El Mercado Malla de 1,5 kg",
+    3.38,
+    2.25,
+    "limon-carrefour-1-5kg-carrefour-1-5kg"
+   ]
+  },
+  "calabacin": {
+   "Carrefour": [
+    "Calabacín Simpl 1,5 kg",
+    2.55,
+    1.7,
+    "calabacin-simpl-malla-1-5kg-carrefour-malla-1-5kg"
+   ]
+  },
+  "vinagre": {
+   "Carrefour": [
+    "Vinagre de vino blanco Carrefour Classic 1 l",
+    0.62,
+    0.62,
+    "vinagre-de-vino-blanco-carrefour-discount-botella-de-1-l"
+   ],
+   "Alcampo": [
+    "Producto económico alcampo Vinagre de vino blanco Botella de 1 l",
+    0.67,
+    0.67,
+    "vinagre-de-vino-blanco-auchan-1l"
+   ]
+  },
+  "agua": {
+   "Carrefour": [
+    "Agua mineral Carrefour 1,5 l",
+    0.39,
+    0.26,
+    "findit:123805"
+   ],
+   "Alcampo": [
+    "PRODUCTO ALCAMPO Agua mineral botella de 1,5 l",
+    0.39,
+    0.26,
+    "findit:7546704"
+   ]
+  },
+  "huevos": {
+   "Carrefour": [
+    "Huevos de gallinas criadas en suelo Carrefour El Mercado 12 ud",
+    2.85,
+    2.88,
+    "huevos-de-gallinas-criadas-en-suelo-carrefour-el-mercado-12-ud-12-ud"
+   ],
+   "Alcampo": [
+    "Auchan Huevos de gallinas sueltas en el gallinero clase M y cat. A Producto Alcampo 30 uds.",
+    7.12,
+    2.88,
+    "huevos-frescos-de-categoria-a-y-clase-m-producto-alcampo-30-uds"
+   ]
+  },
+  "tomate": {
+   "Alcampo": [
+    "Tomate rama al peso 1 kg",
+    2.38,
+    2.38,
+    "tomate-rama-1-000-gramos-aproximados-mis-frutas-y-verduras-rama-1-000-gramos-aproximados"
+   ],
+   "Carrefour": [
+    "Tomate pera Carrefour 1 kg aprox",
+    2.15,
+    2.15,
+    "findit:249663"
+   ]
+  }
+ }
+}

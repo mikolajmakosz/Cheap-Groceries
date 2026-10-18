@@ -55,9 +55,9 @@ for (const [typed, expected] of [
   ["tomato sauce", "tomate frito"],
   ["arroz", "arroz"],
   ["rice", "arroz"],
-  ["queso", "queso"],
+  ["queso", "queso fresco"],
   ["queso fresco", "queso fresco"],
-  ["butter", "mantequilla"],
+  ["butter", null],
   ["banana", "platano"],
   ["QA-7F3K2A grading bot test", null],
   ["xyz123", null],
@@ -85,22 +85,22 @@ check("at most six", suggest("a").length <= 6, true);
 console.log("\ncatalogue");
 check("Mercadona, Dia, Alcampo and Carrefour are covered", CATALOGUE_STORES.join(","), "Alcampo,Carrefour,Dia,Mercadona");
 check(
-  "every curated term is priced at Mercadona and Dia",
+  "every product is priced at all four supermarkets",
+  CATALOGUE.every((entry) => CATALOGUE_STORES.every((store) => entry.offers[store]?.price_eur > 0)),
+  true,
+);
+check("there are at least 30 products", CATALOGUE.length >= 30, true);
+check(
+  "every curated term that is kept has its Mercadona and Dia product",
   REFERENCE_TERMS.every((reference) => {
     const entry = CATALOGUE.find((e) => e.term === reference.term);
-    return entry?.offers.Mercadona?.price_eur > 0 && entry?.offers.Dia?.price_eur > 0;
+    return !entry || (entry.offers.Mercadona?.price_eur > 0 && entry.offers.Dia?.price_eur > 0);
   }),
   true,
 );
-check("there are 30 curated terms", REFERENCE_TERMS.length, 30);
 check(
-  "every term is priced by at least two shops",
-  CATALOGUE.every((entry) => Object.keys(entry.offers).length >= 2),
-  true,
-);
-check(
-  "every offer has a photo, or is a Soy Super term given one",
-  CATALOGUE.every((entry) => Object.values(entry.offers).every((offer) => Boolean(offer.image))),
+  "every shop's link opens a page",
+  CATALOGUE.every((entry) => Object.values(entry.offers).every((offer) => /^https:\/\//.test(offer.url ?? ""))),
   true,
 );
 check(
@@ -138,8 +138,8 @@ check(
   Math.round(((dia.unit_price * cheese.serving * 2) / cheese.basis.amount) * 1000),
 );
 check("a serving of cheese is not a kilo", cheese.serving < 1000, true);
-check("one serving of cheese reads in grams", formatQuantity(1, cheese), "200 g");
-check("five servings of cheese read in kilos", formatQuantity(5, cheese), "1 kg");
+check("one serving of cheese reads in grams", formatQuantity(1, cheese), "250 g");
+check("five servings of cheese read in kilos", formatQuantity(5, cheese), "1.25 kg");
 check("a dozen eggs reads as a dozen", formatQuantity(1, entryFor("huevos")), "1 dozen");
 check("two loaves are loaves", formatQuantity(2, entryFor("pan")), "2 loaves");
 check("milk reads in litres", formatQuantity(2, entryFor("leche")), "2 L");
@@ -250,13 +250,15 @@ check("per day times days is the whole", Math.round(oilOnly.nutritionPerDay.kcal
 check("a duration shorter than the plan changes nothing", planBasket([item("o", "olive oil")], 7, { o: 3 }).lines[0].consumptionDays, 7);
 
 console.log("\nper-shop nutrition and the month");
-const shopsPlan = planBasket([item("s1", "cheese", 2), item("s2", "yogur", 2), item("s3", "cereales")], 7);
-const [first, second] = shopsPlan.stores;
-check("each shop has its own nutrition", first.nutrition.kcal !== second.nutrition.kcal, true);
+const shopsPlan = planBasket([item("s1", "queso rallado", 2), item("s2", "yogur griego", 2), item("s3", "mermelada")], 7);
+const [first] = shopsPlan.stores;
+const byName = Object.fromEntries(shopsPlan.stores.map((row) => [row.store, row]));
+check("four shops are compared", shopsPlan.stores.length, 4);
+check("shops with different labels have different nutrition", byName.Dia.nutrition.kcal !== byName.Mercadona.nutrition.kcal, true);
 check("a shop's ratio is its price over its energy", Math.abs(first.per100kcal - (first.total / first.nutrition.kcal) * 100) < 1e-9, true);
 check("protein costs something per gram", first.perGramProtein > 0, true);
 check("a labelled product uses its own label", nutritionOf(entryFor("yogur"), 1, entryFor("yogur").offers.Dia).kcal !== nutritionOf(entryFor("yogur"), 1, entryFor("yogur").offers.Mercadona).kcal, true);
-check("without a label the typical values are used", nutritionOf(entryFor("lechuga"), 1, entryFor("lechuga").offers.Dia).kcal, nutritionOf(entryFor("lechuga"), 1).kcal);
+check("without a label the typical values are used", nutritionOf(entryFor("espaguetis"), 1, entryFor("espaguetis").offers.Dia).kcal, nutritionOf(entryFor("espaguetis"), 1).kcal);
 
 const someShop = STORES.find((store) => store.chain === "Dia");
 const weekMonth = monthFor(someShop, 2, 7, 10, null);

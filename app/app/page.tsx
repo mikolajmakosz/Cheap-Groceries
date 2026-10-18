@@ -435,6 +435,8 @@ export default function BasketPage() {
                     selectedStoreId={trip.selected?.id ?? null}
                     onSelect={(store) => void trip.select(store)}
                     hasHome={trip.home !== null}
+                    home={trip.home}
+                    shopMinutes={shopMinutes}
                   />
                 </div>
                 <p className="mt-2 text-xs text-slate-500">

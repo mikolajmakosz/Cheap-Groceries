@@ -2,6 +2,8 @@
 export const SHOP_LOGOS: Record<string, string> = {
   Dia: "/logos/dia.svg",
   Mercadona: "/logos/mercadona.svg",
+  Carrefour: "/logos/carrefour.png",
+  Alcampo: "/logos/alcampo.png",
 };
 
 export function logoFor(chain: string): string | null {

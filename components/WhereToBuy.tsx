@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import ShopLogo from "@/components/ShopLogo";
+import { deliveryFee, perHourSaved } from "@/lib/delivery";
+import { CAMPUS, walkingMinutes, type Point, type Store } from "@/lib/geo";
 import { formatEuro } from "@/lib/pricing";
-import type { Store } from "@/lib/geo";
 import type { Option, TradeOff } from "@/lib/tradeoff";
 
 type Props = {
@@ -12,11 +14,16 @@ type Props = {
   onSelect: (store: Store) => void;
   /** Whether the times already include the walk on to the person's home. */
   hasHome: boolean;
+  home: Point | null;
+  /** Minutes spent inside a shop for this basket. */
+  shopMinutes: number;
 };
 
 /**
- * Each shop that can price the basket, what it costs and how long the walk is,
- * and what the extra money buys when the cheaper shop is not the closer one.
+ * Each shop that can price the basket, either carried home yourself or
+ * delivered. Carrying it: what it costs, the walk, and what the extra money buys
+ * when the cheaper shop is not the closer one. Delivery: the basket plus the
+ * delivery charge, and what each hour of your own time saved really costs.
  */
 export default function WhereToBuy({
   options,
@@ -24,18 +31,55 @@ export default function WhereToBuy({
   selectedStoreId,
   onSelect,
   hasHome,
+  home,
+  shopMinutes,
 }: Props) {
-  const sorted = [...options].sort(
-    (a, b) => a.cost - b.cost || a.minutes - b.minutes,
+  const [delivery, setDelivery] = useState(false);
+
+  const rows = options.map((option) => {
+    const fee = deliveryFee(option.chain, option.cost);
+    // Time the trip would take that delivery gives back: the walk there, the
+    // shopping, and the way on to home beyond going straight home.
+    const saved = Math.max(
+      0,
+      option.minutes + shopMinutes - (home ? walkingMinutes(CAMPUS, home) : 0),
+    );
+    return { option, fee, saved, perHour: perHourSaved(fee, saved) };
+  });
+
+  const sorted = [...rows].sort((a, b) =>
+    delivery
+      ? a.option.cost + a.fee - (b.option.cost + b.fee)
+      : a.option.cost - b.option.cost || a.option.minutes - b.option.minutes,
   );
   const several = sorted.length > 1;
+  const cheapestChain = delivery ? sorted[0]?.option.chain : analysis?.cheapest.chain;
 
   return (
     <div>
+      <div role="group" aria-label="How you get it" className="mb-2 flex gap-1.5">
+        {[
+          { id: false, label: "I go" },
+          { id: true, label: "Delivery" },
+        ].map((mode) => (
+          <button
+            key={mode.label}
+            type="button"
+            aria-pressed={delivery === mode.id}
+            onClick={() => setDelivery(mode.id)}
+            className={`rounded-xl border-2 border-[var(--ink)] px-3 py-1 text-xs font-extrabold ${
+              delivery === mode.id ? "bg-[var(--ink)] text-[var(--paper)]" : "bg-white"
+            }`}
+          >
+            {mode.label}
+          </button>
+        ))}
+      </div>
+
       <ul className="space-y-2">
-        {sorted.map((option) => {
-          const cheapest = several && option.chain === analysis?.cheapest.chain;
-          const fastest = several && option.chain === analysis?.fastest.chain;
+        {sorted.map(({ option, fee, saved, perHour }) => {
+          const cheapest = several && option.chain === cheapestChain;
+          const fastest = !delivery && several && option.chain === analysis?.fastest.chain;
           const selected = option.store.id === selectedStoreId;
 
           return (
@@ -61,13 +105,32 @@ export default function WhereToBuy({
                       </span>
                     )}
                   </span>
-                  <span className="mt-1 block truncate text-xs text-slate-500">
-                    {option.minutes} min{hasHome ? " via shop" : ""}
-                    {option.store.street ? ` · ${option.store.street}` : ""}
+                  <span className="mt-1 block text-xs text-slate-500">
+                    {delivery ? (
+                      <>
+                        {formatEuro(option.cost)} basket{" "}
+                        {fee > 0 ? `+ ${formatEuro(fee)} delivery` : "· free delivery"}
+                        {perHour !== null && fee > 0 && (
+                          <>
+                            {" · "}
+                            <strong className="text-[var(--ink)]">
+                              {formatEuro(perHour)} per hour saved
+                            </strong>{" "}
+                            ({saved} min)
+                          </>
+                        )}
+                        {fee === 0 && saved > 0 && ` · saves ${saved} min`}
+                      </>
+                    ) : (
+                      <>
+                        {option.minutes} min{hasHome ? " via shop" : ""}
+                        {option.store.street ? ` · ${option.store.street}` : ""}
+                      </>
+                    )}
                   </span>
                 </span>
                 <span className="shrink-0 text-base font-extrabold">
-                  {formatEuro(option.cost)}
+                  {formatEuro(delivery ? option.cost + fee : option.cost)}
                 </span>
               </button>
             </li>
@@ -75,7 +138,7 @@ export default function WhereToBuy({
         })}
       </ul>
 
-      {analysis && several && analysis.steps.length > 0 && (
+      {!delivery && analysis && several && analysis.steps.length > 0 && (
         <ul className="mt-3 space-y-1 text-xs">
           {analysis.steps.map((step) => (
             <li key={`${step.from.chain}-${step.to.chain}`}>

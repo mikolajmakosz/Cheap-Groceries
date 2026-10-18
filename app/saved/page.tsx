@@ -10,7 +10,7 @@ import ProductSearch from "@/components/ProductSearch";
 import ShopCompare from "@/components/ShopCompare";
 import ShopLogo from "@/components/ShopLogo";
 import { setHome, useHome } from "@/lib/homeStore";
-import { formatDuration, periodFor } from "@/lib/monthly";
+import { deliveredFor, formatDuration, periodFor } from "@/lib/monthly";
 import { createClient } from "@/lib/supabase/client";
 import { formatEuro, formatQuantity, type BasketItem } from "@/lib/pricing";
 import { MONTH_DAYS, planBasket } from "@/lib/plan";
@@ -78,6 +78,7 @@ function BasketCard({
   const [chosen, setChosen] = useState<string | null>(null);
   const [period, setPeriod] = useState<Period>("month");
   const [customDays, setCustomDays] = useState(14);
+  const [delivery, setDelivery] = useState(false);
   const [lasts, setLasts] = useState<Record<string, number | null>>(() =>
     Object.fromEntries(basket.saved_basket_items.map((item) => [item.id, item.lasts_days])),
   );
@@ -119,6 +120,11 @@ function BasketCard({
         chain: option.chain,
         total: row.total,
         span: periodFor(option.store, row.perDay, days, shopMinutes, home, periodDays),
+        delivered: deliveredFor(
+          option.chain,
+          row.total,
+          periodFor(option.store, row.perDay, days, shopMinutes, home, periodDays),
+        ),
       };
     });
   }, [plan.stores, home, days, shopMinutes, periodDays]);
@@ -244,6 +250,24 @@ function BasketCard({
           <section className="mt-5" aria-label="Cost and time">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="display text-xl">Per {periodLabel}</h3>
+              <div role="group" aria-label="How you get it" className="flex gap-1.5">
+                {[
+                  { id: false, label: "I go" },
+                  { id: true, label: "Delivery" },
+                ].map((mode) => (
+                  <button
+                    key={mode.label}
+                    type="button"
+                    aria-pressed={delivery === mode.id}
+                    onClick={() => setDelivery(mode.id)}
+                    className={`rounded-xl border-2 border-[var(--ink)] px-2.5 py-1 text-xs font-extrabold ${
+                      delivery === mode.id ? "bg-[var(--ink)] text-[var(--paper)]" : "bg-white"
+                    }`}
+                  >
+                    {mode.label}
+                  </button>
+                ))}
+              </div>
               <div role="group" aria-label="Period" className="flex flex-wrap items-center gap-1.5">
                 {PERIODS.map((p) => (
                   <button
@@ -275,7 +299,7 @@ function BasketCard({
             </div>
 
             <ul className="mt-2 grid gap-2 sm:grid-cols-2">
-              {periods.map(({ chain, total, span }) => {
+              {periods.map(({ chain, total, span, delivered }) => {
                 const best = cheapest?.store === chain && plan.stores.length > 1;
                 return (
                   <li
@@ -295,16 +319,30 @@ function BasketCard({
                           Per {periodLabel}
                         </dt>
                         <dd className="text-xl font-extrabold leading-tight">
-                          {formatEuro(span.euros)}
+                          {formatEuro(delivery ? delivered.euros : span.euros)}
                         </dd>
                       </div>
                     </dl>
-                    <p className="mt-1.5 text-sm font-bold">
-                      {formatDuration(span.minutes)}
-                      <span className="ml-1 text-xs text-slate-500">
-                        {+span.trips.toFixed(1)}× {formatDuration(span.minutesPerTrip)}
-                      </span>
-                    </p>
+                    {delivery ? (
+                      <p className="mt-1.5 text-sm font-bold">
+                        {delivered.feeEach > 0
+                          ? `+${formatEuro(delivered.fees)} delivery`
+                          : "free delivery"}
+                        <span className="ml-1 text-xs text-slate-500">
+                          {+delivered.deliveries.toFixed(1)}× · saves{" "}
+                          {formatDuration(delivered.minutesSaved)}
+                          {delivered.perHour !== null &&
+                            ` · ${formatEuro(delivered.perHour)} per hour saved`}
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="mt-1.5 text-sm font-bold">
+                        {formatDuration(span.minutes)}
+                        <span className="ml-1 text-xs text-slate-500">
+                          {+span.trips.toFixed(1)}× {formatDuration(span.minutesPerTrip)}
+                        </span>
+                      </p>
+                    )}
                   </li>
                 );
               })}

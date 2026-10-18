@@ -94,12 +94,9 @@ export function planBasket(
     return addNutrients(sum, scaleNutrients(whole, 1 / line.consumptionDays));
   }, ZERO);
 
-  // A shop's own label counts only when every shop has one for this product,
-  // so the baskets are weighed on the same footing; otherwise the typical values.
-  const labelFor = (line: PlanLine, store: string) =>
-    comparison.stores.every((name) => line.row.byStore[name]?.nutrition)
-      ? line.row.byStore[store]
-      : null;
+  // A shop's own label where one was collected, otherwise the typical values
+  // for the food (see nutritionOf), so every shop gets the best figure there is.
+  const labelFor = (line: PlanLine, store: string) => line.row.byStore[store];
 
   const stores: StorePlan[] = totals.map(({ store, total, perDay }) => {
     // Only the lines every shop prices, so the shops are weighed on the same food.

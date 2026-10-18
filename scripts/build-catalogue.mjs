@@ -191,6 +191,45 @@ for (const term of findit.terms) {
   });
 }
 
+// Carrefour and Alcampo (and any shop still missing) from Soy Super's per-shop
+// search: the own-brand product that matches each term. Findit's offer wins where
+// there is one, since it carries a photo and sometimes a label.
+const shops4 = await load("data/shops4.json");
+for (const [term, byShop] of Object.entries(shops4.picks)) {
+  const entry = entries.find((e) => e.term === term);
+  if (!entry) {
+    console.error(`  ✗ shops4: no term "${term}"`);
+    problems += 1;
+    continue;
+  }
+  for (const [store, [name, price, unit, slug]] of Object.entries(byShop)) {
+    if (entry.offers[store]) continue;
+    entry.offers[store] = {
+      name,
+      price_eur: price,
+      unit_price: unit,
+      image: null,
+      url: slug.startsWith("findit:")
+        ? `https://finditapp.es/product/${slug.slice(7)}`
+        : `https://soysuper.com/p/${slug}`,
+      checked_on: shops4.collected_on,
+    };
+  }
+}
+
+// Every product must be priced at all four supermarkets, so any basket can be
+// compared across them. A term that is not is held back, and listed here.
+const SUPERMARKETS = ["Alcampo", "Carrefour", "Dia", "Mercadona"];
+const held = [];
+for (let i = entries.length - 1; i >= 0; i -= 1) {
+  const missing = SUPERMARKETS.filter((store) => !entries[i].offers[store]);
+  if (missing.length > 0) {
+    held.push(`${entries[i].term} (no ${missing.join(", ")})`);
+    entries.splice(i, 1);
+  }
+}
+if (held.length > 0) console.log(`Held back, not at all four shops: ${held.reverse().join("; ")}\n`);
+
 if (problems > 0) {
   console.error(`\n${problems} problem(s) — catalogue not written.`);
   process.exit(1);
@@ -203,13 +242,14 @@ await writeFile(
     `// Dia: collected by hand in a browser (data/dia.json).\n` +
     `// Nutrition labels: data/nutrition-mercadona.json (Open Food Facts) and data/nutrition-dia.json (dia.es).\n` +
     `// Branded products in several shops: data/soysuper.json (Soy Super product pages).\n` +
-    `// More terms, photos and labels: data/findit.json (Findit product pages).\n\n` +
+    `// More terms, photos and labels: data/findit.json (Findit product pages).\n` +
+    `// Carrefour and Alcampo products: data/shops4.json (Soy Super per-shop search).\n\n` +
     `import type { CatalogueEntry } from "./catalogue.ts";\n\n` +
     `export const CATALOGUE_DATA: CatalogueEntry[] = ${JSON.stringify(entries, null, 2)};\n`,
   "utf8",
 );
 
-console.log(`${entries.length} terms × ${Object.keys(SHOPS).length} shops -> lib/catalogue-data.ts\n`);
+console.log(`${entries.length} terms × 4 shops -> lib/catalogue-data.ts\n`);
 console.log("term".padEnd(14) + "basis".padEnd(9) + "Mercadona".padStart(10) + "Dia".padStart(9) + "   (EUR per basis)");
 for (const e of entries) {
   const m = e.offers.Mercadona?.unit_price;
