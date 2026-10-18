@@ -48,33 +48,6 @@ const storeData = {
       "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-21:00"
     },
     {
-      "id": "node/6578310894",
-      "chain": "Alcampo",
-      "name": "Mi Alcampo",
-      "lat": 40.4699638,
-      "lon": -3.7024907,
-      "street": null,
-      "opening_hours": null
-    },
-    {
-      "id": "node/9516411034",
-      "chain": "Alcampo",
-      "name": "Mi Alcampo",
-      "lat": 40.4616778,
-      "lon": -3.6999757,
-      "street": null,
-      "opening_hours": "Mo-Sa 09:00-22:00; Su 10:00-21:00"
-    },
-    {
-      "id": "node/12323872388",
-      "chain": "Alcampo",
-      "name": "Mi Alcampo",
-      "lat": 40.4713559,
-      "lon": -3.6890251,
-      "street": null,
-      "opening_hours": "Mo-Fr 09:00-21:00; Sa,Su 10:00-14:30"
-    },
-    {
       "id": "way/292932087",
       "chain": "BM",
       "name": "BM",
@@ -82,60 +55,6 @@ const storeData = {
       "lon": -3.6688497,
       "street": "Calle de Caleruega 90",
       "opening_hours": null
-    },
-    {
-      "id": "node/2048594286",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.4868104,
-      "lon": -3.7001816,
-      "street": "10",
-      "opening_hours": "Mo-Su 08:30-22:00"
-    },
-    {
-      "id": "node/3699946538",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.4744093,
-      "lon": -3.7033976,
-      "street": "Avenida de El Ferrol 1",
-      "opening_hours": null
-    },
-    {
-      "id": "node/3810327002",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.480188,
-      "lon": -3.6664937,
-      "street": "Calle de Arturo Soria 330",
-      "opening_hours": "09:00-22:00"
-    },
-    {
-      "id": "node/8018375358",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.4683852,
-      "lon": -3.6855201,
-      "street": null,
-      "opening_hours": "Mo-Sa 09:00-23:00; Su 10:00-22:00"
-    },
-    {
-      "id": "node/8664581277",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.4808673,
-      "lon": -3.6746033,
-      "street": null,
-      "opening_hours": null
-    },
-    {
-      "id": "way/448735426",
-      "chain": "Carrefour",
-      "name": "Carrefour Express",
-      "lat": 40.4622942,
-      "lon": -3.6874206,
-      "street": null,
-      "opening_hours": "Mo-Su 08:00-23:00"
     },
     {
       "id": "node/836406374",

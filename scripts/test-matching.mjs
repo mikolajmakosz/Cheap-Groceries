@@ -13,12 +13,12 @@
 import { termFor, entryFor, suggest, compareBasket, shopsFor, formatQuantity, portionCost } from "../lib/pricing.ts";
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
-import { STORES } from "../lib/geo.ts";
+import { STORES, CAMPUS, walkingMinutes } from "../lib/geo.ts";
 import { nutritionOf, eatenAmount, typicalFor } from "../lib/nutrition.ts";
 import { REFERENCE_TERMS } from "../lib/reference-products.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
 import { planBasket, MONTH_DAYS } from "../lib/plan.ts";
-import { monthFor, periodFor, formatDuration } from "../lib/monthly.ts";
+import { monthFor, periodFor, detourMinutes, formatDuration } from "../lib/monthly.ts";
 import { allMenuTerms } from "../lib/categories.ts";
 
 let failures = 0;
@@ -265,7 +265,10 @@ const weekMonth = monthFor(someShop, 2, 7, 10, null);
 check("a week-long basket is bought about four times a month", Math.round(weekMonth.trips * 10) / 10, Math.round((MONTH_DAYS / 7) * 10) / 10);
 check("a month costs thirty days of the per-day price", weekMonth.euros, 60);
 check("each trip is the walk plus the time inside", weekMonth.minutesPerTrip, weekMonth.walkMinutes + 10);
-check("the way home adds minutes", monthFor(someShop, 2, 7, 10, { lat: 40.5, lon: -3.6 }).minutes > weekMonth.minutes, true);
+const farHome = { lat: 40.4, lon: -3.7 };
+check("with a home only the detour counts", detourMinutes(someShop, farHome) <= detourMinutes(someShop, null) + walkingMinutes(someShop, farHome), true);
+check("a shop on the way home adds no detour", detourMinutes({ lat: 40.4388, lon: -3.6941 }, farHome, CAMPUS) < walkingMinutes(CAMPUS, { lat: 40.4388, lon: -3.6941 }) + walkingMinutes({ lat: 40.4388, lon: -3.6941 }, farHome), true);
+check("a detour is never negative", detourMinutes(someShop, farHome) >= 0, true);
 const fortnight = periodFor(someShop, 2, 7, 10, null, 14);
 check("a fortnight is two weeks of money", fortnight.euros, 28);
 check("a day-long period is a fraction of a trip", Math.abs(periodFor(someShop, 2, 7, 10, null, 1).trips - 1 / 7) < 1e-9, true);

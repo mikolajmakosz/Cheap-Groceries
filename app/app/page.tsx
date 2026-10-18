@@ -44,6 +44,8 @@ export default function BasketPage() {
   const [leftInset, setLeftInset] = useState(0);
   const [browsing, setBrowsing] = useState(false);
   const [detail, setDetail] = useState<CatalogueEntry | null>(null);
+  // Products whose list of shops is open; the others show only the cheapest.
+  const [openShops, setOpenShops] = useState<Set<string>>(new Set());
 
   // On a phone the panel sits above the map rather than beside it.
   useEffect(() => {
@@ -310,6 +312,19 @@ export default function BasketPage() {
                   .filter((pair) => pair.offer !== null);
                 const photo = offers.find((pair) => pair.offer?.image)?.offer
                   ?.image;
+                const cheapestOffer = row.entry
+                  ? offers.reduce<(typeof offers)[number] | null>(
+                      (best, pair) =>
+                        !best ||
+                        portionCost(pair.offer!, row.entry!, row.item.quantity) <
+                          portionCost(best.offer!, row.entry!, row.item.quantity)
+                          ? pair
+                          : best,
+                      null,
+                    )
+                  : null;
+                const shopsOpen = openShops.has(row.item.id);
+                const shownOffers = shopsOpen || !cheapestOffer ? offers : [cheapestOffer];
 
                 return (
                   <li key={row.item.id} data-testid="core-item" className="py-3">
@@ -341,7 +356,7 @@ export default function BasketPage() {
                         {row.entry && offers.length > 0 ? (
                           <>
                             <ul className="mt-1.5 space-y-1.5">
-                              {offers.map(({ store, offer }) => (
+                              {shownOffers.map(({ store, offer }) => (
                                 <li key={store}>
                                   <div className="flex items-center gap-2 text-xs">
                                     <a
@@ -375,6 +390,24 @@ export default function BasketPage() {
                                 </li>
                               ))}
                             </ul>
+
+                            {offers.length > 1 && (
+                              <button
+                                type="button"
+                                aria-expanded={shopsOpen}
+                                onClick={() =>
+                                  setOpenShops((current) => {
+                                    const next = new Set(current);
+                                    if (next.has(row.item.id)) next.delete(row.item.id);
+                                    else next.add(row.item.id);
+                                    return next;
+                                  })
+                                }
+                                className="mt-1.5 text-xs font-extrabold underline decoration-2 underline-offset-2"
+                              >
+                                {shopsOpen ? "Hide shops ▴" : `All ${offers.length} shops ▾`}
+                              </button>
+                            )}
 
                             <div className="mt-2 flex items-center gap-2">
                               <button

@@ -148,7 +148,7 @@ Shops come from OpenStreetMap, collected once by
 npm run stores
 ```
 
-41 supermarkets within 2 km of IE Tower, Paseo de la Castellana 259. Run by hand: the Overpass API is
+32 supermarkets within 2 km of IE Tower (small formats such as Carrefour Express and Mi Alcampo left out), Paseo de la Castellana 259. Run by hand: the Overpass API is
 slow and rate limited, and it answered HTTP 502 on the first attempt while this was being built, which
 is not something a live page should depend on. The script falls back across mirrors.
 
@@ -234,8 +234,9 @@ Next to **I go**, the shop list and each saved basket have **Delivery**: the bas
 charge ([`lib/delivery.ts`](lib/delivery.ts): Mercadona €8.20, Dia €3.99 free from €100, Carrefour €7 free
 from €120, Alcampo €7, for the IE Tower postcode 28029 as Soy Super's cart showed them on 18 October 2026,
 before a delivery slot is chosen), and **what each hour of your own time saved really costs**: the delivery
-charge divided by the hours the trip would have taken (the walk there, the shopping, and the way on to home beyond
-going straight home). In a saved basket it is per billing period: charges per delivery times deliveries in the
+charge divided by the hours the trip would have taken. You go home from campus anyway, so only the **detour** counts
+(campus to the shop and on to home, less going straight home) plus the time inside the shop; without an address the
+cost per hour is not shown. In a saved basket it is per billing period: charges per delivery times deliveries in the
 period, against the minutes of trips given back.
 
 ## Time in the shop

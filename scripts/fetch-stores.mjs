@@ -59,6 +59,13 @@ const plain = (value) =>
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "");
 
+/**
+ * Small neighbourhood formats (Carrefour Express, Mi Alcampo) are convenience
+ * shops with their own, higher prices, not the supermarkets the catalogue
+ * prices, so they are not offered as places to shop.
+ */
+const SMALL_FORMAT = /express|mi alcampo|alcampo express|simply|supeco/;
+
 /** Which chain a messy OSM name belongs to, or null for a one-off shop. */
 function chainOf(name) {
   const text = plain(name);
@@ -117,6 +124,7 @@ async function main() {
     const name = tags.name;
     if (!name) continue;
 
+    if (SMALL_FORMAT.test(plain(name))) continue;
     const chain = chainOf(name);
     if (!chain) continue;
 

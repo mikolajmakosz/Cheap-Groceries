@@ -348,7 +348,8 @@ function BasketCard({
               })}
             </ul>
             <p className="mt-2 text-xs text-slate-500">
-              Trip: campus → shop → {home ? "home" : "(add home above)"} + {shopMinutes} min inside.
+              A trip adds {home ? "the detour on your way home" : "the walk from campus (add your home above for the real detour)"}{" "}
+              + {shopMinutes} min inside.
             </p>
           </section>
 

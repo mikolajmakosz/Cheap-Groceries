@@ -6,7 +6,7 @@ import { deliveryFee } from "./delivery.ts";
 export type Month = {
   /** Shopping trips in the period, for a basket that lasts `days`. */
   trips: number;
-  /** Minutes for one trip: campus to shop, inside the shop, shop to home. */
+  /** Minutes one trip adds to your day: the detour on the way home, plus the time inside. */
   minutesPerTrip: number;
   walkMinutes: number;
   shopMinutes: number;
@@ -19,7 +19,20 @@ export type Month = {
 };
 
 /**
- * A basket that lasts `days` is bought period / days times in a period. Each trip
+ * The walk a shop adds to a day. You go home from campus anyway, so with an
+ * address only the detour counts: campus to the shop and on to home, less going
+ * straight home. Without one the walk from campus is all that can be said.
+ */
+export function detourMinutes(store: Store, home: Point | null, from: Point = CAMPUS): number {
+  if (!home) return walkingMinutes(from, store);
+  return Math.max(
+    0,
+    walkingMinutes(from, store) + walkingMinutes(store, home) - walkingMinutes(from, home),
+  );
+}
+
+/**
+ * A basket that lasts period / days times in a period. Each trip
  * is the walk from campus to the shop, the time inside, and the walk on to home
  * when an address is known. Money is the shop's per-day cost over the period, so
  * a slow item such as oil is not charged as if it ran out with the rest.
@@ -34,8 +47,7 @@ export function periodFor(
   from: Point = CAMPUS,
 ): Month {
   const trips = periodDays / days;
-  const walk =
-    walkingMinutes(from, store) + (home ? walkingMinutes(store, home) : 0);
+  const walk = detourMinutes(store, home, from);
   const perTrip = walk + shopMinutes;
   return {
     trips,

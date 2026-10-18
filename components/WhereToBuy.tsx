@@ -3,7 +3,8 @@
 import { useState } from "react";
 import ShopLogo from "@/components/ShopLogo";
 import { deliveryFee, perHourSaved } from "@/lib/delivery";
-import { CAMPUS, walkingMinutes, type Point, type Store } from "@/lib/geo";
+import type { Point, Store } from "@/lib/geo";
+import { detourMinutes } from "@/lib/monthly";
 import { formatEuro } from "@/lib/pricing";
 import type { Option, TradeOff } from "@/lib/tradeoff";
 
@@ -38,13 +39,10 @@ export default function WhereToBuy({
 
   const rows = options.map((option) => {
     const fee = deliveryFee(option.chain, option.cost);
-    // Time the trip would take that delivery gives back: the walk there, the
-    // shopping, and the way on to home beyond going straight home.
-    const saved = Math.max(
-      0,
-      option.minutes + shopMinutes - (home ? walkingMinutes(CAMPUS, home) : 0),
-    );
-    return { option, fee, saved, perHour: perHourSaved(fee, saved) };
+    // You go home from campus anyway, so delivery gives back only the detour to
+    // the shop plus the time inside it, not the whole trip.
+    const saved = detourMinutes(option.store, home) + shopMinutes;
+    return { option, fee, saved, perHour: home ? perHourSaved(fee, saved) : null };
   });
 
   const sorted = [...rows].sort((a, b) =>
@@ -110,7 +108,7 @@ export default function WhereToBuy({
                       <>
                         {formatEuro(option.cost)} basket{" "}
                         {fee > 0 ? `+ ${formatEuro(fee)} delivery` : "· free delivery"}
-                        {perHour !== null && fee > 0 && (
+                        {home && perHour !== null && fee > 0 && (
                           <>
                             {" · "}
                             <strong className="text-[var(--ink)]">
@@ -119,11 +117,14 @@ export default function WhereToBuy({
                             ({saved} min)
                           </>
                         )}
-                        {fee === 0 && saved > 0 && ` · saves ${saved} min`}
+                        {home && fee === 0 && ` · saves ${saved} min`}
+                        {!home && " · add your home to see the cost per hour saved"}
                       </>
                     ) : (
                       <>
-                        {option.minutes} min{hasHome ? " via shop" : ""}
+                        {hasHome
+                          ? `+${Math.max(0, saved - shopMinutes)} min on your way home`
+                          : `${option.minutes} min from IE Tower`}
                         {option.store.street ? ` · ${option.store.street}` : ""}
                       </>
                     )}
