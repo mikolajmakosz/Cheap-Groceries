@@ -68,8 +68,21 @@ export const FOODS: Record<string, Food> = {
   manzana: f(52, 0.3, 0.2, 13.8, 10.4, 0, { edible: 0.9 }),
   lechuga: f(14, 0.9, 0.1, 3, 1.8, 0.03, { edible: 0.8, unitGrams: 450 }),
   agua: f(0, 0, 0, 0, 0, 0),
+  naranja: f(47, 0.9, 0.1, 11.8, 9.4, 0, { edible: 0.7 }),
+  limon: f(29, 1.1, 0.3, 9.3, 2.5, 0, { edible: 0.6 }),
+  pepino: f(15, 0.7, 0.1, 3.6, 1.7, 0.01, { edible: 0.95 }),
+  calabacin: f(17, 1.2, 0.3, 3.1, 2.5, 0.01, { edible: 0.95 }),
+  "champiñon": f(22, 3.1, 0.3, 3.3, 2, 0.01, { edible: 0.95 }),
   "refresco cola": f(42, 0, 0, 10.6, 10.6, 0),
   "yogur azucarado": f(86, 3.8, 2.5, 12.5, 12.5, 0.1),
+  espaguetis: f(355, 12, 1.5, 71, 3, 0.01),
+  galletas: f(435, 7, 10.5, 76, 20, 0.6),
+  "cacao soluble": f(370, 5.5, 3, 79, 67, 0.2),
+  // Ground coffee is drunk, not eaten: the cup it makes has next to no energy.
+  "cafe molido": f(2, 0.1, 0, 0, 0, 0),
+  cerveza: f(43, 0.4, 0, 3.6, 0, 0.01),
+  sardinas: f(208, 25, 11.5, 0, 0, 0.8),
+  vinagre: f(19, 0, 0, 0.6, 0.4, 0.01),
 };
 
 export const ZERO: Nutrients = { kcal: 0, protein: 0, fat: 0, carbs: 0, sugar: 0, salt: 0 };
@@ -97,6 +110,22 @@ export function scaleNutrients(n: Nutrients, factor: number): Nutrients {
 }
 
 /**
+ * The typical figures for this kind of food: the hand-kept table where it has
+ * a row, otherwise the average of the labels collected from the shops.
+ */
+export function typicalFor(entry: CatalogueEntry): Nutrients | null {
+  const food = FOODS[entry.food ?? entry.term];
+  if (food) {
+    const { kcal, protein, fat, carbs, sugar, salt } = food;
+    return { kcal, protein, fat, carbs, sugar, salt };
+  }
+  const labels = Object.values(entry.offers).flatMap((offer) => (offer.nutrition ? [offer.nutrition] : []));
+  if (labels.length === 0) return null;
+  const sum = labels.reduce<Nutrients>((total, label) => addNutrients(total, label), ZERO);
+  return scaleNutrients(sum, 1 / labels.length);
+}
+
+/**
  * What one shop's product holds per 100 g (or 100 ml): its own label when one
  * was collected, otherwise the typical figures for this kind of food.
  */
@@ -105,10 +134,8 @@ export function per100For(
   offer: Offer | null | undefined,
 ): { values: Nutrients; source: "label" | "typical" } | null {
   if (offer?.nutrition) return { values: offer.nutrition, source: "label" };
-  const food = FOODS[entry.food ?? entry.term];
-  if (!food) return null;
-  const { kcal, protein, fat, carbs, sugar, salt } = food;
-  return { values: { kcal, protein, fat, carbs, sugar, salt }, source: "typical" };
+  const typical = typicalFor(entry);
+  return typical ? { values: typical, source: "typical" } : null;
 }
 
 /** Grams (or millilitres) that are actually eaten from `quantity` servings. */
@@ -130,17 +157,7 @@ export function nutritionOf(
   quantity: number,
   offer?: Offer | null,
 ): Nutrients {
-  const food = FOODS[entry.food ?? entry.term];
-  const per100: Nutrients | null = offer?.nutrition ?? (food
-    ? {
-        kcal: food.kcal,
-        protein: food.protein,
-        fat: food.fat,
-        carbs: food.carbs,
-        sugar: food.sugar,
-        salt: food.salt,
-      }
-    : null);
+  const per100: Nutrients | null = offer?.nutrition ?? typicalFor(entry);
   if (!per100) return ZERO;
   return scaleNutrients(per100, eatenAmount(entry, quantity) / 100);
 }

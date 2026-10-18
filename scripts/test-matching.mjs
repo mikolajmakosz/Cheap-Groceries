@@ -14,11 +14,12 @@ import { termFor, entryFor, suggest, compareBasket, shopsFor, formatQuantity, po
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
-import { FOODS, nutritionOf, eatenAmount } from "../lib/nutrition.ts";
+import { nutritionOf, eatenAmount, typicalFor } from "../lib/nutrition.ts";
+import { REFERENCE_TERMS } from "../lib/reference-products.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
 import { planBasket, MONTH_DAYS } from "../lib/plan.ts";
 import { monthFor, periodFor, formatDuration } from "../lib/monthly.ts";
-import { CATEGORIES } from "../lib/categories.ts";
+import { allMenuTerms } from "../lib/categories.ts";
 
 let failures = 0;
 
@@ -82,29 +83,26 @@ check("nonsense suggests nothing", suggest("QA-7F3K2A").length, 0);
 check("at most six", suggest("a").length <= 6, true);
 
 console.log("\ncatalogue");
-const everyday = CATALOGUE.filter((entry) => entry.offers.Mercadona && entry.offers.Dia && !entry.food);
 check("Mercadona, Dia, Alcampo and Carrefour are covered", CATALOGUE_STORES.join(","), "Alcampo,Carrefour,Dia,Mercadona");
 check(
-  "every everyday term is priced at Mercadona and Dia",
-  CATALOGUE.filter((entry) => !entry.food).every(
-    (entry) => entry.offers.Mercadona?.price_eur > 0 && entry.offers.Dia?.price_eur > 0,
-  ),
+  "every curated term is priced at Mercadona and Dia",
+  REFERENCE_TERMS.every((reference) => {
+    const entry = CATALOGUE.find((e) => e.term === reference.term);
+    return entry?.offers.Mercadona?.price_eur > 0 && entry?.offers.Dia?.price_eur > 0;
+  }),
   true,
 );
-check("there are 30 everyday terms", everyday.length, 30);
+check("there are 30 curated terms", REFERENCE_TERMS.length, 30);
 check(
-  "every branded term is priced by at least two shops",
-  CATALOGUE.filter((entry) => entry.food).every((entry) => Object.keys(entry.offers).length >= 2),
+  "every term is priced by at least two shops",
+  CATALOGUE.every((entry) => Object.keys(entry.offers).length >= 2),
   true,
 );
 check(
-  "every everyday offer has a photo",
-  CATALOGUE.filter((entry) => !entry.food).every((entry) =>
-    Object.values(entry.offers).every((offer) => Boolean(offer.image)),
-  ),
+  "every offer has a photo, or is a Soy Super term given one",
+  CATALOGUE.every((entry) => Object.values(entry.offers).every((offer) => Boolean(offer.image))),
   true,
 );
-
 check(
   "every offer has a unit price",
   CATALOGUE.every((entry) =>
@@ -180,20 +178,29 @@ check(
 console.log("\nnutrition");
 check(
   "every catalogue term has nutrition data",
-  CATALOGUE.every((entry) => FOODS[entry.food ?? entry.term] !== undefined),
+  CATALOGUE.every((entry) => typicalFor(entry) !== null),
   true,
 );
 // Energy must agree with the macros it is made of (4 per g of protein and
 // carbohydrate, 9 per g of fat). A typo in the table shows up here as a gap.
-const offBy = CATALOGUE.map((entry) => {
-  const n = FOODS[entry.food ?? entry.term];
-  const fromMacros = 4 * n.protein + 9 * n.fat + 4 * n.carbs;
-  return n.kcal === 0 ? 0 : Math.abs(n.kcal - fromMacros) / n.kcal;
-});
+// Drinks with alcohol or acid, and coffee, carry energy the macros do not show.
+const EXEMPT = new Set(["cerveza", "vinagre", "cafe molido"]);
+const offBy = CATALOGUE.filter((entry) => !EXEMPT.has(entry.food ?? entry.term)).flatMap((entry) =>
+  [typicalFor(entry), ...Object.values(entry.offers).map((offer) => offer.nutrition)]
+    .filter(Boolean)
+    .map((n) => {
+      const fromMacros = 4 * n.protein + 9 * n.fat + 4 * n.carbs;
+      return n.kcal < 30 ? 0 : Math.abs(n.kcal - fromMacros) / n.kcal;
+    }),
+);
 check("calories agree with macros within 20%", Math.max(...offBy) <= 0.2, true);
 check(
   "sugar never exceeds carbohydrate",
-  CATALOGUE.every((entry) => FOODS[entry.food ?? entry.term].sugar <= FOODS[entry.food ?? entry.term].carbs + 0.5),
+  CATALOGUE.every((entry) =>
+    [typicalFor(entry), ...Object.values(entry.offers).map((offer) => offer.nutrition)]
+      .filter(Boolean)
+      .every((n) => n.sugar <= n.carbs + 0.5),
+  ),
   true,
 );
 const oil = entryFor("olive oil");
@@ -263,7 +270,7 @@ check("a day-long period is a fraction of a trip", Math.abs(periodFor(someShop, 
 check("a duration reads as hours and minutes", formatDuration(200), "3 h 20 min");
 
 console.log("\ncategories");
-const everyTerm = CATEGORIES.flatMap((category) => category.terms);
+const everyTerm = allMenuTerms();
 check("every category term is in the catalogue", everyTerm.every((term) => CATALOGUE.some((entry) => entry.term === term)), true);
 check("every catalogue term is in exactly one category", CATALOGUE.every((entry) => everyTerm.filter((term) => term === entry.term).length === 1), true);
 

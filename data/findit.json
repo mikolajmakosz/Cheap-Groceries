@@ -1,0 +1,1272 @@
+{
+ "source": "Findit (finditapp.es): each shop's own product as Findit lists it (name, pack price, unit price, photo, label), read from its product pages through its public JSON, a few seconds apart, picked by hand/rules as the ordinary own-brand option in a sensible pack.",
+ "collected_on": "2026-10-18",
+ "note": "Only supermarkets: Mercadona, Dia, Carrefour, Alcampo. Own brands only, so the pairs are like for like; a term lists only the shops where such a product was found. Photos are linked from Findit's image server. Findit merges some branded products from different shops under one id with a wrong pack size, so branded products are not taken from it (see data/soysuper.json); `photos` are Findit's picture of the same brand and type, for those terms. `fill` adds labels to the everyday terms that lacked one.",
+ "terms": [
+  {
+   "term": "leche semidesnatada",
+   "label": "Semi-skimmed milk",
+   "aliases": [
+    "leche semidesnatada",
+    "semi skimmed milk",
+    "semi-skimmed milk",
+    "semi skimmed"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 1000,
+   "offers": {
+    "mercadona": {
+     "id": 22425,
+     "name": "Leche semidesnatada Hacendado",
+     "price": 0.83,
+     "unit": 0.83,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22425.webp",
+     "nutrition": {
+      "kcal": 46,
+      "protein": 3.1,
+      "fat": 1.6,
+      "carbs": 4.8,
+      "sugar": 4.8,
+      "salt": 0.13
+     }
+    },
+    "dia": {
+     "id": 7500412,
+     "name": "Leche semidesnatada Dia Láctea brik 1 l",
+     "price": 0.83,
+     "unit": 0.83,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500412.webp",
+     "nutrition": {
+      "kcal": 46,
+      "protein": 3,
+      "fat": 1,
+      "carbs": 4,
+      "sugar": 4,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 250301,
+     "name": "Leche semidesnatada Simpl 1 l",
+     "price": 0.81,
+     "unit": 0.81,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250301.webp"
+    }
+   }
+  },
+  {
+   "term": "queso rallado",
+   "label": "Grated cheese",
+   "aliases": [
+    "queso rallado",
+    "grated cheese",
+    "shredded cheese"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 200,
+   "offers": {
+    "mercadona": {
+     "id": 7566260,
+     "name": "Queso rallado emmental gratinar Hacendado",
+     "price": 1.6,
+     "unit": 8,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7566260.webp",
+     "nutrition": {
+      "kcal": 369,
+      "protein": 27,
+      "fat": 29,
+      "carbs": 0.5,
+      "sugar": 0.5,
+      "salt": 0.7
+     }
+    },
+    "dia": {
+     "id": 7500331,
+     "name": "Queso mozzarella rallado Dia Láctea bolsa 200 g",
+     "price": 1.6,
+     "unit": 8,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500331.webp",
+     "nutrition": {
+      "kcal": 299,
+      "protein": 24,
+      "fat": 21,
+      "carbs": 2,
+      "sugar": 0,
+      "salt": 1
+     }
+    },
+    "carrefour": {
+     "id": 261616,
+     "name": "Queso rallado mix Simpl 200 g",
+     "price": 1.1,
+     "unit": 5.5,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261616.webp"
+    }
+   }
+  },
+  {
+   "term": "yogur griego",
+   "label": "Greek yogurt",
+   "aliases": [
+    "yogur griego",
+    "greek yogurt",
+    "greek yoghurt"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 19522,
+     "name": "Yogur griego natural Hacendado",
+     "price": 1.45,
+     "unit": 1.9333,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19522.webp",
+     "nutrition": {
+      "kcal": 129,
+      "protein": 3.9,
+      "fat": 10.8,
+      "carbs": 3.9,
+      "sugar": 3.9,
+      "salt": 0.12
+     }
+    },
+    "dia": {
+     "id": 7500572,
+     "name": "Yogur griego natural Fidias de Dia pack 6 x 125 g",
+     "price": 1.59,
+     "unit": 2.12,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500572.webp",
+     "nutrition": {
+      "kcal": 125,
+      "protein": 3,
+      "fat": 9,
+      "carbs": 5,
+      "sugar": 5,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 257349,
+     "name": "Yogur griego natural Carrefour Extra pack de 6 unidades de 125 g",
+     "price": 1.39,
+     "unit": 1.8533,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/257349.webp"
+    },
+    "alcampo": {
+     "id": 7557541,
+     "name": "AUCHAN Yogur griego sabor natural 4 x 125 g Producto Alcampo",
+     "price": 0.96,
+     "unit": 1.92,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7557541.webp",
+     "nutrition": {
+      "kcal": 104,
+      "protein": 3.1,
+      "fat": 8,
+      "carbs": 4.2,
+      "sugar": 4.2,
+      "salt": 0.13
+     }
+    }
+   }
+  },
+  {
+   "term": "azucar",
+   "label": "Sugar",
+   "aliases": [
+    "azucar",
+    "azúcar",
+    "sugar"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 23122,
+     "name": "Azúcar blanco Hacendado",
+     "price": 0.9,
+     "unit": 0.9,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/23122.webp",
+     "nutrition": {
+      "kcal": 400,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 100,
+      "sugar": 100,
+      "salt": 0
+     }
+    },
+    "dia": {
+     "id": 7502076,
+     "name": "Azúcar blanco Dia paquete 1 Kg",
+     "price": 0.9,
+     "unit": 0.9,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7502076.webp",
+     "nutrition": {
+      "kcal": 400,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 100,
+      "sugar": 100,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 249572,
+     "name": "Azúcar blanco Carrefour Classic 1 kg",
+     "price": 0.9,
+     "unit": 0.9,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249572.webp"
+    }
+   }
+  },
+  {
+   "term": "harina",
+   "label": "Flour",
+   "aliases": [
+    "harina",
+    "flour",
+    "wheat flour"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 1000,
+   "offers": {
+    "mercadona": {
+     "id": 23921,
+     "name": "Harina de trigo Hacendado",
+     "price": 0.72,
+     "unit": 0.72,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/23921.webp",
+     "nutrition": {
+      "kcal": 350,
+      "protein": 10,
+      "fat": 1.3,
+      "carbs": 73,
+      "sugar": 0.6,
+      "salt": 0.02
+     }
+    },
+    "dia": {
+     "id": 7501811,
+     "name": "Harina de trigo El molino de Dia paquete 1 Kg",
+     "price": 0.72,
+     "unit": 0.72,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501811.webp",
+     "nutrition": {
+      "kcal": 341,
+      "protein": 10,
+      "fat": 1,
+      "carbs": 72,
+      "sugar": 2,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 257148,
+     "name": "Harina de trigo Classic Carrefour 1 kg",
+     "price": 0.72,
+     "unit": 0.72,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/257148.webp"
+    }
+   }
+  },
+  {
+   "term": "sal",
+   "label": "Salt",
+   "aliases": [
+    "salt",
+    "table salt",
+    "sal fina"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 1000,
+   "offers": {
+    "mercadona": {
+     "id": 57039,
+     "name": "Sal fina Hacendado",
+     "price": 0.4,
+     "unit": 0.4,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/57039.webp",
+     "nutrition": {
+      "kcal": 0,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 0,
+      "sugar": 0,
+      "salt": 100
+     }
+    },
+    "dia": {
+     "id": 7500690,
+     "name": "Sal marina de mesa fina Dia paquete 1 Kg",
+     "price": 0.4,
+     "unit": 0.4,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500690.webp",
+     "nutrition": {
+      "kcal": 0,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 0,
+      "sugar": 0,
+      "salt": 100
+     }
+    },
+    "carrefour": {
+     "id": 249645,
+     "name": "Sal marina refinada fina Carrefour 1 kg",
+     "price": 0.4,
+     "unit": 0.4,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249645.webp"
+    }
+   }
+  },
+  {
+   "term": "espaguetis",
+   "label": "Spaghetti",
+   "aliases": [
+    "espaguetis",
+    "espagueti",
+    "spaghetti"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "carrefour": {
+     "id": 261061,
+     "name": "Pasta espaguetis Carrefour Classic 500 g",
+     "price": 0.8,
+     "unit": 1.6,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261061.webp"
+    },
+    "alcampo": {
+     "id": 7547157,
+     "name": "PRODUCTO ALCAMPO Pasta espaguetis cocción rápida 3 minutos 500 g",
+     "price": 0.9,
+     "unit": 1.8,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7547157.webp"
+    }
+   }
+  },
+  {
+   "term": "mayonesa",
+   "label": "Mayonnaise",
+   "aliases": [
+    "mayonesa",
+    "mayonnaise"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 450,
+   "offers": {
+    "mercadona": {
+     "id": 7567547,
+     "name": "Mayonesa Hacendado",
+     "price": 1.4,
+     "unit": 2.8571,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7567547.webp"
+    },
+    "dia": {
+     "id": 7500671,
+     "name": "Mayonesa Salseo de Dia bote 500 ml",
+     "price": 1.43,
+     "unit": 2.86,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500671.webp",
+     "nutrition": {
+      "kcal": 608,
+      "protein": 0,
+      "fat": 66,
+      "carbs": 2,
+      "sugar": 1,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 250054,
+     "name": "Mayonesa Carrefour envase 500 ml 475g",
+     "price": 1.43,
+     "unit": 2.9792,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250054.webp"
+    }
+   }
+  },
+  {
+   "term": "ketchup",
+   "label": "Ketchup",
+   "aliases": [
+    "ketchup",
+    "kétchup",
+    "tomato ketchup"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 35414,
+     "name": "Ketchup Hacendado",
+     "price": 1.05,
+     "unit": 1.75,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/35414.webp",
+     "nutrition": {
+      "kcal": 115,
+      "protein": 1.3,
+      "fat": 0,
+      "carbs": 27,
+      "sugar": 20.5,
+      "salt": 1.8
+     }
+    },
+    "carrefour": {
+     "id": 249643,
+     "name": "Kétchup Classic Carrefour envase 560 g",
+     "price": 0.98,
+     "unit": 1.75,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249643.webp"
+    }
+   }
+  },
+  {
+   "term": "mermelada",
+   "label": "Strawberry jam",
+   "aliases": [
+    "mermelada",
+    "strawberry jam",
+    "confitura"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 400,
+   "offers": {
+    "mercadona": {
+     "id": 58847,
+     "name": "Mermelada de fresa Hacendado",
+     "price": 1.45,
+     "unit": 3.625,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/58847.webp",
+     "nutrition": {
+      "kcal": 194,
+      "protein": 0.5,
+      "fat": 0,
+      "carbs": 47,
+      "sugar": 46,
+      "salt": 0.03
+     }
+    },
+    "dia": {
+     "id": 7501665,
+     "name": "Mermelada de fresa extra Fruticampo de Dia frasco 390 g",
+     "price": 1.41,
+     "unit": 3.6154,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501665.webp",
+     "nutrition": {
+      "kcal": 197,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 48,
+      "sugar": 46,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 244440,
+     "name": "Mermelada de fresa categoría extra Carrefour 410 g",
+     "price": 1.49,
+     "unit": 3.6341,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/244440.webp"
+    }
+   }
+  },
+  {
+   "term": "galletas",
+   "label": "Maria biscuits",
+   "aliases": [
+    "galletas",
+    "galletas maria",
+    "biscuits",
+    "cookies",
+    "maria biscuits"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 400,
+   "offers": {
+    "dia": {
+     "id": 268272,
+     "name": "Galletas maría Galleteca de Dia paquete 200 g",
+     "price": 0.34,
+     "unit": 1.7,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/268272.webp"
+    },
+    "carrefour": {
+     "id": 252094,
+     "name": "Galletas María dorada Carrefour Classic 800 g",
+     "price": 1.35,
+     "unit": 1.6875,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/252094.webp"
+    }
+   }
+  },
+  {
+   "term": "cacao soluble",
+   "label": "Cocoa powder",
+   "aliases": [
+    "cacao soluble",
+    "cacao",
+    "cocoa",
+    "cocoa powder",
+    "hot chocolate"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 400,
+   "offers": {
+    "mercadona": {
+     "id": 242635,
+     "name": "Cacao soluble instantáneo Hacendado",
+     "price": 3.75,
+     "unit": 4.6875,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/242635.webp"
+    },
+    "dia": {
+     "id": 284275,
+     "name": "Cacao soluble instantáneo Dia Temptation 800 g",
+     "price": 4.19,
+     "unit": 5.2375,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/284275.webp"
+    },
+    "carrefour": {
+     "id": 260828,
+     "name": "Cacao soluble granulado Carrefour Classic 400 g",
+     "price": 2.69,
+     "unit": 6.725,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/260828.webp"
+    }
+   }
+  },
+  {
+   "term": "cafe molido",
+   "label": "Ground coffee",
+   "aliases": [
+    "cafe molido",
+    "café molido",
+    "cafe",
+    "café",
+    "coffee",
+    "ground coffee"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 250,
+   "offers": {
+    "mercadona": {
+     "id": 22010,
+     "name": "Café molido natural Hacendado",
+     "price": 2.5,
+     "unit": 10,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22010.webp"
+    },
+    "dia": {
+     "id": 7501639,
+     "name": "Café molido natural Colombia Arom'arte de Dia bolsa 250 g",
+     "price": 3.7,
+     "unit": 14.8,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501639.webp"
+    },
+    "carrefour": {
+     "id": 258263,
+     "name": "Café molido natural Carrefour Classic 250 g",
+     "price": 2.27,
+     "unit": 9.08,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/258263.webp"
+    }
+   }
+  },
+  {
+   "term": "zumo de naranja",
+   "label": "Orange juice",
+   "aliases": [
+    "zumo de naranja",
+    "zumo",
+    "orange juice",
+    "juice"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 1000,
+   "offers": {
+    "mercadona": {
+     "id": 19477,
+     "name": "Zumo pura naranja con pulpa Hacendado",
+     "price": 1.85,
+     "unit": 1.85,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19477.webp",
+     "nutrition": {
+      "kcal": 44,
+      "protein": 0.7,
+      "fat": 0.1,
+      "carbs": 9.9,
+      "sugar": 9.3,
+      "salt": 0
+     }
+    },
+    "dia": {
+     "id": 110063,
+     "name": "Zumo de naranja 100% sin pulpa Zumosfera de Dia brik 1 l",
+     "price": 1.85,
+     "unit": 1.85,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110063.webp",
+     "nutrition": {
+      "kcal": 43,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 10,
+      "sugar": 10,
+      "salt": 0
+     }
+    },
+    "carrefour": {
+     "id": 120736,
+     "name": "Zumo de naranja Carrefour brik 1 l",
+     "price": 1.85,
+     "unit": 1.85,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/120736.webp"
+    }
+   }
+  },
+  {
+   "term": "refresco cola",
+   "label": "Cola (own brand)",
+   "aliases": [
+    "refresco cola",
+    "refresco de cola",
+    "own brand cola",
+    "cheap cola"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 1000,
+   "offers": {
+    "mercadona": {
+     "id": 269533,
+     "name": "Refresco cola Hacendado",
+     "price": 0.8,
+     "unit": 0.4,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/269533.webp"
+    },
+    "dia": {
+     "id": 110491,
+     "name": "Refresco de cola Hola Cola de Dia botella 2 l",
+     "price": 0.8,
+     "unit": 0.4,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110491.webp",
+     "nutrition": {
+      "kcal": 29,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 7,
+      "sugar": 7,
+      "salt": 0
+     }
+    }
+   }
+  },
+  {
+   "term": "cerveza",
+   "label": "Lager beer",
+   "aliases": [
+    "cerveza",
+    "beer",
+    "lager",
+    "lager beer"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 1000,
+   "offers": {
+    "dia": {
+     "id": 110319,
+     "name": "Cerveza lager Ramblers de Dia lata 33 cl",
+     "price": 0.32,
+     "unit": 0.9697,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110319.webp"
+    },
+    "carrefour": {
+     "id": 245148,
+     "name": "Cerveza Carrefour Lager botella 1 l",
+     "price": 0.94,
+     "unit": 0.94,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/245148.webp"
+    }
+   }
+  },
+  {
+   "term": "sardinas",
+   "label": "Sardines",
+   "aliases": [
+    "sardinas",
+    "sardines"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 120,
+   "offers": {
+    "dia": {
+     "id": 284226,
+     "name": "Sardinas en aceite de oliva Dia Mari Marinera 85 g",
+     "price": 1.25,
+     "unit": 13.8889,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/284226.webp"
+    },
+    "carrefour": {
+     "id": 280394,
+     "name": "Sardinas en aceite de oliva virgen extra Classic Carrefour 95 g",
+     "price": 1.7,
+     "unit": 17,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/280394.webp"
+    },
+    "alcampo": {
+     "id": 7552204,
+     "name": "PRODUCTO ALCAMPO Sardinas en aceite de girasol 84 g",
+     "price": 1.15,
+     "unit": 14.375,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7552204.webp"
+    }
+   }
+  },
+  {
+   "term": "pavo",
+   "label": "Turkey slices",
+   "aliases": [
+    "pavo",
+    "pechuga de pavo",
+    "turkey",
+    "turkey slices",
+    "turkey breast"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 200,
+   "offers": {
+    "mercadona": {
+     "id": 5710,
+     "name": "Pechuga 92% pavo Hacendado lonchas",
+     "price": 2.85,
+     "unit": 14.25,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/5710.webp",
+     "nutrition": {
+      "kcal": 89,
+      "protein": 19.5,
+      "fat": 1.3,
+      "carbs": 1,
+      "sugar": 1,
+      "salt": 1.9
+     }
+    },
+    "carrefour": {
+     "id": 254144,
+     "name": "Pechuga de pavo en finas lonchas Carrefour El Mercado sin gluten 200 g",
+     "price": 2.29,
+     "unit": 11.45,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/254144.webp"
+    }
+   }
+  },
+  {
+   "term": "hamburguesa",
+   "label": "Beef burgers",
+   "aliases": [
+    "hamburguesa",
+    "hamburguesas",
+    "burger",
+    "burgers",
+    "beef burgers"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 300,
+   "offers": {
+    "mercadona": {
+     "id": 86010,
+     "name": "Hamburguesa de lomo de vacuno",
+     "price": 4,
+     "unit": 16.6667,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/86010.webp",
+     "nutrition": {
+      "kcal": 240,
+      "protein": 19,
+      "fat": 18,
+      "carbs": 0.5,
+      "sugar": 0.5,
+      "salt": 1.1
+     }
+    },
+    "carrefour": {
+     "id": 249681,
+     "name": "Hamburguesa de Vacuno Raza Angus Carrefour Selection 300 g",
+     "price": 4.96,
+     "unit": 16.5333,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249681.webp"
+    },
+    "alcampo": {
+     "id": 7543887,
+     "name": "ALCAMPO CULTIVAMOS LO BUENO Hamburguesas congeladas de vacuno Villa del Monte 2 x 150 g",
+     "price": 3.73,
+     "unit": 12.4333,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7543887.webp"
+    }
+   }
+  },
+  {
+   "term": "pepino",
+   "label": "Cucumber",
+   "aliases": [
+    "pepino",
+    "cucumber"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 22098,
+     "name": "Pepino holandés",
+     "price": 1.13,
+     "unit": 2.6279,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22098.webp"
+    },
+    "dia": {
+     "id": 266119,
+     "name": "Pepino holandés 1 unidad",
+     "price": 1.15,
+     "unit": 3.2857,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/266119.webp"
+    },
+    "carrefour": {
+     "id": 249597,
+     "name": "Pepino Carrefour a granel 1 kg aprox",
+     "price": 1.69,
+     "unit": 1.69,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249597.webp"
+    },
+    "alcampo": {
+     "id": 7551180,
+     "name": "Pepino Holandés 400 g",
+     "price": 1,
+     "unit": 2.5,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7551180.webp"
+    }
+   }
+  },
+  {
+   "term": "champiñon",
+   "label": "Mushrooms",
+   "aliases": [
+    "champiñon",
+    "champiñones",
+    "champinon",
+    "champinones",
+    "mushrooms",
+    "mushroom"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 400,
+   "offers": {
+    "dia": {
+     "id": 283966,
+     "name": "Champiñón laminado Dia Vegecampo 3 x 105 g",
+     "price": 2.22,
+     "unit": 7.1613,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283966.webp"
+    },
+    "carrefour": {
+     "id": 244999,
+     "name": "Champiñon laminado Carrefour bandeja de 400 g aprox",
+     "price": 2.64,
+     "unit": 6.6,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/244999.webp"
+    }
+   }
+  },
+  {
+   "term": "naranja",
+   "label": "Oranges",
+   "aliases": [
+    "naranja",
+    "naranjas",
+    "orange",
+    "oranges"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 1000,
+   "offers": {
+    "dia": {
+     "id": 164100,
+     "name": "Naranja de mesa malla 1.5 Kg",
+     "price": 3.59,
+     "unit": 2.3933,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/164100.webp"
+    },
+    "carrefour": {
+     "id": 250814,
+     "name": "Naranjas de mesa Carrefour el Mercado 3 kg",
+     "price": 5.95,
+     "unit": 1.9767,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250814.webp"
+    },
+    "alcampo": {
+     "id": 283114,
+     "name": "Naranjas de mesa, malla 2 kg",
+     "price": 4.35,
+     "unit": 2.175,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283114.webp"
+    }
+   }
+  },
+  {
+   "term": "limon",
+   "label": "Lemons",
+   "aliases": [
+    "limon",
+    "limón",
+    "limones",
+    "lemon",
+    "lemons"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "dia": {
+     "id": 283980,
+     "name": "Limones malla 750 g",
+     "price": 1.39,
+     "unit": 1.8533,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283980.webp"
+    },
+    "carrefour": {
+     "id": 250869,
+     "name": "Limón Carrefour a granel 1 kg aprox",
+     "price": 2.55,
+     "unit": 2.55,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250869.webp"
+    }
+   }
+  },
+  {
+   "term": "calabacin",
+   "label": "Courgettes",
+   "aliases": [
+    "calabacin",
+    "calabacín",
+    "courgette",
+    "courgettes",
+    "zucchini"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 35813,
+     "name": "Calabacín verde",
+     "price": 0.74,
+     "unit": 1.8974,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/35813.webp",
+     "nutrition": {
+      "kcal": 17,
+      "protein": 1.2,
+      "fat": 0.3,
+      "carbs": 3.1,
+      "sugar": 2.5,
+      "salt": 0.005
+     }
+    },
+    "dia": {
+     "id": 267219,
+     "name": "Calabacín unidad 650 g aprox",
+     "price": 0.97,
+     "unit": 1.4923,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/267219.webp"
+    }
+   }
+  },
+  {
+   "term": "vinagre",
+   "label": "Wine vinegar",
+   "aliases": [
+    "vinagre",
+    "vinegar",
+    "wine vinegar"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "ml",
+    "label": "L"
+   },
+   "serving": 500,
+   "offers": {
+    "mercadona": {
+     "id": 22668,
+     "name": "Vinagre de vino blanco Hacendado",
+     "price": 0.65,
+     "unit": 0.65,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22668.webp"
+    },
+    "dia": {
+     "id": 7500645,
+     "name": "Vinagre de vino blanco Aliña tu Dia botella 1 l",
+     "price": 0.65,
+     "unit": 0.65,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500645.webp"
+    },
+    "carrefour": {
+     "id": 253844,
+     "name": "Vinagre de vino blanco Carrefour Classic 1 l",
+     "price": 0.62,
+     "unit": 0.62,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253844.webp"
+    }
+   }
+  },
+  {
+   "term": "maiz dulce",
+   "label": "Sweetcorn",
+   "aliases": [
+    "maiz dulce",
+    "maíz dulce",
+    "maiz",
+    "maíz",
+    "sweetcorn",
+    "corn"
+   ],
+   "basis": {
+    "amount": 1000,
+    "unit": "g",
+    "label": "kg"
+   },
+   "serving": 200,
+   "offers": {
+    "mercadona": {
+     "id": 19754,
+     "name": "Maíz dulce Hacendado",
+     "price": 1.25,
+     "unit": 5.9524,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19754.webp",
+     "nutrition": {
+      "kcal": 82,
+      "protein": 2.5,
+      "fat": 1.4,
+      "carbs": 14,
+      "sugar": 6.7,
+      "salt": 0.5
+     }
+    },
+    "dia": {
+     "id": 266527,
+     "name": "Maíz dulce Dia Vegecampo 3 x 70 g",
+     "price": 1.25,
+     "unit": 5.9524,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/266527.webp"
+    },
+    "carrefour": {
+     "id": 256979,
+     "name": "Maiz dulce Carrefour Classic pack de 4 unidades de 70 g",
+     "price": 1.66,
+     "unit": 5.9286,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/256979.webp"
+    },
+    "alcampo": {
+     "id": 7552262,
+     "name": "PRODUCTO ALCAMPO Maíz dulce 140 g",
+     "price": 0.55,
+     "unit": 3.9286,
+     "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7552262.webp"
+    }
+   }
+  }
+ ],
+ "fill": {
+  "pollo": {
+   "Mercadona": {
+    "kcal": 108,
+    "protein": 22,
+    "fat": 1.8,
+    "carbs": 0.5,
+    "sugar": 0,
+    "salt": 0.19
+   }
+  },
+  "leche": {
+   "Mercadona": {
+    "kcal": 63,
+    "protein": 3.1,
+    "fat": 3.6,
+    "carbs": 4.6,
+    "sugar": 4.6,
+    "salt": 0.13
+   }
+  },
+  "huevos": {
+   "Mercadona": {
+    "kcal": 150,
+    "protein": 12.5,
+    "fat": 11.1,
+    "carbs": 0.5,
+    "sugar": 0.5,
+    "salt": 0.36
+   }
+  },
+  "aceite": {
+   "Dia": {
+    "kcal": 824,
+    "protein": 0,
+    "fat": 92,
+    "carbs": 0,
+    "sugar": 0,
+    "salt": 0
+   }
+  },
+  "tomate": {
+   "Mercadona": {
+    "kcal": 20,
+    "protein": 1,
+    "fat": 0.2,
+    "carbs": 4,
+    "sugar": 2.6,
+    "salt": 0.005
+   }
+  },
+  "patata": {
+   "Mercadona": {
+    "kcal": 77,
+    "protein": 1.9,
+    "fat": 0.1,
+    "carbs": 17.5,
+    "sugar": 0.8,
+    "salt": 0
+   }
+  },
+  "platano": {
+   "Mercadona": {
+    "kcal": 89,
+    "protein": 1.1,
+    "fat": 0.3,
+    "carbs": 22.8,
+    "sugar": 12.2,
+    "salt": 0.001
+   }
+  },
+  "manzana": {
+   "Mercadona": {
+    "kcal": 52,
+    "protein": 0.3,
+    "fat": 0.2,
+    "carbs": 14,
+    "sugar": 10,
+    "salt": 0
+   }
+  },
+  "lechuga": {
+   "Mercadona": {
+    "kcal": 16,
+    "protein": 0.7,
+    "fat": 0.6,
+    "carbs": 1.5,
+    "sugar": 0,
+    "salt": 0.08
+   }
+  }
+ },
+ "photos": {
+  "pascual": "https://dx7csy7aghu7b.cloudfront.net/prods/249849.webp",
+  "danone": "https://dx7csy7aghu7b.cloudfront.net/prods/259754.webp",
+  "coca cola": "https://dx7csy7aghu7b.cloudfront.net/prods/115897.webp",
+  "gallo": "https://dx7csy7aghu7b.cloudfront.net/prods/261390.webp",
+  "brillante": "https://dx7csy7aghu7b.cloudfront.net/prods/253991.webp",
+  "ybarra": "https://dx7csy7aghu7b.cloudfront.net/prods/253815.webp",
+  "carbonell": "https://dx7csy7aghu7b.cloudfront.net/prods/253824.webp",
+  "orlando": "https://dx7csy7aghu7b.cloudfront.net/prods/249900.webp",
+  "calvo": "https://dx7csy7aghu7b.cloudfront.net/prods/256035.webp",
+  "font vella": "https://dx7csy7aghu7b.cloudfront.net/prods/267289.webp"
+ }
+}

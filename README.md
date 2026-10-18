@@ -98,6 +98,23 @@ nutrition is the typical values for the food. The pages sit behind a proof-of-wo
 read from a normal browser session, a few seconds apart, and the collection stops at any challenge.
 El Corte Ingles and Hipercor prices are left out because the app holds no locations for them.
 
+### Findit
+
+[Findit](https://finditapp.es) lists every supermarket product with its photo, pack price, unit price and
+label. Its robots.txt allows a person's assistant to read product pages, so it was used the same way as
+the others: one product page at a time, a few seconds apart, no crawling. It gave:
+
+- **26 more terms** in [`data/findit.json`](data/findit.json): the ordinary own-brand product (Hacendado,
+  Dia, Carrefour, Auchan/Alcampo) of each shop that has one, with its photo and, where Findit has it, its
+  label. A term lists only the shops where such a product was found, so the pairs are like for like.
+- **Labels** for everyday terms that lacked one (`fill`), such as Mercadona's milk, eggs and chicken.
+- **Photos** for the ten Soy Super branded terms (`photos`): Findit's picture of the same brand and type.
+
+Where it does not help: Findit merges some branded products from different shops under one id and then
+gets the pack size wrong (a Coca-Cola pack of two bottles priced at Mercadona next to a pack of six at
+Alcampo), so branded prices stay with Soy Super. Carrefour and Alcampo products carry few labels there, so
+those shops use typical values.
+
 ### Product links and logos
 
 The shop's logo next to each product opens that product on the shop's own site. The logos in
@@ -185,6 +202,9 @@ selector do the settling:
   days) it is charged, and counted for calories, over those days. Stored in `saved_basket_items.lasts_days`
   ([`supabase/03_lasts_days.sql`](supabase/03_lasts_days.sql)).
 
+**Edit** on a basket opens it for changes: rename it, add or remove products and change quantities, each
+saved at once, so a saved basket never has to be rebuilt.
+
 Every shop's nutrition is shown side by side, with the cost of 100 kcal and of a gram of protein, and the
 day-by-day figures. Click a product's name to see that same product in each shop, per 100 g, label against
 label; three shops show at once and the rest open under "All shops".
@@ -195,9 +215,10 @@ copy: changing the live basket later never rewrites it.
 
 ## Looking around
 
-The **Browse products** button on `/app` opens the aisles (meat, fish, dairy and eggs, bread, rice and pasta,
-oil and sauces, fruit and veg, drinks; [`lib/categories.ts`](lib/categories.ts)) with a photo and a price for
-every product. The look follows dontlookup.app: warm paper, near-black ink, thick outlines, hard offset
+The **Browse products** button on `/app` opens a menu laid out like Mercadona's: ten aisles on the left
+that open into sections (Fruit & veg: Fruit, Vegetables), and the products of what is picked on the right with
+a photo and a price each ([`lib/categories.ts`](lib/categories.ts)). Tap a product to put it in the basket;
+tap one that is already there to add a serving. The look follows dontlookup.app: warm paper, near-black ink, thick outlines, hard offset
 shadows, Luckiest Guy for headlines and Nunito for text (both open fonts). The map is the same
 OpenStreetMap data drawn in greyscale; a truly hand-drawn map would need its own tile set.
 

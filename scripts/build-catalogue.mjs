@@ -138,6 +138,59 @@ for (const product of soysuper.products) {
   });
 }
 
+// Findit: more everyday terms, each shop's own product with its photo and label,
+// plus labels and photos for terms the sources above left bare.
+const findit = await load("data/findit.json");
+const SHOP_NAME = { mercadona: "Mercadona", dia: "Dia", carrefour: "Carrefour", alcampo: "Alcampo" };
+for (const [term, byShop] of Object.entries(findit.fill ?? {})) {
+  const entry = entries.find((e) => e.term === term);
+  if (!entry) {
+    console.error(`  ✗ findit fill: no term "${term}"`);
+    problems += 1;
+    continue;
+  }
+  for (const [store, nutrition] of Object.entries(byShop)) {
+    if (entry.offers[store] && !entry.offers[store].nutrition) entry.offers[store].nutrition = nutrition;
+  }
+}
+for (const [term, image] of Object.entries(findit.photos ?? {})) {
+  const entry = entries.find((e) => e.term === term);
+  if (!entry) {
+    console.error(`  ✗ findit photo: no term "${term}"`);
+    problems += 1;
+    continue;
+  }
+  for (const offer of Object.values(entry.offers)) offer.image ??= image;
+}
+for (const term of findit.terms) {
+  const offers = {};
+  for (const [key, o] of Object.entries(term.offers)) {
+    offers[SHOP_NAME[key]] = {
+      name: o.name,
+      price_eur: o.price,
+      unit_price: o.unit,
+      image: o.image,
+      url: `https://finditapp.es/product/${o.id}`,
+      checked_on: findit.collected_on,
+      ...(o.nutrition ? { nutrition: o.nutrition } : {}),
+    };
+  }
+  if (Object.keys(offers).length < 2) {
+    console.error(`  ✗ ${term.term}: fewer than two shops`);
+    problems += 1;
+    continue;
+  }
+  entries.push({
+    term: term.term,
+    label: term.label,
+    basis: term.basis,
+    serving: term.serving,
+    aliases: term.aliases,
+    ...(term.food ? { food: term.food } : {}),
+    offers,
+  });
+}
+
 if (problems > 0) {
   console.error(`\n${problems} problem(s) — catalogue not written.`);
   process.exit(1);
@@ -149,7 +202,8 @@ await writeFile(
     `// Mercadona: its own public store API, Madrid warehouse (scripts/scrape-mercadona.mjs).\n` +
     `// Dia: collected by hand in a browser (data/dia.json).\n` +
     `// Nutrition labels: data/nutrition-mercadona.json (Open Food Facts) and data/nutrition-dia.json (dia.es).\n` +
-    `// Branded products in several shops: data/soysuper.json (Soy Super product pages).\n\n` +
+    `// Branded products in several shops: data/soysuper.json (Soy Super product pages).\n` +
+    `// More terms, photos and labels: data/findit.json (Findit product pages).\n\n` +
     `import type { CatalogueEntry } from "./catalogue.ts";\n\n` +
     `export const CATALOGUE_DATA: CatalogueEntry[] = ${JSON.stringify(entries, null, 2)};\n`,
   "utf8",

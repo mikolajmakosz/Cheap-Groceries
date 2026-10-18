@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AddressSearch from "@/components/AddressSearch";
 import NutritionPanel from "@/components/NutritionPanel";
 import ProductCompare from "@/components/ProductCompare";
+import ProductSearch from "@/components/ProductSearch";
 import ShopCompare from "@/components/ShopCompare";
 import ShopLogo from "@/components/ShopLogo";
 import { setHome, useHome } from "@/lib/homeStore";
@@ -16,6 +17,7 @@ import { MONTH_DAYS, planBasket } from "@/lib/plan";
 import { estimateShopMinutes } from "@/lib/shoptime";
 import { bestStorePerChain } from "@/lib/tradeoff";
 import type { Point } from "@/lib/geo";
+import type { CatalogueEntry } from "@/lib/catalogue";
 
 type SavedItem = {
   id: string;
@@ -35,6 +37,16 @@ type SavedBasket = {
 
 const MAX_DAYS = 30;
 
+/** What editing a saved basket can do; each one saves at once. */
+type BasketEdits = {
+  rename: (id: string, name: string) => Promise<void>;
+  quantity: (itemId: string, quantity: number) => Promise<void>;
+  remove: (itemId: string) => Promise<void>;
+  add: (basketId: string, name: string) => Promise<void>;
+};
+
+const MAX_QUANTITY = 20;
+
 type Period = "day" | "week" | "month" | "custom";
 const PERIODS: { id: Period; label: string; days: number | null }[] = [
   { id: "day", label: "Day", days: 1 },
@@ -50,6 +62,7 @@ function BasketCard({
   onAdd,
   onDays,
   onLasts,
+  onEdit,
 }: {
   basket: SavedBasket;
   home: Point | null;
@@ -57,6 +70,7 @@ function BasketCard({
   onAdd: (basket: SavedBasket) => Promise<void>;
   onDays: (id: string, days: number) => void;
   onLasts: (itemId: string, days: number | null) => void;
+  onEdit: BasketEdits;
 }) {
   const [days, setDays] = useState(basket.days);
   const [confirming, setConfirming] = useState(false);
@@ -68,6 +82,9 @@ function BasketCard({
     Object.fromEntries(basket.saved_basket_items.map((item) => [item.id, item.lasts_days])),
   );
   const [opened, setOpened] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
+  const [draftName, setDraftName] = useState(basket.name);
+  const [draft, setDraft] = useState("");
 
   const periodDays = PERIODS.find((p) => p.id === period)?.days ?? customDays;
   const periodLabel =
@@ -115,7 +132,23 @@ function BasketCard({
     <article className="card p-5">
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="display text-2xl leading-none">{basket.name}</h2>
+          {editing ? (
+            <input
+              type="text"
+              aria-label="Basket name"
+              value={draftName}
+              maxLength={60}
+              onChange={(event) => setDraftName(event.target.value)}
+              onBlur={() => {
+                const name = draftName.trim();
+                if (name && name !== basket.name) void onEdit.rename(basket.id, name);
+                else setDraftName(basket.name);
+              }}
+              className="field !py-1 !text-lg font-extrabold"
+            />
+          ) : (
+            <h2 className="display text-2xl leading-none">{basket.name}</h2>
+          )}
           <p className="mt-1 text-xs text-slate-500">
             {items.length} {items.length === 1 ? "product" : "products"} ·{" "}
             {new Date(basket.created_at).toLocaleDateString("en-GB", {
@@ -127,13 +160,21 @@ function BasketCard({
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
+            aria-pressed={editing}
+            onClick={() => setEditing((on) => !on)}
+            className={`btn btn-sm ${editing ? "" : "btn-light"}`}
+          >
+            {editing ? "Done" : "Edit"}
+          </button>
+          <button
+            type="button"
             disabled={busy}
             onClick={async () => {
               setBusy(true);
               await onAdd(basket);
               setBusy(false);
             }}
-            className="btn btn-sm"
+            className="btn btn-light btn-sm"
           >
             Use it
           </button>
@@ -322,9 +363,43 @@ function BasketCard({
                   ) : (
                     <span className="font-extrabold">{line.row.item.name}</span>
                   )}
-                  <span className="text-xs text-slate-500">
-                    {entry ? formatQuantity(line.row.item.quantity, entry) : "no price"}
-                  </span>
+                  {editing ? (
+                    <span className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        disabled={line.row.item.quantity <= 1}
+                        aria-label={`Fewer ${line.row.item.name}`}
+                        onClick={() => void onEdit.quantity(id, line.row.item.quantity - 1)}
+                        className="stepper h-7 w-7"
+                      >
+                        −
+                      </button>
+                      <span className="min-w-[3.5rem] text-center text-xs font-bold">
+                        {entry ? formatQuantity(line.row.item.quantity, entry) : `${line.row.item.quantity}×`}
+                      </span>
+                      <button
+                        type="button"
+                        disabled={line.row.item.quantity >= MAX_QUANTITY}
+                        aria-label={`More ${line.row.item.name}`}
+                        onClick={() => void onEdit.quantity(id, line.row.item.quantity + 1)}
+                        className="stepper h-7 w-7"
+                      >
+                        +
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={`Remove ${line.row.item.name}`}
+                        onClick={() => void onEdit.remove(id)}
+                        className="stepper ml-1 h-7 w-7"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ) : (
+                    <span className="text-xs text-slate-500">
+                      {entry ? formatQuantity(line.row.item.quantity, entry) : "no price"}
+                    </span>
+                  )}
                 </div>
 
                 {entry && (
@@ -359,6 +434,26 @@ function BasketCard({
             );
           })}
         </ul>
+        {editing && (
+          <div className="mt-3">
+            <ProductSearch
+              value={draft}
+              onChange={setDraft}
+              onPick={(entry: CatalogueEntry) => {
+                setDraft("");
+                void onEdit.add(basket.id, entry.label);
+              }}
+              onSubmit={() => {
+                const name = draft.trim();
+                setDraft("");
+                if (name) void onEdit.add(basket.id, name);
+              }}
+              buttonLabel="Add"
+              placeholder="Add a product…"
+              ariaLabel={`Add a product to ${basket.name}`}
+            />
+          </div>
+        )}
       </section>
     </article>
   );
@@ -438,6 +533,46 @@ export default function SavedBasketsPage() {
     );
   }
 
+  /** Each edit saves at once and reloads, so the screen is what the database holds. */
+  const edits: BasketEdits = {
+    rename: async (id, name) => {
+      const supabase = createClient();
+      const { error: renameError } = await supabase
+        .from("saved_baskets")
+        .update({ name })
+        .eq("id", id);
+      if (renameError) setError(renameError.message);
+      await load();
+    },
+    quantity: async (itemId, quantity) => {
+      const next = Math.min(MAX_QUANTITY, Math.max(1, quantity));
+      const supabase = createClient();
+      const { error: quantityError } = await supabase
+        .from("saved_basket_items")
+        .update({ quantity: next })
+        .eq("id", itemId);
+      if (quantityError) setError(quantityError.message);
+      await load();
+    },
+    remove: async (itemId) => {
+      const supabase = createClient();
+      const { error: removeError } = await supabase
+        .from("saved_basket_items")
+        .delete()
+        .eq("id", itemId);
+      if (removeError) setError(removeError.message);
+      await load();
+    },
+    add: async (basketId, name) => {
+      const supabase = createClient();
+      const { error: addError } = await supabase
+        .from("saved_basket_items")
+        .insert({ basket_id: basketId, name });
+      if (addError) setError(addError.message);
+      await load();
+    },
+  };
+
   async function handleDelete(id: string) {
     const supabase = createClient();
     const { error: deleteError } = await supabase.from("saved_baskets").delete().eq("id", id);
@@ -506,6 +641,7 @@ export default function SavedBasketsPage() {
               onAdd={handleAdd}
               onDays={handleDays}
               onLasts={handleLasts}
+              onEdit={edits}
             />
           ))}
         </div>

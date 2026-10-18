@@ -3,6 +3,7 @@
 // Dia: collected by hand in a browser (data/dia.json).
 // Nutrition labels: data/nutrition-mercadona.json (Open Food Facts) and data/nutrition-dia.json (dia.es).
 // Branded products in several shops: data/soysuper.json (Soy Super product pages).
+// More terms, photos and labels: data/findit.json (Findit product pages).
 
 import type { CatalogueEntry } from "./catalogue.ts";
 
@@ -29,7 +30,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 7.7,
         "image": "https://prod-mercadona.imgix.net/images/cfbe3b741d3a64cc637efe0c7bf0bb93.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/2787/filetes-pechuga-pollo-bandeja",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 108,
+          "protein": 22,
+          "fat": 1.8,
+          "carbs": 0.5,
+          "sugar": 0,
+          "salt": 0.19
+        }
       },
       "Dia": {
         "name": "Pechuga de pollo corte fino Selección de Dia 600 g aprox.",
@@ -211,7 +220,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 0.96,
         "image": "https://prod-mercadona.imgix.net/images/b4db71bda48058bb37cd556c55b2fc64.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/10379/leche-entera-hacendado-pack-6",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 63,
+          "protein": 3.1,
+          "fat": 3.6,
+          "carbs": 4.6,
+          "sugar": 4.6,
+          "salt": 0.13
+        }
       },
       "Dia": {
         "name": "Leche entera Dia Láctea pack 6 x 1 L",
@@ -253,7 +270,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 2.85,
         "image": "https://prod-mercadona.imgix.net/images/96ba986bc89d7298da0a7605824227a9.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/31505/huevos-medianos-m-paquete",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 150,
+          "protein": 12.5,
+          "fat": 11.1,
+          "carbs": 0.5,
+          "sugar": 0.5,
+          "salt": 0.36
+        }
       },
       "Dia": {
         "name": "Huevos medianos M de gallinas criadas en suelo Dia 12 unidades",
@@ -1014,7 +1039,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 4.35,
         "image": "https://www.dia.es/product_images/112529/112529_ISO_0_ES.jpg?imwidth=176",
         "url": "https://www.dia.es/aceites-salsas-y-especias/aceites/p/112529",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 824,
+          "protein": 0,
+          "fat": 92,
+          "carbs": 0,
+          "sugar": 0,
+          "salt": 0
+        }
       }
     }
   },
@@ -1089,7 +1122,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 2.2,
         "image": "https://prod-mercadona.imgix.net/images/29e2448e80d5a23e8fc907138e551748.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/69912/tomate-pera-pieza",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 20,
+          "protein": 1,
+          "fat": 0.2,
+          "carbs": 4,
+          "sugar": 2.6,
+          "salt": 0.005
+        }
       },
       "Dia": {
         "name": "Tomate pera bandeja 500 g",
@@ -1157,7 +1198,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 1.9,
         "image": "https://prod-mercadona.imgix.net/images/12ec1b808bbcbc2d5ad6b40d9021cf76.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/69066/patata-pieza",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 77,
+          "protein": 1.9,
+          "fat": 0.1,
+          "carbs": 17.5,
+          "sugar": 0.8,
+          "salt": 0
+        }
       },
       "Dia": {
         "name": "Patatas para cocer 2 Kg",
@@ -1191,7 +1240,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 2.8,
         "image": "https://prod-mercadona.imgix.net/images/e4a37940916985bf5ca166e266580c37.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/3819/platano-canarias-igp-pieza",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 89,
+          "protein": 1.1,
+          "fat": 0.3,
+          "carbs": 22.8,
+          "sugar": 12.2,
+          "salt": 0.001
+        }
       },
       "Dia": {
         "name": "Plátano de canarias 1 Kg aprox.",
@@ -1225,7 +1282,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 2,
         "image": "https://prod-mercadona.imgix.net/images/12cc1ef38a5b781f364ca22e46a25ad7.jpg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/3028/manzana-golden-pieza",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 52,
+          "protein": 0.3,
+          "fat": 0.2,
+          "carbs": 14,
+          "sugar": 10,
+          "salt": 0
+        }
       },
       "Dia": {
         "name": "Manzana Golden 1 Kg",
@@ -1259,7 +1324,15 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "unit_price": 1.05,
         "image": "https://prod-mercadona.imgix.net/images/320cf3cbed15d3543322144333ce1a98.jpeg?fit=crop&h=300&w=300",
         "url": "https://tienda.mercadona.es/product/68130/lechuga-iceberg-pieza",
-        "checked_on": "2026-10-17"
+        "checked_on": "2026-10-17",
+        "nutrition": {
+          "kcal": 16,
+          "protein": 0.7,
+          "fat": 0.6,
+          "carbs": 1.5,
+          "sugar": 0,
+          "salt": 0.08
+        }
       },
       "Dia": {
         "name": "Lechuga iceberg unidad",
@@ -1323,7 +1396,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Leche entera Pascual 1 l",
         "price_eur": 1.23,
         "unit_price": 1.23,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249849.webp",
         "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
         "checked_on": "2026-10-18"
       },
@@ -1331,7 +1404,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Leche entera Pascual 1 l",
         "price_eur": 1.41,
         "unit_price": 1.41,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249849.webp",
         "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
         "checked_on": "2026-10-18"
       },
@@ -1339,7 +1412,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Leche entera Pascual 1 l",
         "price_eur": 1.39,
         "unit_price": 1.39,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249849.webp",
         "url": "https://soysuper.com/p/leche-entera-de-vaca-pascual-1-l",
         "checked_on": "2026-10-18"
       }
@@ -1365,7 +1438,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Yogur azucarado natural Danone pack de 8 x 120 g",
         "price_eur": 1.79,
         "unit_price": 1.86,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/259754.webp",
         "url": "https://soysuper.com/p/yogur-natural-azucarado-danone-pack-8-x-125-g-1-kg",
         "checked_on": "2026-10-18"
       },
@@ -1373,7 +1446,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Yogur azucarado natural Danone pack de 8 x 120 g",
         "price_eur": 1.95,
         "unit_price": 2.03,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/259754.webp",
         "url": "https://soysuper.com/p/yogur-natural-azucarado-danone-pack-8-x-125-g-1-kg",
         "checked_on": "2026-10-18"
       }
@@ -1400,7 +1473,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Coca Cola pack de 2 botellas de 2 l",
         "price_eur": 3.8,
         "unit_price": 0.95,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/115897.webp",
         "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
         "checked_on": "2026-10-18"
       },
@@ -1408,7 +1481,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Coca Cola pack de 2 botellas de 2 l",
         "price_eur": 4.09,
         "unit_price": 1.02,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/115897.webp",
         "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
         "checked_on": "2026-10-18"
       },
@@ -1416,7 +1489,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Coca Cola pack de 2 botellas de 2 l",
         "price_eur": 4.09,
         "unit_price": 1.02,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/115897.webp",
         "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
         "checked_on": "2026-10-18"
       },
@@ -1424,7 +1497,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Coca Cola pack de 2 botellas de 2 l",
         "price_eur": 4.1,
         "unit_price": 1.02,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/115897.webp",
         "url": "https://soysuper.com/p/refresco-de-cola-coca-cola-pack-de-2-botellas-de-2-l",
         "checked_on": "2026-10-18"
       }
@@ -1450,7 +1523,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Gallo pasta pluma fina 400 g",
         "price_eur": 1.46,
         "unit_price": 3.65,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261390.webp",
         "url": "https://soysuper.com/p/plumas-gallo-3-minutos-400-grs",
         "checked_on": "2026-10-18"
       },
@@ -1458,7 +1531,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Gallo pasta pluma fina 400 g",
         "price_eur": 1.53,
         "unit_price": 3.83,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261390.webp",
         "url": "https://soysuper.com/p/plumas-gallo-3-minutos-400-grs",
         "checked_on": "2026-10-18"
       }
@@ -1484,7 +1557,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Arroz vaporizado Brillante 1 kg",
         "price_eur": 1.98,
         "unit_price": 1.98,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253991.webp",
         "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
         "checked_on": "2026-10-18"
       },
@@ -1492,7 +1565,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Arroz vaporizado Brillante 1 kg",
         "price_eur": 1.99,
         "unit_price": 1.99,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253991.webp",
         "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
         "checked_on": "2026-10-18"
       },
@@ -1500,7 +1573,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Arroz vaporizado Brillante 1 kg",
         "price_eur": 1.99,
         "unit_price": 1.99,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253991.webp",
         "url": "https://soysuper.com/p/arroz-vaporizado-color-natural-brillante-caja-1-kg",
         "checked_on": "2026-10-18"
       }
@@ -1525,7 +1598,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Ybarra aceite de oliva virgen extra 1 l",
         "price_eur": 6.45,
         "unit_price": 6.45,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253815.webp",
         "url": "https://soysuper.com/p/aceite-de-oliva-virgen-extra-suave-ybarra-botella-1-litro",
         "checked_on": "2026-10-18"
       },
@@ -1533,7 +1606,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Ybarra aceite de oliva virgen extra 1 l",
         "price_eur": 6.65,
         "unit_price": 6.65,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253815.webp",
         "url": "https://soysuper.com/p/aceite-de-oliva-virgen-extra-suave-ybarra-botella-1-litro",
         "checked_on": "2026-10-18"
       }
@@ -1558,7 +1631,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Carbonell aceite de oliva virgen extra 1 l",
         "price_eur": 6.71,
         "unit_price": 6.71,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253824.webp",
         "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
         "checked_on": "2026-10-18"
       },
@@ -1566,7 +1639,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Carbonell aceite de oliva virgen extra 1 l",
         "price_eur": 7.25,
         "unit_price": 7.25,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253824.webp",
         "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
         "checked_on": "2026-10-18"
       },
@@ -1574,7 +1647,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Carbonell aceite de oliva virgen extra 1 l",
         "price_eur": 5.38,
         "unit_price": 5.38,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253824.webp",
         "url": "https://soysuper.com/p/carbonell-aceite-de-oliva-virgen-extra-carbonell-botella-de-1-l",
         "checked_on": "2026-10-18"
       }
@@ -1600,7 +1673,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Orlando tomate frito 400 g",
         "price_eur": 1.4,
         "unit_price": 3.5,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249900.webp",
         "url": "https://soysuper.com/p/tomate-frito-orlando-lata-de-400-g",
         "checked_on": "2026-10-18"
       },
@@ -1608,7 +1681,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Orlando tomate frito 400 g",
         "price_eur": 1.44,
         "unit_price": 3.6,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249900.webp",
         "url": "https://soysuper.com/p/tomate-frito-orlando-lata-de-400-g",
         "checked_on": "2026-10-18"
       }
@@ -1634,7 +1707,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
         "price_eur": 3.24,
         "unit_price": 19.29,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/256035.webp",
         "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
         "checked_on": "2026-10-18"
       },
@@ -1642,7 +1715,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
         "price_eur": 3.85,
         "unit_price": 22.92,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/256035.webp",
         "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
         "checked_on": "2026-10-18"
       },
@@ -1650,7 +1723,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Atún claro al natural Calvo pack de 3 latas de 56 g",
         "price_eur": 3.41,
         "unit_price": 20.3,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/256035.webp",
         "url": "https://soysuper.com/p/atun-claro-al-natural-sin-aceite-calvo-lata-de-56-g-pack-de-3",
         "checked_on": "2026-10-18"
       }
@@ -1675,7 +1748,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Font Vella agua mineral 1,5 l",
         "price_eur": 0.74,
         "unit_price": 0.49,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/267289.webp",
         "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
         "checked_on": "2026-10-18"
       },
@@ -1683,7 +1756,7 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Font Vella agua mineral 1,5 l",
         "price_eur": 0.74,
         "unit_price": 0.49,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/267289.webp",
         "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
         "checked_on": "2026-10-18"
       },
@@ -1691,8 +1764,1241 @@ export const CATALOGUE_DATA: CatalogueEntry[] = [
         "name": "Font Vella agua mineral 1,5 l",
         "price_eur": 0.77,
         "unit_price": 0.51,
-        "image": null,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/267289.webp",
         "url": "https://soysuper.com/p/agua-mineral-natural-font-vella-botella-15-l",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "leche semidesnatada",
+    "label": "Semi-skimmed milk",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "leche semidesnatada",
+      "semi skimmed milk",
+      "semi-skimmed milk",
+      "semi skimmed"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Leche semidesnatada Hacendado",
+        "price_eur": 0.83,
+        "unit_price": 0.83,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22425.webp",
+        "url": "https://finditapp.es/product/22425",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 46,
+          "protein": 3.1,
+          "fat": 1.6,
+          "carbs": 4.8,
+          "sugar": 4.8,
+          "salt": 0.13
+        }
+      },
+      "Dia": {
+        "name": "Leche semidesnatada Dia Láctea brik 1 l",
+        "price_eur": 0.83,
+        "unit_price": 0.83,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500412.webp",
+        "url": "https://finditapp.es/product/7500412",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 46,
+          "protein": 3,
+          "fat": 1,
+          "carbs": 4,
+          "sugar": 4,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Leche semidesnatada Simpl 1 l",
+        "price_eur": 0.81,
+        "unit_price": 0.81,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250301.webp",
+        "url": "https://finditapp.es/product/250301",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "queso rallado",
+    "label": "Grated cheese",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 200,
+    "aliases": [
+      "queso rallado",
+      "grated cheese",
+      "shredded cheese"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Queso rallado emmental gratinar Hacendado",
+        "price_eur": 1.6,
+        "unit_price": 8,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7566260.webp",
+        "url": "https://finditapp.es/product/7566260",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 369,
+          "protein": 27,
+          "fat": 29,
+          "carbs": 0.5,
+          "sugar": 0.5,
+          "salt": 0.7
+        }
+      },
+      "Dia": {
+        "name": "Queso mozzarella rallado Dia Láctea bolsa 200 g",
+        "price_eur": 1.6,
+        "unit_price": 8,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500331.webp",
+        "url": "https://finditapp.es/product/7500331",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 299,
+          "protein": 24,
+          "fat": 21,
+          "carbs": 2,
+          "sugar": 0,
+          "salt": 1
+        }
+      },
+      "Carrefour": {
+        "name": "Queso rallado mix Simpl 200 g",
+        "price_eur": 1.1,
+        "unit_price": 5.5,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261616.webp",
+        "url": "https://finditapp.es/product/261616",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "yogur griego",
+    "label": "Greek yogurt",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "yogur griego",
+      "greek yogurt",
+      "greek yoghurt"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Yogur griego natural Hacendado",
+        "price_eur": 1.45,
+        "unit_price": 1.9333,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19522.webp",
+        "url": "https://finditapp.es/product/19522",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 129,
+          "protein": 3.9,
+          "fat": 10.8,
+          "carbs": 3.9,
+          "sugar": 3.9,
+          "salt": 0.12
+        }
+      },
+      "Dia": {
+        "name": "Yogur griego natural Fidias de Dia pack 6 x 125 g",
+        "price_eur": 1.59,
+        "unit_price": 2.12,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500572.webp",
+        "url": "https://finditapp.es/product/7500572",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 125,
+          "protein": 3,
+          "fat": 9,
+          "carbs": 5,
+          "sugar": 5,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Yogur griego natural Carrefour Extra pack de 6 unidades de 125 g",
+        "price_eur": 1.39,
+        "unit_price": 1.8533,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/257349.webp",
+        "url": "https://finditapp.es/product/257349",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "AUCHAN Yogur griego sabor natural 4 x 125 g Producto Alcampo",
+        "price_eur": 0.96,
+        "unit_price": 1.92,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7557541.webp",
+        "url": "https://finditapp.es/product/7557541",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 104,
+          "protein": 3.1,
+          "fat": 8,
+          "carbs": 4.2,
+          "sugar": 4.2,
+          "salt": 0.13
+        }
+      }
+    }
+  },
+  {
+    "term": "azucar",
+    "label": "Sugar",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "azucar",
+      "azúcar",
+      "sugar"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Azúcar blanco Hacendado",
+        "price_eur": 0.9,
+        "unit_price": 0.9,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/23122.webp",
+        "url": "https://finditapp.es/product/23122",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 400,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 100,
+          "sugar": 100,
+          "salt": 0
+        }
+      },
+      "Dia": {
+        "name": "Azúcar blanco Dia paquete 1 Kg",
+        "price_eur": 0.9,
+        "unit_price": 0.9,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7502076.webp",
+        "url": "https://finditapp.es/product/7502076",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 400,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 100,
+          "sugar": 100,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Azúcar blanco Carrefour Classic 1 kg",
+        "price_eur": 0.9,
+        "unit_price": 0.9,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249572.webp",
+        "url": "https://finditapp.es/product/249572",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "harina",
+    "label": "Flour",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
+    "aliases": [
+      "harina",
+      "flour",
+      "wheat flour"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Harina de trigo Hacendado",
+        "price_eur": 0.72,
+        "unit_price": 0.72,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/23921.webp",
+        "url": "https://finditapp.es/product/23921",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 350,
+          "protein": 10,
+          "fat": 1.3,
+          "carbs": 73,
+          "sugar": 0.6,
+          "salt": 0.02
+        }
+      },
+      "Dia": {
+        "name": "Harina de trigo El molino de Dia paquete 1 Kg",
+        "price_eur": 0.72,
+        "unit_price": 0.72,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501811.webp",
+        "url": "https://finditapp.es/product/7501811",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 341,
+          "protein": 10,
+          "fat": 1,
+          "carbs": 72,
+          "sugar": 2,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Harina de trigo Classic Carrefour 1 kg",
+        "price_eur": 0.72,
+        "unit_price": 0.72,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/257148.webp",
+        "url": "https://finditapp.es/product/257148",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "sal",
+    "label": "Salt",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
+    "aliases": [
+      "salt",
+      "table salt",
+      "sal fina"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Sal fina Hacendado",
+        "price_eur": 0.4,
+        "unit_price": 0.4,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/57039.webp",
+        "url": "https://finditapp.es/product/57039",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0,
+          "sugar": 0,
+          "salt": 100
+        }
+      },
+      "Dia": {
+        "name": "Sal marina de mesa fina Dia paquete 1 Kg",
+        "price_eur": 0.4,
+        "unit_price": 0.4,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500690.webp",
+        "url": "https://finditapp.es/product/7500690",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0,
+          "sugar": 0,
+          "salt": 100
+        }
+      },
+      "Carrefour": {
+        "name": "Sal marina refinada fina Carrefour 1 kg",
+        "price_eur": 0.4,
+        "unit_price": 0.4,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249645.webp",
+        "url": "https://finditapp.es/product/249645",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "espaguetis",
+    "label": "Spaghetti",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "espaguetis",
+      "espagueti",
+      "spaghetti"
+    ],
+    "offers": {
+      "Carrefour": {
+        "name": "Pasta espaguetis Carrefour Classic 500 g",
+        "price_eur": 0.8,
+        "unit_price": 1.6,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/261061.webp",
+        "url": "https://finditapp.es/product/261061",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "PRODUCTO ALCAMPO Pasta espaguetis cocción rápida 3 minutos 500 g",
+        "price_eur": 0.9,
+        "unit_price": 1.8,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7547157.webp",
+        "url": "https://finditapp.es/product/7547157",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "mayonesa",
+    "label": "Mayonnaise",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 450,
+    "aliases": [
+      "mayonesa",
+      "mayonnaise"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Mayonesa Hacendado",
+        "price_eur": 1.4,
+        "unit_price": 2.8571,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7567547.webp",
+        "url": "https://finditapp.es/product/7567547",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Mayonesa Salseo de Dia bote 500 ml",
+        "price_eur": 1.43,
+        "unit_price": 2.86,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500671.webp",
+        "url": "https://finditapp.es/product/7500671",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 608,
+          "protein": 0,
+          "fat": 66,
+          "carbs": 2,
+          "sugar": 1,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Mayonesa Carrefour envase 500 ml 475g",
+        "price_eur": 1.43,
+        "unit_price": 2.9792,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250054.webp",
+        "url": "https://finditapp.es/product/250054",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "ketchup",
+    "label": "Ketchup",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "ketchup",
+      "kétchup",
+      "tomato ketchup"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Ketchup Hacendado",
+        "price_eur": 1.05,
+        "unit_price": 1.75,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/35414.webp",
+        "url": "https://finditapp.es/product/35414",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 115,
+          "protein": 1.3,
+          "fat": 0,
+          "carbs": 27,
+          "sugar": 20.5,
+          "salt": 1.8
+        }
+      },
+      "Carrefour": {
+        "name": "Kétchup Classic Carrefour envase 560 g",
+        "price_eur": 0.98,
+        "unit_price": 1.75,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249643.webp",
+        "url": "https://finditapp.es/product/249643",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "mermelada",
+    "label": "Strawberry jam",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
+    "aliases": [
+      "mermelada",
+      "strawberry jam",
+      "confitura"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Mermelada de fresa Hacendado",
+        "price_eur": 1.45,
+        "unit_price": 3.625,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/58847.webp",
+        "url": "https://finditapp.es/product/58847",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 194,
+          "protein": 0.5,
+          "fat": 0,
+          "carbs": 47,
+          "sugar": 46,
+          "salt": 0.03
+        }
+      },
+      "Dia": {
+        "name": "Mermelada de fresa extra Fruticampo de Dia frasco 390 g",
+        "price_eur": 1.41,
+        "unit_price": 3.6154,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501665.webp",
+        "url": "https://finditapp.es/product/7501665",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 197,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 48,
+          "sugar": 46,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Mermelada de fresa categoría extra Carrefour 410 g",
+        "price_eur": 1.49,
+        "unit_price": 3.6341,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/244440.webp",
+        "url": "https://finditapp.es/product/244440",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "galletas",
+    "label": "Maria biscuits",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
+    "aliases": [
+      "galletas",
+      "galletas maria",
+      "biscuits",
+      "cookies",
+      "maria biscuits"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Galletas maría Galleteca de Dia paquete 200 g",
+        "price_eur": 0.34,
+        "unit_price": 1.7,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/268272.webp",
+        "url": "https://finditapp.es/product/268272",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Galletas María dorada Carrefour Classic 800 g",
+        "price_eur": 1.35,
+        "unit_price": 1.6875,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/252094.webp",
+        "url": "https://finditapp.es/product/252094",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "cacao soluble",
+    "label": "Cocoa powder",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
+    "aliases": [
+      "cacao soluble",
+      "cacao",
+      "cocoa",
+      "cocoa powder",
+      "hot chocolate"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Cacao soluble instantáneo Hacendado",
+        "price_eur": 3.75,
+        "unit_price": 4.6875,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/242635.webp",
+        "url": "https://finditapp.es/product/242635",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Cacao soluble instantáneo Dia Temptation 800 g",
+        "price_eur": 4.19,
+        "unit_price": 5.2375,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/284275.webp",
+        "url": "https://finditapp.es/product/284275",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Cacao soluble granulado Carrefour Classic 400 g",
+        "price_eur": 2.69,
+        "unit_price": 6.725,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/260828.webp",
+        "url": "https://finditapp.es/product/260828",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "cafe molido",
+    "label": "Ground coffee",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 250,
+    "aliases": [
+      "cafe molido",
+      "café molido",
+      "cafe",
+      "café",
+      "coffee",
+      "ground coffee"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Café molido natural Hacendado",
+        "price_eur": 2.5,
+        "unit_price": 10,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22010.webp",
+        "url": "https://finditapp.es/product/22010",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Café molido natural Colombia Arom'arte de Dia bolsa 250 g",
+        "price_eur": 3.7,
+        "unit_price": 14.8,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7501639.webp",
+        "url": "https://finditapp.es/product/7501639",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Café molido natural Carrefour Classic 250 g",
+        "price_eur": 2.27,
+        "unit_price": 9.08,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/258263.webp",
+        "url": "https://finditapp.es/product/258263",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "zumo de naranja",
+    "label": "Orange juice",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "zumo de naranja",
+      "zumo",
+      "orange juice",
+      "juice"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Zumo pura naranja con pulpa Hacendado",
+        "price_eur": 1.85,
+        "unit_price": 1.85,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19477.webp",
+        "url": "https://finditapp.es/product/19477",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 44,
+          "protein": 0.7,
+          "fat": 0.1,
+          "carbs": 9.9,
+          "sugar": 9.3,
+          "salt": 0
+        }
+      },
+      "Dia": {
+        "name": "Zumo de naranja 100% sin pulpa Zumosfera de Dia brik 1 l",
+        "price_eur": 1.85,
+        "unit_price": 1.85,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110063.webp",
+        "url": "https://finditapp.es/product/110063",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 43,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 10,
+          "sugar": 10,
+          "salt": 0
+        }
+      },
+      "Carrefour": {
+        "name": "Zumo de naranja Carrefour brik 1 l",
+        "price_eur": 1.85,
+        "unit_price": 1.85,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/120736.webp",
+        "url": "https://finditapp.es/product/120736",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "refresco cola",
+    "label": "Cola (own brand)",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "refresco cola",
+      "refresco de cola",
+      "own brand cola",
+      "cheap cola"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Refresco cola Hacendado",
+        "price_eur": 0.8,
+        "unit_price": 0.4,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/269533.webp",
+        "url": "https://finditapp.es/product/269533",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Refresco de cola Hola Cola de Dia botella 2 l",
+        "price_eur": 0.8,
+        "unit_price": 0.4,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110491.webp",
+        "url": "https://finditapp.es/product/110491",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 29,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 7,
+          "sugar": 7,
+          "salt": 0
+        }
+      }
+    }
+  },
+  {
+    "term": "cerveza",
+    "label": "Lager beer",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 1000,
+    "aliases": [
+      "cerveza",
+      "beer",
+      "lager",
+      "lager beer"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Cerveza lager Ramblers de Dia lata 33 cl",
+        "price_eur": 0.32,
+        "unit_price": 0.9697,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/110319.webp",
+        "url": "https://finditapp.es/product/110319",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Cerveza Carrefour Lager botella 1 l",
+        "price_eur": 0.94,
+        "unit_price": 0.94,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/245148.webp",
+        "url": "https://finditapp.es/product/245148",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "sardinas",
+    "label": "Sardines",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 120,
+    "aliases": [
+      "sardinas",
+      "sardines"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Sardinas en aceite de oliva Dia Mari Marinera 85 g",
+        "price_eur": 1.25,
+        "unit_price": 13.8889,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/284226.webp",
+        "url": "https://finditapp.es/product/284226",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Sardinas en aceite de oliva virgen extra Classic Carrefour 95 g",
+        "price_eur": 1.7,
+        "unit_price": 17,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/280394.webp",
+        "url": "https://finditapp.es/product/280394",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "PRODUCTO ALCAMPO Sardinas en aceite de girasol 84 g",
+        "price_eur": 1.15,
+        "unit_price": 14.375,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7552204.webp",
+        "url": "https://finditapp.es/product/7552204",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "pavo",
+    "label": "Turkey slices",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 200,
+    "aliases": [
+      "pavo",
+      "pechuga de pavo",
+      "turkey",
+      "turkey slices",
+      "turkey breast"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Pechuga 92% pavo Hacendado lonchas",
+        "price_eur": 2.85,
+        "unit_price": 14.25,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/5710.webp",
+        "url": "https://finditapp.es/product/5710",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 89,
+          "protein": 19.5,
+          "fat": 1.3,
+          "carbs": 1,
+          "sugar": 1,
+          "salt": 1.9
+        }
+      },
+      "Carrefour": {
+        "name": "Pechuga de pavo en finas lonchas Carrefour El Mercado sin gluten 200 g",
+        "price_eur": 2.29,
+        "unit_price": 11.45,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/254144.webp",
+        "url": "https://finditapp.es/product/254144",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "hamburguesa",
+    "label": "Beef burgers",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 300,
+    "aliases": [
+      "hamburguesa",
+      "hamburguesas",
+      "burger",
+      "burgers",
+      "beef burgers"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Hamburguesa de lomo de vacuno",
+        "price_eur": 4,
+        "unit_price": 16.6667,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/86010.webp",
+        "url": "https://finditapp.es/product/86010",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 240,
+          "protein": 19,
+          "fat": 18,
+          "carbs": 0.5,
+          "sugar": 0.5,
+          "salt": 1.1
+        }
+      },
+      "Carrefour": {
+        "name": "Hamburguesa de Vacuno Raza Angus Carrefour Selection 300 g",
+        "price_eur": 4.96,
+        "unit_price": 16.5333,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249681.webp",
+        "url": "https://finditapp.es/product/249681",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "ALCAMPO CULTIVAMOS LO BUENO Hamburguesas congeladas de vacuno Villa del Monte 2 x 150 g",
+        "price_eur": 3.73,
+        "unit_price": 12.4333,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7543887.webp",
+        "url": "https://finditapp.es/product/7543887",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "pepino",
+    "label": "Cucumber",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "pepino",
+      "cucumber"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Pepino holandés",
+        "price_eur": 1.13,
+        "unit_price": 2.6279,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22098.webp",
+        "url": "https://finditapp.es/product/22098",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Pepino holandés 1 unidad",
+        "price_eur": 1.15,
+        "unit_price": 3.2857,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/266119.webp",
+        "url": "https://finditapp.es/product/266119",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Pepino Carrefour a granel 1 kg aprox",
+        "price_eur": 1.69,
+        "unit_price": 1.69,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/249597.webp",
+        "url": "https://finditapp.es/product/249597",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "Pepino Holandés 400 g",
+        "price_eur": 1,
+        "unit_price": 2.5,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7551180.webp",
+        "url": "https://finditapp.es/product/7551180",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "champiñon",
+    "label": "Mushrooms",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 400,
+    "aliases": [
+      "champiñon",
+      "champiñones",
+      "champinon",
+      "champinones",
+      "mushrooms",
+      "mushroom"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Champiñón laminado Dia Vegecampo 3 x 105 g",
+        "price_eur": 2.22,
+        "unit_price": 7.1613,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283966.webp",
+        "url": "https://finditapp.es/product/283966",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Champiñon laminado Carrefour bandeja de 400 g aprox",
+        "price_eur": 2.64,
+        "unit_price": 6.6,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/244999.webp",
+        "url": "https://finditapp.es/product/244999",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "naranja",
+    "label": "Oranges",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 1000,
+    "aliases": [
+      "naranja",
+      "naranjas",
+      "orange",
+      "oranges"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Naranja de mesa malla 1.5 Kg",
+        "price_eur": 3.59,
+        "unit_price": 2.3933,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/164100.webp",
+        "url": "https://finditapp.es/product/164100",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Naranjas de mesa Carrefour el Mercado 3 kg",
+        "price_eur": 5.95,
+        "unit_price": 1.9767,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250814.webp",
+        "url": "https://finditapp.es/product/250814",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "Naranjas de mesa, malla 2 kg",
+        "price_eur": 4.35,
+        "unit_price": 2.175,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283114.webp",
+        "url": "https://finditapp.es/product/283114",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "limon",
+    "label": "Lemons",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "limon",
+      "limón",
+      "limones",
+      "lemon",
+      "lemons"
+    ],
+    "offers": {
+      "Dia": {
+        "name": "Limones malla 750 g",
+        "price_eur": 1.39,
+        "unit_price": 1.8533,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/283980.webp",
+        "url": "https://finditapp.es/product/283980",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Limón Carrefour a granel 1 kg aprox",
+        "price_eur": 2.55,
+        "unit_price": 2.55,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/250869.webp",
+        "url": "https://finditapp.es/product/250869",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "calabacin",
+    "label": "Courgettes",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 500,
+    "aliases": [
+      "calabacin",
+      "calabacín",
+      "courgette",
+      "courgettes",
+      "zucchini"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Calabacín verde",
+        "price_eur": 0.74,
+        "unit_price": 1.8974,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/35813.webp",
+        "url": "https://finditapp.es/product/35813",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 17,
+          "protein": 1.2,
+          "fat": 0.3,
+          "carbs": 3.1,
+          "sugar": 2.5,
+          "salt": 0.005
+        }
+      },
+      "Dia": {
+        "name": "Calabacín unidad 650 g aprox",
+        "price_eur": 0.97,
+        "unit_price": 1.4923,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/267219.webp",
+        "url": "https://finditapp.es/product/267219",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "vinagre",
+    "label": "Wine vinegar",
+    "basis": {
+      "amount": 1000,
+      "unit": "ml",
+      "label": "L"
+    },
+    "serving": 500,
+    "aliases": [
+      "vinagre",
+      "vinegar",
+      "wine vinegar"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Vinagre de vino blanco Hacendado",
+        "price_eur": 0.65,
+        "unit_price": 0.65,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/22668.webp",
+        "url": "https://finditapp.es/product/22668",
+        "checked_on": "2026-10-18"
+      },
+      "Dia": {
+        "name": "Vinagre de vino blanco Aliña tu Dia botella 1 l",
+        "price_eur": 0.65,
+        "unit_price": 0.65,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7500645.webp",
+        "url": "https://finditapp.es/product/7500645",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Vinagre de vino blanco Carrefour Classic 1 l",
+        "price_eur": 0.62,
+        "unit_price": 0.62,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/253844.webp",
+        "url": "https://finditapp.es/product/253844",
+        "checked_on": "2026-10-18"
+      }
+    }
+  },
+  {
+    "term": "maiz dulce",
+    "label": "Sweetcorn",
+    "basis": {
+      "amount": 1000,
+      "unit": "g",
+      "label": "kg"
+    },
+    "serving": 200,
+    "aliases": [
+      "maiz dulce",
+      "maíz dulce",
+      "maiz",
+      "maíz",
+      "sweetcorn",
+      "corn"
+    ],
+    "offers": {
+      "Mercadona": {
+        "name": "Maíz dulce Hacendado",
+        "price_eur": 1.25,
+        "unit_price": 5.9524,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/19754.webp",
+        "url": "https://finditapp.es/product/19754",
+        "checked_on": "2026-10-18",
+        "nutrition": {
+          "kcal": 82,
+          "protein": 2.5,
+          "fat": 1.4,
+          "carbs": 14,
+          "sugar": 6.7,
+          "salt": 0.5
+        }
+      },
+      "Dia": {
+        "name": "Maíz dulce Dia Vegecampo 3 x 70 g",
+        "price_eur": 1.25,
+        "unit_price": 5.9524,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/266527.webp",
+        "url": "https://finditapp.es/product/266527",
+        "checked_on": "2026-10-18"
+      },
+      "Carrefour": {
+        "name": "Maiz dulce Carrefour Classic pack de 4 unidades de 70 g",
+        "price_eur": 1.66,
+        "unit_price": 5.9286,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/256979.webp",
+        "url": "https://finditapp.es/product/256979",
+        "checked_on": "2026-10-18"
+      },
+      "Alcampo": {
+        "name": "PRODUCTO ALCAMPO Maíz dulce 140 g",
+        "price_eur": 0.55,
+        "unit_price": 3.9286,
+        "image": "https://dx7csy7aghu7b.cloudfront.net/prods/7552262.webp",
+        "url": "https://finditapp.es/product/7552262",
         "checked_on": "2026-10-18"
       }
     }
