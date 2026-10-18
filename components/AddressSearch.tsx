@@ -10,6 +10,9 @@ import {
 
 type Props = {
   onPlace: (place: Place) => void;
+  label?: string;
+  placeholder?: string;
+  id?: string;
 };
 
 /** A house number the person typed, e.g. the 20 in "General Pintos 20". */
@@ -24,7 +27,12 @@ function typedNumber(text: string): string | null {
  * typed, picking a street does one exact lookup with it, and falls back to the
  * middle of the street if that finds nothing.
  */
-export default function AddressSearch({ onPlace }: Props) {
+export default function AddressSearch({
+  onPlace,
+  label = "Your home (optional)",
+  placeholder = "Calle General Pintos 20",
+  id = "home-address",
+}: Props) {
   const listId = useId();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<AddressSuggestion[]>([]);
@@ -107,13 +115,13 @@ export default function AddressSearch({ onPlace }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="mt-3">
-      <label htmlFor="home-address" className="block text-xs font-bold">
-        Your home (optional)
+      <label htmlFor={id} className="block text-xs font-bold">
+        {label}
       </label>
 
       <div className="mt-1 flex gap-2">
         <input
-          id="home-address"
+          id={id}
           type="text"
           value={query}
           onChange={(event) => {
@@ -124,7 +132,7 @@ export default function AddressSearch({ onPlace }: Props) {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           onKeyDown={handleKeyDown}
-          placeholder="Calle General Pintos 20"
+          placeholder={placeholder}
           autoComplete="off"
           role="combobox"
           aria-expanded={visible.length > 0}

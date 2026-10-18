@@ -10,6 +10,7 @@ import ProductSearch from "@/components/ProductSearch";
 import ShopLogo from "@/components/ShopLogo";
 import StoreMap from "@/components/StoreMap";
 import TripPanel from "@/components/TripPanel";
+import TripSettings from "@/components/TripSettings";
 import WhereToBuy from "@/components/WhereToBuy";
 import { CATALOGUE_STORES, type CatalogueEntry } from "@/lib/catalogue";
 import ProductBrowser from "@/components/ProductBrowser";
@@ -221,15 +222,19 @@ export default function BasketPage() {
             Object.fromEntries(
               comparison.totals.map((total) => [total.store, total.total]),
             ),
-            trip.home,
+            trip.trip,
           )
         : [],
-    [comparison, trip.home],
+    [comparison, trip.trip],
   );
   const analysis = useMemo(() => analyseTradeOff(options), [options]);
 
   const route = trip.toStore
-    ? { toStore: trip.toStore.path, toHome: trip.toHome?.path }
+    ? {
+        toStore: trip.toStore.path,
+        toHome: trip.toHome?.path,
+        toStoreByTransit: trip.toStore.by !== undefined && trip.toStore.by !== "walk",
+      }
     : null;
 
   return (
@@ -243,6 +248,7 @@ export default function BasketPage() {
         route={route}
         home={trip.home}
         leftInset={leftInset}
+        anchor={trip.trip.anchor}
       />
 
       <aside
@@ -287,11 +293,8 @@ export default function BasketPage() {
         {trip.selected && (
           <TripPanel
             store={trip.selected}
-            toStore={trip.toStore}
-            toHome={trip.toHome}
-            home={trip.home}
+            trip={trip.trip}
             loading={trip.loading}
-            onHome={(place) => void trip.setHomePlace(place)}
             onClose={() => void trip.select(null)}
             shopMinutes={shopMinutes}
           />
@@ -462,13 +465,15 @@ export default function BasketPage() {
               <section className="mt-5" aria-label="Where to buy it">
                 <h2 className="display text-xl">Shops</h2>
                 <div className="mt-2">
+                  <TripSettings />
+                </div>
+                <div className="mt-3">
                   <WhereToBuy
                     options={options}
                     analysis={analysis}
                     selectedStoreId={trip.selected?.id ?? null}
                     onSelect={(store) => void trip.select(store)}
-                    hasHome={trip.home !== null}
-                    home={trip.home}
+                    trip={trip.trip}
                     shopMinutes={shopMinutes}
                   />
                 </div>

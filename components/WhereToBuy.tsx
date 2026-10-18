@@ -3,8 +3,8 @@
 import { useState } from "react";
 import ShopLogo from "@/components/ShopLogo";
 import { deliveryFee, perHourSaved } from "@/lib/delivery";
-import type { Point, Store } from "@/lib/geo";
-import { detourMinutes } from "@/lib/monthly";
+import type { Store } from "@/lib/geo";
+import type { TripSettings } from "@/lib/trip";
 import { formatEuro } from "@/lib/pricing";
 import type { Option, TradeOff } from "@/lib/tradeoff";
 
@@ -13,9 +13,7 @@ type Props = {
   analysis: TradeOff | null;
   selectedStoreId: string | null;
   onSelect: (store: Store) => void;
-  /** Whether the times already include the walk on to the person's home. */
-  hasHome: boolean;
-  home: Point | null;
+  trip: TripSettings;
   /** Minutes spent inside a shop for this basket. */
   shopMinutes: number;
 };
@@ -31,17 +29,17 @@ export default function WhereToBuy({
   analysis,
   selectedStoreId,
   onSelect,
-  hasHome,
-  home,
+  trip,
   shopMinutes,
 }: Props) {
+  const home = trip.home;
   const [delivery, setDelivery] = useState(false);
 
   const rows = options.map((option) => {
     const fee = deliveryFee(option.chain, option.cost);
-    // You go home from campus anyway, so delivery gives back only the detour to
-    // the shop plus the time inside it, not the whole trip.
-    const saved = detourMinutes(option.store, home) + shopMinutes;
+    // Delivery gives back what the trip costs you (the detour on your way home,
+    // or the trip from home) plus the time inside the shop.
+    const saved = option.minutes + shopMinutes;
     return { option, fee, saved, perHour: home ? perHourSaved(fee, saved) : null };
   });
 
@@ -122,9 +120,11 @@ export default function WhereToBuy({
                       </>
                     ) : (
                       <>
-                        {hasHome
-                          ? `+${Math.max(0, saved - shopMinutes)} min on your way home`
-                          : `${option.minutes} min from IE Tower`}
+                        {trip.start === "home" && home
+                          ? `${option.minutes} min there and back`
+                          : home
+                            ? `+${option.minutes} min on your way home`
+                            : `${option.minutes} min from ${trip.anchor.label}`}
                         {option.store.street ? ` · ${option.store.street}` : ""}
                       </>
                     )}

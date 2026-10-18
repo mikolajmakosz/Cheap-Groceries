@@ -13,12 +13,13 @@
 import { termFor, entryFor, suggest, compareBasket, shopsFor, formatQuantity, portionCost } from "../lib/pricing.ts";
 import { CATALOGUE, CATALOGUE_STORES } from "../lib/catalogue.ts";
 import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
-import { STORES, CAMPUS, walkingMinutes } from "../lib/geo.ts";
+import { STORES, CAMPUS } from "../lib/geo.ts";
 import { nutritionOf, eatenAmount, typicalFor } from "../lib/nutrition.ts";
 import { REFERENCE_TERMS } from "../lib/reference-products.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
 import { planBasket, MONTH_DAYS } from "../lib/plan.ts";
-import { monthFor, periodFor, detourMinutes, formatDuration } from "../lib/monthly.ts";
+import { monthFor, periodFor, formatDuration } from "../lib/monthly.ts";
+import { DEFAULT_TRIP, legMinutes, onTheWayMinutes, fromHomeMinutes, shopTripMinutes } from "../lib/trip.ts";
 import { allMenuTerms } from "../lib/categories.ts";
 
 let failures = 0;
@@ -168,10 +169,11 @@ check(
 check("nothing to weigh with no options", analyseTradeOff([]), null);
 const chosen = bestStorePerChain({ Dia: 5, Mercadona: 6 });
 check("one best shop per chain", chosen.length, 2);
+const homeFar = { lat: 40.4, lon: -3.7, label: "home" };
 check(
-  "an address changes which shop is quickest",
-  bestStorePerChain({ Dia: 5 }, { lat: 40.4, lon: -3.7 })[0].minutes >
-    bestStorePerChain({ Dia: 5 })[0].minutes,
+  "going from home costs more than shopping on the way",
+  bestStorePerChain({ Dia: 5 }, { ...DEFAULT_TRIP, home: homeFar, start: "home" })[0].minutes >=
+    bestStorePerChain({ Dia: 5 }, { ...DEFAULT_TRIP, home: homeFar })[0].minutes,
   true,
 );
 
@@ -261,17 +263,28 @@ check("a labelled product uses its own label", nutritionOf(entryFor("yogur"), 1,
 check("without a label the typical values are used", nutritionOf(entryFor("espaguetis"), 1, entryFor("espaguetis").offers.Dia).kcal, nutritionOf(entryFor("espaguetis"), 1).kcal);
 
 const someShop = STORES.find((store) => store.chain === "Dia");
-const weekMonth = monthFor(someShop, 2, 7, 10, null);
+const weekMonth = monthFor(someShop, 2, 7, 10, DEFAULT_TRIP);
 check("a week-long basket is bought about four times a month", Math.round(weekMonth.trips * 10) / 10, Math.round((MONTH_DAYS / 7) * 10) / 10);
 check("a month costs thirty days of the per-day price", weekMonth.euros, 60);
-check("each trip is the walk plus the time inside", weekMonth.minutesPerTrip, weekMonth.walkMinutes + 10);
-const farHome = { lat: 40.4, lon: -3.7 };
-check("with a home only the detour counts", detourMinutes(someShop, farHome) <= detourMinutes(someShop, null) + walkingMinutes(someShop, farHome), true);
-check("a shop on the way home adds no detour", detourMinutes({ lat: 40.4388, lon: -3.6941 }, farHome, CAMPUS) < walkingMinutes(CAMPUS, { lat: 40.4388, lon: -3.6941 }) + walkingMinutes({ lat: 40.4388, lon: -3.6941 }, farHome), true);
-check("a detour is never negative", detourMinutes(someShop, farHome) >= 0, true);
-const fortnight = periodFor(someShop, 2, 7, 10, null, 14);
+check("each trip is the way there plus the time inside", weekMonth.minutesPerTrip, weekMonth.walkMinutes + 10);
+const farHome = { lat: 40.4, lon: -3.7, label: "home" };
+const withHome = { ...DEFAULT_TRIP, home: farHome };
+check("a detour is never negative", onTheWayMinutes(someShop, withHome) >= 0, true);
+check("from home is there and back", fromHomeMinutes(someShop, withHome), 2 * legMinutes(farHome, someShop, "walk").minutes);
+check("from home needs a home", fromHomeMinutes(someShop, DEFAULT_TRIP), null);
+const nearCampus = { lat: CAMPUS.lat + 0.002, lon: CAMPUS.lon };
+check("a shop next to the anchor saves time over going from a far home", periodFor(nearCampus, 2, 7, 10, withHome, 30).savedVsHome > 0, true);
+check("starting from home there is nothing to save against", periodFor(nearCampus, 2, 7, 10, { ...withHome, start: "home" }, 30).savedVsHome, null);
+check("the shop's cost follows where you start", shopTripMinutes(nearCampus, { ...withHome, start: "home" }), fromHomeMinutes(nearCampus, withHome));
+const sol = { lat: 40.4168, lon: -3.7038 };
+check("a short hop is walked, whatever the transport", legMinutes(CAMPUS, nearCampus, "metro").by, "walk");
+check("across the city the Metro beats walking", legMinutes(CAMPUS, sol, "metro").minutes < legMinutes(CAMPUS, sol, "walk").minutes, true);
+check("...and takes the Metro", legMinutes(CAMPUS, sol, "metro").by, "metro");
+check("metro and bus is never slower than metro alone", legMinutes(CAMPUS, sol, "metro-bus").minutes <= legMinutes(CAMPUS, sol, "metro").minutes, true);
+check("the bus beats walking across the city", legMinutes(CAMPUS, sol, "bus").minutes < legMinutes(CAMPUS, sol, "walk").minutes, true);
+const fortnight = periodFor(someShop, 2, 7, 10, DEFAULT_TRIP, 14);
 check("a fortnight is two weeks of money", fortnight.euros, 28);
-check("a day-long period is a fraction of a trip", Math.abs(periodFor(someShop, 2, 7, 10, null, 1).trips - 1 / 7) < 1e-9, true);
+check("a day-long period is a fraction of a trip", Math.abs(periodFor(someShop, 2, 7, 10, DEFAULT_TRIP, 1).trips - 1 / 7) < 1e-9, true);
 check("a duration reads as hours and minutes", formatDuration(200), "3 h 20 min");
 
 console.log("\ncategories");

@@ -1,4 +1,5 @@
-import { CAMPUS, walkingMinutes, type Point, type Store } from "./geo.ts";
+import type { Store } from "./geo.ts";
+import { DEFAULT_TRIP, fromHomeMinutes, onTheWayMinutes, shopTripMinutes, type TripSettings } from "./trip.ts";
 import { MONTH_DAYS } from "./plan.ts";
 import { deliveryFee } from "./delivery.ts";
 
@@ -16,20 +17,13 @@ export type Month = {
   euros: number;
   /** Whether the way on to home is in the minutes. */
   withHome: boolean;
+  /**
+   * Minutes over the period saved by shopping on the way home from the anchor
+   * rather than going out from home; null unless both are known and you start
+   * from the anchor.
+   */
+  savedVsHome: number | null;
 };
-
-/**
- * The walk a shop adds to a day. You go home from campus anyway, so with an
- * address only the detour counts: campus to the shop and on to home, less going
- * straight home. Without one the walk from campus is all that can be said.
- */
-export function detourMinutes(store: Store, home: Point | null, from: Point = CAMPUS): number {
-  if (!home) return walkingMinutes(from, store);
-  return Math.max(
-    0,
-    walkingMinutes(from, store) + walkingMinutes(store, home) - walkingMinutes(from, home),
-  );
-}
 
 /**
  * A basket that lasts period / days times in a period. Each trip
@@ -42,13 +36,14 @@ export function periodFor(
   perDay: number,
   days: number,
   shopMinutes: number,
-  home: Point | null,
+  trip: TripSettings,
   periodDays: number,
-  from: Point = CAMPUS,
 ): Month {
   const trips = periodDays / days;
-  const walk = detourMinutes(store, home, from);
+  const walk = shopTripMinutes(store, trip);
   const perTrip = walk + shopMinutes;
+  const fromHome = fromHomeMinutes(store, trip);
+  const onTheWay = trip.home ? onTheWayMinutes(store, trip) : null;
   return {
     trips,
     minutesPerTrip: perTrip,
@@ -56,7 +51,11 @@ export function periodFor(
     shopMinutes,
     minutes: Math.round(perTrip * trips),
     euros: perDay * periodDays,
-    withHome: home !== null,
+    withHome: trip.home !== null,
+    savedVsHome:
+      trip.start === "anchor" && fromHome !== null && onTheWay !== null
+        ? Math.round(Math.max(0, fromHome - onTheWay) * trips)
+        : null,
   };
 }
 
@@ -105,10 +104,9 @@ export function monthFor(
   perDay: number,
   days: number,
   shopMinutes: number,
-  home: Point | null,
-  from: Point = CAMPUS,
+  trip: TripSettings = DEFAULT_TRIP,
 ): Month {
-  return periodFor(store, perDay, days, shopMinutes, home, MONTH_DAYS, from);
+  return periodFor(store, perDay, days, shopMinutes, trip, MONTH_DAYS);
 }
 
 /** "3 h 20 min" or "45 min". */

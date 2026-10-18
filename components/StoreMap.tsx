@@ -10,10 +10,12 @@ const PLAIN_COLOUR = "#8a887d";
 const HOME_COLOUR = "#2b5a9b";
 
 export type MapRoute = {
-  /** Campus to the chosen shop. Drawn in ink. */
+  /** The start (anchor or home) to the chosen shop. Drawn in ink. */
   toStore: [number, number][];
   /** The chosen shop to home. Drawn in blue, dashed. */
   toHome?: [number, number][];
+  /** A leg a bus, the Metro or the train would make quicker: drawn straight and dashed. */
+  toStoreByTransit?: boolean;
 };
 
 export type StoreMapProps = {
@@ -30,6 +32,8 @@ export type StoreMapProps = {
   home?: Point | null;
   /** Pixels at the left covered by a floating panel; keeps the view out of it. */
   leftInset?: number;
+  /** The place you shop from on your way home; IE Tower unless chosen. */
+  anchor?: Point & { label: string };
 };
 
 type Leaflet = typeof import("leaflet");
@@ -56,6 +60,16 @@ function tooltipHtml(store: Store, cost: string | undefined, priced: boolean) {
 
 /** Below this zoom the city's ~400 shops are drawn as dots, or their logos would pile up. */
 const LOGO_ZOOM = 14;
+
+function anchorIcon(L: Leaflet, label: string) {
+  const width = Math.max(66, label.length * 7 + 22);
+  return L.divIcon({
+    className: "",
+    html: `<div style="background:#14140f;color:#f4f3ef;font:800 11px/1 system-ui;padding:6px 9px;border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;white-space:nowrap;border:2px solid #f4f3ef;box-shadow:2px 3px 0 #14140f;text-align:center">${escapeHtml(label)}</div>`,
+    iconSize: [width, 24],
+    iconAnchor: [width / 2, 12],
+  });
+}
 
 function storeIcon(
   L: Leaflet,
@@ -118,12 +132,19 @@ export default function StoreMap({
   route = null,
   home = null,
   leftInset = 0,
+  anchor,
 }: StoreMapProps) {
+  const start = anchor ?? { lat: CAMPUS.lat, lon: CAMPUS.lon, label: CAMPUS.name };
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<LeafletMap | null>(null);
   const leaflet = useRef<Leaflet | null>(null);
   const markers = useRef(new Map<string, Marker>());
   const overlay = useRef<LayerGroup | null>(null);
+  const anchorMarker = useRef<Marker | null>(null);
+  const startRef = useRef(start);
+  useEffect(() => {
+    startRef.current = start;
+  });
 
   // Compared by content: callers build these during render, so comparing by
   // identity would redo the work on every render.
@@ -208,15 +229,10 @@ export default function StoreMap({
 
       overlay.current = L.layerGroup().addTo(instance);
 
-      L.marker([CAMPUS.lat, CAMPUS.lon], {
-        title: CAMPUS.name,
+      anchorMarker.current = L.marker([startRef.current.lat, startRef.current.lon], {
+        title: startRef.current.label,
         zIndexOffset: 1000,
-        icon: L.divIcon({
-          className: "",
-          html: `<div style="background:#14140f;color:#f4f3ef;font:800 11px/1 system-ui;padding:6px 9px;border-radius:12px 14px 11px 13px / 14px 11px 13px 12px;white-space:nowrap;border:2px solid #f4f3ef;box-shadow:2px 3px 0 #14140f">IE Tower</div>`,
-          iconSize: [66, 22],
-          iconAnchor: [33, 11],
-        }),
+        icon: anchorIcon(L, startRef.current.label),
       }).addTo(instance);
 
       for (const store of STORES) {
@@ -249,6 +265,17 @@ export default function StoreMap({
     };
   }, [fill]);
 
+  // The anchor can be moved (your gym instead of IE Tower).
+  const anchorKey = `${start.lat},${start.lon},${start.label}`;
+  useEffect(() => {
+    const L = leaflet.current;
+    const marker = anchorMarker.current;
+    if (!L || !marker) return;
+    marker.setLatLng([start.lat, start.lon]);
+    marker.setIcon(anchorIcon(L, start.label));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchorKey]);
+
   // Keep tooltips and colours in step with the basket and the selection,
   // without moving the view.
   useEffect(() => {
@@ -263,12 +290,19 @@ export default function StoreMap({
     if (!L || !instance || !layer) return;
 
     layer.clearLayers();
-    const bounds = L.latLngBounds([[CAMPUS.lat, CAMPUS.lon]]);
+    const bounds = L.latLngBounds([[start.lat, start.lon]]);
 
     if (route?.toStore.length) {
       // A paper casing under the ink line keeps it readable on busy streets.
       L.polyline(route.toStore, { color: "#f4f3ef", weight: 11, opacity: 1, lineCap: "round" }).addTo(layer);
-      L.polyline(route.toStore, { color: PRICED_COLOUR, weight: 6, opacity: 1, lineCap: "round", lineJoin: "round" }).addTo(layer);
+      L.polyline(route.toStore, {
+        color: PRICED_COLOUR,
+        weight: 6,
+        opacity: 1,
+        lineCap: "round",
+        lineJoin: "round",
+        dashArray: route.toStoreByTransit ? "10 12" : undefined,
+      }).addTo(layer);
       route.toStore.forEach((point) => bounds.extend(point));
     }
 
@@ -306,7 +340,8 @@ export default function StoreMap({
         animate: true,
       });
     }
-  }, [route, home, leftInset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route, home, leftInset, anchorKey]);
 
   // With nothing chosen, keep campus in the part of the map the panel leaves free.
   useEffect(() => {

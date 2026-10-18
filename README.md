@@ -165,18 +165,34 @@ Clicking a shop draws the walking route from campus in ink, with the time. Route
 FOSSGIS pedestrian router; if it is slow or down the line falls back to a straight one with an estimate,
 and the panel says so.
 
-### Home, and what it costs in minutes
+### Your trip: anchor, home and how you get about
 
-Under a chosen shop the app can ask for a home address in Madrid, suggesting streets as you type, and draw
-the way on from the shop in blue, then say what the detour adds compared with going straight home.
-Suggestions come from Photon, a geocoder built for search-as-you-type; Nominatim's own policy discourages
-autocomplete, so it is kept for one exact lookup of the house number afterwards. The address is sent to OpenStreetMap's
-geocoder to be located and is held in memory only: it is personal data and nothing needs it kept, so it is
-not stored anywhere and is gone on reload.
+IE Tower is not the centre of everything: it is one place you go anyway and come home from. Above the shop
+list (and on Saved baskets) you choose:
+
+- **On my way home** from an **anchor**: IE Tower by default, or your gym, a class, a job (type its address).
+  A shop then costs only the **detour**: anchor to shop and on to home, less going straight home.
+- **From home**: the whole trip, home to the shop and back.
+- **Getting about**: walk, bus, Metro, Metro + bus or train (Cercanías). Every leg takes the quickest of
+  walking and the chosen transport, so a shop round the corner is still walked.
+
+Public-transport times are **estimates** ([`lib/trip.ts`](lib/trip.ts)), not a timetable: the walk to the nearest
+Metro or Cercanías station ([`lib/stations-data.ts`](lib/stations-data.ts), 203 Metro and 44 Cercanías stations
+from OpenStreetMap, `npm run stations`), an average wait, a typical speed for the distance, a change penalty for
+long Metro rides, and the walk from the station; buses are timed from the road distance and an average speed. The
+free timetable router that covers Spain (Transitous) has no Metro de Madrid or EMT buses, and Google's needs a
+billing key, so this is the honest middle. Walked legs on the map come from the pedestrian router; legs by transport
+are drawn dashed and straight.
+
+On Saved baskets, each shop shows how much time shopping on the way home from the anchor **saves over going out
+from home**, over the chosen period.
+
+Addresses are found with Photon and Nominatim (OpenStreetMap) and held in memory only: they are personal data and
+nothing needs them kept, so they are not stored anywhere and are gone on reload.
 
 ### Cost against time
 
-With an address the times cover campus, shop and home. For each chain the quickest shop is picked, and
+For each chain the shop that costs you the least time for your trip is picked, and
 options that are both dearer and slower than another are dropped. What remains is a ladder from the
 cheapest shop to the quickest, and each rung says what the extra money buys: "Choosing Dia over Mercadona
 costs EUR 0.24 more and saves 2 min, so you pay EUR 0.12 for each minute saved."

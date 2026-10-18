@@ -7,6 +7,8 @@ export type Route = {
   path: [number, number][];
   /** "route" when a router answered, "estimate" when we fell back to a straight line. */
   source: "route" | "estimate";
+  /** How the leg is travelled; walking unless a transport estimate says otherwise. */
+  by?: "walk" | "bus" | "metro" | "train";
 };
 
 const ENDPOINT = "https://routing.openstreetmap.de/routed-foot/route/v1/foot";

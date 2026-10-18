@@ -1,10 +1,5 @@
-import {
-  CAMPUS,
-  STORES,
-  walkingMinutes,
-  type Point,
-  type Store,
-} from "./geo.ts";
+import { STORES, type Store } from "./geo.ts";
+import { DEFAULT_TRIP, shopTripMinutes, type TripSettings } from "./trip.ts";
 
 /** One place you could do the shopping, with what it costs and how long it takes. */
 export type Option = {
@@ -12,7 +7,7 @@ export type Option = {
   store: Store;
   /** What the whole basket costs there. */
   cost: number;
-  /** Walking time: campus to the shop, plus on to home when an address is set. */
+  /** Minutes the shop costs you: the detour on your way home, or the trip from home (see trip.ts). */
   minutes: number;
 };
 
@@ -23,8 +18,7 @@ export type Option = {
  */
 export function bestStorePerChain(
   costByChain: Record<string, number>,
-  home: Point | null = null,
-  from: Point = CAMPUS,
+  trip: TripSettings = DEFAULT_TRIP,
   stores: Store[] = STORES,
 ): Option[] {
   const options: Option[] = [];
@@ -34,8 +28,7 @@ export function bestStorePerChain(
 
     for (const store of stores) {
       if (store.chain !== chain) continue;
-      const minutes =
-        walkingMinutes(from, store) + (home ? walkingMinutes(store, home) : 0);
+      const minutes = shopTripMinutes(store, trip);
       if (!best || minutes < best.minutes) best = { chain, store, cost, minutes };
     }
     if (best) options.push(best);

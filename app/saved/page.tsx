@@ -3,20 +3,20 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import AddressSearch from "@/components/AddressSearch";
 import NutritionPanel from "@/components/NutritionPanel";
 import ProductCompare from "@/components/ProductCompare";
 import ProductSearch from "@/components/ProductSearch";
 import ShopCompare from "@/components/ShopCompare";
 import ShopLogo from "@/components/ShopLogo";
-import { setHome, useHome } from "@/lib/homeStore";
+import TripSettingsPanel from "@/components/TripSettings";
+import { useTripSettings } from "@/lib/tripStore";
+import type { TripSettings } from "@/lib/trip";
 import { deliveredFor, formatDuration, periodFor } from "@/lib/monthly";
 import { createClient } from "@/lib/supabase/client";
 import { formatEuro, formatQuantity, type BasketItem } from "@/lib/pricing";
 import { MONTH_DAYS, planBasket } from "@/lib/plan";
 import { estimateShopMinutes } from "@/lib/shoptime";
 import { bestStorePerChain } from "@/lib/tradeoff";
-import type { Point } from "@/lib/geo";
 import type { CatalogueEntry } from "@/lib/catalogue";
 
 type SavedItem = {
@@ -57,7 +57,7 @@ const PERIODS: { id: Period; label: string; days: number | null }[] = [
 
 function BasketCard({
   basket,
-  home,
+  trip,
   onDelete,
   onAdd,
   onDays,
@@ -65,7 +65,7 @@ function BasketCard({
   onEdit,
 }: {
   basket: SavedBasket;
-  home: Point | null;
+  trip: TripSettings;
   onDelete: (id: string) => Promise<void>;
   onAdd: (basket: SavedBasket) => Promise<void>;
   onDays: (id: string, days: number) => void;
@@ -114,20 +114,20 @@ function BasketCard({
   // The quickest shop of each chain, then what the chosen period means there.
   const periods = useMemo(() => {
     const costs = Object.fromEntries(plan.stores.map((row) => [row.store, row.total]));
-    return bestStorePerChain(costs, home).map((option) => {
+    return bestStorePerChain(costs, trip).map((option) => {
       const row = plan.stores.find((r) => r.store === option.chain)!;
       return {
         chain: option.chain,
         total: row.total,
-        span: periodFor(option.store, row.perDay, days, shopMinutes, home, periodDays),
+        span: periodFor(option.store, row.perDay, days, shopMinutes, trip, periodDays),
         delivered: deliveredFor(
           option.chain,
           row.total,
-          periodFor(option.store, row.perDay, days, shopMinutes, home, periodDays),
+          periodFor(option.store, row.perDay, days, shopMinutes, trip, periodDays),
         ),
       };
     });
-  }, [plan.stores, home, days, shopMinutes, periodDays]);
+  }, [plan.stores, trip, days, shopMinutes, periodDays]);
 
   function setLastsFor(itemId: string, value: number | null) {
     setLasts((current) => ({ ...current, [itemId]: value }));
@@ -343,12 +343,21 @@ function BasketCard({
                         </span>
                       </p>
                     )}
+                    {!delivery && span.savedVsHome !== null && span.savedVsHome > 0 && (
+                      <p className="mt-1 rounded-lg bg-[var(--blue-soft)] px-2 py-0.5 text-xs font-extrabold">
+                        Saves {formatDuration(span.savedVsHome)} vs going from home
+                      </p>
+                    )}
                   </li>
                 );
               })}
             </ul>
             <p className="mt-2 text-xs text-slate-500">
-              A trip adds {home ? "the detour on your way home" : "the walk from campus (add your home above for the real detour)"}{" "}
+              {trip.start === "home" && trip.home
+                ? "A trip is home → shop → home"
+                : trip.home
+                  ? `A trip adds the detour on your way home from ${trip.anchor.label}`
+                  : `A trip is the way from ${trip.anchor.label} (add your home above for the real detour)`}{" "}
               + {shopMinutes} min inside.
             </p>
           </section>
@@ -500,7 +509,7 @@ function BasketCard({
 
 export default function SavedBasketsPage() {
   const router = useRouter();
-  const home = useHome();
+  const trip = useTripSettings();
   const [baskets, setBaskets] = useState<SavedBasket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -639,19 +648,8 @@ export default function SavedBasketsPage() {
     <main className="mx-auto max-w-3xl px-4 py-8">
       <h1 className="display text-5xl leading-none">Saved baskets</h1>
 
-      <div className="card mt-5 p-4">
-        {home ? (
-          <div className="flex items-center justify-between gap-3 text-sm">
-            <span className="min-w-0 truncate">
-              <strong>Home:</strong> {home.label}
-            </span>
-            <button type="button" onClick={() => setHome(null)} className="btn btn-light btn-sm">
-              Remove
-            </button>
-          </div>
-        ) : (
-          <AddressSearch onPlace={(place) => setHome(place)} />
-        )}
+      <div className="mt-5">
+        <TripSettingsPanel />
       </div>
 
       {error && (
@@ -675,7 +673,7 @@ export default function SavedBasketsPage() {
             <BasketCard
               key={basket.id}
               basket={basket}
-              home={home}
+              trip={trip}
               onDelete={handleDelete}
               onAdd={handleAdd}
               onDays={handleDays}

@@ -58,6 +58,7 @@ export default function LandingHero() {
         onSelectStore={(store) => void trip.select(store)}
         route={route}
         leftInset={leftInset}
+        anchor={trip.trip.anchor}
       />
 
       <section
@@ -115,13 +116,9 @@ export default function LandingHero() {
         {trip.selected && (
           <TripPanel
             store={trip.selected}
-            toStore={trip.toStore}
-            toHome={null}
-            home={null}
+            trip={trip.trip}
             loading={trip.loading}
-            onHome={() => undefined}
             onClose={() => void trip.select(null)}
-            showHome={false}
           />
         )}
       </section>
