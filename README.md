@@ -228,6 +228,14 @@ tap one that is already there to add a serving. The look follows dontlookup.app:
 shadows, Luckiest Guy for headlines and Nunito for text (both open fonts). The map is the same
 OpenStreetMap data drawn in greyscale; a truly hand-drawn map would need its own tile set.
 
+## How it works video
+
+The landing page's **How it works** button opens an 88-second motion-graphics explainer
+([`public/video/explainer.mp4`](public/video/explainer.mp4)) with English captions on by default
+([`explainer.en.vtt`](public/video/explainer.en.vtt)). It is made in code with Remotion in a separate folder
+(`../video`): the voice is the macOS "Samantha" voice and the music an original loop made with ffmpeg, so there is
+nothing to license; the numbers in it are an example basket.
+
 ## Delivery
 
 Next to **I go**, the shop list and each saved basket have **Delivery**: the basket plus the shop's delivery

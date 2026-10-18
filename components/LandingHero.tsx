@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ExplainerVideo from "@/components/ExplainerVideo";
 import ProductSearch from "@/components/ProductSearch";
 import StoreMap from "@/components/StoreMap";
 import TripPanel from "@/components/TripPanel";
@@ -68,8 +69,12 @@ export default function LandingHero() {
         </h1>
 
         <p className="mt-3 text-base text-slate-600">
-          Build a basket. See its price in every shop near IE.
+          Build a basket. See its price at Mercadona, Dia, Carrefour and Alcampo near IE.
         </p>
+
+        <div className="mt-4">
+          <ExplainerVideo />
+        </div>
 
         <div className="mt-5">
           <ProductSearch
