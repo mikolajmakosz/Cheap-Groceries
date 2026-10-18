@@ -2,7 +2,6 @@ import { compareBasket, type BasketItem, type ItemPricing } from "./pricing.ts";
 import {
   ZERO,
   addNutrients,
-  lastsDays,
   nutritionOf,
   scaleNutrients,
   type Nutrients,
@@ -15,12 +14,10 @@ export type PlanLine = {
   consumptionDays: number;
   /** The share of this line eaten inside the plan; 1 unless it outlasts it. */
   shareInPlan: number;
-  /** How long the quantity bought would last on its own. */
-  lastsDays: number;
-  /** Bought for longer than the plan: a slow item such as oil. */
+  /** How long the person said this line lasts them, if they said. */
+  lastsDays: number | null;
+  /** The person said it lasts longer than the plan: a slow item such as oil. */
   outlastsPlan: boolean;
-  /** Bought for less than the plan: more is needed to cover every day. */
-  fallsShort: boolean;
 };
 
 /** One shop's view of the basket: money, nutrition and what they cost together. */
@@ -51,23 +48,28 @@ export type Plan = {
 export const MONTH_DAYS = 30;
 
 /**
- * A basket spread over `days`. A line is eaten over at least the plan, or over
- * as long as its quantity lasts if that is longer, so a litre of oil that lasts
- * a month is not charged, or counted for calories, as if it were gone in a week.
+ * A basket spread over `days`. Every line is eaten over the plan, unless the
+ * person said it lasts longer (a litre of oil that lasts them two months), in
+ * which case it is charged, and counted for calories, over those days instead.
+ * Nothing is guessed: `lasts` holds only what the person typed, by item id.
  */
-export function planBasket(items: BasketItem[], days: number): Plan {
+export function planBasket(
+  items: BasketItem[],
+  days: number,
+  lasts: Record<string, number | null | undefined> = {},
+): Plan {
   const comparison = compareBasket(items);
 
   const lines: PlanLine[] = comparison.pricing.map((row) => {
-    const lasts = row.entry ? lastsDays(row.entry) * row.item.quantity : days;
-    const consumptionDays = Math.max(days, lasts);
+    const said = lasts[row.item.id];
+    const lastsDays = said && said > 0 ? said : null;
+    const consumptionDays = Math.max(days, lastsDays ?? days);
     return {
       row,
       consumptionDays,
       shareInPlan: days / consumptionDays,
-      lastsDays: lasts,
-      outlastsPlan: row.entry !== null && lasts > days,
-      fallsShort: row.entry !== null && lasts < days,
+      lastsDays,
+      outlastsPlan: lastsDays !== null && lastsDays > days,
     };
   });
 
@@ -141,13 +143,4 @@ export function planBasket(items: BasketItem[], days: number): Plan {
     nutrition: scaleNutrients(nutritionPerDay, days),
     nutritionPerDay,
   };
-}
-
-/** "about once a month": how often a quantity that lasts `days` gets bought. */
-export function frequencyLabel(days: number): string {
-  if (days <= 10) return "about every week";
-  if (days <= 18) return "about every two weeks";
-  if (days <= 45) return "about once a month";
-  if (days <= 75) return "about every two months";
-  return "a few times a year";
 }

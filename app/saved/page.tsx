@@ -5,18 +5,25 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AddressSearch from "@/components/AddressSearch";
 import NutritionPanel from "@/components/NutritionPanel";
+import ProductCompare from "@/components/ProductCompare";
 import ShopCompare from "@/components/ShopCompare";
 import ShopLogo from "@/components/ShopLogo";
 import { setHome, useHome } from "@/lib/homeStore";
-import { formatDuration, monthFor } from "@/lib/monthly";
+import { formatDuration, periodFor } from "@/lib/monthly";
 import { createClient } from "@/lib/supabase/client";
 import { formatEuro, formatQuantity, type BasketItem } from "@/lib/pricing";
-import { frequencyLabel, planBasket } from "@/lib/plan";
+import { MONTH_DAYS, planBasket } from "@/lib/plan";
 import { estimateShopMinutes } from "@/lib/shoptime";
 import { bestStorePerChain } from "@/lib/tradeoff";
 import type { Point } from "@/lib/geo";
 
-type SavedItem = { id: string; name: string; quantity: number; created_at: string };
+type SavedItem = {
+  id: string;
+  name: string;
+  quantity: number;
+  created_at: string;
+  lasts_days: number | null;
+};
 
 type SavedBasket = {
   id: string;
@@ -28,23 +35,43 @@ type SavedBasket = {
 
 const MAX_DAYS = 30;
 
+type Period = "day" | "week" | "month" | "custom";
+const PERIODS: { id: Period; label: string; days: number | null }[] = [
+  { id: "day", label: "Day", days: 1 },
+  { id: "week", label: "Week", days: 7 },
+  { id: "month", label: "Month", days: MONTH_DAYS },
+  { id: "custom", label: "Days", days: null },
+];
+
 function BasketCard({
   basket,
   home,
   onDelete,
   onAdd,
   onDays,
+  onLasts,
 }: {
   basket: SavedBasket;
   home: Point | null;
   onDelete: (id: string) => Promise<void>;
   onAdd: (basket: SavedBasket) => Promise<void>;
   onDays: (id: string, days: number) => void;
+  onLasts: (itemId: string, days: number | null) => void;
 }) {
   const [days, setDays] = useState(basket.days);
   const [confirming, setConfirming] = useState(false);
   const [busy, setBusy] = useState(false);
   const [chosen, setChosen] = useState<string | null>(null);
+  const [period, setPeriod] = useState<Period>("month");
+  const [customDays, setCustomDays] = useState(14);
+  const [lasts, setLasts] = useState<Record<string, number | null>>(() =>
+    Object.fromEntries(basket.saved_basket_items.map((item) => [item.id, item.lasts_days])),
+  );
+  const [opened, setOpened] = useState<string | null>(null);
+
+  const periodDays = PERIODS.find((p) => p.id === period)?.days ?? customDays;
+  const periodLabel =
+    period === "custom" ? `${customDays} ${customDays === 1 ? "day" : "days"}` : period;
 
   const items = useMemo<BasketItem[]>(
     () =>
@@ -57,7 +84,7 @@ function BasketCard({
     [basket.saved_basket_items],
   );
 
-  const plan = useMemo(() => planBasket(items, days), [items, days]);
+  const plan = useMemo(() => planBasket(items, days, lasts), [items, days, lasts]);
   const priced = plan.lines.some((line) => line.row.comparable);
   const shopMinutes = estimateShopMinutes(items);
 
@@ -66,17 +93,23 @@ function BasketCard({
     : null;
   const shown = plan.stores.find((row) => row.store === chosen) ?? cheapest;
 
-  // The quickest shop of each chain, then what a month of this basket means there.
-  const months = useMemo(() => {
+  // The quickest shop of each chain, then what the chosen period means there.
+  const periods = useMemo(() => {
     const costs = Object.fromEntries(plan.stores.map((row) => [row.store, row.total]));
     return bestStorePerChain(costs, home).map((option) => {
       const row = plan.stores.find((r) => r.store === option.chain)!;
       return {
         chain: option.chain,
-        month: monthFor(option.store, row.perDay, days, shopMinutes, home),
+        total: row.total,
+        span: periodFor(option.store, row.perDay, days, shopMinutes, home, periodDays),
       };
     });
-  }, [plan.stores, home, days, shopMinutes]);
+  }, [plan.stores, home, days, shopMinutes, periodDays]);
+
+  function setLastsFor(itemId: string, value: number | null) {
+    setLasts((current) => ({ ...current, [itemId]: value }));
+    onLasts(itemId, value);
+  }
 
   return (
     <article className="card p-5">
@@ -139,7 +172,7 @@ function BasketCard({
 
       <div className="mt-5">
         <label htmlFor={`days-${basket.id}`} className="flex items-baseline justify-between">
-          <span className="text-sm font-extrabold">Lasts</span>
+          <span className="text-sm font-extrabold">Basket lasts</span>
           <span className="display text-xl">
             {days} {days === 1 ? "day" : "days"}
           </span>
@@ -167,11 +200,41 @@ function BasketCard({
 
       {priced ? (
         <>
-          <section className="mt-5" aria-label="Month">
-            <h3 className="display text-xl">Per month</h3>
+          <section className="mt-5" aria-label="Cost and time">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="display text-xl">Per {periodLabel}</h3>
+              <div role="group" aria-label="Period" className="flex flex-wrap items-center gap-1.5">
+                {PERIODS.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    aria-pressed={period === p.id}
+                    onClick={() => setPeriod(p.id)}
+                    className={`rounded-xl border-2 border-[var(--ink)] px-2.5 py-1 text-xs font-extrabold ${
+                      period === p.id ? "bg-[var(--ink)] text-[var(--paper)]" : "bg-white"
+                    }`}
+                  >
+                    {p.label}
+                  </button>
+                ))}
+                {period === "custom" && (
+                  <input
+                    type="number"
+                    min={1}
+                    max={365}
+                    value={customDays}
+                    aria-label="Number of days"
+                    onChange={(event) =>
+                      setCustomDays(Math.min(365, Math.max(1, Math.round(Number(event.target.value)) || 1)))
+                    }
+                    className="field !w-16 !px-2 !py-1 !text-sm"
+                  />
+                )}
+              </div>
+            </div>
+
             <ul className="mt-2 grid gap-2 sm:grid-cols-2">
-              {months.map(({ chain, month }) => {
-                const row = plan.stores.find((r) => r.store === chain)!;
+              {periods.map(({ chain, total, span }) => {
                 const best = cheapest?.store === chain && plan.stores.length > 1;
                 return (
                   <li
@@ -181,24 +244,32 @@ function BasketCard({
                     }`}
                   >
                     <ShopLogo shop={chain} height={18} />
-                    <p className="mt-1.5 text-2xl font-extrabold leading-none">
-                      {formatEuro(month.euros)}
-                    </p>
-                    <p className="mt-1 text-sm font-bold">
-                      {formatDuration(month.minutes)}
-                      <span className="ml-1 text-xs font-bold text-slate-500">
-                        {Math.round(month.trips * 10) / 10}× {formatDuration(month.minutesPerTrip)}
+                    <dl className="mt-2 grid grid-cols-2 gap-x-3 text-sm">
+                      <div>
+                        <dt className="text-[11px] font-extrabold uppercase text-slate-500">Basket</dt>
+                        <dd className="text-xl font-extrabold leading-tight">{formatEuro(total)}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[11px] font-extrabold uppercase text-slate-500">
+                          Per {periodLabel}
+                        </dt>
+                        <dd className="text-xl font-extrabold leading-tight">
+                          {formatEuro(span.euros)}
+                        </dd>
+                      </div>
+                    </dl>
+                    <p className="mt-1.5 text-sm font-bold">
+                      {formatDuration(span.minutes)}
+                      <span className="ml-1 text-xs text-slate-500">
+                        {+span.trips.toFixed(1)}× {formatDuration(span.minutesPerTrip)}
                       </span>
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      {formatEuro(row.perDay)} a day
                     </p>
                   </li>
                 );
               })}
             </ul>
             <p className="mt-2 text-xs text-slate-500">
-              Each trip: campus → shop → {home ? "home" : "(add home above)"}, plus {shopMinutes} min inside.
+              Trip: campus → shop → {home ? "home" : "(add home above)"} + {shopMinutes} min inside.
             </p>
           </section>
 
@@ -235,27 +306,54 @@ function BasketCard({
         <ul className="mt-2 divide-y-2 divide-[var(--ink)]/15">
           {plan.lines.map((line) => {
             const entry = line.row.entry;
-            const perServing = entry ? line.lastsDays / line.row.item.quantity : 0;
+            const id = line.row.item.id;
             return (
-              <li key={line.row.item.id} className="py-2 text-sm">
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-extrabold">{line.row.item.name}</span>
-                  <span className="shrink-0 text-xs text-slate-500">
+              <li key={id} className="py-2 text-sm">
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                  {entry ? (
+                    <button
+                      type="button"
+                      aria-expanded={opened === id}
+                      onClick={() => setOpened(opened === id ? null : id)}
+                      className="text-left font-extrabold underline decoration-2 underline-offset-2"
+                    >
+                      {line.row.item.name}
+                    </button>
+                  ) : (
+                    <span className="font-extrabold">{line.row.item.name}</span>
+                  )}
+                  <span className="text-xs text-slate-500">
                     {entry ? formatQuantity(line.row.item.quantity, entry) : "no price"}
                   </span>
                 </div>
 
-                {entry && line.outlastsPlan && (
-                  <p className="mt-1 rounded-lg bg-[var(--blue-soft)] px-2.5 py-1 text-xs font-bold">
-                    Lasts ~{Math.round(line.lastsDays)} days: buy {frequencyLabel(line.lastsDays)}
-                  </p>
+                {entry && (
+                  <label className="mt-1 flex items-center gap-2 text-xs font-bold text-slate-500">
+                    Lasts me
+                    <input
+                      type="number"
+                      min={1}
+                      max={3650}
+                      placeholder={`${days}`}
+                      value={lasts[id] ?? ""}
+                      aria-label={`How many days ${line.row.item.name} lasts you`}
+                      onChange={(event) => {
+                        const raw = event.target.value;
+                        setLastsFor(
+                          id,
+                          raw === "" ? null : Math.min(3650, Math.max(1, Math.round(Number(raw)) || 1)),
+                        );
+                      }}
+                      className="field !w-16 !px-2 !py-0.5 !text-sm"
+                    />
+                    days
+                  </label>
                 )}
 
-                {entry && line.fallsShort && (
-                  <p className="mt-1 rounded-lg bg-[var(--y1)] px-2.5 py-1 text-xs font-bold">
-                    Covers ~{Math.round(line.lastsDays)} of {days} days · need ~
-                    {Math.ceil(days / perServing)}
-                  </p>
+                {entry && opened === id && (
+                  <div className="mt-2 rounded-xl border-2 border-[var(--ink)] bg-[var(--paper)] p-3">
+                    <ProductCompare entry={entry} />
+                  </div>
                 )}
               </li>
             );
@@ -284,7 +382,9 @@ export default function SavedBasketsPage() {
 
     const { data, error: loadError } = await supabase
       .from("saved_baskets")
-      .select("id, name, days, created_at, saved_basket_items(id, name, quantity, created_at)")
+      .select(
+        "id, name, days, created_at, saved_basket_items(id, name, quantity, created_at, lasts_days)",
+      )
       .order("created_at", { ascending: false });
 
     if (loadError) setError(loadError.message);
@@ -317,6 +417,24 @@ export default function SavedBasketsPage() {
           .eq("id", id);
         if (updateError) setError(updateError.message);
       }, 500),
+    );
+  }
+
+  /** Saves what a person says a product lasts them, once they stop typing. */
+  function handleLasts(itemId: string, days: number | null) {
+    const pending = timers.current;
+    const key = `item-${itemId}`;
+    clearTimeout(pending.get(key));
+    pending.set(
+      key,
+      setTimeout(async () => {
+        const supabase = createClient();
+        const { error: updateError } = await supabase
+          .from("saved_basket_items")
+          .update({ lasts_days: days })
+          .eq("id", itemId);
+        if (updateError) setError(updateError.message);
+      }, 600),
     );
   }
 
@@ -387,6 +505,7 @@ export default function SavedBasketsPage() {
               onDelete={handleDelete}
               onAdd={handleAdd}
               onDays={handleDays}
+              onLasts={handleLasts}
             />
           ))}
         </div>

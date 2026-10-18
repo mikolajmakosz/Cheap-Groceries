@@ -174,15 +174,23 @@ euros per gram of protein).
 
 ## Saved baskets
 
-Save a basket under a name and open it from **Saved baskets**, the button in the header. Say with a slider
-how many days it has to last and see, per shop: the cost per month, the number of trips (30 / days), the
-minutes per trip (campus to the shop, inside the shop, and on to home if an address is given) and the
-minutes per month; plus every shop's nutrition side by side and the day-by-day figures.
+Save a basket under a name and open it from **Saved baskets**, the button in the header. Two sliders and a
+selector do the settling:
 
-Not everything is eaten at the same pace. A litre of olive oil lasts about a month, so charging it, or
-counting its calories, as if it were gone in a week would be wrong. Each product knows how long a serving
-lasts one person, and a line is spread over the longer of the plan and the days its quantity lasts. Slow
-items say how often you really buy them ("about once a month").
+- **Basket lasts**: how many days this basket has to last you.
+- **Period**: day, week, month or any number of days. For each shop you see the **basket price** (what you
+  pay at the till) and the **price per period**, plus the time: trips in the period (period / days),
+  minutes per trip (campus to the shop, inside the shop, and on to home if an address is given) and
+  minutes in total.
+- **Lasts me**, on each product: how many days that product lasts *you*. The app guesses nothing about how
+  fast anyone eats (one person eats 3,000 kcal a day, another 7,000), so this is only what you type. Left
+  empty, a product is spread over the basket's days; with a longer number (a litre of oil that lasts 60
+  days) it is charged, and counted for calories, over those days. Stored in `saved_basket_items.lasts_days`
+  ([`supabase/03_lasts_days.sql`](supabase/03_lasts_days.sql)).
+
+Every shop's nutrition is shown side by side, with the cost of 100 kcal and of a gram of protein, and the
+day-by-day figures. Click a product's name to see that same product in each shop, per 100 g, label against
+label; three shops show at once and the rest open under "All shops".
 
 The two tables, `saved_baskets` and `saved_basket_items`, are private to each user through Row Level
 Security, and an item can only be added to a basket that belongs to the same person. A saved basket is a

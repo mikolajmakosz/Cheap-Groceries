@@ -16,8 +16,8 @@ import { analyseTradeOff, bestStorePerChain } from "../lib/tradeoff.ts";
 import { STORES } from "../lib/geo.ts";
 import { FOODS, nutritionOf, eatenAmount } from "../lib/nutrition.ts";
 import { estimateShopMinutes } from "../lib/shoptime.ts";
-import { planBasket, frequencyLabel, MONTH_DAYS } from "../lib/plan.ts";
-import { monthFor, formatDuration } from "../lib/monthly.ts";
+import { planBasket, MONTH_DAYS } from "../lib/plan.ts";
+import { monthFor, periodFor, formatDuration } from "../lib/monthly.ts";
 import { CATEGORIES } from "../lib/categories.ts";
 
 let failures = 0;
@@ -214,25 +214,26 @@ check("one product is a few minutes, not an hour", estimateShopMinutes([{ quanti
 
 console.log("\na basket over several days");
 const week = planBasket([item("o", "olive oil"), item("c", "chicken")], 7);
-const oilLine = week.lines.find((line) => line.row.entry.term === "aceite");
-const chickenLine = week.lines.find((line) => line.row.entry.term === "pollo");
-check("a litre of oil outlasts a week", oilLine.outlastsPlan, true);
-check("...so only part of it counts towards the week", oilLine.shareInPlan < 0.3, true);
-check("chicken for two days falls short of a week", chickenLine.fallsShort, true);
+check("nothing is estimated: no line outlasts the plan unasked", week.lines.every((line) => !line.outlastsPlan && line.lastsDays === null), true);
+check("every line is eaten over the plan", week.lines.every((line) => line.consumptionDays === 7), true);
+const said = planBasket([item("o", "olive oil"), item("c", "chicken")], 7, { o: 60 });
+const oilLine = said.lines.find((line) => line.row.entry.term === "aceite");
+check("a duration the person typed is used", oilLine.lastsDays, 60);
+check("...a litre that lasts 60 days outlasts the week", oilLine.outlastsPlan, true);
+check("...so only a slice of it counts towards the week", Math.abs(oilLine.shareInPlan - 7 / 60) < 1e-9, true);
 check(
   "oil is charged by the day it lasts, not the day it was bought",
-  week.totals[0].perDay < week.totals[0].total / 7 + 0.001,
+  said.totals[0].perDay < week.totals[0].perDay,
   true,
 );
-const oilOnly = planBasket([item("o", "olive oil")], 7);
+const oilOnly = planBasket([item("o", "olive oil")], 7, { o: 60 });
 check(
   "a week's share of the oil is a fraction of its calories",
   oilOnly.nutrition.kcal < nutritionOf(oil, 1).kcal / 3,
   true,
 );
 check("per day times days is the whole", Math.round(oilOnly.nutritionPerDay.kcal * 7), Math.round(oilOnly.nutrition.kcal));
-check("a month's oil is bought about once a month", frequencyLabel(30), "about once a month");
-check("two weeks reads as two weeks", frequencyLabel(14), "about every two weeks");
+check("a duration shorter than the plan changes nothing", planBasket([item("o", "olive oil")], 7, { o: 3 }).lines[0].consumptionDays, 7);
 
 console.log("\nper-shop nutrition and the month");
 const shopsPlan = planBasket([item("s1", "cheese", 2), item("s2", "yogur", 2), item("s3", "cereales")], 7);
@@ -249,6 +250,9 @@ check("a week-long basket is bought about four times a month", Math.round(weekMo
 check("a month costs thirty days of the per-day price", weekMonth.euros, 60);
 check("each trip is the walk plus the time inside", weekMonth.minutesPerTrip, weekMonth.walkMinutes + 10);
 check("the way home adds minutes", monthFor(someShop, 2, 7, 10, { lat: 40.5, lon: -3.6 }).minutes > weekMonth.minutes, true);
+const fortnight = periodFor(someShop, 2, 7, 10, null, 14);
+check("a fortnight is two weeks of money", fortnight.euros, 28);
+check("a day-long period is a fraction of a trip", Math.abs(periodFor(someShop, 2, 7, 10, null, 1).trips - 1 / 7) < 1e-9, true);
 check("a duration reads as hours and minutes", formatDuration(200), "3 h 20 min");
 
 console.log("\ncategories");

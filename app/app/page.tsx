@@ -13,6 +13,7 @@ import TripPanel from "@/components/TripPanel";
 import WhereToBuy from "@/components/WhereToBuy";
 import { CATALOGUE_STORES, type CatalogueEntry } from "@/lib/catalogue";
 import ProductBrowser from "@/components/ProductBrowser";
+import ProductCompare from "@/components/ProductCompare";
 import ShopCompare from "@/components/ShopCompare";
 import {
   compareBasket,
@@ -42,6 +43,7 @@ export default function BasketPage() {
   const [saving, setSaving] = useState(false);
   const [leftInset, setLeftInset] = useState(0);
   const [browsing, setBrowsing] = useState(false);
+  const [detail, setDetail] = useState<CatalogueEntry | null>(null);
 
   // On a phone the panel sits above the map rather than beside it.
   useEffect(() => {
@@ -249,7 +251,10 @@ export default function BasketPage() {
           <h1 className="display text-3xl leading-none">Basket</h1>
           <button
             type="button"
-            onClick={() => setBrowsing((open) => !open)}
+            onClick={() => {
+              setDetail(null);
+              setBrowsing((open) => !open);
+            }}
             aria-expanded={browsing}
             className="btn btn-sm"
           >
@@ -315,9 +320,23 @@ export default function BasketPage() {
                         size={44}
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="break-words text-sm font-extrabold">
-                          {row.item.name}
-                        </p>
+                        {row.entry ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setBrowsing(false);
+                              setDetail(row.entry);
+                            }}
+                            title="Compare this product across shops"
+                            className="break-words text-left text-sm font-extrabold underline decoration-2 underline-offset-2"
+                          >
+                            {row.item.name}
+                          </button>
+                        ) : (
+                          <p className="break-words text-sm font-extrabold">
+                            {row.item.name}
+                          </p>
+                        )}
 
                         {row.entry && offers.length > 0 ? (
                           <>
@@ -465,6 +484,22 @@ export default function BasketPage() {
           </>
         )}
       </aside>
+
+      {detail && (
+        <div className="absolute inset-x-3 bottom-3 top-3 z-[1050] md:inset-x-auto md:bottom-auto md:left-[412px] md:top-4 md:w-[min(460px,calc(100vw-432px))]">
+          <section aria-label={`${detail.label} in each shop`} className="card max-h-full overflow-y-auto p-4">
+            <div className="flex items-start justify-between gap-2">
+              <h2 className="display text-2xl leading-none">{detail.label}</h2>
+              <button type="button" onClick={() => setDetail(null)} className="btn btn-light btn-sm">
+                Close
+              </button>
+            </div>
+            <div className="mt-3">
+              <ProductCompare entry={detail} />
+            </div>
+          </section>
+        </div>
+      )}
 
       {browsing && (
         <div className="absolute inset-x-3 bottom-3 top-3 z-[1050] md:inset-x-auto md:bottom-4 md:left-[412px] md:top-4 md:w-[min(520px,calc(100vw-432px))]">
