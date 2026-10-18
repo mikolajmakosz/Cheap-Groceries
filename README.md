@@ -215,7 +215,7 @@ copy: changing the live basket later never rewrites it.
 
 ## Looking around
 
-The **Browse products** button on `/app` opens a menu laid out like Mercadona's: ten aisles on the left
+The **Browse products** button on `/app` opens a menu laid out like Mercadona's: nine aisles on the left
 that open into sections (Fruit & veg: Fruit, Vegetables), and the products of what is picked on the right with
 a photo and a price each ([`lib/categories.ts`](lib/categories.ts)). Tap a product to put it in the basket;
 tap one that is already there to add a serving. The look follows dontlookup.app: warm paper, near-black ink, thick outlines, hard offset
