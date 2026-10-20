@@ -102,7 +102,9 @@ export default function LandingHero() {
         )}
 
         <div className="mt-5 border-t-2 border-[var(--ink)]/15 pt-4">
-          <p className="mb-2 text-xs font-bold text-slate-500">Or try a product first</p>
+          <h2 className="display mb-3 text-2xl leading-tight md:text-3xl">
+            Write your product and see how much it costs
+          </h2>
           <ProductSearch
             value={draft}
             onChange={setDraft}
