@@ -83,6 +83,24 @@ export const FOODS: Record<string, Food> = {
   cerveza: f(43, 0.4, 0, 3.6, 0, 0.01),
   sardinas: f(208, 25, 11.5, 0, 0, 0.8),
   vinagre: f(19, 0, 0, 0.6, 0.4, 0.01),
+  // Fruit and veg, often sold without a label: USDA values, carbohydrate without
+  // fibre and energy counted the EU way (2 kcal per g of fibre), as Spanish labels do.
+  zanahoria: f(39, 0.9, 0.2, 6.8, 4.7, 0.17, { edible: 0.9 }),
+  uvas: f(75, 0.7, 0.2, 17.2, 15.5, 0.01, { edible: 0.95 }),
+  "pimiento rojo": f(27, 1, 0.3, 3.9, 3.9, 0.01, { edible: 0.85 }),
+  "pimiento verde": f(20, 0.9, 0.2, 2.9, 2.4, 0.01, { edible: 0.85 }),
+  ajo: f(158, 6.4, 0.5, 31, 1, 0.04, { edible: 0.85 }),
+  brocoli: f(36, 2.8, 0.4, 4, 1.7, 0.08, { edible: 0.6 }),
+  espinacas: f(25, 2.9, 0.4, 1.4, 0.4, 0.2),
+  berenjena: f(26, 1, 0.2, 3.5, 3.5, 0.01, { edible: 0.9 }),
+  aguacate: f(160, 2, 14.7, 1.8, 0.7, 0.02, { edible: 0.7 }),
+  fresas: f(32, 0.7, 0.3, 5.7, 4.9, 0, { edible: 0.95 }),
+  pera: f(57, 0.4, 0.1, 12.1, 9.8, 0, { edible: 0.9 }),
+  kiwi: f(62, 1.1, 0.5, 11.7, 9, 0.01, { edible: 0.85 }),
+  mandarina: f(56, 0.8, 0.3, 11.5, 10.6, 0, { edible: 0.75 }),
+  // Typical own-brand labels, for products sold without one online.
+  "caldo de verduras": f(6, 0.3, 0.2, 0.8, 0.5, 0.8),
+  "refresco de naranja": f(31, 0, 0, 7.6, 7.6, 0.02),
 };
 
 export const ZERO: Nutrients = { kcal: 0, protein: 0, fat: 0, carbs: 0, sugar: 0, salt: 0 };

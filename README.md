@@ -87,9 +87,9 @@ Mercadona, Dia, Carrefour and Alcampo only: smaller shops charge more, so they a
 in the catalogue only if all four sell it**, so any basket can be compared across the four and nothing is
 priced at a shop that lacks it. The build ([`scripts/build-catalogue.mjs`](scripts/build-catalogue.mjs))
 holds back any term missing from a shop and lists it, so a gap shows up when the catalogue is built, not as a
-wrong total. Today that is 42 products; the held-back ones (butter, cereal, potatoes, lettuce, salmon,
-apples, pork, minced meat, cheese slices at Alcampo and others) return as soon as a matching product is found
-at the missing shop.
+wrong total. Today that is 150 products in 11 aisles; the held-back ones (pork loin and minced meat at
+Alcampo, sliced cheese, own-brand cola and others) return as soon as a matching product is found at the
+missing shop.
 
 Where the four shops' products come from:
 
@@ -121,6 +121,31 @@ Where it does not help: Findit merges some branded products from different shops
 gets the pack size wrong (a Coca-Cola pack of two bottles priced at Mercadona next to a pack of six at
 Alcampo), so branded prices stay with Soy Super. Carrefour and Alcampo products carry few labels there, so
 those shops use typical values.
+
+### 108 more products, matched by name and by label
+
+[`scripts/more-terms.mjs`](scripts/more-terms.mjs) lists about 180 everyday products (protein yogurt, kefir,
+oat drink, cured cheese, chicken thighs, frozen peas, tortillas, hummus, nuts, sports drinks…), each with the
+words its name must have and the words that rule a product out. `npm run more`
+([`scripts/fetch-findit-more.mjs`](scripts/fetch-findit-more.mjs)) then, for each one:
+
+1. searches Findit in each of the four shops, and Mercadona's own shop
+   ([`scripts/fetch-mercadona-all.mjs`](scripts/fetch-mercadona-all.mjs)) where Findit misses a product;
+2. takes Mercadona's plainest own-brand match as the reference, with its label from Findit or, by barcode,
+   from Open Food Facts;
+3. in every shop, cheapest per kg or litre first, opens products until one has **the same label** as the
+   reference (energy within 12%, protein, fat and carbohydrate within about 20%, sugar within 35%).
+   Differently named products with the same macros are the same product: Mercadona's *Postre lácteo natural
+   +Proteínas* and Dia's *Postre lácteo natural alto en proteína* are both a natural high-protein yogurt;
+4. falls back to the name alone where a shop's page has no label, and rejects any product whose label
+   differs, whose price per kg is far from the others, or whose listing is another chain's product;
+5. keeps the term only when all four shops have such a product, with no two shops more than about 2x apart.
+
+Where Findit lists nothing (much of Dia's fresh counter, some Alcampo and Carrefour items), Soy Super's search
+scoped to that shop fills the gap ([`data/soysuper-fill.json`](data/soysuper-fill.json)), with the same name
+rules and price check. The result, with every pick and how it was matched (`label`, `name` or
+`name (Soy Super)`), is [`data/findit-more.json`](data/findit-more.json); the terms that did not make all
+four shops are listed there under `held`, with the reason.
 
 ### Product links and logos
 

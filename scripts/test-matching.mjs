@@ -56,9 +56,9 @@ for (const [typed, expected] of [
   ["tomato sauce", "tomate frito"],
   ["arroz", "arroz"],
   ["rice", "arroz"],
-  ["queso", "queso fresco"],
+  ["queso", "queso curado"],
   ["queso fresco", "queso fresco"],
-  ["butter", null],
+  ["butter", "mantequilla"],
   ["banana", "platano"],
   ["QA-7F3K2A grading bot test", null],
   ["xyz123", null],
@@ -130,8 +130,8 @@ check(
 );
 
 console.log("\nunit prices, not pack prices");
-const cheese = entryFor("queso");
-const twoServings = compareBasket([item("p", "queso", 2)]);
+const cheese = entryFor("queso fresco");
+const twoServings = compareBasket([item("p", "queso fresco", 2)]);
 const dia = cheese.offers.Dia;
 check(
   "a basket line costs its unit price times its amount",

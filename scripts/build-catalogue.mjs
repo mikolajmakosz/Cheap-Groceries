@@ -142,6 +142,7 @@ for (const product of soysuper.products) {
 // plus labels and photos for terms the sources above left bare.
 const findit = await load("data/findit.json");
 const SHOP_NAME = { mercadona: "Mercadona", dia: "Dia", carrefour: "Carrefour", alcampo: "Alcampo" };
+const SHOP_KEYS = ["Alcampo", "Carrefour", "Dia", "Mercadona"];
 for (const [term, byShop] of Object.entries(findit.fill ?? {})) {
   const entry = entries.find((e) => e.term === term);
   if (!entry) {
@@ -217,12 +218,59 @@ for (const [term, byShop] of Object.entries(shops4.picks)) {
   }
 }
 
+// Many more everyday products from Findit, each matched in all four shops by its
+// words and its nutrition label (scripts/fetch-findit-more.mjs). A term the sources
+// above left short of a shop is replaced as a whole, so its four products were
+// matched against each other; a complete one is kept unless the new rule is stricter.
+const more = await load("data/findit-more.json");
+const brandOf = (o) =>
+  o.brand && !/^(sin marca|unknown)$/i.test(o.brand) && !o.name.toLowerCase().includes(o.brand.toLowerCase())
+    ? `${o.name} ${o.brand}`
+    : o.name;
+let added = 0;
+let refilled = 0;
+for (const term of more.terms) {
+  const offers = {};
+  for (const [key, o] of Object.entries(term.offers)) {
+    offers[SHOP_NAME[key]] = {
+      name: brandOf(o),
+      price_eur: o.price,
+      unit_price: o.unit,
+      image: o.image ?? null,
+      url: o.url ?? (o.soysuper ? `https://soysuper.com/p/${o.soysuper}` : `https://finditapp.es/product/${o.id}`),
+      checked_on: more.collected_on,
+      ...(o.nutrition ? { nutrition: o.nutrition } : {}),
+    };
+  }
+  const existing = entries.find((e) => e.term === term.term);
+  if (existing) {
+    const complete = SHOP_KEYS.every((store) => existing.offers[store]);
+    if (complete && !term.replace) continue;
+    existing.offers = offers;
+    existing.basis = term.basis;
+    existing.serving = term.serving;
+    existing.label = term.label;
+    existing.aliases = [...new Set([...existing.aliases, ...term.aliases])];
+    refilled += 1;
+    continue;
+  }
+  entries.push({
+    term: term.term,
+    label: term.label,
+    basis: term.basis,
+    serving: term.serving,
+    aliases: term.aliases,
+    offers,
+  });
+  added += 1;
+}
+console.log(`Findit, more products: ${added} new terms, ${refilled} re-matched.`);
+
 // Every product must be priced at all four supermarkets, so any basket can be
 // compared across them. A term that is not is held back, and listed here.
-const SUPERMARKETS = ["Alcampo", "Carrefour", "Dia", "Mercadona"];
 const held = [];
 for (let i = entries.length - 1; i >= 0; i -= 1) {
-  const missing = SUPERMARKETS.filter((store) => !entries[i].offers[store]);
+  const missing = SHOP_KEYS.filter((store) => !entries[i].offers[store]);
   if (missing.length > 0) {
     held.push(`${entries[i].term} (no ${missing.join(", ")})`);
     entries.splice(i, 1);
@@ -243,7 +291,8 @@ await writeFile(
     `// Nutrition labels: data/nutrition-mercadona.json (Open Food Facts) and data/nutrition-dia.json (dia.es).\n` +
     `// Branded products in several shops: data/soysuper.json (Soy Super product pages).\n` +
     `// More terms, photos and labels: data/findit.json (Findit product pages).\n` +
-    `// Carrefour and Alcampo products: data/shops4.json (Soy Super per-shop search).\n\n` +
+    `// Carrefour and Alcampo products: data/shops4.json (Soy Super per-shop search).\n` +
+    `// Many more products, matched by name and label in all four shops: data/findit-more.json.\n\n` +
     `import type { CatalogueEntry } from "./catalogue.ts";\n\n` +
     `export const CATALOGUE_DATA: CatalogueEntry[] = ${JSON.stringify(entries, null, 2)};\n`,
   "utf8",

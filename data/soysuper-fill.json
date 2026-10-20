@@ -1,0 +1,2088 @@
+{
+ "source": "Soy Super (soysuper.com) search, scoped to one supermarket at postcode 28029, read in a browser a few seconds apart. Only for products Findit does not list. Each row: [name, pack price, price per kg/L/unit, measure, pack size, Soy Super slug]; scripts/fetch-findit-more.mjs applies the term's name rules and the price check before using one.",
+ "collected_on": "2026-10-20",
+ "picks": {
+  "dia": {
+   "yogur proteinas": [
+    [
+     "Postre lácteo natural alto en proteína Dia Láctea",
+     1.4,
+     2.92,
+     "kg",
+     0.479,
+     "postre-lacteo-natural-alto-en-proteina-dia-lactea-pack-4-x-120-g-dia-lactea-pack-4-x-120-g"
+    ],
+    [
+     "Postre lácteo natural alto en proteína Dia Láctea",
+     1.15,
+     3.83,
+     "kg",
+     0.3,
+     "dia-lactea-yogur-natural-alto-en-proteina-dia-lactea-vaso-300-g-vaso-300-g"
+    ]
+   ],
+   "yogur desnatado": [
+    [
+     "Yogur natural desnatado Dia Láctea",
+     0.99,
+     1.32,
+     "kg",
+     0.75,
+     "yogur-natural-desnatado-dia-pack-6-unidades-125-g"
+    ],
+    [
+     "Yogur natural desnatado edulcorado Dia Láctea",
+     0.99,
+     1.32,
+     "kg",
+     0.75,
+     "yogur-natural-desnatado-edulcorado-dia-pack-6-unidades-125-g"
+    ]
+   ],
+   "queso": [
+    [
+     "Queso sándwich Dia Láctea",
+     0.88,
+     5.5,
+     "kg",
+     0.16,
+     "queso-fundido-especial-sandwich-dia-lactea-sobre-160-g-dia-lactea-sobre-160-g"
+    ]
+   ],
+   "queso mozzarella": [
+    [
+     "Mozzarella fior di latte Dia Selección Mundial",
+     0.9,
+     7.2,
+     "kg",
+     0.125,
+     "mozzarella-fresca-dia-bolsa-125-g"
+    ],
+    [
+     "Queso mozzarella rallado Dia Láctea",
+     1.6,
+     8,
+     "kg",
+     0.2,
+     "queso-rallado-mozzarella-dia-bolsa-200-g"
+    ],
+    [
+     "Palitos de mozzarella Gremlins Dia Al Punto 300 G",
+     2.59,
+     8.63,
+     "kg",
+     0.3,
+     "palitos-de-mozzarella-gremlins-dia-al-punto-300-g-dia-al-punto-300-g"
+    ],
+    [
+     "Queso Mozzarella Dia Láctea",
+     1.44,
+     9,
+     "kg",
+     0.16,
+     "queso-mozzarella-en-lonchas-seleccion-mundial-de-dia-sobre-160-g-seleccion-mundial-de-dia-sobre-160-g"
+    ],
+    [
+     "Pizza artesana jamón y mozzarella Casa Tarradellas",
+     4.29,
+     10.72,
+     "kg",
+     0.4,
+     "pizza-jamon-con-tomate-cherry-envase-400-gr-casa-tarradellas-envase-400-gr"
+    ],
+    [
+     "Perlas de mozzarella Dia Selección Mundial",
+     1.58,
+     12.64,
+     "kg",
+     0.125,
+     "queso-mozzarella-perlas-dia-bolsa-150-gr"
+    ]
+   ],
+   "requeson": [
+    [
+     "Requesón Dia El Cencerro",
+     0.99,
+     4.95,
+     "kg",
+     0.2,
+     "requeson-el-cencerro-de-dia-tarrina-200-g-el-cencerro-de-dia-tarrina-200-g"
+    ]
+   ],
+   "carne picada": [
+    [
+     "Carne picada de vacuno y cerdo Selección de Dia",
+     7.49,
+     8.32,
+     "kg",
+     0.9,
+     "preparado-de-carne-picada-de-cerdo-y-vacuno-bandeja-1-kg-roler-bandeja-1-kg"
+    ],
+    [
+     "Carne picada de vacuno y cerdo Selección de Dia",
+     4.19,
+     8.38,
+     "kg",
+     0.5,
+     "preparado-de-carne-picada-de-cerdo-y-vacuno-bandeja-500-gr-roler-bandeja-500-gr"
+    ]
+   ],
+   "hamburguesa": [
+    [
+     "Burger de vacuno ecólogico baja en grasa Selección de Dia",
+     2.49,
+     16.6,
+     "kg",
+     0.15,
+     "hamburguesa-de-vacuno-ecologico-baja-en-grasa-seleccion-de-dia-bandeja-150-g-seleccion-de-dia-bandeja-150-g"
+    ]
+   ],
+   "salchichas frankfurt": [
+    [
+     "Campofrío Salchichas cocidas de pollo sabor ahumado, tipo Frankfurt campofrío",
+     2.15,
+     5.12,
+     "kg",
+     0.42,
+     "salchicha-frankfurt-de-pollo-campofrio-520g"
+    ],
+    [
+     "Oscar mayer Jumbo Salchichas tipo Frankfurt",
+     2.68,
+     7.66,
+     "kg",
+     0.35,
+     "salchichas-jumbo-classic-paquete-350-g-oscar-mayer-4-unidades"
+    ]
+   ],
+   "salchichas de pollo": [
+    [
+     "Salchichas viena de pollo Dia Funky Frank",
+     0.79,
+     3.95,
+     "kg",
+     0.2,
+     "salchichas-viena-de-pollo-funky-frank-de-dia-bolsa-200-g-bolsa-200-g"
+    ],
+    [
+     "Salchichas Viena de pollo Dia Funky Frank",
+     2.39,
+     3.98,
+     "kg",
+     0.601,
+     "salchichas-viena-de-pollo-pack-3-x-200-gr-dia-funky-frank-pack-3-x-200-gr"
+    ],
+    [
+     "Campofrío Salchichas cocidas de pollo sabor ahumado, tipo Frankfurt campofrío",
+     2.15,
+     5.12,
+     "kg",
+     0.42,
+     "salchicha-frankfurt-de-pollo-campofrio-520g"
+    ]
+   ],
+   "jamon serrano": [
+    [
+     "Jamón serrano medias lonchas Dia Nuestra Alacena",
+     1.71,
+     17.1,
+     "kg",
+     0.1,
+     "jamon-serrano-reserva-en-medias-lonchas-envase-100-gr-dia-nuestra-alacena-envase-100-gr"
+    ],
+    [
+     "Jamón serrano lonchas extrafinas Dia Nuestra Alacena",
+     2.45,
+     20.42,
+     "kg",
+     0.12,
+     "jamon-serrano-reserva-en-lonchas-envase-120-gr-dia-nuestra-alacena-envase-120-gr"
+    ]
+   ],
+   "mortadela": [
+    [
+     "Mortadela Dia Nuestra Alacena",
+     2,
+     4,
+     "kg",
+     0.5,
+     "mortadela-pieza-500-gr-dia-nuestra-alacena-500-gr"
+    ],
+    [
+     "Mortadela Dia Nuestra Alacena",
+     1.09,
+     4.36,
+     "kg",
+     0.25,
+     "mortadela-en-lonchas-envase-250-gr-dia-nuestra-alacena-envase-250-gr"
+    ],
+    [
+     "Mortadela con aceitunas Dia Nuestra Alacena",
+     1.25,
+     5,
+     "kg",
+     0.25,
+     "mortadela-con-aceitunas-en-lonchas-envase-250-gr-dia-nuestra-alacena-envase-250-gr"
+    ]
+   ],
+   "gambas peladas": [
+    [
+     "Gambas peladas y crudas medianas Dia Mari Marinera",
+     3.81,
+     10.89,
+     "kg",
+     0.35,
+     "gambas-medianas-80-100-piezas-bolsa-400-gr-mari-marinera-bolsa-400-gr"
+    ],
+    [
+     "Gambas peladas y crudas grandes Dia Mari Marinera",
+     5.98,
+     17.09,
+     "kg",
+     0.35,
+     "gamba-pelada-grande-bolsa-400-gr-mari-marinera-bolsa-400-gr"
+    ]
+   ],
+   "calamares a la romana": [
+    [
+     "Anillas a la romana Dia Mari Marinera",
+     3.99,
+     9.97,
+     "kg",
+     0.4,
+     "anillas-de-calamar-a-la-romana-dia-bolsa-500-gr"
+    ]
+   ],
+   "surimi": [
+    [
+     "Palitos de surimi congelados MSC Dia Mari Marinera",
+     1.89,
+     4.2,
+     "kg",
+     0.45,
+     "palitos-de-mar-dia-envase-450-gr"
+    ],
+    [
+     "Palitos de surimi refrigeradas MSC Dia Mari Marinera",
+     1.89,
+     6.3,
+     "kg",
+     0.3,
+     "palitos-surimi-dia-estuche-300g"
+    ]
+   ],
+   "anchoas": [
+    [
+     "Aceitunas rellenas de anchoa Serpis",
+     3.85,
+     19.25,
+     "kg",
+     0.2,
+     "aceitunas-rellenas-de-anchoa-serpis-lata-4-x-50-g-serpis-4-x-50-g"
+    ],
+    [
+     "Filetes de anchoa en aceite de girasol Dia Mari Marinera",
+     2.79,
+     37.2,
+     "kg",
+     0.075,
+     "dia-mari-marinera-filetes-de-anchoa-del-cantabrico-en-aceite-de-girasol-pack-3-x-25-gr-pack-3-x-25-gr"
+    ],
+    [
+     "Filetes de sardina anchoada Kiele",
+     1.99,
+     39.8,
+     "kg",
+     0.05,
+     "anchodinas-envase-50-gr"
+    ],
+    [
+     "Filetes de anchoa en aceite de oliva Dia Mari Marinera",
+     2.99,
+     39.87,
+     "kg",
+     0.075,
+     "anchoa-del-cantabrico-en-aceite-de-oliva-mari-marinera-pack-3-x-25-g-mari-marinera-pack-3-x-25-g"
+    ],
+    [
+     "Anchoas en aceite de girasol Caprimar",
+     2.09,
+     40.19,
+     "kg",
+     0.052,
+     "anchoas-en-aceite-de-girasol-frasco-55-gr-caprimar-frasco-55-gr"
+    ]
+   ],
+   "patata": [
+    [
+     "Patatas",
+     4.49,
+     1.12,
+     "kg",
+     4.009,
+     "patata-malla-4-kg-malla-4-kg-1"
+    ],
+    [
+     "Patatas prefritas Dia Patatas Unidas",
+     2.99,
+     1.5,
+     "kg",
+     1.993,
+     "patatas-prefritas-bolsa-2-kg-dia-patatas-unidas-bolsa-2-kg"
+    ],
+    [
+     "Patatas para cocer",
+     3.69,
+     1.84,
+     "kg",
+     2.005,
+     "patata-cocer-malla-2-kg-malla-2-kg"
+    ],
+    [
+     "Patata de Madrid",
+     3.69,
+     1.84,
+     "kg",
+     2.005,
+     "patata-de-madrid-bolsa-2-kg-bolsa-2-kg"
+    ],
+    [
+     "Patatas corte clásico Dia Patatas Unidas",
+     1.85,
+     1.85,
+     "kg",
+     1,
+     "patatas-prefritas-bolsa-1-kg-dia-bolsa-1-kg"
+    ],
+    [
+     "Patatas corte fino Dia Patatas Unidas",
+     1.85,
+     1.85,
+     "kg",
+     1,
+     "patatas-finas-al-horno-bolsa-1-kg-dia-bolsa-1-kg"
+    ]
+   ],
+   "lechuga": [
+    [
+     "Lechuga iceberg lavada Dia Vegecampo",
+     0.89,
+     4.45,
+     "kg",
+     0.2,
+     "lechuga-iceberg-lavada-bolsa-250-gr-dia-vegecampo-bolsa-250-gr"
+    ]
+   ],
+   "pimiento verde": [
+    [
+     "Pimientos del piquillo rojo y verde en tiras Dia Vegecampo",
+     1.99,
+     7.24,
+     "kg",
+     0.275,
+     "pimientos-del-piquillo-rojo-y-verde-en-tiras-vegecampo-de-dia-frasco-270-g-vegecampo-de-dia-frasco-270-g"
+    ]
+   ],
+   "judias verdes": [
+    [
+     "Judías verdes planas Dia Vegecampo",
+     1.1,
+     3.06,
+     "kg",
+     0.359,
+     "judia-verde-cort-fra-dia-frasco-360gr"
+    ],
+    [
+     "Judías verdes redondas Dia Vegecampo",
+     1.1,
+     3.06,
+     "kg",
+     0.359,
+     "judias-verdes-redondas-dia-frasco-360-grs"
+    ]
+   ],
+   "empanadillas": [
+    [
+     "Mini empanadillas de atún Dia Al Punto",
+     1.52,
+     3.8,
+     "kg",
+     0.4,
+     "mini-empanadillas-de-bonito-dia-bolsa-400-gr"
+    ],
+    [
+     "Masa gruesa para empanadillas estilo argentino Buitoni",
+     2.39,
+     6.83,
+     "kg",
+     0.35,
+     "masa-gruesa-para-empanadillas-estilo-argentino-buitoni-bolsa-350-g-buitoni-bolsa-350-g"
+    ],
+    [
+     "Buitoni Masa (obleas) para empanadillas gigantes buitoni",
+     2.04,
+     7.29,
+     "kg",
+     0.28,
+     "masa-de-empanadillas-gigante-buitoni-280-gr"
+    ],
+    [
+     "Buitoni Masa para empanadillas medianas (obleas)",
+     1.28,
+     8,
+     "kg",
+     0.16,
+     "masa-para-empanadillas-medianas-obleas-buitoni-160-g"
+    ],
+    [
+     "Empanadilla de pisto El Molino de Dia",
+     0.89,
+     8.48,
+     "kg",
+     0.105,
+     "empanadilla-de-pisto-el-molino-de-dia-105-g-el-molino-de-dia-105-g"
+    ]
+   ],
+   "tortellini": [
+    [
+     "Tortelloni 4 quesos Dia Al Diante",
+     1.49,
+     5.96,
+     "kg",
+     0.25,
+     "tortelloni-4-quesos-dia-al-diante-250-g-250-g"
+    ],
+    [
+     "Tortelloni prosciutto Dia Al Diante",
+     1.49,
+     5.96,
+     "kg",
+     0.25,
+     "tortelloni-prosciutto-dia-al-diante-250-g-250-g"
+    ],
+    [
+     "Gallo Pasta Tortelloni rellenos con carne",
+     1.59,
+     7.95,
+     "kg",
+     0.2,
+     "pasta-tortellini-carne-gallo-200g-gallo-200g"
+    ]
+   ],
+   "noquis": [
+    [
+     "Gallo Pasta ñoquis de patata gallo",
+     1.49,
+     3.73,
+     "kg",
+     0.399,
+     "noquis-bolitas-de-patatas-gallo-400-g"
+    ]
+   ],
+   "quinoa": [
+    [
+     "Panecillo con quinoa 1,8% El Molino de Dia",
+     0.35,
+     3.5,
+     "kg",
+     0.1,
+     "panecillo-con-quinoa-100-gr-la-hornada-dia-100-gr"
+    ],
+    [
+     "Quinoa con verduras Dia Al Punto",
+     1.99,
+     4.97,
+     "kg",
+     0.4,
+     "quinoa-con-verduras-bandeja-400-gr-al-punto-bandeja-400-gr"
+    ],
+    [
+     "Vasos de avena con quinoa Dia Al Punto",
+     1.49,
+     4.97,
+     "kg",
+     0.3,
+     "vasos-de-avena-con-quinoa-dia-al-punto-2-x-150-g-dia-al-punto-2-x-150-g"
+    ],
+    [
+     "Arroz integral con quinoa para microondas Brillante",
+     1.56,
+     6.24,
+     "kg",
+     0.25,
+     "arroz-integral-con-quinoa-brillante-2x125-g"
+    ],
+    [
+     "Quinoa blanca y roja para microondas Brillante",
+     1.67,
+     6.68,
+     "kg",
+     0.25,
+     "quinoa-blanca-y-roja-brillante-2x125-g"
+    ],
+    [
+     "Crackers con quinoa y chía",
+     1.99,
+     7.96,
+     "kg",
+     0.25,
+     "crackers-con-quinoa-y-chia-gullon-gullon-250-g"
+    ]
+   ],
+   "cereales": [
+    [
+     "Cereales copos de maíz corn flakes Gran Dia",
+     1.49,
+     2.98,
+     "kg",
+     0.5,
+     "cereales-corn-flakes-copos-de-maiz-tostado-dia-paquete-500-gr"
+    ]
+   ],
+   "muesli": [
+    [
+     "Muesli con frutas Gran Dia",
+     2.49,
+     2.49,
+     "kg",
+     1,
+     "cereales-muesli-con-frutas-dia-paquete-1kg"
+    ],
+    [
+     "Muesli extra Gran Dia",
+     1.9,
+     3.8,
+     "kg",
+     0.5,
+     "muesli-extra-dia-caja-500-gr"
+    ],
+    [
+     "Muesli crujiente con frutas Gran Dia",
+     2.1,
+     4.2,
+     "kg",
+     0.5,
+     "cereales-muesli-crujiente-con-frutas-dia-paquete-500-gr"
+    ]
+   ],
+   "harina de maiz": [
+    [
+     "Harina de maíz blanca precocida",
+     2.61,
+     2.61,
+     "kg",
+     1,
+     "harina-p-a-n-de-maiz-precocida-1-kg"
+    ]
+   ],
+   "pan de molde integral": [
+    [
+     "Pan de molde trigo integral El Molino de Dia",
+     1.29,
+     1.57,
+     "kg",
+     0.822,
+     "pan-de-molde-integral-100-bolsa-820-gr-el-molino-de-dia-bolsa-820-gr"
+    ],
+    [
+     "Pan de molde trigo integral sin corteza El Molino de Dia",
+     1.1,
+     2.44,
+     "kg",
+     0.451,
+     "pan-de-molde-integral-sin-coteza-dia-bolsa-450gr"
+    ],
+    [
+     "Pan de molde espelta integral El Molino de Dia",
+     1.29,
+     3.23,
+     "kg",
+     0.399,
+     "pan-de-molde-espelta-integral-el-molino-de-dia-400-g-el-molino-de-dia-400-g"
+    ]
+   ],
+   "pan de hamburguesa": [
+    [
+     "Pan de hamburguesa maxi Gremlins El Molino de Dia 300 G",
+     0.99,
+     3.3,
+     "kg",
+     0.3,
+     "pan-de-hamburguesa-maxi-gremlins-el-molino-de-dia-300-g-el-molino-de-dia-300-g"
+    ],
+    [
+     "Pan de hamburguesa brioche El Molino de Dia",
+     1.69,
+     5.63,
+     "kg",
+     0.3,
+     "el-molino-de-dia-pan-de-hamburguesa-brioche-bolsa-300-gr-bolsa-300-gr"
+    ],
+    [
+     "Pan de hamburguesa brioche El Molino de Dia 150 G",
+     1,
+     6.67,
+     "kg",
+     0.15,
+     "pan-de-hamburguesa-brioche-el-molino-de-dia-150-g-el-molino-de-dia-150-g"
+    ]
+   ],
+   "tortillas de trigo": [
+    [
+     "Tortillas de trigo Dia Al Punto",
+     1.02,
+     3.19,
+     "kg",
+     0.32,
+     "tortillas-trigo-p-8-dia-sobre-320gr"
+    ],
+    [
+     "Tortillas de trigo maxi Gremlins Dia Al Punto 360 G",
+     1.5,
+     4.17,
+     "kg",
+     0.36,
+     "tortillas-de-trigo-maxi-gremlins-dia-al-punto-360-g-dia-al-punto-360-g"
+    ],
+    [
+     "Tortillas de trigo integral Dia Al Punto",
+     1.38,
+     4.31,
+     "kg",
+     0.32,
+     "tortilla-integral-bolsa-8-unidades-320-gr-dia-al-punto-bolsa-8-unidades-320-gr"
+    ],
+    [
+     "Mini tortillas de trigo Dulcesol 300 G",
+     1.65,
+     5.5,
+     "kg",
+     0.3,
+     "mini-tortillas-de-trigo-dulcesol-300-g-dulcesol-300-g"
+    ]
+   ],
+   "tostadas": [
+    [
+     "Mini biscotes El Molino de Dia",
+     1.6,
+     6.67,
+     "kg",
+     0.24,
+     "mini-biscotes-bolsa-240-gr-el-molino-de-dia-bolsa-240-gr"
+    ],
+    [
+     "Picatostes tostados El Molino de Dia",
+     0.63,
+     7,
+     "kg",
+     0.09,
+     "picatostes-tostados-dia-bolsa-90-gr"
+    ],
+    [
+     "Panecillos tostados con tomate y orégano El Molino de Dia",
+     1.22,
+     7.62,
+     "kg",
+     0.16,
+     "panecillo-tomate-y-oregano-dia-160-grs"
+    ],
+    [
+     "Panecillos tostados con ajo y perejil El Molino de Dia",
+     1.22,
+     7.62,
+     "kg",
+     0.16,
+     "panecillo-ajo-y-perejil-dia-bolsa-160-grs"
+    ],
+    [
+     "Pipas tostadas con leña Manzanares",
+     2.99,
+     8.31,
+     "kg",
+     0.36,
+     "manzanares-pipas-tostadas-con-lena-bolsa-360-gr-bolsa-360-gr"
+    ],
+    [
+     "Pan tostado integral",
+     3.09,
+     9.66,
+     "kg",
+     0.32,
+     "pan-tostado-integral-ortiz-ortiz-320-g"
+    ]
+   ],
+   "tomate triturado": [
+    [
+     "Tomate triturado Dia Vegecampo",
+     1,
+     1.25,
+     "kg",
+     0.8,
+     "tomate-triturado-dia-lata-800gr"
+    ],
+    [
+     "Tomate triturado Dia Vegecampo",
+     0.55,
+     1.38,
+     "kg",
+     0.399,
+     "tomate-triturado-dia-lata-400gr"
+    ]
+   ],
+   "tomate troceado": [
+    [
+     "Tomate troceado Dia Vegecampo",
+     0.68,
+     1.7,
+     "kg",
+     0.4,
+     "tomate-troceado-dia-lata-400gr"
+    ]
+   ],
+   "caldo de verduras": [
+    [
+     "Gallina blanca Caldo de verduras",
+     1.8,
+     1.8,
+     "l",
+     1,
+     "gallina-blanca-caldo-casero-verdura-brik-1-l-gallina-blanca"
+    ],
+    [
+     "Caldo de pollo y ocho verduras Gallina Blanca",
+     2.4,
+     2.4,
+     "l",
+     1,
+     "caldo-casero-de-pollo-y-8-verduras-gallina-blanca-brik-1-l-gallina-blanca-brik-1-l"
+    ]
+   ],
+   "pure de patatas": [
+    [
+     "Puré de patatas Dia Patatas Unidas",
+     2,
+     4,
+     "kg",
+     0.5,
+     "pure-de-patatas-dia-caja-500-gr"
+    ]
+   ],
+   "hummus": [
+    [
+     "Hummus clásico Dia Al Punto",
+     1.29,
+     5.86,
+     "kg",
+     0.22,
+     "hummus-tarrina-220-gr-dia-al-punto-tarrina-220-gr"
+    ],
+    [
+     "Hummus de pimiento Dia Al Punto",
+     1.33,
+     6.05,
+     "kg",
+     0.22,
+     "hummus-con-pimiento-tarrina-220-gr-dia-al-punto-tarrina-220-gr"
+    ]
+   ],
+   "vinagre balsamico": [
+    [
+     "Vinagre balsámico de Módena Dia Selección Mundial",
+     2.29,
+     4.58,
+     "l",
+     0.5,
+     "vinagre-balsamico-de-modena-dia-botella-50-cl"
+    ],
+    [
+     "Crema de vinagre de Módena Aliña tu Dia",
+     1.99,
+     7.96,
+     "l",
+     0.25,
+     "crema-vinagre-modena-dia-botella-25-cl"
+    ]
+   ],
+   "mostaza": [
+    [
+     "Mostaza Dia Salseo",
+     1.06,
+     3.21,
+     "kg",
+     0.33,
+     "mostaza-barrilito-dia-bote-300ml"
+    ],
+    [
+     "Salsa miel y mostaza Dia Salseo",
+     1.32,
+     4.26,
+     "kg",
+     0.31,
+     "salsa-de-mostaza-a-la-miel-dia-bote-292-gr"
+    ]
+   ],
+   "alioli": [
+    [
+     "Ybarra Salsa alioli, sin conservantes ni colorantes",
+     1.84,
+     8.18,
+     "l",
+     0.225,
+     "salsa-alioli-ybarra-225ml"
+    ]
+   ],
+   "salsa carbonara": [
+    [
+     "Gallo Salsa carbonara",
+     2.99,
+     9.06,
+     "kg",
+     0.33,
+     "salsa-carbonara-gallo-frasco-330-g"
+    ]
+   ],
+   "chocolate con leche": [
+    [
+     "Chocolate con leche Dia Temptation",
+     0.88,
+     8.8,
+     "kg",
+     0.1,
+     "chocolate-con-leche-temptation-de-dia-100-g-temptation-de-dia-100-g"
+    ],
+    [
+     "Nestlé Extrafino Chocolate con leche",
+     1.5,
+     12,
+     "kg",
+     0.125,
+     "chocolate-con-leche-nestle-125g"
+    ],
+    [
+     "Nestlé Extrafino Chocolate con leche",
+     4.74,
+     12.64,
+     "kg",
+     0.375,
+     "nestle-extrafino-chocolate-con-leche-nestle-3-uds-de-125-g"
+    ],
+    [
+     "Chocolate con leche crujiente Dia Temptation",
+     0.95,
+     12.67,
+     "kg",
+     0.075,
+     "chocolate-con-leche-crujiente-temptation-de-dia-75-g-temptation-de-dia-75-g"
+    ],
+    [
+     "Chocolate con leche con galleta Dia Temptation",
+     1.35,
+     13.5,
+     "kg",
+     0.1,
+     "chocolate-con-leche-con-galleta-temptation-de-dia-100-g-temptation-de-dia-100-g"
+    ],
+    [
+     "Nestlé Dolca Chocolate con leche",
+     1.36,
+     13.6,
+     "kg",
+     0.1,
+     "chocolate-con-leche-dolca-dolca-nestle-100-g"
+    ]
+   ],
+   "almendras": [
+    [
+     "Pastas de almendras sin azúcar añadido Blanco",
+     2.89,
+     7.22,
+     "kg",
+     0.4,
+     "pastas-de-almendras-sin-azucar-anadido-productos-blanco-400-g-productos-blanco-400-g"
+    ],
+    [
+     "Chocolate con leche y almendras enteras Dia Temptation",
+     2,
+     10,
+     "kg",
+     0.2,
+     "chocolate-con-leche-y-almendras-enteras-dia-delicious-tableta-200-gr"
+    ],
+    [
+     "Almendras al natural con piel Dia Naturmundo",
+     2.3,
+     11.5,
+     "kg",
+     0.2,
+     "almendra-natural-dia-bolsa-200-gr"
+    ],
+    [
+     "Almendras con cáscara tostadas Prunita 425 G",
+     4.99,
+     11.74,
+     "kg",
+     0.425,
+     "almendras-con-cascara-tostadas-prunita-425-g-prunita-425-g"
+    ],
+    [
+     "Chocolate con leche y almendras Dia Temptation",
+     1.79,
+     11.93,
+     "kg",
+     0.15,
+     "chocolate-con-leche-y-almendras-partidas-dia-tableta-150-gr"
+    ],
+    [
+     "Chocolate negro con almendras enteras Dia Temptation",
+     2.59,
+     12.95,
+     "kg",
+     0.2,
+     "chocolate-negro-55-con-almendras-dia-tableta-200-gr"
+    ]
+   ],
+   "patatas fritas": [
+    [
+     "Patatas fritas artesanas Dia Snack Maniac",
+     1.8,
+     6,
+     "kg",
+     0.3,
+     "patatas-artesanas-a-la-sarten-pack-2-bolsas-150-gr-dia-snack-maniac-pack-2-bolsas-150-gr"
+    ],
+    [
+     "Patatas fritas onduladas Dia Snack Maniac",
+     1.29,
+     7.17,
+     "kg",
+     0.18,
+     "patatas-fritas-onduladas-dia-bolsa-150gr"
+    ],
+    [
+     "Patatas fritas onduladas sabor jamón Dia Snack Maniac",
+     1.36,
+     8,
+     "kg",
+     0.17,
+     "patatas-fritas-onduladas-jamon-dia-bolsa-150gr"
+    ],
+    [
+     "Patatas fritas campesinas Dia Snack Maniac",
+     1.45,
+     8.53,
+     "kg",
+     0.17,
+     "patatas-fritas-campesina-dia-bolsa-150gr"
+    ],
+    [
+     "Patatas fritas gourmet extra crujientes Dia Snack Maniac",
+     0.36,
+     9,
+     "kg",
+     0.04,
+     "patatas-fritas-gourmet-extra-crujientes-snack-maniac-de-dia-bolsa-40-g-snack-maniac-de-dia-bolsa-40-g"
+    ],
+    [
+     "Patatas fritas gourmet extra crujientes Dia Snack Maniac",
+     1.35,
+     9,
+     "kg",
+     0.15,
+     "patatas-fritas-gourmet-extra-crujientes-snack-maniac-bolsa-150-gr-snack-maniac-bolsa-150-gr"
+    ]
+   ],
+   "frutos secos variados": [
+    [
+     "Frit ravich Cocktail frutos secos",
+     2.95,
+     9.83,
+     "kg",
+     0.3,
+     "cocktail-frutos-secos-frit-ravich-380-g"
+    ],
+    [
+     "Cocktail de frutos secos sin cáscara Frit Ravich sin gluten",
+     2.95,
+     9.83,
+     "kg",
+     0.3,
+     "cocktail-de-frutos-secos-sin-cascara-frit-ravich-400-grs"
+    ]
+   ]
+  },
+  "alcampo": {
+   "yogur desnatado": [
+    [
+     "Auchan Yogur desnatado natural sin azúcares añadidos Producto Alcampo",
+     0.7,
+     1.4,
+     "kg",
+     0.5,
+     "yogur-desnatado-natural-0-materia-grasa-con-edulcorantes-auchan-4x125g"
+    ],
+    [
+     "Auchan Yogur desnatado natural edulcorado sin azúcares añadidos Producto Alcampo",
+     0.7,
+     1.4,
+     "kg",
+     0.5,
+     "yogur-desnatado-0-materia-grasa-natural-edulcorado-auchan-4-x-125-gr"
+    ],
+    [
+     "Zero 0% Yogur natural desnatado sin azúcares añadidos y sin conservantes",
+     1.15,
+     2.4,
+     "kg",
+     0.479,
+     "leche-fermentada-natural-danone-zero-4x120-g-danone-4-x-120-g"
+    ]
+   ],
+   "queso mozzarella": [
+    [
+     "Auchan Queso mozzarella rallado especial pizzas Producto Alcampo",
+     1.6,
+     8,
+     "kg",
+     0.2,
+     "nata-para-montar-p-economico-alcampo-200ml"
+    ],
+    [
+     "Milkimi Lonchas de queso mozzarella",
+     1.05,
+     8.75,
+     "kg",
+     0.12,
+     "milkimi-lonchas-de-queso-mozzarella-120-g-milkimi-120-g"
+    ],
+    [
+     "Auchan Queso Mozzarella en lonchas Producto Alcampo",
+     1.8,
+     9,
+     "kg",
+     0.2,
+     "queso-mozzarella-en-lonchas-auchan-200g"
+    ],
+    [
+     "Auchan Mozzarella fresca Producto Alcampo",
+     1.25,
+     10,
+     "kg",
+     0.125,
+     "mozzarella-auchan-125g"
+    ],
+    [
+     "Auchan Mozzarella light Producto Alcampo",
+     1.35,
+     10.8,
+     "kg",
+     0.125,
+     "queso-fresco-mozzarella-light-auchan-125g"
+    ]
+   ],
+   "queso de untar": [
+    [
+     "Cremette Queso de untar natural cremette",
+     1.67,
+     8.35,
+     "kg",
+     0.2,
+     "queso-blanco-para-untar-natural-elaborado-con-leche-pasteurizada-tarrina-200-g-cremette-tarrina-200-g"
+    ],
+    [
+     "Auchan Queso de untar azul Producto Alcampo",
+     1.9,
+     9.5,
+     "kg",
+     0.2,
+     "queso-de-untar-azul-producto-alcampo-200-g"
+    ],
+    [
+     "Auchan Queso de untar natural Producto Alcampo",
+     1.9,
+     9.5,
+     "kg",
+     0.2,
+     "queso-para-untar-natural-auchan-200g"
+    ],
+    [
+     "Philadelphia Queso de untar formato familiar philadelphia Original",
+     3.56,
+     10.17,
+     "kg",
+     0.35,
+     "queso-untar-natural-philadelphia-350g"
+    ],
+    [
+     "Philadelphia Queso de untar formato ahorro philadelphia",
+     5.09,
+     10.18,
+     "kg",
+     0.5,
+     "crema-de-queso-para-untar-natural-philadelphia-pack-2x250-g"
+    ]
+   ],
+   "queso batido": [
+    [
+     "Auchan Queso fresco batido con extra de proteínas Producto Alcampo",
+     1.37,
+     2.74,
+     "kg",
+     0.5,
+     "queso-fresco-batido-con-extra-de-proteinas-producto-alcampo-protein-500-g"
+    ]
+   ],
+   "contramuslos de pollo": [
+    [
+     "Auchan Contramuslos de pollo xxl. Producto Alcampo",
+     3.78,
+     3.98,
+     "kg",
+     0.95,
+     "producto-alcampo-contramuslos-de-pollo-xxl-producto-alcampo-1-kg"
+    ],
+    [
+     "Auchan Contramuslos de pollo 4 uds. Producto Alcampo",
+     2.48,
+     4.96,
+     "kg",
+     0.5,
+     "producto-alcampo-contramuslos-de-pollo-4-uds-producto-alcampo-4-uds"
+    ],
+    [
+     "Auchan Contramuslos de pollo sin piel Producto Alcampo",
+     4.47,
+     5.59,
+     "kg",
+     0.8,
+     "producto-alcampo-contramuslos-de-pollo-sin-piel-4-uds-producto-alcampo-4-uds"
+    ],
+    [
+     "Auchan Contramuslos de pollo fileteado Producto Alcampo",
+     3.39,
+     6.78,
+     "kg",
+     0.5,
+     "producto-alcampo-contramuslos-de-pollo-fileteado-producto-alcampo"
+    ],
+    [
+     "Alcampo cultivamos LO bueno Contramuslos de pollo certificado con piel Bandeja",
+     3.82,
+     6.95,
+     "kg",
+     0.55,
+     "contramuslos-de-pollo-certificado-con-piel-alcampo-produccion-controlada-bandeja-alcampo-produccion-controlada"
+    ]
+   ],
+   "cerdo": [
+    [
+     "Filetes de cinta de lomo de cerdo extra",
+     2.08,
+     5.94,
+     "kg",
+     0.35,
+     "cinta-de-lomo-extra-de-cerdo-blanco-250-gramos"
+    ],
+    [
+     "Caysan Fiambre de lomo de cerdo cocido y adobado, fileteado",
+     4.22,
+     6.49,
+     "kg",
+     0.65,
+     "caysan-fiambre-de-lomo-de-cerdo-cocido-y-adobado-fileteado-hermanos-richar-650-gr"
+    ],
+    [
+     "Filetes de cinta de lomo de cerdo de categoría extra",
+     4.92,
+     8.95,
+     "kg",
+     0.55,
+     "cinta-de-lomo-extra-de-cerdo-blanco-480-gramos"
+    ],
+    [
+     "Filetes de cinta de lomo de cerdo con corte fino",
+     2.99,
+     9.46,
+     "kg",
+     0.316,
+     "filetes-de-cinta-de-lomo-para-bocadillos-especial-freir-150-gramos-aproximados-cerdo-blanco-150-gramos-aproximados"
+    ],
+    [
+     "Libritos de cinta de lomo de cerdo",
+     3.9,
+     9.75,
+     "kg",
+     0.4,
+     "cinta-de-lomo-de-cerdo-blanco-300-gramos"
+    ]
+   ],
+   "costillas de cerdo": [
+    [
+     "Centro de costillar en trozos, ideal para asados o barbacoa",
+     10.5,
+     5.25,
+     "kg",
+     2,
+     "costillar-en-trozos-de-cerdo-blanco-especial-asados-barbacoa-y-freir"
+    ],
+    [
+     "Costillar de cerdo entero",
+     10.12,
+     5.95,
+     "kg",
+     1.701,
+     "costillar-entero-aprox-cerdo-blanco-600g"
+    ],
+    [
+     "Costillas de cerdo en palos, ideales para barbacoa, plancha o asados",
+     4.23,
+     7.26,
+     "kg",
+     0.583,
+     "costillas-largas-de-cerdo-blanco-especiales-para-barbacoa-plancha-o-asados"
+    ],
+    [
+     "Tello Tira de costilla de cerdo adobada estilo barbacoa",
+     7.95,
+     7.95,
+     "kg",
+     1,
+     "costilla-de-cerdo-adobada-hemosa-1-300-gramos"
+    ],
+    [
+     "Alcampo cultivamos LO bueno Tira de costillar de cerdo Ibérico al ajillo.",
+     6.76,
+     8.45,
+     "kg",
+     0.8,
+     "alcampo-cultivamos-lo-bueno-tira-de-costillar-de-cerdo-iberico-al-ajillo-alcampo-cultivamos-lo-bueno-800-gr"
+    ]
+   ],
+   "bacon": [
+    [
+     "Auchan Tiras de bacon cocido Producto Alcampo",
+     1.64,
+     8.2,
+     "kg",
+     0.2,
+     "tiras-de-bacon-auchan-2-unidades-de-75-gramos"
+    ],
+    [
+     "Monells Bacon cortado en lonchas y envasado al vacio monells",
+     1.57,
+     8.72,
+     "kg",
+     0.18,
+     "bacon-cortado-en-lonchas-y-envasado-al-vacio-monells-180-g"
+    ],
+    [
+     "Monells Tiras de bacon con sabor ahumado 200 g.",
+     1.88,
+     9.4,
+     "kg",
+     0.2,
+     "monells-tiras-de-bacon-con-sabor-ahumado-200-g-monells-200-g"
+    ],
+    [
+     "Casa tarradellas Bacon ahumado natural cortado en cómodas y practicas cintas",
+     1.89,
+     9.45,
+     "kg",
+     0.2,
+     "bacon-cortado-en-comodas-y-practicas-cintas-elaborado-sin-gluten-casa-tarradellas-2-x-100-g"
+    ],
+    [
+     "Auchan Bacon cocido ahumado en lonchas Producto Alcampo",
+     2.15,
+     10.75,
+     "kg",
+     0.2,
+     "bebida-de-soja-millac-1l"
+    ]
+   ],
+   "salchichon en lonchas": [
+    [
+     "Gourmet tapas Lonchas de salchichon extra",
+     1.67,
+     11.13,
+     "kg",
+     0.15,
+     "gourmet-tapas-lonchas-de-salchichon-extra-150-g-gourmet-tapas-150-g"
+    ],
+    [
+     "Auchan Salchichón extra Producto Alcampo - Loncha fina 1 mm",
+     1.88,
+     12.53,
+     "kg",
+     0.15,
+     "salchichon-extra-producto-alcampo-loncha-fina-1-mm-producto-alcampo"
+    ],
+    [
+     "Auchan Salchichón extra Producto Alcampo - Loncha normal 2 a 3 mm",
+     1.88,
+     12.53,
+     "kg",
+     0.15,
+     "salchichon-extra-producto-alcampo-loncha-normal-2-a-3-mm-producto-alcampo"
+    ]
+   ],
+   "jamon serrano": [
+    [
+     "Serrano Delisandwich Fiambre de pavo y cerdo con sabor a langosta, cortado en lonchas",
+     1.35,
+     15,
+     "kg",
+     0.09,
+     "delisandwich-de-langosta-en-lonchas-serrano-130g"
+    ],
+    [
+     "Serrano Delisandwich Fiambre de pavo y cerdo cocido con sabor a cangrejo, cortado en lonchas",
+     1.35,
+     15,
+     "kg",
+     0.09,
+     "delisandwich-de-cangrejo-en-lonchas-serrano-130g"
+    ],
+    [
+     "Producto económico alcampo Jamón serrano curado (siete meses de curación) cortado en lonchas",
+     7.72,
+     15.44,
+     "kg",
+     0.5,
+     "jamon-curado-en-lonchas-productos-economicos-alcampo-500-gr"
+    ],
+    [
+     "Auchan Jamón serrano reserva (12 meses de curación) cortado en lonchas Producto Alcampo",
+     4.11,
+     16.44,
+     "kg",
+     0.25,
+     "jamon-serrano-en-lonchas-auchan-250g"
+    ],
+    [
+     "Auchan Jamón serrano bodega (10 meses de curación) cortado en lonchas Producto Alcampo",
+     4.4,
+     17.6,
+     "kg",
+     0.25,
+     "jamon-serrano-bodega-10-meses-de-curacion-auchan-250-gramos"
+    ]
+   ],
+   "calamares a la romana": [
+    [
+     "Pescanova Anillas pota a la romana, según receta clásica",
+     3.49,
+     8.72,
+     "kg",
+     0.4,
+     "anillas-pescanova-a-la-romana-400g-pescanova-400g"
+    ],
+    [
+     "Auchan Anillas de pota a la romana Producto Alcampo",
+     4.2,
+     10.5,
+     "kg",
+     0.4,
+     "anillas-de-calamar-a-la-romana-auchan-400g"
+    ]
+   ],
+   "patata": [
+    [
+     "Patatas lavadas",
+     4.16,
+     1.39,
+     "kg",
+     2.993,
+     "patata-lavada-hortaliza-3kg"
+    ],
+    [
+     "Alcampo cultivamos LO bueno Patatas para freír malla 2 kg.",
+     3.19,
+     1.59,
+     "kg",
+     2.006,
+     "alcampo-cultivamos-lo-bueno-patatas-para-freir-malla-2-kg-alcampo-cultivamos-lo-bueno-malla-2-kg"
+    ],
+    [
+     "Alcampo cultivamos lo bueno Patatas para cocer",
+     3.19,
+     1.59,
+     "kg",
+     2.006,
+     "alcampo-cultivamos-lo-bueno-patatas-para-cocer-malla-2-kg-alcampo-cultivamos-lo-bueno-malla-2-kg"
+    ],
+    [
+     "Patatas malla 5 kg",
+     7.99,
+     1.6,
+     "kg",
+     4.994,
+     "patatas-malla-5-kg-malla-5-kg"
+    ],
+    [
+     "Patatas de la Comunidad de Madrid",
+     4.8,
+     1.6,
+     "kg",
+     3,
+     "patatas-comunidad-de-madrid-malla-3-kg-malla-3-kg"
+    ]
+   ],
+   "champiñon": [
+    [
+     "Ferba champiñón laminado",
+     1.05,
+     5,
+     "kg",
+     0.21,
+     "ferba-champinon-laminado-2-latas-de-105-g-ferba-2-latas-de-105-g"
+    ],
+    [
+     "Producto económico alcampo Champiñón en trozos",
+     1.19,
+     5.17,
+     "kg",
+     0.23,
+     "producto-alcampo-champinon-en-trozos-champinon-en-trozos-champinon-en-trozos-230-gr-producto-alcampo-230-gr"
+    ],
+    [
+     "Producto alcampo Champiñón laminado",
+     1.28,
+     5.57,
+     "kg",
+     0.23,
+     "producto-alcampo-champinon-laminado-230-gr-producto-alcampo-230-gr"
+    ],
+    [
+     "Champiñones con pie cortado",
+     1.48,
+     5.92,
+     "kg",
+     0.25,
+     "champinon-hongos-350-gramos"
+    ],
+    [
+     "Champiñones",
+     2.99,
+     5.98,
+     "kg",
+     0.5,
+     "champinon-600-gramos"
+    ]
+   ],
+   "pera": [
+    [
+     "Pera conferencia cesta",
+     1.98,
+     1.98,
+     "kg",
+     1,
+     "pera-conferencia-fruta-1kg"
+    ],
+    [
+     "Pera conferencia al peso",
+     1.99,
+     1.99,
+     "kg",
+     1,
+     "peras-conferencia-1-000-gramos-aproximados-mis-frutas-y-verduras-1-000-gramos-aproximados"
+    ],
+    [
+     "Tomate pera al peso",
+     2.59,
+     2.59,
+     "kg",
+     1,
+     "tomate-pera-1-000-gramos-aproximados-mis-frutas-y-verduras-1-000-gramos-aproximados"
+    ]
+   ],
+   "patatas prefritas": [
+    [
+     "Producto económico alcampo Patatas prefritas y ultracongeladas producto económico alcampo",
+     4.63,
+     1.85,
+     "kg",
+     2.503,
+     "patatas-prefritas-p-economico-alcampo-5kg"
+    ],
+    [
+     "Producto económico alcampo Patatas prefritas y ultracongeladas producto económico alcampo",
+     1.85,
+     1.85,
+     "kg",
+     1,
+     "patatas-prefritas-congeladas-p-economico-alcampo-1kg"
+    ],
+    [
+     "Auchan Patatas prefritas y ultracongeladas, con corte extrafino Producto Alcampo",
+     1.94,
+     1.94,
+     "kg",
+     1,
+     "patatas-prefritas-extrafinas-auchan-bolsa-de-1-kilogramo"
+    ],
+    [
+     "Auchan Patatas prefritas, ultracongeladas y de corte clásico Producto Alcampo",
+     2.35,
+     2.35,
+     "kg",
+     1,
+     "patatas-prefritas-de-corte-clasico-auchan-bolsa-de-1-kilogramo"
+    ]
+   ],
+   "pizza barbacoa": [
+    [
+     "LA niña DEL SUR Pizza barbacoa hecha al horno de piedra",
+     2.52,
+     6.3,
+     "kg",
+     0.4,
+     "pizza-barbacoa-hecha-al-horno-de-piedra-la-nina-del-sur-400-g"
+    ],
+    [
+     "Auchan Pizza barbacoa cocida en horno de piedra Producto Alcampo",
+     2.69,
+     6.72,
+     "kg",
+     0.4,
+     "pizza-refrigerada-barbacoa-auchan-400g"
+    ],
+    [
+     "Pizza barbacoa Casa Tarradellas",
+     3.03,
+     6.89,
+     "kg",
+     0.44,
+     "pizza-barbacoa-casa-tarradellas-400-gr"
+    ]
+   ],
+   "croquetas de jamon": [
+    [
+     "Price Croquetas congeladas de jamón",
+     2.29,
+     2.29,
+     "kg",
+     1,
+     "price-croquetas-congeladas-de-jamon-1-kg-price-1-kg"
+    ],
+    [
+     "Auchan Croquetas de jamón curado ultracongeladas Producto Alcampo",
+     1.4,
+     2.8,
+     "kg",
+     0.5,
+     "croquetas-jamon-auchan-bolsa-500-grs"
+    ]
+   ],
+   "lasana bolonesa": [
+    [
+     "Auchan Lasaña boloñesa, ultracongelada Producto Alcampo",
+     2.51,
+     4.78,
+     "kg",
+     0.525,
+     "lasana-bolonesa-auchan-525g"
+    ],
+    [
+     "Auchan Lasaña Boloñesa, elaborada sin conservantes ni colorantes, lista para calentar y comer Producto Alcampo",
+     4.7,
+     6.71,
+     "kg",
+     0.7,
+     "lasana-bolonesa-elaborada-sin-conservantes-ni-colorantes-lista-para-calentar-y-comer-producto-alcampo-700-g"
+    ],
+    [
+     "Lasaña boloñesa La Cocinera",
+     3.59,
+     7.18,
+     "kg",
+     0.5,
+     "lasana-bolonesa-la-cocinera-la-cocinera-500-g"
+    ],
+    [
+     "Auchan Lasaña Boloñesa, lista para calentar y comer Producto Alcampo",
+     2.75,
+     7.86,
+     "kg",
+     0.35,
+     "lasana-de-carne-picada-auchan-400-gr"
+    ]
+   ],
+   "tortellini": [
+    [
+     "Farinelli Tortellini de pasta fresca al huevo rellenos de jamón serrano farinelli Linea oro",
+     1,
+     4,
+     "kg",
+     0.25,
+     "tortellini-de-pasta-fresca-al-huevo-rellenos-de-jamon-serrano-farinelli-linea-oro-250-g"
+    ],
+    [
+     "Producto alcampo Tortellini de pasta al huevo con queso 250 g.",
+     1.73,
+     6.92,
+     "kg",
+     0.25,
+     "producto-alcampo-tortellini-de-pasta-al-huevo-con-queso-250-g-producto-alcampo-250-g"
+    ]
+   ],
+   "noquis": [
+    [
+     "Gallo Pasta ñoquis de patata gallo",
+     1.45,
+     3.62,
+     "kg",
+     0.401,
+     "noquis-bolitas-de-patatas-gallo-400-g"
+    ]
+   ],
+   "quinoa": [
+    [
+     "Producto alcampo Quinoa blanca seca",
+     2.78,
+     5.56,
+     "kg",
+     0.5,
+     "quinoa-blanca-seca-auchan-400-g"
+    ],
+    [
+     "Producto alcampo Quinoa blanca y roja cocida",
+     1.41,
+     5.64,
+     "kg",
+     0.25,
+     "quinoa-blanca-y-cocida-auchan-240-g"
+    ]
+   ],
+   "cereales": [
+    [
+     "Kellogg's corn flakes Cereales copos de maíz natural",
+     2.38,
+     4.76,
+     "kg",
+     0.5,
+     "corn-flakes-kellogg-s-caja-500-g"
+    ]
+   ],
+   "harina de maiz": [
+    [
+     "Producto alcampo Harina de maíz sin gluten",
+     1.68,
+     1.68,
+     "kg",
+     1,
+     "harina-de-maiz-sin-gluten-controlado-por-la-face-auchan-1-kilogramo"
+    ],
+    [
+     "Malai Harina de maíz extra",
+     1.89,
+     1.89,
+     "kg",
+     1,
+     "arpis-harina-de-maiz-arpis-arpis-1-kg"
+    ],
+    [
+     "Harina de maíz extra fina blanca",
+     2.23,
+     2.23,
+     "kg",
+     1,
+     "harina-blanca-dona-arepa-1-kg"
+    ]
+   ],
+   "tomate troceado": [
+    [
+     "Producto alcampo Tomate troceado",
+     0.62,
+     1.59,
+     "kg",
+     0.39,
+     "tomate-troceado-auchan-lata-de-390-grs"
+    ],
+    [
+     "Producto alcampo Tomate troceado",
+     1.31,
+     1.68,
+     "kg",
+     0.78,
+     "tomate-troceado-auchan-780g"
+    ]
+   ],
+   "tomate concentrado": [
+    [
+     "Hida Tomate concentrado",
+     1.36,
+     8,
+     "kg",
+     0.17,
+     "tomate-doble-concentrado-hida-lata-170-g"
+    ]
+   ],
+   "masa de pizza": [
+    [
+     "Producto alcampo Masa para pizza rectangular",
+     1.44,
+     3.74,
+     "kg",
+     0.385,
+     "producto-alcampo-masa-para-pizza-rectangular-385-g-auchan-385-g"
+    ],
+    [
+     "Auchan Masa para pizza tradicional con levadura panadera Producto Alcampo",
+     1.03,
+     3.96,
+     "kg",
+     0.26,
+     "base-para-pizza-auchan-260g"
+    ],
+    [
+     "Masa pizza fina familiar",
+     1.79,
+     4.47,
+     "kg",
+     0.4,
+     "masa-pizza-familiar-tarradellas-rectangular-400-g-casa-tarradellas-400-g"
+    ]
+   ],
+   "salsa carbonara": [
+    [
+     "Producto alcampo Salsa carbonara",
+     1.45,
+     4.14,
+     "kg",
+     0.35,
+     "salsa-carbonara-auchan-350g"
+    ],
+    [
+     "Gallo Salsa carbonara",
+     2.88,
+     8.73,
+     "kg",
+     0.33,
+     "salsa-carbonara-gallo-frasco-330-g"
+    ]
+   ],
+   "crema de cacao": [
+    [
+     "Producto alcampo Crema de cacao con avellanas para untar",
+     1.95,
+     3.9,
+     "kg",
+     0.5,
+     "crema-de-cacao-1-sabor-auchan-500g"
+    ],
+    [
+     "Producto económico alcampo Crema de cacao con avellanas para untar",
+     3.66,
+     4.88,
+     "kg",
+     0.75,
+     "crema-al-cacao-para-untar-1-sabor-productos-economicos-alcampo-750-gramos"
+    ],
+    [
+     "Producto alcampo Crema de avellanas con cacao",
+     4.07,
+     5.43,
+     "kg",
+     0.75,
+     "crema-de-avellanas-con-cacao-producto-alcampo-750-g"
+    ]
+   ],
+   "chocolate negro": [
+    [
+     "Trapa Chocolate negro (80 % cacao)",
+     2.56,
+     14.63,
+     "kg",
+     0.175,
+     "chocolate-negro-80-cacao-trapa-175-g"
+    ],
+    [
+     "Producto alcampo Tableta de chocolate negro 72 % cacao",
+     1.65,
+     16.5,
+     "kg",
+     0.1,
+     "chocolate-negro-72-cacao-auchan-100-g"
+    ]
+   ],
+   "chocolate con leche": [
+    [
+     "Nestlé Extrafino Chocolate con leche",
+     4.04,
+     10.77,
+     "kg",
+     0.375,
+     "nestle-extrafino-chocolate-con-leche-nestle-3-uds-de-125-g"
+    ],
+    [
+     "Tableta extrafina de chocolate con leche",
+     1.8,
+     12,
+     "kg",
+     0.15,
+     "chocolate-con-leche-extrafino-nestle-150-g"
+    ]
+   ],
+   "nueces": [
+    [
+     "Producto alcampo Nueces con cáscara",
+     3.86,
+     6.43,
+     "kg",
+     0.6,
+     "nueces-con-cascara-auchan-600-g"
+    ],
+    [
+     "Medina Nueces mondadas",
+     5.49,
+     9.98,
+     "kg",
+     0.55,
+     "nueces-mondadas-medina-600-g"
+    ]
+   ],
+   "pasas": [
+    [
+     "Producto alcampo Pasas sultanas",
+     1.32,
+     6.6,
+     "kg",
+     0.2,
+     "pasas-sultanas-auchan-200-g"
+    ],
+    [
+     "Frumesa Uva pasa sultana sin pepitas 200 g.",
+     1.46,
+     7.3,
+     "kg",
+     0.2,
+     "frumesa-uva-pasa-sultana-sin-pepitas-200-g-frumesa-200-g"
+    ]
+   ],
+   "refresco de naranja": [
+    [
+     "Producto alcampo Refresco de naranja 8 %",
+     0.99,
+     0.49,
+     "l",
+     2.02,
+     "refresco-de-naranja-auchan-2l"
+    ],
+    [
+     "Fanta Refresco de naranja",
+     2.98,
+     0.74,
+     "l",
+     4.027,
+     "refresco-de-naranja-fanta-pack-de-2-botellas-x-2-l"
+    ]
+   ]
+  },
+  "carrefour": {
+   "bebida de soja": [
+    [
+     "Bebida de soja con calcio Carrefour sin gluten",
+     0.64,
+     0.64,
+     "l",
+     1,
+     "bebida-de-soja-con-calcio-carrefour-1-l"
+    ],
+    [
+     "Bebida de soja sin azúcar añadido Carrefour sin gluten",
+     0.74,
+     0.74,
+     "l",
+     1,
+     "bebida-de-soja-classic-sin-azucares-carrefour-1-l"
+    ],
+    [
+     "Bebida de soja calcio 0% azúcar Carrefour Sensation sin gluten",
+     0.75,
+     0.75,
+     "l",
+     1,
+     "bebida-de-soja-calcio-0-azucar-carrefour-sensation-1-l-1-l"
+    ]
+   ],
+   "queso": [
+    [
+     "Queso de sandwich en lonchas Bredam",
+     6.49,
+     6.49,
+     "kg",
+     1,
+     "lonchas-sandwich-bredam-1kg-bredam-1kg"
+    ]
+   ],
+   "requeson": [
+    [
+     "Requesón",
+     1.99,
+     7.96,
+     "kg",
+     0.25,
+     "requeson-el-ventero-tarrina-250-g-el-ventero-tarrina-250-g"
+    ]
+   ],
+   "calamares a la romana": [
+    [
+     "Pescanova Anillas pota a la romana, según receta clásica",
+     4.29,
+     10.72,
+     "kg",
+     0.4,
+     "anillas-pescanova-a-la-romana-400g-pescanova-400g"
+    ]
+   ],
+   "surimi": [
+    [
+     "Palitos de mar Carrefour",
+     1.88,
+     4.18,
+     "kg",
+     0.45,
+     "palitos-de-mar-carrefour-450-g"
+    ]
+   ],
+   "ajo": [
+    [
+     "Carmencita Ajo en polvo carmencita",
+     11.99,
+     41.34,
+     "kg",
+     0.29,
+     "ajo-en-polvo-carmencita-frasco-de-290-g"
+    ]
+   ],
+   "pera": [
+    [
+     "Pera conferencia Carrefour",
+     1.99,
+     1.99,
+     "kg",
+     1,
+     "pera-conferencia-bolsa-de-1000-0-g-2"
+    ],
+    [
+     "Pera conferencia Carrefour",
+     3.68,
+     2.45,
+     "kg",
+     1.502,
+     "pera-conferencia-carrefour-1-5-kg-aprox-1-5-kg-aprox"
+    ]
+   ],
+   "kiwi": [
+    [
+     "Kiwi Carrefour",
+     4.55,
+     4.55,
+     "kg",
+     1,
+     "kiwi-carrefour-cesta-aprox-1kg-carrefour-1kg"
+    ],
+    [
+     "Kiwi",
+     4.59,
+     4.59,
+     "kg",
+     1,
+     "a-granel-kiwi-bolsa-de-1000-0-g"
+    ]
+   ],
+   "patatas prefritas": [
+    [
+     "Patatas prefritas con piel Carrefour",
+     1.32,
+     2.2,
+     "kg",
+     0.6,
+     "patatas-prefritas-con-piel-carrefour-600-g"
+    ],
+    [
+     "Mccain Patatas prefritas con corte clásico y ultracongeladas mccain Tradition",
+     3.29,
+     3.29,
+     "kg",
+     1,
+     "mccain-patatas-prefritas-con-corte-clasico-y-ultracongeladas-mccain-tradition-mc-cain-1-kg"
+    ]
+   ],
+   "fideos": [
+    [
+     "Pasta fideo entrefino Carrefour Classic",
+     0.8,
+     1.6,
+     "kg",
+     0.5,
+     "fideo-entrefino-carrefour-500-g"
+    ],
+    [
+     "Pasta fideo grueso Carrefour Classic",
+     0.8,
+     1.6,
+     "kg",
+     0.5,
+     "pasta-fideo-grueso-carrefour-classic-500-g-500-g"
+    ]
+   ],
+   "croissants": [
+    [
+     "Croissants Carrefour Classic",
+     1.5,
+     4.29,
+     "kg",
+     0.35,
+     "croissants-clasicos-carrefour-350-g"
+    ]
+   ],
+   "mostaza": [
+    [
+     "Salsa de miel y mostaza Carrefour Classic sin gluten",
+     1.28,
+     4.27,
+     "kg",
+     0.3,
+     "salsa-de-mostaza-y-miel-carrefour-300-g"
+    ]
+   ],
+   "refresco cola zero": [
+    [
+     "Refresco de cola sin azúcar-lima zero",
+     1.69,
+     0.97,
+     "l",
+     1.742,
+     "refresco-de-cola-sin-azucar-lima-botella-1-75-litros"
+    ],
+    [
+     "Refresco de cola sin azúcar",
+     11.89,
+     0.99,
+     "l",
+     12.01,
+     "azucar-refresco-de-cola-pack-6-botellas-2-l-coca-cola-zero-pack-6-botellas-2-l"
+    ]
+   ],
+   "te frio al limon": [
+    [
+     "Carrefour Sensation té de limón",
+     0.99,
+     0.66,
+     "l",
+     1.5,
+     "te-al-limon-carrefour-1-5-l"
+    ],
+    [
+     "Té sabor limón zero Carrefour Sensation",
+     0.99,
+     0.66,
+     "l",
+     1.5,
+     "te-carrefour-limon-zero-1-5l-carrefour-1-5l"
+    ]
+   ]
+  }
+ }
+}

@@ -11,7 +11,8 @@
     "prices": "NODE_NO_WARNINGS=1 node scripts/scrape-mercadona.mjs",
     "stores": "NODE_NO_WARNINGS=1 node scripts/fetch-stores.mjs",
     "catalogue": "NODE_NO_WARNINGS=1 node scripts/build-catalogue.mjs",
-    "stations": "NODE_NO_WARNINGS=1 node scripts/fetch-stations.mjs"
+    "stations": "NODE_NO_WARNINGS=1 node scripts/fetch-stations.mjs",
+    "more": "NODE_NO_WARNINGS=1 node scripts/fetch-findit-more.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

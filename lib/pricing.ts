@@ -53,7 +53,11 @@ export function termFor(
   const contained = rows.find(({ alias }) => text.includes(alias));
   if (contained) return contained.term;
 
-  const partial = [...rows].reverse().find(({ alias }) => alias.includes(text));
+  // A fragment that starts a word beats one buried inside another word, so
+  // "queso" finds a cheese and not "requesón".
+  const shortestFirst = [...rows].reverse();
+  const atWord = shortestFirst.find(({ alias }) => alias.split(" ").some((word) => word.startsWith(text)) || alias.startsWith(text));
+  const partial = atWord ?? shortestFirst.find(({ alias }) => alias.includes(text));
   return partial?.term ?? null;
 }
 
