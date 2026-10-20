@@ -124,6 +124,13 @@ textarea {
   border-color: var(--ink);
 }
 
+/* Yellow: a second button that stands out without competing with the black one. */
+.btn-yellow {
+  background: var(--y1);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
 /* A smaller button for tight spaces. */
 .btn-sm {
   padding: 0.3rem 0.7rem;

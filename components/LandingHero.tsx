@@ -76,6 +76,8 @@ export default function LandingHero() {
           </span>
         </h1>
 
+        <ExplainerVideo className="btn btn-yellow mt-3 w-full py-2.5" />
+
         <p className="mt-3 text-base text-slate-600">
           Type your shopping list once and see what it costs at Mercadona, Dia, Carrefour and
           Alcampo near campus, so you buy it where it is cheapest.
@@ -111,9 +113,6 @@ export default function LandingHero() {
             ariaLabel="A product you want to price"
             secondary
           />
-          <div className="mt-3 text-center">
-            <ExplainerVideo />
-          </div>
         </div>
 
         {trip.selected && (

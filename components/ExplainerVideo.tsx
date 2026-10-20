@@ -7,7 +7,12 @@ import { useEffect, useRef, useState } from "react";
  * the landing page itself stays a map and a card. English captions are on by
  * default, since the video has a voice-over.
  */
-export default function ExplainerVideo() {
+export default function ExplainerVideo({
+  className = "text-sm font-extrabold underline decoration-2 underline-offset-2",
+}: {
+  /** How the opening button looks: a text link by default. */
+  className?: string;
+}) {
   const [open, setOpen] = useState(false);
   const closeButton = useRef<HTMLButtonElement>(null);
 
@@ -26,7 +31,7 @@ export default function ExplainerVideo() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-sm font-extrabold underline decoration-2 underline-offset-2"
+        className={className}
       >
         ▶ Watch how it works (1:28)
       </button>
