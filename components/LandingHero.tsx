@@ -70,7 +70,7 @@ export default function LandingHero() {
         </p>
 
         <h1 className="display mt-3 text-4xl leading-[0.95] md:text-5xl">
-          This app saves you money for your weekly shop.
+          This website saves you money for your weekly shop.
           <span className="mt-2 block text-xl leading-tight md:text-2xl">
             Check out how it works in the video or tutorial.
           </span>
