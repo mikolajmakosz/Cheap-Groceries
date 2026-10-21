@@ -8,6 +8,7 @@ import ProductSearch from "@/components/ProductSearch";
 import StoreMap from "@/components/StoreMap";
 import TripPanel from "@/components/TripPanel";
 import { CATALOGUE_STORES, type CatalogueEntry } from "@/lib/catalogue";
+import { logoFor } from "@/lib/shops";
 import { createClient } from "@/lib/supabase/client";
 import { useSignedIn } from "@/lib/useSignedIn";
 import { useTrip } from "@/lib/useTrip";
@@ -78,10 +79,20 @@ export default function LandingHero() {
 
         <ExplainerVideo className="btn btn-yellow mt-3 w-full py-2.5" />
 
-        <p className="mt-3 text-base text-slate-600">
-          Type your shopping list once and see what it costs at Mercadona, Dia, Carrefour and
-          Alcampo near campus, so you buy it where it is cheapest.
-        </p>
+        <div className="mt-4 flex items-center gap-3">
+          <span className="display shrink-0 text-xl leading-none md:text-2xl">Compare</span>
+          <ul className="grid flex-1 grid-cols-4 gap-1.5" aria-label="Mercadona, Dia, Carrefour and Alcampo">
+            {["Mercadona", "Dia", "Carrefour", "Alcampo"].map((shop) => (
+              <li
+                key={shop}
+                className="flex h-10 items-center justify-center rounded-lg border-2 border-[var(--ink)] bg-white p-1"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={logoFor(shop) ?? ""} alt={shop} title={shop} className="max-h-full max-w-full object-contain" />
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {signedIn ? (
           <Link href="/app" data-tour="open-basket" className="btn mt-5 w-full py-3 text-lg">
